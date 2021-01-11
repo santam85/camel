@@ -50,9 +50,12 @@ public interface AMQPEndpointBuilderFactory {
          * subscriptions. If using Apache ActiveMQ you may prefer to use Virtual
          * Topics instead.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param clientId the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder clientId(String clientId) {
             doSetProperty("clientId", clientId);
@@ -62,9 +65,13 @@ public interface AMQPEndpointBuilderFactory {
          * The connection factory to be use. A connection factory must be
          * configured either on the component or endpoint.
          * 
-         * The option is a: <code>javax.jms.ConnectionFactory</code> type.
+         * The option is a: &lt;code&gt;javax.jms.ConnectionFactory&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param connectionFactory the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder connectionFactory(
                 Object connectionFactory) {
@@ -76,9 +83,12 @@ public interface AMQPEndpointBuilderFactory {
          * configured either on the component or endpoint.
          * 
          * The option will be converted to a
-         * <code>javax.jms.ConnectionFactory</code> type.
+         * &lt;code&gt;javax.jms.ConnectionFactory&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param connectionFactory the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder connectionFactory(
                 String connectionFactory) {
@@ -95,10 +105,13 @@ public interface AMQPEndpointBuilderFactory {
          * to use Camel as a proxy between different message brokers and you
          * want to route message from one system to another.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableReplyTo the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder disableReplyTo(
                 boolean disableReplyTo) {
@@ -115,10 +128,14 @@ public interface AMQPEndpointBuilderFactory {
          * to use Camel as a proxy between different message brokers and you
          * want to route message from one system to another.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableReplyTo the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder disableReplyTo(String disableReplyTo) {
             doSetProperty("disableReplyTo", disableReplyTo);
@@ -128,9 +145,12 @@ public interface AMQPEndpointBuilderFactory {
          * The durable subscriber name for specifying durable topic
          * subscriptions. The clientId option must be configured as well.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param durableSubscriptionName the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder durableSubscriptionName(
                 String durableSubscriptionName) {
@@ -145,9 +165,12 @@ public interface AMQPEndpointBuilderFactory {
          * to specify it.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.JmsMessageType</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsMessageType&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param jmsMessageType the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder jmsMessageType(
                 JmsMessageType jmsMessageType) {
@@ -162,9 +185,12 @@ public interface AMQPEndpointBuilderFactory {
          * to specify it.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.JmsMessageType</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsMessageType&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param jmsMessageType the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder jmsMessageType(String jmsMessageType) {
             doSetProperty("jmsMessageType", jmsMessageType);
@@ -174,9 +200,12 @@ public interface AMQPEndpointBuilderFactory {
          * Provides an explicit ReplyTo destination (overrides any incoming
          * value of Message.getJMSReplyTo() in consumer).
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param replyTo the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder replyTo(String replyTo) {
             doSetProperty("replyTo", replyTo);
@@ -189,10 +218,13 @@ public interface AMQPEndpointBuilderFactory {
          * Camel throws an exception on startup. This ensures that Camel is not
          * started with failed connections. The JMS producers is tested as well.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param testConnectionOnStartup the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder testConnectionOnStartup(
                 boolean testConnectionOnStartup) {
@@ -206,10 +238,14 @@ public interface AMQPEndpointBuilderFactory {
          * Camel throws an exception on startup. This ensures that Camel is not
          * started with failed connections. The JMS producers is tested as well.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param testConnectionOnStartup the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder testConnectionOnStartup(
                 String testConnectionOnStartup) {
@@ -220,10 +256,13 @@ public interface AMQPEndpointBuilderFactory {
          * The JMS acknowledgement name, which is one of: SESSION_TRANSACTED,
          * CLIENT_ACKNOWLEDGE, AUTO_ACKNOWLEDGE, DUPS_OK_ACKNOWLEDGE.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: AUTO_ACKNOWLEDGE
          * Group: consumer
+         * 
+         * @param acknowledgementModeName the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder acknowledgementModeName(
                 String acknowledgementModeName) {
@@ -242,10 +281,13 @@ public interface AMQPEndpointBuilderFactory {
          * transaction must be executed synchronously (Camel 3.0 may support
          * async transactions).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param asyncConsumer the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder asyncConsumer(boolean asyncConsumer) {
             doSetProperty("asyncConsumer", asyncConsumer);
@@ -263,10 +305,14 @@ public interface AMQPEndpointBuilderFactory {
          * transaction must be executed synchronously (Camel 3.0 may support
          * async transactions).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param asyncConsumer the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder asyncConsumer(String asyncConsumer) {
             doSetProperty("asyncConsumer", asyncConsumer);
@@ -275,10 +321,13 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * Specifies whether the consumer container should auto-startup.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: consumer
+         * 
+         * @param autoStartup the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder autoStartup(boolean autoStartup) {
             doSetProperty("autoStartup", autoStartup);
@@ -287,10 +336,14 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * Specifies whether the consumer container should auto-startup.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: consumer
+         * 
+         * @param autoStartup the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder autoStartup(String autoStartup) {
             doSetProperty("autoStartup", autoStartup);
@@ -300,9 +353,12 @@ public interface AMQPEndpointBuilderFactory {
          * Sets the cache level by ID for the underlying JMS resources. See
          * cacheLevelName option for more details.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param cacheLevel the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder cacheLevel(int cacheLevel) {
             doSetProperty("cacheLevel", cacheLevel);
@@ -312,9 +368,12 @@ public interface AMQPEndpointBuilderFactory {
          * Sets the cache level by ID for the underlying JMS resources. See
          * cacheLevelName option for more details.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param cacheLevel the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder cacheLevel(String cacheLevel) {
             doSetProperty("cacheLevel", cacheLevel);
@@ -327,10 +386,13 @@ public interface AMQPEndpointBuilderFactory {
          * the Spring documentation and Transactions Cache Levels for more
          * information.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: CACHE_AUTO
          * Group: consumer
+         * 
+         * @param cacheLevelName the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder cacheLevelName(String cacheLevelName) {
             doSetProperty("cacheLevelName", cacheLevelName);
@@ -344,10 +406,13 @@ public interface AMQPEndpointBuilderFactory {
          * replyToConcurrentConsumers is used to control number of concurrent
          * consumers on the reply message listener.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: consumer
+         * 
+         * @param concurrentConsumers the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder concurrentConsumers(
                 int concurrentConsumers) {
@@ -362,10 +427,13 @@ public interface AMQPEndpointBuilderFactory {
          * replyToConcurrentConsumers is used to control number of concurrent
          * consumers on the reply message listener.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: consumer
+         * 
+         * @param concurrentConsumers the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder concurrentConsumers(
                 String concurrentConsumers) {
@@ -380,9 +448,12 @@ public interface AMQPEndpointBuilderFactory {
          * replyToMaxConcurrentConsumers is used to control number of concurrent
          * consumers on the reply message listener.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param maxConcurrentConsumers the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder maxConcurrentConsumers(
                 int maxConcurrentConsumers) {
@@ -397,9 +468,12 @@ public interface AMQPEndpointBuilderFactory {
          * replyToMaxConcurrentConsumers is used to control number of concurrent
          * consumers on the reply message listener.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param maxConcurrentConsumers the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder maxConcurrentConsumers(
                 String maxConcurrentConsumers) {
@@ -409,10 +483,13 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * Specifies whether to use persistent delivery by default for replies.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: consumer
+         * 
+         * @param replyToDeliveryPersistent the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder replyToDeliveryPersistent(
                 boolean replyToDeliveryPersistent) {
@@ -422,10 +499,14 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * Specifies whether to use persistent delivery by default for replies.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: consumer
+         * 
+         * @param replyToDeliveryPersistent the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder replyToDeliveryPersistent(
                 String replyToDeliveryPersistent) {
@@ -435,9 +516,12 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * Sets the JMS selector to use.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param selector the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder selector(String selector) {
             doSetProperty("selector", selector);
@@ -453,10 +537,13 @@ public interface AMQPEndpointBuilderFactory {
          * a topic (pub-sub domain), therefore this method switches the
          * pubSubDomain flag as well.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param subscriptionDurable the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder subscriptionDurable(
                 boolean subscriptionDurable) {
@@ -473,10 +560,14 @@ public interface AMQPEndpointBuilderFactory {
          * a topic (pub-sub domain), therefore this method switches the
          * pubSubDomain flag as well.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param subscriptionDurable the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder subscriptionDurable(
                 String subscriptionDurable) {
@@ -492,9 +583,12 @@ public interface AMQPEndpointBuilderFactory {
          * message listener container) is allowed for each subscription, except
          * for a shared subscription (which requires JMS 2.0).
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param subscriptionName the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder subscriptionName(
                 String subscriptionName) {
@@ -514,10 +608,13 @@ public interface AMQPEndpointBuilderFactory {
          * pubSubDomain flag as well. Requires a JMS 2.0 compatible message
          * broker.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param subscriptionShared the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder subscriptionShared(
                 boolean subscriptionShared) {
@@ -537,10 +634,14 @@ public interface AMQPEndpointBuilderFactory {
          * pubSubDomain flag as well. Requires a JMS 2.0 compatible message
          * broker.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param subscriptionShared the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder subscriptionShared(
                 String subscriptionShared) {
@@ -551,10 +652,14 @@ public interface AMQPEndpointBuilderFactory {
          * Allows to configure the default errorHandler logging level for
          * logging uncaught exceptions.
          * 
-         * The option is a: <code>org.apache.camel.LoggingLevel</code> type.
+         * The option is a:
+         * &lt;code&gt;org.apache.camel.LoggingLevel&lt;/code&gt; type.
          * 
          * Default: WARN
          * Group: logging
+         * 
+         * @param errorHandlerLoggingLevel the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder errorHandlerLoggingLevel(
                 LoggingLevel errorHandlerLoggingLevel) {
@@ -566,10 +671,13 @@ public interface AMQPEndpointBuilderFactory {
          * logging uncaught exceptions.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.LoggingLevel</code> type.
+         * &lt;code&gt;org.apache.camel.LoggingLevel&lt;/code&gt; type.
          * 
          * Default: WARN
          * Group: logging
+         * 
+         * @param errorHandlerLoggingLevel the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder errorHandlerLoggingLevel(
                 String errorHandlerLoggingLevel) {
@@ -580,10 +688,13 @@ public interface AMQPEndpointBuilderFactory {
          * Allows to control whether stacktraces should be logged or not, by the
          * default errorHandler.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: logging
+         * 
+         * @param errorHandlerLogStackTrace the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder errorHandlerLogStackTrace(
                 boolean errorHandlerLogStackTrace) {
@@ -594,10 +705,14 @@ public interface AMQPEndpointBuilderFactory {
          * Allows to control whether stacktraces should be logged or not, by the
          * default errorHandler.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: logging
+         * 
+         * @param errorHandlerLogStackTrace the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder errorHandlerLogStackTrace(
                 String errorHandlerLogStackTrace) {
@@ -608,9 +723,12 @@ public interface AMQPEndpointBuilderFactory {
          * Password to use with the ConnectionFactory. You can also configure
          * username/password directly on the ConnectionFactory.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param password the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder password(String password) {
             doSetProperty("password", password);
@@ -620,9 +738,12 @@ public interface AMQPEndpointBuilderFactory {
          * Username to use with the ConnectionFactory. You can also configure
          * username/password directly on the ConnectionFactory.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param username the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder username(String username) {
             doSetProperty("username", username);
@@ -631,10 +752,13 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * Specifies whether to use transacted mode.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transacted the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder transacted(boolean transacted) {
             doSetProperty("transacted", transacted);
@@ -643,10 +767,14 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * Specifies whether to use transacted mode.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transacted the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder transacted(String transacted) {
             doSetProperty("transacted", transacted);
@@ -671,10 +799,13 @@ public interface AMQPEndpointBuilderFactory {
          * be a native JDBC transaction), with the JMS transaction committing
          * right after the main transaction.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transactedInOut the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder transactedInOut(
                 boolean transactedInOut) {
@@ -700,10 +831,14 @@ public interface AMQPEndpointBuilderFactory {
          * be a native JDBC transaction), with the JMS transaction committing
          * right after the main transaction.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transactedInOut the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointConsumerBuilder transactedInOut(
                 String transactedInOut) {
@@ -731,10 +866,13 @@ public interface AMQPEndpointBuilderFactory {
          * message may be moved at a dead letter queue on the JMS broker. To
          * avoid this its recommended to enable this option.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param acceptMessagesWhileStopping the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder acceptMessagesWhileStopping(
                 boolean acceptMessagesWhileStopping) {
@@ -751,10 +889,14 @@ public interface AMQPEndpointBuilderFactory {
          * message may be moved at a dead letter queue on the JMS broker. To
          * avoid this its recommended to enable this option.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param acceptMessagesWhileStopping the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder acceptMessagesWhileStopping(
                 String acceptMessagesWhileStopping) {
@@ -770,10 +912,13 @@ public interface AMQPEndpointBuilderFactory {
          * stop ability is enabled by default in the regular JMS consumers but
          * to enable for reply managers you must enable this flag.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param allowReplyManagerQuickStop the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder allowReplyManagerQuickStop(
                 boolean allowReplyManagerQuickStop) {
@@ -789,10 +934,14 @@ public interface AMQPEndpointBuilderFactory {
          * stop ability is enabled by default in the regular JMS consumers but
          * to enable for reply managers you must enable this flag.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param allowReplyManagerQuickStop the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder allowReplyManagerQuickStop(
                 String allowReplyManagerQuickStop) {
@@ -812,10 +961,14 @@ public interface AMQPEndpointBuilderFactory {
          * use.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.ConsumerType</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.ConsumerType&lt;/code&gt;
+         * type.
          * 
          * Default: Default
          * Group: consumer (advanced)
+         * 
+         * @param consumerType the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder consumerType(
                 ConsumerType consumerType) {
@@ -835,10 +988,14 @@ public interface AMQPEndpointBuilderFactory {
          * use.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.ConsumerType</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.ConsumerType&lt;/code&gt;
+         * type.
          * 
          * Default: Default
          * Group: consumer (advanced)
+         * 
+         * @param consumerType the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder consumerType(
                 String consumerType) {
@@ -858,10 +1015,12 @@ public interface AMQPEndpointBuilderFactory {
          * decreasing concurrent consumers.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.DefaultTaskExecutorType</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.DefaultTaskExecutorType&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param defaultTaskExecutorType the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder defaultTaskExecutorType(
                 DefaultTaskExecutorType defaultTaskExecutorType) {
@@ -881,10 +1040,12 @@ public interface AMQPEndpointBuilderFactory {
          * decreasing concurrent consumers.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.DefaultTaskExecutorType</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.DefaultTaskExecutorType&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param defaultTaskExecutorType the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder defaultTaskExecutorType(
                 String defaultTaskExecutorType) {
@@ -898,10 +1059,13 @@ public interface AMQPEndpointBuilderFactory {
          * issues with the underlying JMS provider and the use of JMS
          * properties. See also the option eagerPoisonBody.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param eagerLoadingOfProperties the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder eagerLoadingOfProperties(
                 boolean eagerLoadingOfProperties) {
@@ -915,10 +1079,14 @@ public interface AMQPEndpointBuilderFactory {
          * issues with the underlying JMS provider and the use of JMS
          * properties. See also the option eagerPoisonBody.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param eagerLoadingOfProperties the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder eagerLoadingOfProperties(
                 String eagerLoadingOfProperties) {
@@ -933,10 +1101,13 @@ public interface AMQPEndpointBuilderFactory {
          * the Exchange). This can be turned off by setting
          * eagerPoisonBody=false. See also the option eagerLoadingOfProperties.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: Poison JMS message due to ${exception.message}
          * Group: consumer (advanced)
+         * 
+         * @param eagerPoisonBody the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder eagerPoisonBody(
                 String eagerPoisonBody) {
@@ -949,10 +1120,13 @@ public interface AMQPEndpointBuilderFactory {
          * By default the consumer will deal with exceptions, that will be
          * logged at WARN or ERROR level and ignored.
          * 
-         * The option is a: <code>org.apache.camel.spi.ExceptionHandler</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;org.apache.camel.spi.ExceptionHandler&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exceptionHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder exceptionHandler(
                 ExceptionHandler exceptionHandler) {
@@ -966,9 +1140,12 @@ public interface AMQPEndpointBuilderFactory {
          * logged at WARN or ERROR level and ignored.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.spi.ExceptionHandler</code> type.
+         * &lt;code&gt;org.apache.camel.spi.ExceptionHandler&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exceptionHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder exceptionHandler(
                 String exceptionHandler) {
@@ -978,9 +1155,13 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * Sets the exchange pattern when the consumer creates an exchange.
          * 
-         * The option is a: <code>org.apache.camel.ExchangePattern</code> type.
+         * The option is a:
+         * &lt;code&gt;org.apache.camel.ExchangePattern&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exchangePattern the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder exchangePattern(
                 ExchangePattern exchangePattern) {
@@ -991,9 +1172,12 @@ public interface AMQPEndpointBuilderFactory {
          * Sets the exchange pattern when the consumer creates an exchange.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.ExchangePattern</code> type.
+         * &lt;code&gt;org.apache.camel.ExchangePattern&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exchangePattern the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder exchangePattern(
                 String exchangePattern) {
@@ -1004,10 +1188,13 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies whether the listener session should be exposed when
          * consuming messages.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param exposeListenerSession the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder exposeListenerSession(
                 boolean exposeListenerSession) {
@@ -1018,10 +1205,14 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies whether the listener session should be exposed when
          * consuming messages.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param exposeListenerSession the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder exposeListenerSession(
                 String exposeListenerSession) {
@@ -1034,10 +1225,13 @@ public interface AMQPEndpointBuilderFactory {
          * an endless loop by consuming and sending back the same message to
          * itself.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param replyToSameDestinationAllowed the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder replyToSameDestinationAllowed(
                 boolean replyToSameDestinationAllowed) {
@@ -1050,10 +1244,14 @@ public interface AMQPEndpointBuilderFactory {
          * an endless loop by consuming and sending back the same message to
          * itself.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param replyToSameDestinationAllowed the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder replyToSameDestinationAllowed(
                 String replyToSameDestinationAllowed) {
@@ -1064,9 +1262,13 @@ public interface AMQPEndpointBuilderFactory {
          * Allows you to specify a custom task executor for consuming messages.
          * 
          * The option is a:
-         * <code>org.springframework.core.task.TaskExecutor</code> type.
+         * &lt;code&gt;org.springframework.core.task.TaskExecutor&lt;/code&gt;
+         * type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param taskExecutor the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder taskExecutor(
                 Object taskExecutor) {
@@ -1077,9 +1279,13 @@ public interface AMQPEndpointBuilderFactory {
          * Allows you to specify a custom task executor for consuming messages.
          * 
          * The option will be converted to a
-         * <code>org.springframework.core.task.TaskExecutor</code> type.
+         * &lt;code&gt;org.springframework.core.task.TaskExecutor&lt;/code&gt;
+         * type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param taskExecutor the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder taskExecutor(
                 String taskExecutor) {
@@ -1092,10 +1298,13 @@ public interface AMQPEndpointBuilderFactory {
          * serializable. Camel will exclude any non-serializable objects and log
          * it at WARN level.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param allowSerializedHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder allowSerializedHeaders(
                 boolean allowSerializedHeaders) {
@@ -1108,10 +1317,14 @@ public interface AMQPEndpointBuilderFactory {
          * serializable. Camel will exclude any non-serializable objects and log
          * it at WARN level.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param allowSerializedHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder allowSerializedHeaders(
                 String allowSerializedHeaders) {
@@ -1121,10 +1334,13 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * Whether optimizing for Apache Artemis streaming mode.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param artemisStreamingEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder artemisStreamingEnabled(
                 boolean artemisStreamingEnabled) {
@@ -1134,10 +1350,14 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * Whether optimizing for Apache Artemis streaming mode.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param artemisStreamingEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder artemisStreamingEnabled(
                 String artemisStreamingEnabled) {
@@ -1156,10 +1376,13 @@ public interface AMQPEndpointBuilderFactory {
          * logged at WARN level, and the consumer will not be able to receive
          * messages; You can then restart the route to retry.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStartListener the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder asyncStartListener(
                 boolean asyncStartListener) {
@@ -1178,10 +1401,14 @@ public interface AMQPEndpointBuilderFactory {
          * logged at WARN level, and the consumer will not be able to receive
          * messages; You can then restart the route to retry.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStartListener the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder asyncStartListener(
                 String asyncStartListener) {
@@ -1192,10 +1419,13 @@ public interface AMQPEndpointBuilderFactory {
          * Whether to stop the JmsConsumer message listener asynchronously, when
          * stopping a route.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStopListener the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder asyncStopListener(
                 boolean asyncStopListener) {
@@ -1206,42 +1436,18 @@ public interface AMQPEndpointBuilderFactory {
          * Whether to stop the JmsConsumer message listener asynchronously, when
          * stopping a route.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStopListener the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder asyncStopListener(
                 String asyncStopListener) {
             doSetProperty("asyncStopListener", asyncStopListener);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAMQPEndpointConsumerBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAMQPEndpointConsumerBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
             return this;
         }
         /**
@@ -1251,9 +1457,12 @@ public interface AMQPEndpointBuilderFactory {
          * destination in a JNDI registry).
          * 
          * The option is a:
-         * <code>org.springframework.jms.support.destination.DestinationResolver</code> type.
+         * &lt;code&gt;org.springframework.jms.support.destination.DestinationResolver&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param destinationResolver the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder destinationResolver(
                 Object destinationResolver) {
@@ -1267,9 +1476,12 @@ public interface AMQPEndpointBuilderFactory {
          * destination in a JNDI registry).
          * 
          * The option will be converted to a
-         * <code>org.springframework.jms.support.destination.DestinationResolver</code> type.
+         * &lt;code&gt;org.springframework.jms.support.destination.DestinationResolver&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param destinationResolver the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder destinationResolver(
                 String destinationResolver) {
@@ -1285,10 +1497,13 @@ public interface AMQPEndpointBuilderFactory {
          * and errorHandlerLogStackTrace options. This makes it much easier to
          * configure, than having to code a custom errorHandler.
          * 
-         * The option is a: <code>org.springframework.util.ErrorHandler</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;org.springframework.util.ErrorHandler&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param errorHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder errorHandler(
                 Object errorHandler) {
@@ -1305,9 +1520,12 @@ public interface AMQPEndpointBuilderFactory {
          * configure, than having to code a custom errorHandler.
          * 
          * The option will be converted to a
-         * <code>org.springframework.util.ErrorHandler</code> type.
+         * &lt;code&gt;org.springframework.util.ErrorHandler&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param errorHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder errorHandler(
                 String errorHandler) {
@@ -1318,9 +1536,13 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies the JMS Exception Listener that is to be notified of any
          * underlying JMS exceptions.
          * 
-         * The option is a: <code>javax.jms.ExceptionListener</code> type.
+         * The option is a: &lt;code&gt;javax.jms.ExceptionListener&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param exceptionListener the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder exceptionListener(
                 Object exceptionListener) {
@@ -1332,9 +1554,12 @@ public interface AMQPEndpointBuilderFactory {
          * underlying JMS exceptions.
          * 
          * The option will be converted to a
-         * <code>javax.jms.ExceptionListener</code> type.
+         * &lt;code&gt;javax.jms.ExceptionListener&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param exceptionListener the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder exceptionListener(
                 String exceptionListener) {
@@ -1346,9 +1571,13 @@ public interface AMQPEndpointBuilderFactory {
          * Camel message.
          * 
          * The option is a:
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder headerFilterStrategy(
                 HeaderFilterStrategy headerFilterStrategy) {
@@ -1360,9 +1589,13 @@ public interface AMQPEndpointBuilderFactory {
          * Camel message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder headerFilterStrategy(
                 String headerFilterStrategy) {
@@ -1373,10 +1606,13 @@ public interface AMQPEndpointBuilderFactory {
          * Specify the limit for the number of consumers that are allowed to be
          * idle at any given time.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleConsumerLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder idleConsumerLimit(
                 int idleConsumerLimit) {
@@ -1387,10 +1623,13 @@ public interface AMQPEndpointBuilderFactory {
          * Specify the limit for the number of consumers that are allowed to be
          * idle at any given time.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleConsumerLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder idleConsumerLimit(
                 String idleConsumerLimit) {
@@ -1404,10 +1643,13 @@ public interface AMQPEndpointBuilderFactory {
          * (in the case of dynamic scheduling; see the maxConcurrentConsumers
          * setting). There is additional doc available from Spring.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleTaskExecutionLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder idleTaskExecutionLimit(
                 int idleTaskExecutionLimit) {
@@ -1421,10 +1663,13 @@ public interface AMQPEndpointBuilderFactory {
          * (in the case of dynamic scheduling; see the maxConcurrentConsumers
          * setting). There is additional doc available from Spring.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleTaskExecutionLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder idleTaskExecutionLimit(
                 String idleTaskExecutionLimit) {
@@ -1437,10 +1682,13 @@ public interface AMQPEndpointBuilderFactory {
          * JMSXAppID, and JMSXUserID etc. Note: If you are using a custom
          * headerFilterStrategy then this option does not apply.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param includeAllJMSXProperties the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder includeAllJMSXProperties(
                 boolean includeAllJMSXProperties) {
@@ -1453,10 +1701,14 @@ public interface AMQPEndpointBuilderFactory {
          * JMSXAppID, and JMSXUserID etc. Note: If you are using a custom
          * headerFilterStrategy then this option does not apply.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param includeAllJMSXProperties the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder includeAllJMSXProperties(
                 String includeAllJMSXProperties) {
@@ -1475,10 +1727,12 @@ public interface AMQPEndpointBuilderFactory {
          * using the # notation.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.JmsKeyFormatStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsKeyFormatStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param jmsKeyFormatStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder jmsKeyFormatStrategy(
                 Object jmsKeyFormatStrategy) {
@@ -1497,10 +1751,12 @@ public interface AMQPEndpointBuilderFactory {
          * using the # notation.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.JmsKeyFormatStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsKeyFormatStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param jmsKeyFormatStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder jmsKeyFormatStrategy(
                 String jmsKeyFormatStrategy) {
@@ -1511,10 +1767,13 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies whether Camel should auto map the received JMS message to a
          * suited payload type, such as javax.jms.TextMessage to a String etc.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapJmsMessage the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder mapJmsMessage(
                 boolean mapJmsMessage) {
@@ -1525,10 +1784,14 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies whether Camel should auto map the received JMS message to a
          * suited payload type, such as javax.jms.TextMessage to a String etc.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapJmsMessage the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder mapJmsMessage(
                 String mapJmsMessage) {
@@ -1541,10 +1804,13 @@ public interface AMQPEndpointBuilderFactory {
          * to set a value to eg 100 to control how fast the consumers will
          * shrink when less work is required.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: advanced
+         * 
+         * @param maxMessagesPerTask the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder maxMessagesPerTask(
                 int maxMessagesPerTask) {
@@ -1557,10 +1823,13 @@ public interface AMQPEndpointBuilderFactory {
          * to set a value to eg 100 to control how fast the consumers will
          * shrink when less work is required.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: advanced
+         * 
+         * @param maxMessagesPerTask the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder maxMessagesPerTask(
                 String maxMessagesPerTask) {
@@ -1573,9 +1842,12 @@ public interface AMQPEndpointBuilderFactory {
          * be in control how to map to/from a javax.jms.Message.
          * 
          * The option is a:
-         * <code>org.springframework.jms.support.converter.MessageConverter</code> type.
+         * &lt;code&gt;org.springframework.jms.support.converter.MessageConverter&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageConverter the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder messageConverter(
                 Object messageConverter) {
@@ -1588,9 +1860,12 @@ public interface AMQPEndpointBuilderFactory {
          * be in control how to map to/from a javax.jms.Message.
          * 
          * The option will be converted to a
-         * <code>org.springframework.jms.support.converter.MessageConverter</code> type.
+         * &lt;code&gt;org.springframework.jms.support.converter.MessageConverter&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageConverter the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder messageConverter(
                 String messageConverter) {
@@ -1603,10 +1878,12 @@ public interface AMQPEndpointBuilderFactory {
          * sending a JMS message.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.MessageCreatedStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageCreatedStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageCreatedStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder messageCreatedStrategy(
                 Object messageCreatedStrategy) {
@@ -1619,10 +1896,12 @@ public interface AMQPEndpointBuilderFactory {
          * sending a JMS message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.MessageCreatedStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageCreatedStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageCreatedStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder messageCreatedStrategy(
                 String messageCreatedStrategy) {
@@ -1636,10 +1915,13 @@ public interface AMQPEndpointBuilderFactory {
          * provider ignores the hint, the message ID must be set to its normal
          * unique value.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageIdEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder messageIdEnabled(
                 boolean messageIdEnabled) {
@@ -1653,10 +1935,14 @@ public interface AMQPEndpointBuilderFactory {
          * provider ignores the hint, the message ID must be set to its normal
          * unique value.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageIdEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder messageIdEnabled(
                 String messageIdEnabled) {
@@ -1671,9 +1957,12 @@ public interface AMQPEndpointBuilderFactory {
          * consumerType to Custom.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.MessageListenerContainerFactory</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageListenerContainerFactory&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageListenerContainerFactory the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder messageListenerContainerFactory(
                 Object messageListenerContainerFactory) {
@@ -1688,9 +1977,12 @@ public interface AMQPEndpointBuilderFactory {
          * consumerType to Custom.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.MessageListenerContainerFactory</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageListenerContainerFactory&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageListenerContainerFactory the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder messageListenerContainerFactory(
                 String messageListenerContainerFactory) {
@@ -1704,10 +1996,13 @@ public interface AMQPEndpointBuilderFactory {
          * zero; if the provider ignores the hint the timestamp must be set to
          * its normal value.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageTimestampEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder messageTimestampEnabled(
                 boolean messageTimestampEnabled) {
@@ -1721,10 +2016,14 @@ public interface AMQPEndpointBuilderFactory {
          * zero; if the provider ignores the hint the timestamp must be set to
          * its normal value.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageTimestampEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder messageTimestampEnabled(
                 String messageTimestampEnabled) {
@@ -1735,10 +2034,13 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies whether to inhibit the delivery of messages published by
          * its own connection.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param pubSubNoLocal the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder pubSubNoLocal(
                 boolean pubSubNoLocal) {
@@ -1749,10 +2051,14 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies whether to inhibit the delivery of messages published by
          * its own connection.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param pubSubNoLocal the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder pubSubNoLocal(
                 String pubSubNoLocal) {
@@ -1762,10 +2068,13 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * The timeout for receiving messages (in milliseconds).
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param receiveTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder receiveTimeout(
                 long receiveTimeout) {
@@ -1775,10 +2084,13 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * The timeout for receiving messages (in milliseconds).
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param receiveTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder receiveTimeout(
                 String receiveTimeout) {
@@ -1790,10 +2102,13 @@ public interface AMQPEndpointBuilderFactory {
          * connection is being refreshed, in milliseconds. The default is 5000
          * ms, that is, 5 seconds.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 5000
          * Group: advanced
+         * 
+         * @param recoveryInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder recoveryInterval(
                 long recoveryInterval) {
@@ -1805,10 +2120,13 @@ public interface AMQPEndpointBuilderFactory {
          * connection is being refreshed, in milliseconds. The default is 5000
          * ms, that is, 5 seconds.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 5000
          * Group: advanced
+         * 
+         * @param recoveryInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder recoveryInterval(
                 String recoveryInterval) {
@@ -1822,10 +2140,13 @@ public interface AMQPEndpointBuilderFactory {
          * can lower this interval, to check more frequently. The timeout is
          * determined by the option requestTimeout.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param requestTimeoutCheckerInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder requestTimeoutCheckerInterval(
                 long requestTimeoutCheckerInterval) {
@@ -1839,10 +2160,13 @@ public interface AMQPEndpointBuilderFactory {
          * can lower this interval, to check more frequently. The timeout is
          * determined by the option requestTimeout.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param requestTimeoutCheckerInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder requestTimeoutCheckerInterval(
                 String requestTimeoutCheckerInterval) {
@@ -1853,10 +2177,13 @@ public interface AMQPEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder synchronous(
                 boolean synchronous) {
@@ -1867,10 +2194,14 @@ public interface AMQPEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder synchronous(
                 String synchronous) {
@@ -1893,10 +2224,13 @@ public interface AMQPEndpointBuilderFactory {
          * level, which forces a strong coupling between the producers and
          * consumer!.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder transferException(
                 boolean transferException) {
@@ -1919,10 +2253,14 @@ public interface AMQPEndpointBuilderFactory {
          * level, which forces a strong coupling between the producers and
          * consumer!.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder transferException(
                 String transferException) {
@@ -1943,10 +2281,13 @@ public interface AMQPEndpointBuilderFactory {
          * between the producers and consumer having to use compatible Camel
          * versions!.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferExchange the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder transferExchange(
                 boolean transferExchange) {
@@ -1967,10 +2308,14 @@ public interface AMQPEndpointBuilderFactory {
          * between the producers and consumer having to use compatible Camel
          * versions!.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferExchange the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder transferExchange(
                 String transferExchange) {
@@ -1981,10 +2326,13 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies whether JMSMessageID should always be used as
          * JMSCorrelationID for InOut messages.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param useMessageIDAsCorrelationID the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder useMessageIDAsCorrelationID(
                 boolean useMessageIDAsCorrelationID) {
@@ -1995,10 +2343,14 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies whether JMSMessageID should always be used as
          * JMSCorrelationID for InOut messages.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param useMessageIDAsCorrelationID the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder useMessageIDAsCorrelationID(
                 String useMessageIDAsCorrelationID) {
@@ -2010,10 +2362,13 @@ public interface AMQPEndpointBuilderFactory {
          * to the actual correlation id when doing request/reply over JMS and
          * when the option useMessageIDAsCorrelationID is enabled.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 50
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedCounter the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder waitForProvisionCorrelationToBeUpdatedCounter(
                 int waitForProvisionCorrelationToBeUpdatedCounter) {
@@ -2025,10 +2380,13 @@ public interface AMQPEndpointBuilderFactory {
          * to the actual correlation id when doing request/reply over JMS and
          * when the option useMessageIDAsCorrelationID is enabled.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 50
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedCounter the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder waitForProvisionCorrelationToBeUpdatedCounter(
                 String waitForProvisionCorrelationToBeUpdatedCounter) {
@@ -2039,10 +2397,14 @@ public interface AMQPEndpointBuilderFactory {
          * Interval in millis to sleep each time while waiting for provisional
          * correlation id to be updated.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 100
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedThreadSleepingTime the
+         * value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder waitForProvisionCorrelationToBeUpdatedThreadSleepingTime(
                 long waitForProvisionCorrelationToBeUpdatedThreadSleepingTime) {
@@ -2053,10 +2415,14 @@ public interface AMQPEndpointBuilderFactory {
          * Interval in millis to sleep each time while waiting for provisional
          * correlation id to be updated.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 100
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedThreadSleepingTime the
+         * value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder waitForProvisionCorrelationToBeUpdatedThreadSleepingTime(
                 String waitForProvisionCorrelationToBeUpdatedThreadSleepingTime) {
@@ -2067,10 +2433,13 @@ public interface AMQPEndpointBuilderFactory {
          * If true, Camel will create a JmsTransactionManager, if there is no
          * transactionManager injected when option transacted=true.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: transaction (advanced)
+         * 
+         * @param lazyCreateTransactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder lazyCreateTransactionManager(
                 boolean lazyCreateTransactionManager) {
@@ -2081,10 +2450,14 @@ public interface AMQPEndpointBuilderFactory {
          * If true, Camel will create a JmsTransactionManager, if there is no
          * transactionManager injected when option transacted=true.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: transaction (advanced)
+         * 
+         * @param lazyCreateTransactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder lazyCreateTransactionManager(
                 String lazyCreateTransactionManager) {
@@ -2095,9 +2468,12 @@ public interface AMQPEndpointBuilderFactory {
          * The Spring transaction manager to use.
          * 
          * The option is a:
-         * <code>org.springframework.transaction.PlatformTransactionManager</code> type.
+         * &lt;code&gt;org.springframework.transaction.PlatformTransactionManager&lt;/code&gt; type.
          * 
          * Group: transaction (advanced)
+         * 
+         * @param transactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder transactionManager(
                 Object transactionManager) {
@@ -2108,9 +2484,12 @@ public interface AMQPEndpointBuilderFactory {
          * The Spring transaction manager to use.
          * 
          * The option will be converted to a
-         * <code>org.springframework.transaction.PlatformTransactionManager</code> type.
+         * &lt;code&gt;org.springframework.transaction.PlatformTransactionManager&lt;/code&gt; type.
          * 
          * Group: transaction (advanced)
+         * 
+         * @param transactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder transactionManager(
                 String transactionManager) {
@@ -2120,9 +2499,12 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * The name of the transaction to use.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: transaction (advanced)
+         * 
+         * @param transactionName the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder transactionName(
                 String transactionName) {
@@ -2133,10 +2515,13 @@ public interface AMQPEndpointBuilderFactory {
          * The timeout value of the transaction (in seconds), if using
          * transacted mode.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: transaction (advanced)
+         * 
+         * @param transactionTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder transactionTimeout(
                 int transactionTimeout) {
@@ -2147,10 +2532,13 @@ public interface AMQPEndpointBuilderFactory {
          * The timeout value of the transaction (in seconds), if using
          * transacted mode.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: transaction (advanced)
+         * 
+         * @param transactionTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointConsumerBuilder transactionTimeout(
                 String transactionTimeout) {
@@ -2175,9 +2563,12 @@ public interface AMQPEndpointBuilderFactory {
          * subscriptions. If using Apache ActiveMQ you may prefer to use Virtual
          * Topics instead.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param clientId the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder clientId(String clientId) {
             doSetProperty("clientId", clientId);
@@ -2187,9 +2578,13 @@ public interface AMQPEndpointBuilderFactory {
          * The connection factory to be use. A connection factory must be
          * configured either on the component or endpoint.
          * 
-         * The option is a: <code>javax.jms.ConnectionFactory</code> type.
+         * The option is a: &lt;code&gt;javax.jms.ConnectionFactory&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param connectionFactory the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder connectionFactory(
                 Object connectionFactory) {
@@ -2201,9 +2596,12 @@ public interface AMQPEndpointBuilderFactory {
          * configured either on the component or endpoint.
          * 
          * The option will be converted to a
-         * <code>javax.jms.ConnectionFactory</code> type.
+         * &lt;code&gt;javax.jms.ConnectionFactory&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param connectionFactory the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder connectionFactory(
                 String connectionFactory) {
@@ -2220,10 +2618,13 @@ public interface AMQPEndpointBuilderFactory {
          * to use Camel as a proxy between different message brokers and you
          * want to route message from one system to another.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableReplyTo the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder disableReplyTo(
                 boolean disableReplyTo) {
@@ -2240,10 +2641,14 @@ public interface AMQPEndpointBuilderFactory {
          * to use Camel as a proxy between different message brokers and you
          * want to route message from one system to another.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableReplyTo the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder disableReplyTo(String disableReplyTo) {
             doSetProperty("disableReplyTo", disableReplyTo);
@@ -2253,9 +2658,12 @@ public interface AMQPEndpointBuilderFactory {
          * The durable subscriber name for specifying durable topic
          * subscriptions. The clientId option must be configured as well.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param durableSubscriptionName the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder durableSubscriptionName(
                 String durableSubscriptionName) {
@@ -2270,9 +2678,12 @@ public interface AMQPEndpointBuilderFactory {
          * to specify it.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.JmsMessageType</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsMessageType&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param jmsMessageType the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder jmsMessageType(
                 JmsMessageType jmsMessageType) {
@@ -2287,9 +2698,12 @@ public interface AMQPEndpointBuilderFactory {
          * to specify it.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.JmsMessageType</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsMessageType&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param jmsMessageType the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder jmsMessageType(String jmsMessageType) {
             doSetProperty("jmsMessageType", jmsMessageType);
@@ -2299,9 +2713,12 @@ public interface AMQPEndpointBuilderFactory {
          * Provides an explicit ReplyTo destination (overrides any incoming
          * value of Message.getJMSReplyTo() in consumer).
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param replyTo the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder replyTo(String replyTo) {
             doSetProperty("replyTo", replyTo);
@@ -2314,10 +2731,13 @@ public interface AMQPEndpointBuilderFactory {
          * Camel throws an exception on startup. This ensures that Camel is not
          * started with failed connections. The JMS producers is tested as well.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param testConnectionOnStartup the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder testConnectionOnStartup(
                 boolean testConnectionOnStartup) {
@@ -2331,10 +2751,14 @@ public interface AMQPEndpointBuilderFactory {
          * Camel throws an exception on startup. This ensures that Camel is not
          * started with failed connections. The JMS producers is tested as well.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param testConnectionOnStartup the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder testConnectionOnStartup(
                 String testConnectionOnStartup) {
@@ -2345,10 +2769,13 @@ public interface AMQPEndpointBuilderFactory {
          * Sets delivery delay to use for send calls for JMS. This option
          * requires JMS 2.0 compliant broker.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: producer
+         * 
+         * @param deliveryDelay the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder deliveryDelay(long deliveryDelay) {
             doSetProperty("deliveryDelay", deliveryDelay);
@@ -2358,10 +2785,13 @@ public interface AMQPEndpointBuilderFactory {
          * Sets delivery delay to use for send calls for JMS. This option
          * requires JMS 2.0 compliant broker.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: producer
+         * 
+         * @param deliveryDelay the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder deliveryDelay(String deliveryDelay) {
             doSetProperty("deliveryDelay", deliveryDelay);
@@ -2372,9 +2802,12 @@ public interface AMQPEndpointBuilderFactory {
          * defined by javax.jms.DeliveryMode. NON_PERSISTENT = 1 and PERSISTENT
          * = 2.
          * 
-         * The option is a: <code>java.lang.Integer</code> type.
+         * The option is a: &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param deliveryMode the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder deliveryMode(Integer deliveryMode) {
             doSetProperty("deliveryMode", deliveryMode);
@@ -2385,10 +2818,13 @@ public interface AMQPEndpointBuilderFactory {
          * defined by javax.jms.DeliveryMode. NON_PERSISTENT = 1 and PERSISTENT
          * = 2.
          * 
-         * The option will be converted to a <code>java.lang.Integer</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param deliveryMode the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder deliveryMode(String deliveryMode) {
             doSetProperty("deliveryMode", deliveryMode);
@@ -2397,10 +2833,13 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * Specifies whether persistent delivery is used by default.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: producer
+         * 
+         * @param deliveryPersistent the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder deliveryPersistent(
                 boolean deliveryPersistent) {
@@ -2410,10 +2849,14 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * Specifies whether persistent delivery is used by default.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: producer
+         * 
+         * @param deliveryPersistent the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder deliveryPersistent(
                 String deliveryPersistent) {
@@ -2428,10 +2871,13 @@ public interface AMQPEndpointBuilderFactory {
          * preserveMessageQos option, which operates at message granularity,
          * reading QoS properties exclusively from the Camel In message headers.
          * 
-         * The option is a: <code>java.lang.Boolean</code> type.
+         * The option is a: &lt;code&gt;java.lang.Boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param explicitQosEnabled the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder explicitQosEnabled(
                 Boolean explicitQosEnabled) {
@@ -2446,11 +2892,14 @@ public interface AMQPEndpointBuilderFactory {
          * preserveMessageQos option, which operates at message granularity,
          * reading QoS properties exclusively from the Camel In message headers.
          * 
-         * The option will be converted to a <code>java.lang.Boolean</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param explicitQosEnabled the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder explicitQosEnabled(
                 String explicitQosEnabled) {
@@ -2461,10 +2910,13 @@ public interface AMQPEndpointBuilderFactory {
          * Sets whether JMS date properties should be formatted according to the
          * ISO 8601 standard.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param formatDateHeadersToIso8601 the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder formatDateHeadersToIso8601(
                 boolean formatDateHeadersToIso8601) {
@@ -2475,10 +2927,14 @@ public interface AMQPEndpointBuilderFactory {
          * Sets whether JMS date properties should be formatted according to the
          * ISO 8601 standard.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param formatDateHeadersToIso8601 the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder formatDateHeadersToIso8601(
                 String formatDateHeadersToIso8601) {
@@ -2496,10 +2952,13 @@ public interface AMQPEndpointBuilderFactory {
          * producer may take a little time and prolong the total processing time
          * of the processing.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param lazyStartProducer the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder lazyStartProducer(
                 boolean lazyStartProducer) {
@@ -2517,10 +2976,14 @@ public interface AMQPEndpointBuilderFactory {
          * producer may take a little time and prolong the total processing time
          * of the processing.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param lazyStartProducer the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder lazyStartProducer(
                 String lazyStartProducer) {
@@ -2538,10 +3001,13 @@ public interface AMQPEndpointBuilderFactory {
          * by contrast, will only use options set on the endpoint, and not
          * values from the message header.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param preserveMessageQos the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder preserveMessageQos(
                 boolean preserveMessageQos) {
@@ -2559,10 +3025,14 @@ public interface AMQPEndpointBuilderFactory {
          * by contrast, will only use options set on the endpoint, and not
          * values from the message header.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param preserveMessageQos the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder preserveMessageQos(
                 String preserveMessageQos) {
@@ -2571,14 +3041,17 @@ public interface AMQPEndpointBuilderFactory {
         }
         /**
          * Values greater than 1 specify the message priority when sending
-         * (where 0 is the lowest priority and 9 is the highest). The
+         * (where 1 is the lowest priority and 9 is the highest). The
          * explicitQosEnabled option must also be enabled in order for this
          * option to have any effect.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 4
          * Group: producer
+         * 
+         * @param priority the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder priority(int priority) {
             doSetProperty("priority", priority);
@@ -2586,14 +3059,17 @@ public interface AMQPEndpointBuilderFactory {
         }
         /**
          * Values greater than 1 specify the message priority when sending
-         * (where 0 is the lowest priority and 9 is the highest). The
+         * (where 1 is the lowest priority and 9 is the highest). The
          * explicitQosEnabled option must also be enabled in order for this
          * option to have any effect.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 4
          * Group: producer
+         * 
+         * @param priority the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder priority(String priority) {
             doSetProperty("priority", priority);
@@ -2604,10 +3080,13 @@ public interface AMQPEndpointBuilderFactory {
          * request/reply over JMS. See also the maxMessagesPerTask option to
          * control dynamic scaling up/down of threads.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: producer
+         * 
+         * @param replyToConcurrentConsumers the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder replyToConcurrentConsumers(
                 int replyToConcurrentConsumers) {
@@ -2619,10 +3098,13 @@ public interface AMQPEndpointBuilderFactory {
          * request/reply over JMS. See also the maxMessagesPerTask option to
          * control dynamic scaling up/down of threads.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: producer
+         * 
+         * @param replyToConcurrentConsumers the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder replyToConcurrentConsumers(
                 String replyToConcurrentConsumers) {
@@ -2634,9 +3116,12 @@ public interface AMQPEndpointBuilderFactory {
          * request/reply over JMS. See also the maxMessagesPerTask option to
          * control dynamic scaling up/down of threads.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param replyToMaxConcurrentConsumers the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder replyToMaxConcurrentConsumers(
                 int replyToMaxConcurrentConsumers) {
@@ -2648,9 +3133,12 @@ public interface AMQPEndpointBuilderFactory {
          * request/reply over JMS. See also the maxMessagesPerTask option to
          * control dynamic scaling up/down of threads.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param replyToMaxConcurrentConsumers the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder replyToMaxConcurrentConsumers(
                 String replyToMaxConcurrentConsumers) {
@@ -2661,10 +3149,13 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies the maximum number of concurrent consumers for continue
          * routing when timeout occurred when using request/reply over JMS.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: producer
+         * 
+         * @param replyToOnTimeoutMaxConcurrentConsumers the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder replyToOnTimeoutMaxConcurrentConsumers(
                 int replyToOnTimeoutMaxConcurrentConsumers) {
@@ -2675,10 +3166,13 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies the maximum number of concurrent consumers for continue
          * routing when timeout occurred when using request/reply over JMS.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: producer
+         * 
+         * @param replyToOnTimeoutMaxConcurrentConsumers the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder replyToOnTimeoutMaxConcurrentConsumers(
                 String replyToOnTimeoutMaxConcurrentConsumers) {
@@ -2691,9 +3185,12 @@ public interface AMQPEndpointBuilderFactory {
          * the message to a remote Queue and receive the reply message from the
          * ReplyTo destination.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param replyToOverride the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder replyToOverride(
                 String replyToOverride) {
@@ -2712,9 +3209,13 @@ public interface AMQPEndpointBuilderFactory {
          * lower performance than its alternatives Temporary and Exclusive.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.ReplyToType</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.ReplyToType&lt;/code&gt;
+         * type.
          * 
          * Group: producer
+         * 
+         * @param replyToType the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder replyToType(ReplyToType replyToType) {
             doSetProperty("replyToType", replyToType);
@@ -2732,9 +3233,13 @@ public interface AMQPEndpointBuilderFactory {
          * lower performance than its alternatives Temporary and Exclusive.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.ReplyToType</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.ReplyToType&lt;/code&gt;
+         * type.
          * 
          * Group: producer
+         * 
+         * @param replyToType the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder replyToType(String replyToType) {
             doSetProperty("replyToType", replyToType);
@@ -2747,10 +3252,13 @@ public interface AMQPEndpointBuilderFactory {
          * configured timeout value, and thus have per message individual
          * timeout values. See also the requestTimeoutCheckerInterval option.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 20000
          * Group: producer
+         * 
+         * @param requestTimeout the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder requestTimeout(long requestTimeout) {
             doSetProperty("requestTimeout", requestTimeout);
@@ -2763,10 +3271,13 @@ public interface AMQPEndpointBuilderFactory {
          * configured timeout value, and thus have per message individual
          * timeout values. See also the requestTimeoutCheckerInterval option.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 20000
          * Group: producer
+         * 
+         * @param requestTimeout the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder requestTimeout(String requestTimeout) {
             doSetProperty("requestTimeout", requestTimeout);
@@ -2776,10 +3287,13 @@ public interface AMQPEndpointBuilderFactory {
          * When sending messages, specifies the time-to-live of the message (in
          * milliseconds).
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: producer
+         * 
+         * @param timeToLive the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder timeToLive(long timeToLive) {
             doSetProperty("timeToLive", timeToLive);
@@ -2789,10 +3303,13 @@ public interface AMQPEndpointBuilderFactory {
          * When sending messages, specifies the time-to-live of the message (in
          * milliseconds).
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: producer
+         * 
+         * @param timeToLive the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder timeToLive(String timeToLive) {
             doSetProperty("timeToLive", timeToLive);
@@ -2802,9 +3319,12 @@ public interface AMQPEndpointBuilderFactory {
          * Password to use with the ConnectionFactory. You can also configure
          * username/password directly on the ConnectionFactory.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param password the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder password(String password) {
             doSetProperty("password", password);
@@ -2814,9 +3334,12 @@ public interface AMQPEndpointBuilderFactory {
          * Username to use with the ConnectionFactory. You can also configure
          * username/password directly on the ConnectionFactory.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param username the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder username(String username) {
             doSetProperty("username", username);
@@ -2825,10 +3348,13 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * Specifies whether to use transacted mode.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transacted the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder transacted(boolean transacted) {
             doSetProperty("transacted", transacted);
@@ -2837,10 +3363,14 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * Specifies whether to use transacted mode.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transacted the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder transacted(String transacted) {
             doSetProperty("transacted", transacted);
@@ -2865,10 +3395,13 @@ public interface AMQPEndpointBuilderFactory {
          * be a native JDBC transaction), with the JMS transaction committing
          * right after the main transaction.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transactedInOut the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder transactedInOut(
                 boolean transactedInOut) {
@@ -2894,10 +3427,14 @@ public interface AMQPEndpointBuilderFactory {
          * be a native JDBC transaction), with the JMS transaction committing
          * right after the main transaction.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transactedInOut the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointProducerBuilder transactedInOut(
                 String transactedInOut) {
@@ -2923,9 +3460,12 @@ public interface AMQPEndpointBuilderFactory {
          * types. You can specify multiple header names separated by comma, and
          * use as suffix for wildcard matching.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer (advanced)
+         * 
+         * @param allowAdditionalHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder allowAdditionalHeaders(
                 String allowAdditionalHeaders) {
@@ -2936,10 +3476,13 @@ public interface AMQPEndpointBuilderFactory {
          * Whether to allow sending messages with no body. If this option is
          * false and the message body is null, then an JMSException is thrown.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: producer (advanced)
+         * 
+         * @param allowNullBody the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder allowNullBody(
                 boolean allowNullBody) {
@@ -2950,10 +3493,14 @@ public interface AMQPEndpointBuilderFactory {
          * Whether to allow sending messages with no body. If this option is
          * false and the message body is null, then an JMSException is thrown.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: producer (advanced)
+         * 
+         * @param allowNullBody the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder allowNullBody(
                 String allowNullBody) {
@@ -2968,10 +3515,13 @@ public interface AMQPEndpointBuilderFactory {
          * the alwaysCopyMessage option to true, if a
          * replyToDestinationSelectorName is set).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param alwaysCopyMessage the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder alwaysCopyMessage(
                 boolean alwaysCopyMessage) {
@@ -2986,10 +3536,14 @@ public interface AMQPEndpointBuilderFactory {
          * the alwaysCopyMessage option to true, if a
          * replyToDestinationSelectorName is set).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param alwaysCopyMessage the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder alwaysCopyMessage(
                 String alwaysCopyMessage) {
@@ -3002,9 +3556,12 @@ public interface AMQPEndpointBuilderFactory {
          * will be correlated solely on the value of this property
          * JMSCorrelationID property will be ignored and not set by Camel.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer (advanced)
+         * 
+         * @param correlationProperty the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder correlationProperty(
                 String correlationProperty) {
@@ -3022,10 +3579,13 @@ public interface AMQPEndpointBuilderFactory {
          * on the receiver system. See below in section About time to live for
          * more details.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param disableTimeToLive the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder disableTimeToLive(
                 boolean disableTimeToLive) {
@@ -3043,10 +3603,14 @@ public interface AMQPEndpointBuilderFactory {
          * on the receiver system. See below in section About time to live for
          * more details.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param disableTimeToLive the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder disableTimeToLive(
                 String disableTimeToLive) {
@@ -3059,10 +3623,13 @@ public interface AMQPEndpointBuilderFactory {
          * during the route. Set this option to true to force Camel to send the
          * original JMS message that was received.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param forceSendOriginalMessage the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder forceSendOriginalMessage(
                 boolean forceSendOriginalMessage) {
@@ -3075,10 +3642,14 @@ public interface AMQPEndpointBuilderFactory {
          * during the route. Set this option to true to force Camel to send the
          * original JMS message that was received.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param forceSendOriginalMessage the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder forceSendOriginalMessage(
                 String forceSendOriginalMessage) {
@@ -3091,10 +3662,13 @@ public interface AMQPEndpointBuilderFactory {
          * the actual JMSMessageID that was used by the JMS client when the
          * message was sent to the JMS destination.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param includeSentJMSMessageID the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder includeSentJMSMessageID(
                 boolean includeSentJMSMessageID) {
@@ -3107,10 +3681,14 @@ public interface AMQPEndpointBuilderFactory {
          * the actual JMSMessageID that was used by the JMS client when the
          * message was sent to the JMS destination.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param includeSentJMSMessageID the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder includeSentJMSMessageID(
                 String includeSentJMSMessageID) {
@@ -3128,9 +3706,12 @@ public interface AMQPEndpointBuilderFactory {
          * queues then CACHE_NONE is not allowed, and you must use a higher
          * value such as CACHE_CONSUMER or CACHE_SESSION.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer (advanced)
+         * 
+         * @param replyToCacheLevelName the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder replyToCacheLevelName(
                 String replyToCacheLevelName) {
@@ -3142,9 +3723,12 @@ public interface AMQPEndpointBuilderFactory {
          * filter out your own replies from the others when using a shared queue
          * (that is, if you are not using a temporary reply queue).
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer (advanced)
+         * 
+         * @param replyToDestinationSelectorName the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder replyToDestinationSelectorName(
                 String replyToDestinationSelectorName) {
@@ -3160,10 +3744,13 @@ public interface AMQPEndpointBuilderFactory {
          * option the message payload is read into memory in chunks and each
          * chunk is then written to the StreamMessage until no more data.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param streamMessageTypeEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder streamMessageTypeEnabled(
                 boolean streamMessageTypeEnabled) {
@@ -3179,10 +3766,14 @@ public interface AMQPEndpointBuilderFactory {
          * option the message payload is read into memory in chunks and each
          * chunk is then written to the StreamMessage until no more data.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param streamMessageTypeEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder streamMessageTypeEnabled(
                 String streamMessageTypeEnabled) {
@@ -3195,10 +3786,13 @@ public interface AMQPEndpointBuilderFactory {
          * serializable. Camel will exclude any non-serializable objects and log
          * it at WARN level.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param allowSerializedHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder allowSerializedHeaders(
                 boolean allowSerializedHeaders) {
@@ -3211,10 +3805,14 @@ public interface AMQPEndpointBuilderFactory {
          * serializable. Camel will exclude any non-serializable objects and log
          * it at WARN level.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param allowSerializedHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder allowSerializedHeaders(
                 String allowSerializedHeaders) {
@@ -3224,10 +3822,13 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * Whether optimizing for Apache Artemis streaming mode.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param artemisStreamingEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder artemisStreamingEnabled(
                 boolean artemisStreamingEnabled) {
@@ -3237,10 +3838,14 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * Whether optimizing for Apache Artemis streaming mode.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param artemisStreamingEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder artemisStreamingEnabled(
                 String artemisStreamingEnabled) {
@@ -3259,10 +3864,13 @@ public interface AMQPEndpointBuilderFactory {
          * logged at WARN level, and the consumer will not be able to receive
          * messages; You can then restart the route to retry.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStartListener the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder asyncStartListener(
                 boolean asyncStartListener) {
@@ -3281,10 +3889,14 @@ public interface AMQPEndpointBuilderFactory {
          * logged at WARN level, and the consumer will not be able to receive
          * messages; You can then restart the route to retry.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStartListener the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder asyncStartListener(
                 String asyncStartListener) {
@@ -3295,10 +3907,13 @@ public interface AMQPEndpointBuilderFactory {
          * Whether to stop the JmsConsumer message listener asynchronously, when
          * stopping a route.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStopListener the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder asyncStopListener(
                 boolean asyncStopListener) {
@@ -3309,42 +3924,18 @@ public interface AMQPEndpointBuilderFactory {
          * Whether to stop the JmsConsumer message listener asynchronously, when
          * stopping a route.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStopListener the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder asyncStopListener(
                 String asyncStopListener) {
             doSetProperty("asyncStopListener", asyncStopListener);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAMQPEndpointProducerBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAMQPEndpointProducerBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
             return this;
         }
         /**
@@ -3354,9 +3945,12 @@ public interface AMQPEndpointBuilderFactory {
          * destination in a JNDI registry).
          * 
          * The option is a:
-         * <code>org.springframework.jms.support.destination.DestinationResolver</code> type.
+         * &lt;code&gt;org.springframework.jms.support.destination.DestinationResolver&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param destinationResolver the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder destinationResolver(
                 Object destinationResolver) {
@@ -3370,9 +3964,12 @@ public interface AMQPEndpointBuilderFactory {
          * destination in a JNDI registry).
          * 
          * The option will be converted to a
-         * <code>org.springframework.jms.support.destination.DestinationResolver</code> type.
+         * &lt;code&gt;org.springframework.jms.support.destination.DestinationResolver&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param destinationResolver the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder destinationResolver(
                 String destinationResolver) {
@@ -3388,10 +3985,13 @@ public interface AMQPEndpointBuilderFactory {
          * and errorHandlerLogStackTrace options. This makes it much easier to
          * configure, than having to code a custom errorHandler.
          * 
-         * The option is a: <code>org.springframework.util.ErrorHandler</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;org.springframework.util.ErrorHandler&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param errorHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder errorHandler(
                 Object errorHandler) {
@@ -3408,9 +4008,12 @@ public interface AMQPEndpointBuilderFactory {
          * configure, than having to code a custom errorHandler.
          * 
          * The option will be converted to a
-         * <code>org.springframework.util.ErrorHandler</code> type.
+         * &lt;code&gt;org.springframework.util.ErrorHandler&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param errorHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder errorHandler(
                 String errorHandler) {
@@ -3421,9 +4024,13 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies the JMS Exception Listener that is to be notified of any
          * underlying JMS exceptions.
          * 
-         * The option is a: <code>javax.jms.ExceptionListener</code> type.
+         * The option is a: &lt;code&gt;javax.jms.ExceptionListener&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param exceptionListener the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder exceptionListener(
                 Object exceptionListener) {
@@ -3435,9 +4042,12 @@ public interface AMQPEndpointBuilderFactory {
          * underlying JMS exceptions.
          * 
          * The option will be converted to a
-         * <code>javax.jms.ExceptionListener</code> type.
+         * &lt;code&gt;javax.jms.ExceptionListener&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param exceptionListener the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder exceptionListener(
                 String exceptionListener) {
@@ -3449,9 +4059,13 @@ public interface AMQPEndpointBuilderFactory {
          * Camel message.
          * 
          * The option is a:
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder headerFilterStrategy(
                 HeaderFilterStrategy headerFilterStrategy) {
@@ -3463,9 +4077,13 @@ public interface AMQPEndpointBuilderFactory {
          * Camel message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder headerFilterStrategy(
                 String headerFilterStrategy) {
@@ -3476,10 +4094,13 @@ public interface AMQPEndpointBuilderFactory {
          * Specify the limit for the number of consumers that are allowed to be
          * idle at any given time.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleConsumerLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder idleConsumerLimit(
                 int idleConsumerLimit) {
@@ -3490,10 +4111,13 @@ public interface AMQPEndpointBuilderFactory {
          * Specify the limit for the number of consumers that are allowed to be
          * idle at any given time.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleConsumerLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder idleConsumerLimit(
                 String idleConsumerLimit) {
@@ -3507,10 +4131,13 @@ public interface AMQPEndpointBuilderFactory {
          * (in the case of dynamic scheduling; see the maxConcurrentConsumers
          * setting). There is additional doc available from Spring.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleTaskExecutionLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder idleTaskExecutionLimit(
                 int idleTaskExecutionLimit) {
@@ -3524,10 +4151,13 @@ public interface AMQPEndpointBuilderFactory {
          * (in the case of dynamic scheduling; see the maxConcurrentConsumers
          * setting). There is additional doc available from Spring.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleTaskExecutionLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder idleTaskExecutionLimit(
                 String idleTaskExecutionLimit) {
@@ -3540,10 +4170,13 @@ public interface AMQPEndpointBuilderFactory {
          * JMSXAppID, and JMSXUserID etc. Note: If you are using a custom
          * headerFilterStrategy then this option does not apply.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param includeAllJMSXProperties the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder includeAllJMSXProperties(
                 boolean includeAllJMSXProperties) {
@@ -3556,10 +4189,14 @@ public interface AMQPEndpointBuilderFactory {
          * JMSXAppID, and JMSXUserID etc. Note: If you are using a custom
          * headerFilterStrategy then this option does not apply.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param includeAllJMSXProperties the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder includeAllJMSXProperties(
                 String includeAllJMSXProperties) {
@@ -3578,10 +4215,12 @@ public interface AMQPEndpointBuilderFactory {
          * using the # notation.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.JmsKeyFormatStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsKeyFormatStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param jmsKeyFormatStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder jmsKeyFormatStrategy(
                 Object jmsKeyFormatStrategy) {
@@ -3600,10 +4239,12 @@ public interface AMQPEndpointBuilderFactory {
          * using the # notation.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.JmsKeyFormatStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsKeyFormatStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param jmsKeyFormatStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder jmsKeyFormatStrategy(
                 String jmsKeyFormatStrategy) {
@@ -3614,10 +4255,13 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies whether Camel should auto map the received JMS message to a
          * suited payload type, such as javax.jms.TextMessage to a String etc.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapJmsMessage the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder mapJmsMessage(
                 boolean mapJmsMessage) {
@@ -3628,10 +4272,14 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies whether Camel should auto map the received JMS message to a
          * suited payload type, such as javax.jms.TextMessage to a String etc.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapJmsMessage the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder mapJmsMessage(
                 String mapJmsMessage) {
@@ -3644,10 +4292,13 @@ public interface AMQPEndpointBuilderFactory {
          * to set a value to eg 100 to control how fast the consumers will
          * shrink when less work is required.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: advanced
+         * 
+         * @param maxMessagesPerTask the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder maxMessagesPerTask(
                 int maxMessagesPerTask) {
@@ -3660,10 +4311,13 @@ public interface AMQPEndpointBuilderFactory {
          * to set a value to eg 100 to control how fast the consumers will
          * shrink when less work is required.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: advanced
+         * 
+         * @param maxMessagesPerTask the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder maxMessagesPerTask(
                 String maxMessagesPerTask) {
@@ -3676,9 +4330,12 @@ public interface AMQPEndpointBuilderFactory {
          * be in control how to map to/from a javax.jms.Message.
          * 
          * The option is a:
-         * <code>org.springframework.jms.support.converter.MessageConverter</code> type.
+         * &lt;code&gt;org.springframework.jms.support.converter.MessageConverter&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageConverter the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder messageConverter(
                 Object messageConverter) {
@@ -3691,9 +4348,12 @@ public interface AMQPEndpointBuilderFactory {
          * be in control how to map to/from a javax.jms.Message.
          * 
          * The option will be converted to a
-         * <code>org.springframework.jms.support.converter.MessageConverter</code> type.
+         * &lt;code&gt;org.springframework.jms.support.converter.MessageConverter&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageConverter the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder messageConverter(
                 String messageConverter) {
@@ -3706,10 +4366,12 @@ public interface AMQPEndpointBuilderFactory {
          * sending a JMS message.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.MessageCreatedStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageCreatedStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageCreatedStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder messageCreatedStrategy(
                 Object messageCreatedStrategy) {
@@ -3722,10 +4384,12 @@ public interface AMQPEndpointBuilderFactory {
          * sending a JMS message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.MessageCreatedStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageCreatedStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageCreatedStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder messageCreatedStrategy(
                 String messageCreatedStrategy) {
@@ -3739,10 +4403,13 @@ public interface AMQPEndpointBuilderFactory {
          * provider ignores the hint, the message ID must be set to its normal
          * unique value.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageIdEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder messageIdEnabled(
                 boolean messageIdEnabled) {
@@ -3756,10 +4423,14 @@ public interface AMQPEndpointBuilderFactory {
          * provider ignores the hint, the message ID must be set to its normal
          * unique value.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageIdEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder messageIdEnabled(
                 String messageIdEnabled) {
@@ -3774,9 +4445,12 @@ public interface AMQPEndpointBuilderFactory {
          * consumerType to Custom.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.MessageListenerContainerFactory</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageListenerContainerFactory&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageListenerContainerFactory the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder messageListenerContainerFactory(
                 Object messageListenerContainerFactory) {
@@ -3791,9 +4465,12 @@ public interface AMQPEndpointBuilderFactory {
          * consumerType to Custom.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.MessageListenerContainerFactory</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageListenerContainerFactory&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageListenerContainerFactory the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder messageListenerContainerFactory(
                 String messageListenerContainerFactory) {
@@ -3807,10 +4484,13 @@ public interface AMQPEndpointBuilderFactory {
          * zero; if the provider ignores the hint the timestamp must be set to
          * its normal value.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageTimestampEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder messageTimestampEnabled(
                 boolean messageTimestampEnabled) {
@@ -3824,10 +4504,14 @@ public interface AMQPEndpointBuilderFactory {
          * zero; if the provider ignores the hint the timestamp must be set to
          * its normal value.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageTimestampEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder messageTimestampEnabled(
                 String messageTimestampEnabled) {
@@ -3838,10 +4522,13 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies whether to inhibit the delivery of messages published by
          * its own connection.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param pubSubNoLocal the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder pubSubNoLocal(
                 boolean pubSubNoLocal) {
@@ -3852,10 +4539,14 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies whether to inhibit the delivery of messages published by
          * its own connection.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param pubSubNoLocal the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder pubSubNoLocal(
                 String pubSubNoLocal) {
@@ -3865,10 +4556,13 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * The timeout for receiving messages (in milliseconds).
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param receiveTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder receiveTimeout(
                 long receiveTimeout) {
@@ -3878,10 +4572,13 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * The timeout for receiving messages (in milliseconds).
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param receiveTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder receiveTimeout(
                 String receiveTimeout) {
@@ -3893,10 +4590,13 @@ public interface AMQPEndpointBuilderFactory {
          * connection is being refreshed, in milliseconds. The default is 5000
          * ms, that is, 5 seconds.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 5000
          * Group: advanced
+         * 
+         * @param recoveryInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder recoveryInterval(
                 long recoveryInterval) {
@@ -3908,10 +4608,13 @@ public interface AMQPEndpointBuilderFactory {
          * connection is being refreshed, in milliseconds. The default is 5000
          * ms, that is, 5 seconds.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 5000
          * Group: advanced
+         * 
+         * @param recoveryInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder recoveryInterval(
                 String recoveryInterval) {
@@ -3925,10 +4628,13 @@ public interface AMQPEndpointBuilderFactory {
          * can lower this interval, to check more frequently. The timeout is
          * determined by the option requestTimeout.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param requestTimeoutCheckerInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder requestTimeoutCheckerInterval(
                 long requestTimeoutCheckerInterval) {
@@ -3942,10 +4648,13 @@ public interface AMQPEndpointBuilderFactory {
          * can lower this interval, to check more frequently. The timeout is
          * determined by the option requestTimeout.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param requestTimeoutCheckerInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder requestTimeoutCheckerInterval(
                 String requestTimeoutCheckerInterval) {
@@ -3956,10 +4665,13 @@ public interface AMQPEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder synchronous(
                 boolean synchronous) {
@@ -3970,10 +4682,14 @@ public interface AMQPEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder synchronous(
                 String synchronous) {
@@ -3996,10 +4712,13 @@ public interface AMQPEndpointBuilderFactory {
          * level, which forces a strong coupling between the producers and
          * consumer!.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder transferException(
                 boolean transferException) {
@@ -4022,10 +4741,14 @@ public interface AMQPEndpointBuilderFactory {
          * level, which forces a strong coupling between the producers and
          * consumer!.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder transferException(
                 String transferException) {
@@ -4046,10 +4769,13 @@ public interface AMQPEndpointBuilderFactory {
          * between the producers and consumer having to use compatible Camel
          * versions!.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferExchange the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder transferExchange(
                 boolean transferExchange) {
@@ -4070,10 +4796,14 @@ public interface AMQPEndpointBuilderFactory {
          * between the producers and consumer having to use compatible Camel
          * versions!.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferExchange the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder transferExchange(
                 String transferExchange) {
@@ -4084,10 +4814,13 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies whether JMSMessageID should always be used as
          * JMSCorrelationID for InOut messages.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param useMessageIDAsCorrelationID the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder useMessageIDAsCorrelationID(
                 boolean useMessageIDAsCorrelationID) {
@@ -4098,10 +4831,14 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies whether JMSMessageID should always be used as
          * JMSCorrelationID for InOut messages.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param useMessageIDAsCorrelationID the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder useMessageIDAsCorrelationID(
                 String useMessageIDAsCorrelationID) {
@@ -4113,10 +4850,13 @@ public interface AMQPEndpointBuilderFactory {
          * to the actual correlation id when doing request/reply over JMS and
          * when the option useMessageIDAsCorrelationID is enabled.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 50
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedCounter the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder waitForProvisionCorrelationToBeUpdatedCounter(
                 int waitForProvisionCorrelationToBeUpdatedCounter) {
@@ -4128,10 +4868,13 @@ public interface AMQPEndpointBuilderFactory {
          * to the actual correlation id when doing request/reply over JMS and
          * when the option useMessageIDAsCorrelationID is enabled.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 50
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedCounter the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder waitForProvisionCorrelationToBeUpdatedCounter(
                 String waitForProvisionCorrelationToBeUpdatedCounter) {
@@ -4142,10 +4885,14 @@ public interface AMQPEndpointBuilderFactory {
          * Interval in millis to sleep each time while waiting for provisional
          * correlation id to be updated.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 100
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedThreadSleepingTime the
+         * value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder waitForProvisionCorrelationToBeUpdatedThreadSleepingTime(
                 long waitForProvisionCorrelationToBeUpdatedThreadSleepingTime) {
@@ -4156,10 +4903,14 @@ public interface AMQPEndpointBuilderFactory {
          * Interval in millis to sleep each time while waiting for provisional
          * correlation id to be updated.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 100
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedThreadSleepingTime the
+         * value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder waitForProvisionCorrelationToBeUpdatedThreadSleepingTime(
                 String waitForProvisionCorrelationToBeUpdatedThreadSleepingTime) {
@@ -4170,10 +4921,13 @@ public interface AMQPEndpointBuilderFactory {
          * If true, Camel will create a JmsTransactionManager, if there is no
          * transactionManager injected when option transacted=true.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: transaction (advanced)
+         * 
+         * @param lazyCreateTransactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder lazyCreateTransactionManager(
                 boolean lazyCreateTransactionManager) {
@@ -4184,10 +4938,14 @@ public interface AMQPEndpointBuilderFactory {
          * If true, Camel will create a JmsTransactionManager, if there is no
          * transactionManager injected when option transacted=true.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: transaction (advanced)
+         * 
+         * @param lazyCreateTransactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder lazyCreateTransactionManager(
                 String lazyCreateTransactionManager) {
@@ -4198,9 +4956,12 @@ public interface AMQPEndpointBuilderFactory {
          * The Spring transaction manager to use.
          * 
          * The option is a:
-         * <code>org.springframework.transaction.PlatformTransactionManager</code> type.
+         * &lt;code&gt;org.springframework.transaction.PlatformTransactionManager&lt;/code&gt; type.
          * 
          * Group: transaction (advanced)
+         * 
+         * @param transactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder transactionManager(
                 Object transactionManager) {
@@ -4211,9 +4972,12 @@ public interface AMQPEndpointBuilderFactory {
          * The Spring transaction manager to use.
          * 
          * The option will be converted to a
-         * <code>org.springframework.transaction.PlatformTransactionManager</code> type.
+         * &lt;code&gt;org.springframework.transaction.PlatformTransactionManager&lt;/code&gt; type.
          * 
          * Group: transaction (advanced)
+         * 
+         * @param transactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder transactionManager(
                 String transactionManager) {
@@ -4223,9 +4987,12 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * The name of the transaction to use.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: transaction (advanced)
+         * 
+         * @param transactionName the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder transactionName(
                 String transactionName) {
@@ -4236,10 +5003,13 @@ public interface AMQPEndpointBuilderFactory {
          * The timeout value of the transaction (in seconds), if using
          * transacted mode.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: transaction (advanced)
+         * 
+         * @param transactionTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder transactionTimeout(
                 int transactionTimeout) {
@@ -4250,10 +5020,13 @@ public interface AMQPEndpointBuilderFactory {
          * The timeout value of the transaction (in seconds), if using
          * transacted mode.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: transaction (advanced)
+         * 
+         * @param transactionTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointProducerBuilder transactionTimeout(
                 String transactionTimeout) {
@@ -4279,9 +5052,12 @@ public interface AMQPEndpointBuilderFactory {
          * subscriptions. If using Apache ActiveMQ you may prefer to use Virtual
          * Topics instead.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param clientId the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointBuilder clientId(String clientId) {
             doSetProperty("clientId", clientId);
@@ -4291,9 +5067,13 @@ public interface AMQPEndpointBuilderFactory {
          * The connection factory to be use. A connection factory must be
          * configured either on the component or endpoint.
          * 
-         * The option is a: <code>javax.jms.ConnectionFactory</code> type.
+         * The option is a: &lt;code&gt;javax.jms.ConnectionFactory&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param connectionFactory the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointBuilder connectionFactory(Object connectionFactory) {
             doSetProperty("connectionFactory", connectionFactory);
@@ -4304,9 +5084,12 @@ public interface AMQPEndpointBuilderFactory {
          * configured either on the component or endpoint.
          * 
          * The option will be converted to a
-         * <code>javax.jms.ConnectionFactory</code> type.
+         * &lt;code&gt;javax.jms.ConnectionFactory&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param connectionFactory the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointBuilder connectionFactory(String connectionFactory) {
             doSetProperty("connectionFactory", connectionFactory);
@@ -4322,10 +5105,13 @@ public interface AMQPEndpointBuilderFactory {
          * to use Camel as a proxy between different message brokers and you
          * want to route message from one system to another.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableReplyTo the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointBuilder disableReplyTo(boolean disableReplyTo) {
             doSetProperty("disableReplyTo", disableReplyTo);
@@ -4341,10 +5127,14 @@ public interface AMQPEndpointBuilderFactory {
          * to use Camel as a proxy between different message brokers and you
          * want to route message from one system to another.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableReplyTo the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointBuilder disableReplyTo(String disableReplyTo) {
             doSetProperty("disableReplyTo", disableReplyTo);
@@ -4354,9 +5144,12 @@ public interface AMQPEndpointBuilderFactory {
          * The durable subscriber name for specifying durable topic
          * subscriptions. The clientId option must be configured as well.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param durableSubscriptionName the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointBuilder durableSubscriptionName(
                 String durableSubscriptionName) {
@@ -4371,9 +5164,12 @@ public interface AMQPEndpointBuilderFactory {
          * to specify it.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.JmsMessageType</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsMessageType&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param jmsMessageType the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointBuilder jmsMessageType(JmsMessageType jmsMessageType) {
             doSetProperty("jmsMessageType", jmsMessageType);
@@ -4387,9 +5183,12 @@ public interface AMQPEndpointBuilderFactory {
          * to specify it.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.JmsMessageType</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsMessageType&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param jmsMessageType the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointBuilder jmsMessageType(String jmsMessageType) {
             doSetProperty("jmsMessageType", jmsMessageType);
@@ -4399,9 +5198,12 @@ public interface AMQPEndpointBuilderFactory {
          * Provides an explicit ReplyTo destination (overrides any incoming
          * value of Message.getJMSReplyTo() in consumer).
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param replyTo the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointBuilder replyTo(String replyTo) {
             doSetProperty("replyTo", replyTo);
@@ -4414,10 +5216,13 @@ public interface AMQPEndpointBuilderFactory {
          * Camel throws an exception on startup. This ensures that Camel is not
          * started with failed connections. The JMS producers is tested as well.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param testConnectionOnStartup the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointBuilder testConnectionOnStartup(
                 boolean testConnectionOnStartup) {
@@ -4431,10 +5236,14 @@ public interface AMQPEndpointBuilderFactory {
          * Camel throws an exception on startup. This ensures that Camel is not
          * started with failed connections. The JMS producers is tested as well.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param testConnectionOnStartup the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointBuilder testConnectionOnStartup(
                 String testConnectionOnStartup) {
@@ -4445,9 +5254,12 @@ public interface AMQPEndpointBuilderFactory {
          * Password to use with the ConnectionFactory. You can also configure
          * username/password directly on the ConnectionFactory.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param password the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointBuilder password(String password) {
             doSetProperty("password", password);
@@ -4457,9 +5269,12 @@ public interface AMQPEndpointBuilderFactory {
          * Username to use with the ConnectionFactory. You can also configure
          * username/password directly on the ConnectionFactory.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param username the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointBuilder username(String username) {
             doSetProperty("username", username);
@@ -4468,10 +5283,13 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * Specifies whether to use transacted mode.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transacted the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointBuilder transacted(boolean transacted) {
             doSetProperty("transacted", transacted);
@@ -4480,10 +5298,14 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * Specifies whether to use transacted mode.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transacted the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointBuilder transacted(String transacted) {
             doSetProperty("transacted", transacted);
@@ -4508,10 +5330,13 @@ public interface AMQPEndpointBuilderFactory {
          * be a native JDBC transaction), with the JMS transaction committing
          * right after the main transaction.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transactedInOut the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointBuilder transactedInOut(boolean transactedInOut) {
             doSetProperty("transactedInOut", transactedInOut);
@@ -4536,10 +5361,14 @@ public interface AMQPEndpointBuilderFactory {
          * be a native JDBC transaction), with the JMS transaction committing
          * right after the main transaction.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transactedInOut the value to set
+         * @return the dsl builder
          */
         default AMQPEndpointBuilder transactedInOut(String transactedInOut) {
             doSetProperty("transactedInOut", transactedInOut);
@@ -4563,10 +5392,13 @@ public interface AMQPEndpointBuilderFactory {
          * serializable. Camel will exclude any non-serializable objects and log
          * it at WARN level.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param allowSerializedHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder allowSerializedHeaders(
                 boolean allowSerializedHeaders) {
@@ -4579,10 +5411,14 @@ public interface AMQPEndpointBuilderFactory {
          * serializable. Camel will exclude any non-serializable objects and log
          * it at WARN level.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param allowSerializedHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder allowSerializedHeaders(
                 String allowSerializedHeaders) {
@@ -4592,10 +5428,13 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * Whether optimizing for Apache Artemis streaming mode.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param artemisStreamingEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder artemisStreamingEnabled(
                 boolean artemisStreamingEnabled) {
@@ -4605,10 +5444,14 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * Whether optimizing for Apache Artemis streaming mode.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param artemisStreamingEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder artemisStreamingEnabled(
                 String artemisStreamingEnabled) {
@@ -4627,10 +5470,13 @@ public interface AMQPEndpointBuilderFactory {
          * logged at WARN level, and the consumer will not be able to receive
          * messages; You can then restart the route to retry.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStartListener the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder asyncStartListener(
                 boolean asyncStartListener) {
@@ -4649,10 +5495,14 @@ public interface AMQPEndpointBuilderFactory {
          * logged at WARN level, and the consumer will not be able to receive
          * messages; You can then restart the route to retry.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStartListener the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder asyncStartListener(
                 String asyncStartListener) {
@@ -4663,10 +5513,13 @@ public interface AMQPEndpointBuilderFactory {
          * Whether to stop the JmsConsumer message listener asynchronously, when
          * stopping a route.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStopListener the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder asyncStopListener(
                 boolean asyncStopListener) {
@@ -4677,42 +5530,18 @@ public interface AMQPEndpointBuilderFactory {
          * Whether to stop the JmsConsumer message listener asynchronously, when
          * stopping a route.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStopListener the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder asyncStopListener(
                 String asyncStopListener) {
             doSetProperty("asyncStopListener", asyncStopListener);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAMQPEndpointBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAMQPEndpointBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
             return this;
         }
         /**
@@ -4722,9 +5551,12 @@ public interface AMQPEndpointBuilderFactory {
          * destination in a JNDI registry).
          * 
          * The option is a:
-         * <code>org.springframework.jms.support.destination.DestinationResolver</code> type.
+         * &lt;code&gt;org.springframework.jms.support.destination.DestinationResolver&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param destinationResolver the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder destinationResolver(
                 Object destinationResolver) {
@@ -4738,9 +5570,12 @@ public interface AMQPEndpointBuilderFactory {
          * destination in a JNDI registry).
          * 
          * The option will be converted to a
-         * <code>org.springframework.jms.support.destination.DestinationResolver</code> type.
+         * &lt;code&gt;org.springframework.jms.support.destination.DestinationResolver&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param destinationResolver the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder destinationResolver(
                 String destinationResolver) {
@@ -4756,10 +5591,13 @@ public interface AMQPEndpointBuilderFactory {
          * and errorHandlerLogStackTrace options. This makes it much easier to
          * configure, than having to code a custom errorHandler.
          * 
-         * The option is a: <code>org.springframework.util.ErrorHandler</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;org.springframework.util.ErrorHandler&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param errorHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder errorHandler(Object errorHandler) {
             doSetProperty("errorHandler", errorHandler);
@@ -4775,9 +5613,12 @@ public interface AMQPEndpointBuilderFactory {
          * configure, than having to code a custom errorHandler.
          * 
          * The option will be converted to a
-         * <code>org.springframework.util.ErrorHandler</code> type.
+         * &lt;code&gt;org.springframework.util.ErrorHandler&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param errorHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder errorHandler(String errorHandler) {
             doSetProperty("errorHandler", errorHandler);
@@ -4787,9 +5628,13 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies the JMS Exception Listener that is to be notified of any
          * underlying JMS exceptions.
          * 
-         * The option is a: <code>javax.jms.ExceptionListener</code> type.
+         * The option is a: &lt;code&gt;javax.jms.ExceptionListener&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param exceptionListener the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder exceptionListener(
                 Object exceptionListener) {
@@ -4801,9 +5646,12 @@ public interface AMQPEndpointBuilderFactory {
          * underlying JMS exceptions.
          * 
          * The option will be converted to a
-         * <code>javax.jms.ExceptionListener</code> type.
+         * &lt;code&gt;javax.jms.ExceptionListener&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param exceptionListener the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder exceptionListener(
                 String exceptionListener) {
@@ -4815,9 +5663,13 @@ public interface AMQPEndpointBuilderFactory {
          * Camel message.
          * 
          * The option is a:
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder headerFilterStrategy(
                 HeaderFilterStrategy headerFilterStrategy) {
@@ -4829,9 +5681,13 @@ public interface AMQPEndpointBuilderFactory {
          * Camel message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder headerFilterStrategy(
                 String headerFilterStrategy) {
@@ -4842,10 +5698,13 @@ public interface AMQPEndpointBuilderFactory {
          * Specify the limit for the number of consumers that are allowed to be
          * idle at any given time.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleConsumerLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder idleConsumerLimit(
                 int idleConsumerLimit) {
@@ -4856,10 +5715,13 @@ public interface AMQPEndpointBuilderFactory {
          * Specify the limit for the number of consumers that are allowed to be
          * idle at any given time.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleConsumerLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder idleConsumerLimit(
                 String idleConsumerLimit) {
@@ -4873,10 +5735,13 @@ public interface AMQPEndpointBuilderFactory {
          * (in the case of dynamic scheduling; see the maxConcurrentConsumers
          * setting). There is additional doc available from Spring.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleTaskExecutionLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder idleTaskExecutionLimit(
                 int idleTaskExecutionLimit) {
@@ -4890,10 +5755,13 @@ public interface AMQPEndpointBuilderFactory {
          * (in the case of dynamic scheduling; see the maxConcurrentConsumers
          * setting). There is additional doc available from Spring.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleTaskExecutionLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder idleTaskExecutionLimit(
                 String idleTaskExecutionLimit) {
@@ -4906,10 +5774,13 @@ public interface AMQPEndpointBuilderFactory {
          * JMSXAppID, and JMSXUserID etc. Note: If you are using a custom
          * headerFilterStrategy then this option does not apply.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param includeAllJMSXProperties the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder includeAllJMSXProperties(
                 boolean includeAllJMSXProperties) {
@@ -4922,10 +5793,14 @@ public interface AMQPEndpointBuilderFactory {
          * JMSXAppID, and JMSXUserID etc. Note: If you are using a custom
          * headerFilterStrategy then this option does not apply.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param includeAllJMSXProperties the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder includeAllJMSXProperties(
                 String includeAllJMSXProperties) {
@@ -4944,10 +5819,12 @@ public interface AMQPEndpointBuilderFactory {
          * using the # notation.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.JmsKeyFormatStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsKeyFormatStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param jmsKeyFormatStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder jmsKeyFormatStrategy(
                 Object jmsKeyFormatStrategy) {
@@ -4966,10 +5843,12 @@ public interface AMQPEndpointBuilderFactory {
          * using the # notation.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.JmsKeyFormatStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsKeyFormatStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param jmsKeyFormatStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder jmsKeyFormatStrategy(
                 String jmsKeyFormatStrategy) {
@@ -4980,10 +5859,13 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies whether Camel should auto map the received JMS message to a
          * suited payload type, such as javax.jms.TextMessage to a String etc.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapJmsMessage the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder mapJmsMessage(boolean mapJmsMessage) {
             doSetProperty("mapJmsMessage", mapJmsMessage);
@@ -4993,10 +5875,14 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies whether Camel should auto map the received JMS message to a
          * suited payload type, such as javax.jms.TextMessage to a String etc.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapJmsMessage the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder mapJmsMessage(String mapJmsMessage) {
             doSetProperty("mapJmsMessage", mapJmsMessage);
@@ -5008,10 +5894,13 @@ public interface AMQPEndpointBuilderFactory {
          * to set a value to eg 100 to control how fast the consumers will
          * shrink when less work is required.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: advanced
+         * 
+         * @param maxMessagesPerTask the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder maxMessagesPerTask(
                 int maxMessagesPerTask) {
@@ -5024,10 +5913,13 @@ public interface AMQPEndpointBuilderFactory {
          * to set a value to eg 100 to control how fast the consumers will
          * shrink when less work is required.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: advanced
+         * 
+         * @param maxMessagesPerTask the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder maxMessagesPerTask(
                 String maxMessagesPerTask) {
@@ -5040,9 +5932,12 @@ public interface AMQPEndpointBuilderFactory {
          * be in control how to map to/from a javax.jms.Message.
          * 
          * The option is a:
-         * <code>org.springframework.jms.support.converter.MessageConverter</code> type.
+         * &lt;code&gt;org.springframework.jms.support.converter.MessageConverter&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageConverter the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder messageConverter(
                 Object messageConverter) {
@@ -5055,9 +5950,12 @@ public interface AMQPEndpointBuilderFactory {
          * be in control how to map to/from a javax.jms.Message.
          * 
          * The option will be converted to a
-         * <code>org.springframework.jms.support.converter.MessageConverter</code> type.
+         * &lt;code&gt;org.springframework.jms.support.converter.MessageConverter&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageConverter the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder messageConverter(
                 String messageConverter) {
@@ -5070,10 +5968,12 @@ public interface AMQPEndpointBuilderFactory {
          * sending a JMS message.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.MessageCreatedStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageCreatedStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageCreatedStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder messageCreatedStrategy(
                 Object messageCreatedStrategy) {
@@ -5086,10 +5986,12 @@ public interface AMQPEndpointBuilderFactory {
          * sending a JMS message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.MessageCreatedStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageCreatedStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageCreatedStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder messageCreatedStrategy(
                 String messageCreatedStrategy) {
@@ -5103,10 +6005,13 @@ public interface AMQPEndpointBuilderFactory {
          * provider ignores the hint, the message ID must be set to its normal
          * unique value.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageIdEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder messageIdEnabled(
                 boolean messageIdEnabled) {
@@ -5120,10 +6025,14 @@ public interface AMQPEndpointBuilderFactory {
          * provider ignores the hint, the message ID must be set to its normal
          * unique value.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageIdEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder messageIdEnabled(
                 String messageIdEnabled) {
@@ -5138,9 +6047,12 @@ public interface AMQPEndpointBuilderFactory {
          * consumerType to Custom.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.MessageListenerContainerFactory</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageListenerContainerFactory&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageListenerContainerFactory the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder messageListenerContainerFactory(
                 Object messageListenerContainerFactory) {
@@ -5155,9 +6067,12 @@ public interface AMQPEndpointBuilderFactory {
          * consumerType to Custom.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.MessageListenerContainerFactory</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageListenerContainerFactory&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageListenerContainerFactory the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder messageListenerContainerFactory(
                 String messageListenerContainerFactory) {
@@ -5171,10 +6086,13 @@ public interface AMQPEndpointBuilderFactory {
          * zero; if the provider ignores the hint the timestamp must be set to
          * its normal value.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageTimestampEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder messageTimestampEnabled(
                 boolean messageTimestampEnabled) {
@@ -5188,10 +6106,14 @@ public interface AMQPEndpointBuilderFactory {
          * zero; if the provider ignores the hint the timestamp must be set to
          * its normal value.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageTimestampEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder messageTimestampEnabled(
                 String messageTimestampEnabled) {
@@ -5202,10 +6124,13 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies whether to inhibit the delivery of messages published by
          * its own connection.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param pubSubNoLocal the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder pubSubNoLocal(boolean pubSubNoLocal) {
             doSetProperty("pubSubNoLocal", pubSubNoLocal);
@@ -5215,10 +6140,14 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies whether to inhibit the delivery of messages published by
          * its own connection.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param pubSubNoLocal the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder pubSubNoLocal(String pubSubNoLocal) {
             doSetProperty("pubSubNoLocal", pubSubNoLocal);
@@ -5227,10 +6156,13 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * The timeout for receiving messages (in milliseconds).
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param receiveTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder receiveTimeout(long receiveTimeout) {
             doSetProperty("receiveTimeout", receiveTimeout);
@@ -5239,10 +6171,13 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * The timeout for receiving messages (in milliseconds).
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param receiveTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder receiveTimeout(String receiveTimeout) {
             doSetProperty("receiveTimeout", receiveTimeout);
@@ -5253,10 +6188,13 @@ public interface AMQPEndpointBuilderFactory {
          * connection is being refreshed, in milliseconds. The default is 5000
          * ms, that is, 5 seconds.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 5000
          * Group: advanced
+         * 
+         * @param recoveryInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder recoveryInterval(
                 long recoveryInterval) {
@@ -5268,10 +6206,13 @@ public interface AMQPEndpointBuilderFactory {
          * connection is being refreshed, in milliseconds. The default is 5000
          * ms, that is, 5 seconds.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 5000
          * Group: advanced
+         * 
+         * @param recoveryInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder recoveryInterval(
                 String recoveryInterval) {
@@ -5285,10 +6226,13 @@ public interface AMQPEndpointBuilderFactory {
          * can lower this interval, to check more frequently. The timeout is
          * determined by the option requestTimeout.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param requestTimeoutCheckerInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder requestTimeoutCheckerInterval(
                 long requestTimeoutCheckerInterval) {
@@ -5302,10 +6246,13 @@ public interface AMQPEndpointBuilderFactory {
          * can lower this interval, to check more frequently. The timeout is
          * determined by the option requestTimeout.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param requestTimeoutCheckerInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder requestTimeoutCheckerInterval(
                 String requestTimeoutCheckerInterval) {
@@ -5316,10 +6263,13 @@ public interface AMQPEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder synchronous(boolean synchronous) {
             doSetProperty("synchronous", synchronous);
@@ -5329,10 +6279,14 @@ public interface AMQPEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder synchronous(String synchronous) {
             doSetProperty("synchronous", synchronous);
@@ -5354,10 +6308,13 @@ public interface AMQPEndpointBuilderFactory {
          * level, which forces a strong coupling between the producers and
          * consumer!.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder transferException(
                 boolean transferException) {
@@ -5380,10 +6337,14 @@ public interface AMQPEndpointBuilderFactory {
          * level, which forces a strong coupling between the producers and
          * consumer!.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder transferException(
                 String transferException) {
@@ -5404,10 +6365,13 @@ public interface AMQPEndpointBuilderFactory {
          * between the producers and consumer having to use compatible Camel
          * versions!.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferExchange the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder transferExchange(
                 boolean transferExchange) {
@@ -5428,10 +6392,14 @@ public interface AMQPEndpointBuilderFactory {
          * between the producers and consumer having to use compatible Camel
          * versions!.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferExchange the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder transferExchange(
                 String transferExchange) {
@@ -5442,10 +6410,13 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies whether JMSMessageID should always be used as
          * JMSCorrelationID for InOut messages.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param useMessageIDAsCorrelationID the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder useMessageIDAsCorrelationID(
                 boolean useMessageIDAsCorrelationID) {
@@ -5456,10 +6427,14 @@ public interface AMQPEndpointBuilderFactory {
          * Specifies whether JMSMessageID should always be used as
          * JMSCorrelationID for InOut messages.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param useMessageIDAsCorrelationID the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder useMessageIDAsCorrelationID(
                 String useMessageIDAsCorrelationID) {
@@ -5471,10 +6446,13 @@ public interface AMQPEndpointBuilderFactory {
          * to the actual correlation id when doing request/reply over JMS and
          * when the option useMessageIDAsCorrelationID is enabled.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 50
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedCounter the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder waitForProvisionCorrelationToBeUpdatedCounter(
                 int waitForProvisionCorrelationToBeUpdatedCounter) {
@@ -5486,10 +6464,13 @@ public interface AMQPEndpointBuilderFactory {
          * to the actual correlation id when doing request/reply over JMS and
          * when the option useMessageIDAsCorrelationID is enabled.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 50
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedCounter the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder waitForProvisionCorrelationToBeUpdatedCounter(
                 String waitForProvisionCorrelationToBeUpdatedCounter) {
@@ -5500,10 +6481,14 @@ public interface AMQPEndpointBuilderFactory {
          * Interval in millis to sleep each time while waiting for provisional
          * correlation id to be updated.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 100
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedThreadSleepingTime the
+         * value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder waitForProvisionCorrelationToBeUpdatedThreadSleepingTime(
                 long waitForProvisionCorrelationToBeUpdatedThreadSleepingTime) {
@@ -5514,10 +6499,14 @@ public interface AMQPEndpointBuilderFactory {
          * Interval in millis to sleep each time while waiting for provisional
          * correlation id to be updated.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 100
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedThreadSleepingTime the
+         * value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder waitForProvisionCorrelationToBeUpdatedThreadSleepingTime(
                 String waitForProvisionCorrelationToBeUpdatedThreadSleepingTime) {
@@ -5528,10 +6517,13 @@ public interface AMQPEndpointBuilderFactory {
          * If true, Camel will create a JmsTransactionManager, if there is no
          * transactionManager injected when option transacted=true.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: transaction (advanced)
+         * 
+         * @param lazyCreateTransactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder lazyCreateTransactionManager(
                 boolean lazyCreateTransactionManager) {
@@ -5542,10 +6534,14 @@ public interface AMQPEndpointBuilderFactory {
          * If true, Camel will create a JmsTransactionManager, if there is no
          * transactionManager injected when option transacted=true.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: transaction (advanced)
+         * 
+         * @param lazyCreateTransactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder lazyCreateTransactionManager(
                 String lazyCreateTransactionManager) {
@@ -5556,9 +6552,12 @@ public interface AMQPEndpointBuilderFactory {
          * The Spring transaction manager to use.
          * 
          * The option is a:
-         * <code>org.springframework.transaction.PlatformTransactionManager</code> type.
+         * &lt;code&gt;org.springframework.transaction.PlatformTransactionManager&lt;/code&gt; type.
          * 
          * Group: transaction (advanced)
+         * 
+         * @param transactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder transactionManager(
                 Object transactionManager) {
@@ -5569,9 +6568,12 @@ public interface AMQPEndpointBuilderFactory {
          * The Spring transaction manager to use.
          * 
          * The option will be converted to a
-         * <code>org.springframework.transaction.PlatformTransactionManager</code> type.
+         * &lt;code&gt;org.springframework.transaction.PlatformTransactionManager&lt;/code&gt; type.
          * 
          * Group: transaction (advanced)
+         * 
+         * @param transactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder transactionManager(
                 String transactionManager) {
@@ -5581,9 +6583,12 @@ public interface AMQPEndpointBuilderFactory {
         /**
          * The name of the transaction to use.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: transaction (advanced)
+         * 
+         * @param transactionName the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder transactionName(
                 String transactionName) {
@@ -5594,10 +6599,13 @@ public interface AMQPEndpointBuilderFactory {
          * The timeout value of the transaction (in seconds), if using
          * transacted mode.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: transaction (advanced)
+         * 
+         * @param transactionTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder transactionTimeout(
                 int transactionTimeout) {
@@ -5608,10 +6616,13 @@ public interface AMQPEndpointBuilderFactory {
          * The timeout value of the transaction (in seconds), if using
          * transacted mode.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: transaction (advanced)
+         * 
+         * @param transactionTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedAMQPEndpointBuilder transactionTimeout(
                 String transactionTimeout) {
@@ -5683,6 +6694,7 @@ public interface AMQPEndpointBuilderFactory {
          * Name of the queue or topic to use as destination
          * 
          * @param path destinationType:destinationName
+         * @return the dsl builder
          */
         default AMQPEndpointBuilder amqp(String path) {
             return AMQPEndpointBuilderFactory.endpointBuilder("amqp", path);
@@ -5709,6 +6721,7 @@ public interface AMQPEndpointBuilderFactory {
          * @param componentName to use a custom component name for the endpoint
          * instead of the default name
          * @param path destinationType:destinationName
+         * @return the dsl builder
          */
         default AMQPEndpointBuilder amqp(String componentName, String path) {
             return AMQPEndpointBuilderFactory.endpointBuilder(componentName, path);

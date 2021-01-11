@@ -62,13 +62,15 @@ public abstract class DefaultComponent extends ServiceSupport implements Compone
 
     private volatile PropertyConfigurer componentPropertyConfigurer;
     private volatile PropertyConfigurer endpointPropertyConfigurer;
+    private volatile String defaultName;
     private final List<Supplier<ComponentExtension>> extensions = new ArrayList<>();
     private CamelContext camelContext;
 
-    @Metadata(label = "advanced",
-              description = "Whether the component should use basic property binding (Camel 2.x) or the newer property binding with additional capabilities")
-    @Deprecated
-    private boolean basicPropertyBinding;
+    @Metadata(label = "advanced", defaultValue = "true",
+              description = "Whether autowiring is enabled. This is used for automatic autowiring options (the option must be marked as autowired)"
+                            + " by looking up in the registry to find if there is a single instance of matching type, which then gets configured on the component."
+                            + " This can be used for automatic configuring JDBC data sources, JMS connection factories, AWS Clients, etc.")
+    private boolean autowiredEnabled = true;
     @Metadata(label = "consumer",
               description = "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions occurred while"
                             + " the consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler."
@@ -126,10 +128,13 @@ public abstract class DefaultComponent extends ServiceSupport implements Compone
         }
         // This special property is only to identify endpoints in a unique manner
         parameters.remove("hash");
-        // parameters using raw syntax: RAW(value)
-        // should have the token removed, so its only the value we have in parameters, as we are about to create
-        // an endpoint and want to have the parameter values without the RAW tokens
-        URISupport.resolveRawParameterValues(parameters);
+
+        if (resolveRawParameterValues()) {
+            // parameters using raw syntax: RAW(value)
+            // should have the token removed, so its only the value we have in parameters, as we are about to create
+            // an endpoint and want to have the parameter values without the RAW tokens
+            URISupport.resolveRawParameterValues(parameters);
+        }
 
         // use encoded or raw uri?
         uri = useRawUri() ? uri : encodedUri;
@@ -144,13 +149,23 @@ public abstract class DefaultComponent extends ServiceSupport implements Compone
             LOG.debug("Creating endpoint uri=[{}], path=[{}]", URISupport.sanitizeUri(uri), URISupport.sanitizePath(path));
         }
 
-        // extract these global options and infer their value based on global/component level configuration
-        boolean basic = getAndRemoveParameter(parameters, "basicPropertyBinding", boolean.class, basicPropertyBinding
-                ? basicPropertyBinding : getCamelContext().getGlobalEndpointConfiguration().isBasicPropertyBinding());
-        boolean bridge = getAndRemoveParameter(parameters, "bridgeErrorHandler", boolean.class, bridgeErrorHandler
-                ? bridgeErrorHandler : getCamelContext().getGlobalEndpointConfiguration().isBridgeErrorHandler());
-        boolean lazy = getAndRemoveParameter(parameters, "lazyStartProducer", boolean.class, lazyStartProducer
-                ? lazyStartProducer : getCamelContext().getGlobalEndpointConfiguration().isLazyStartProducer());
+        boolean bridge = bridgeErrorHandler || getCamelContext().getGlobalEndpointConfiguration().isBridgeErrorHandler();
+        Boolean bool = getAndRemoveParameter(parameters, "bridgeErrorHandler", Boolean.class);
+        if (bool != null) {
+            bridge = bool;
+        }
+        boolean lazy = lazyStartProducer || getCamelContext().getGlobalEndpointConfiguration().isLazyStartProducer();
+        bool = getAndRemoveParameter(parameters, "lazyStartProducer", Boolean.class);
+        if (bool != null) {
+            lazy = bool;
+        }
+        // camel context can turn off autowire globally unless there is a uri parameter
+        boolean autowire = camelContext.isAutowiredEnabled()
+                && (autowiredEnabled || getCamelContext().getGlobalEndpointConfiguration().isAutowiredEnabled());
+        bool = getAndRemoveParameter(parameters, "autowiredEnabled", Boolean.class);
+        if (bool != null) {
+            autowire = bool;
+        }
 
         // create endpoint
         Endpoint endpoint = createEndpoint(uri, path, parameters);
@@ -163,9 +178,9 @@ public abstract class DefaultComponent extends ServiceSupport implements Compone
         // and setup those global options afterwards
         if (endpoint instanceof DefaultEndpoint) {
             DefaultEndpoint de = (DefaultEndpoint) endpoint;
-            de.setBasicPropertyBinding(basic);
             de.setBridgeErrorHandler(bridge);
             de.setLazyStartProducer(lazy);
+            de.setAutowiredEnabled(autowire);
         }
 
         // configure remainder of the parameters
@@ -195,24 +210,6 @@ public abstract class DefaultComponent extends ServiceSupport implements Compone
     public boolean useRawUri() {
         // should use encoded uri by default
         return false;
-    }
-
-    /**
-     * Whether the component should use basic property binding (Camel 2.x) or the newer property binding with additional
-     * capabilities.
-     */
-    @Deprecated
-    public boolean isBasicPropertyBinding() {
-        return basicPropertyBinding;
-    }
-
-    /**
-     * Whether the component should use basic property binding (Camel 2.x) or the newer property binding with additional
-     * capabilities.
-     */
-    @Deprecated
-    public void setBasicPropertyBinding(boolean basicPropertyBinding) {
-        this.basicPropertyBinding = basicPropertyBinding;
     }
 
     public boolean isLazyStartProducer() {
@@ -245,6 +242,20 @@ public abstract class DefaultComponent extends ServiceSupport implements Compone
      */
     public void setBridgeErrorHandler(boolean bridgeErrorHandler) {
         this.bridgeErrorHandler = bridgeErrorHandler;
+    }
+
+    public boolean isAutowiredEnabled() {
+        return autowiredEnabled;
+    }
+
+    /**
+     * Whether autowiring is enabled. This is used for automatic autowiring options (the option must be marked as
+     * autowired) by looking up in the registry to find if there is a single instance of matching type, which then gets
+     * configured on the component. This can be used for automatic configuring JDBC data sources, JMS connection
+     * factories, AWS Clients, etc.
+     */
+    public void setAutowiredEnabled(boolean autowiredEnabled) {
+        this.autowiredEnabled = autowiredEnabled;
     }
 
     /**
@@ -320,6 +331,19 @@ public abstract class DefaultComponent extends ServiceSupport implements Compone
         }
     }
 
+    /**
+     * Configure if the parameters using the RAW token syntax need to be resolved before being consumed by
+     * {@link #createEndpoint(String, Map)}.
+     * <p/>
+     * As the parameters are used to create an endpoint, by default they should have the token removed so its only the
+     * value we have in parameters however there are some cases where the endpoint may act as a proxy for another
+     * endpoint and you need to preserve the values as they are.
+     */
+    protected boolean resolveRawParameterValues() {
+        // should resolve raw parameters by default
+        return true;
+    }
+
     @Override
     public CamelContext getCamelContext() {
         return camelContext;
@@ -331,27 +355,41 @@ public abstract class DefaultComponent extends ServiceSupport implements Compone
     }
 
     @Override
+    public String getDefaultName() {
+        return defaultName;
+    }
+
+    @Override
     protected void doBuild() throws Exception {
-        org.apache.camel.spi.annotations.Component ann
-                = ObjectHelper.getAnnotation(this, org.apache.camel.spi.annotations.Component.class);
-        if (ann != null) {
-            String name = ann.value();
-            // just grab first scheme name if the component has scheme alias (eg http,https)
-            if (name.contains(",")) {
-                name = StringHelper.before(name, ",");
+        if (defaultName == null) {
+            org.apache.camel.spi.annotations.Component ann
+                    = ObjectHelper.getAnnotation(this, org.apache.camel.spi.annotations.Component.class);
+            if (ann != null) {
+                defaultName = ann.value();
+                // just grab first scheme name if the component has scheme alias (eg http,https)
+                if (defaultName.contains(",")) {
+                    defaultName = StringHelper.before(defaultName, ",");
+                }
             }
-            final String componentConfigurerName = name + "-component-configurer";
+        }
+        if (defaultName != null) {
+            final String componentConfigurerName = defaultName + "-component-configurer";
             componentPropertyConfigurer = getCamelContext().adapt(ExtendedCamelContext.class).getConfigurerResolver()
                     .resolvePropertyConfigurer(componentConfigurerName, getCamelContext());
-            final String endpointConfigurerName = name + "-endpoint-configurer";
+            final String endpointConfigurerName = defaultName + "-endpoint-configurer";
             endpointPropertyConfigurer = getCamelContext().adapt(ExtendedCamelContext.class).getConfigurerResolver()
                     .resolvePropertyConfigurer(endpointConfigurerName, getCamelContext());
         }
     }
 
     @Override
-    protected void doStart() throws Exception {
+    protected void doInit() throws Exception {
         ObjectHelper.notNull(getCamelContext(), "camelContext");
+    }
+
+    @Override
+    protected void doStart() throws Exception {
+        // noop
     }
 
     @Override
@@ -409,26 +447,18 @@ public abstract class DefaultComponent extends ServiceSupport implements Compone
             return;
         }
 
-        boolean basic = basicPropertyBinding || "true".equals(parameters.getOrDefault("basicPropertyBinding", "false"));
-        if (basic) {
-            // use basic binding
-            PropertyBindingSupport.build()
-                    .withPlaceholder(false).withNesting(false).withDeepNesting(false).withReference(false)
-                    .bind(camelContext, bean, parameters);
+        PropertyConfigurer configurer;
+        if (bean instanceof Component) {
+            configurer = getComponentPropertyConfigurer();
+        } else if (bean instanceof Endpoint) {
+            configurer = getEndpointPropertyConfigurer();
+        } else if (bean instanceof PropertyConfigurerAware) {
+            configurer = ((PropertyConfigurerAware) bean).getPropertyConfigurer(bean);
         } else {
-            PropertyConfigurer configurer;
-            if (bean instanceof Component) {
-                configurer = getComponentPropertyConfigurer();
-            } else if (bean instanceof Endpoint) {
-                configurer = getEndpointPropertyConfigurer();
-            } else if (bean instanceof PropertyConfigurerAware) {
-                configurer = ((PropertyConfigurerAware) bean).getPropertyConfigurer(bean);
-            } else {
-                configurer = null;
-            }
-            // use advanced binding
-            PropertyBindingSupport.build().withConfigurer(configurer).bind(camelContext, bean, parameters);
+            configurer = null;
         }
+        // use configurer and ignore case as end users may type an option name with mixed case
+        PropertyBindingSupport.build().withConfigurer(configurer).withIgnoreCase(true).bind(camelContext, bean, parameters);
     }
 
     @Override
@@ -514,13 +544,33 @@ public abstract class DefaultComponent extends ServiceSupport implements Compone
      */
     public <T> T getAndRemoveOrResolveReferenceParameter(
             Map<String, Object> parameters, String key, Class<T> type, T defaultValue) {
-        String value = getAndRemoveParameter(parameters, key, String.class);
-        if (value == null) {
+        // the parameter may be the the type already (such as from endpoint-dsl)
+        Object value = parameters.remove(key);
+        if (value instanceof String) {
+            String str = (String) value;
+            if (EndpointHelper.isReferenceParameter(str)) {
+                return EndpointHelper.resolveReferenceParameter(getCamelContext(), str, type);
+            }
+        }
+        if (type.isInstance(value)) {
+            // special for string references
+            if (String.class == type) {
+                String str = value.toString();
+                if (EndpointHelper.isReferenceParameter(str)) {
+                    value = EndpointHelper.resolveReferenceParameter(getCamelContext(), str, type);
+                }
+            }
+            return type.cast(value);
+        } else if (value == null) {
             return defaultValue;
-        } else if (EndpointHelper.isReferenceParameter(value)) {
-            return EndpointHelper.resolveReferenceParameter(getCamelContext(), value, type);
         } else {
-            return getCamelContext().getTypeConverter().convertTo(type, value);
+            // okay so it may be a reference so value should be string
+            String str = getCamelContext().getTypeConverter().tryConvertTo(String.class, value);
+            if (EndpointHelper.isReferenceParameter(str)) {
+                return EndpointHelper.resolveReferenceParameter(getCamelContext(), str, type);
+            } else {
+                return getCamelContext().getTypeConverter().convertTo(type, value);
+            }
         }
     }
 
@@ -551,11 +601,29 @@ public abstract class DefaultComponent extends ServiceSupport implements Compone
      * @throws IllegalArgumentException if referenced object was not found in registry.
      */
     public <T> T resolveAndRemoveReferenceParameter(Map<String, Object> parameters, String key, Class<T> type, T defaultValue) {
-        String value = getAndRemoveParameter(parameters, key, String.class);
-        if (value == null) {
+        // the parameter may be the the type already (such as from endpoint-dsl)
+        Object value = parameters.remove(key);
+        if (value instanceof String) {
+            String str = (String) value;
+            if (EndpointHelper.isReferenceParameter(str)) {
+                return EndpointHelper.resolveReferenceParameter(getCamelContext(), str, type);
+            }
+        }
+        if (type.isInstance(value)) {
+            // special for string references
+            if (String.class == type) {
+                String str = value.toString();
+                if (EndpointHelper.isReferenceParameter(str)) {
+                    value = EndpointHelper.resolveReferenceParameter(getCamelContext(), str, type);
+                }
+            }
+            return type.cast(value);
+        } else if (value == null) {
             return defaultValue;
         } else {
-            return EndpointHelper.resolveReferenceParameter(getCamelContext(), value, type);
+            // okay so it may be a reference so value should be string
+            String str = getCamelContext().getTypeConverter().tryConvertTo(String.class, value);
+            return EndpointHelper.resolveReferenceParameter(getCamelContext(), str, type);
         }
     }
 
@@ -586,14 +654,20 @@ public abstract class DefaultComponent extends ServiceSupport implements Compone
      * @throws IllegalArgumentException if any of the referenced objects was not found in registry.
      * @see                             EndpointHelper#resolveReferenceListParameter(CamelContext, String, Class)
      */
+    @SuppressWarnings("unchecked")
     public <T> List<T> resolveAndRemoveReferenceListParameter(
             Map<String, Object> parameters, String key, Class<T> elementType, List<T> defaultValue) {
-        String value = getAndRemoveParameter(parameters, key, String.class);
-
+        // the value may already be a list such as when using endpoint-dsl
+        Object value = getAndRemoveParameter(parameters, key, Object.class);
+        if (value instanceof List) {
+            return (List<T>) value;
+        }
         if (value == null) {
             return defaultValue;
         } else {
-            return EndpointHelper.resolveReferenceListParameter(getCamelContext(), value, elementType);
+            // okay so it may be a reference so value should be string
+            String str = getCamelContext().getTypeConverter().tryConvertTo(String.class, value);
+            return EndpointHelper.resolveReferenceListParameter(getCamelContext(), str, elementType);
         }
     }
 

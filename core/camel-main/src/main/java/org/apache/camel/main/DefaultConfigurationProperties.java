@@ -62,12 +62,13 @@ public abstract class DefaultConfigurationProperties<T> {
     private boolean autoStartup = true;
     private boolean allowUseOriginalMessage;
     private boolean caseInsensitiveHeaders = true;
+    private boolean autowiredEnabled = true;
     private boolean endpointRuntimeStatisticsEnabled;
     private boolean endpointLazyStartProducer;
     private boolean endpointBridgeErrorHandler;
-    private boolean endpointBasicPropertyBinding;
     private boolean useDataType;
     private boolean useBreadcrumb;
+    private boolean beanPostProcessorEnabled = true;
     @Metadata(defaultValue = "Default")
     private ManagementStatisticsLevel jmxManagementStatisticsLevel = ManagementStatisticsLevel.Default;
     private String jmxManagementNamePattern = "#name#";
@@ -195,7 +196,7 @@ public abstract class DefaultConfigurationProperties<T> {
     }
 
     /**
-     * Sets whether routes should be shutdown in reverse or the same order as they where started.
+     * Sets whether routes should be shutdown in reverse or the same order as they were started.
      */
     public void setShutdownRoutesInReverseOrder(boolean shutdownRoutesInReverseOrder) {
         this.shutdownRoutesInReverseOrder = shutdownRoutesInReverseOrder;
@@ -553,6 +554,22 @@ public abstract class DefaultConfigurationProperties<T> {
         this.caseInsensitiveHeaders = caseInsensitiveHeaders;
     }
 
+    public boolean isAutowiredEnabled() {
+        return autowiredEnabled;
+    }
+
+    /**
+     * Whether autowiring is enabled. This is used for automatic autowiring options (the option must be marked as
+     * autowired) by looking up in the registry to find if there is a single instance of matching type, which then gets
+     * configured on the component. This can be used for automatic configuring JDBC data sources, JMS connection
+     * factories, AWS Clients, etc.
+     *
+     * Default is true.
+     */
+    public void setAutowiredEnabled(boolean autowiredEnabled) {
+        this.autowiredEnabled = autowiredEnabled;
+    }
+
     public boolean isEndpointRuntimeStatisticsEnabled() {
         return endpointRuntimeStatisticsEnabled;
     }
@@ -603,20 +620,6 @@ public abstract class DefaultConfigurationProperties<T> {
         this.endpointBridgeErrorHandler = endpointBridgeErrorHandler;
     }
 
-    public boolean isEndpointBasicPropertyBinding() {
-        return endpointBasicPropertyBinding;
-    }
-
-    /**
-     * Whether the endpoint should use basic property binding (Camel 2.x) or the newer property binding with additional
-     * capabilities.
-     *
-     * The default value is false.
-     */
-    public void setEndpointBasicPropertyBinding(boolean endpointBasicPropertyBinding) {
-        this.endpointBasicPropertyBinding = endpointBasicPropertyBinding;
-    }
-
     public boolean isUseDataType() {
         return useDataType;
     }
@@ -640,6 +643,27 @@ public abstract class DefaultConfigurationProperties<T> {
      */
     public void setUseBreadcrumb(boolean useBreadcrumb) {
         this.useBreadcrumb = useBreadcrumb;
+    }
+
+    public boolean isBeanPostProcessorEnabled() {
+        return beanPostProcessorEnabled;
+    }
+
+    /**
+     * Can be used to turn off bean post processing.
+     *
+     * Be careful to turn this off, as this means that beans that use Camel annotations such as
+     * {@link org.apache.camel.EndpointInject}, {@link org.apache.camel.ProducerTemplate},
+     * {@link org.apache.camel.Produce}, {@link org.apache.camel.Consume} etc will not be injected and in use.
+     *
+     * Turning this off should only be done if you are sure you do not use any of these Camel features.
+     *
+     * Not all runtimes allow turning this off (such as camel-blueprint or camel-cdi with XML).
+     *
+     * The default value is true (enabled).
+     */
+    public void setBeanPostProcessorEnabled(boolean beanPostProcessorEnabled) {
+        this.beanPostProcessorEnabled = beanPostProcessorEnabled;
     }
 
     public ManagementStatisticsLevel getJmxManagementStatisticsLevel() {
@@ -721,7 +745,7 @@ public abstract class DefaultConfigurationProperties<T> {
     }
 
     /**
-     * Used for filtering routes routes matching the given pattern, which follows the following rules:
+     * Used for filtering routes matching the given pattern, which follows the following rules:
      *
      * - Match by route id - Match by route input endpoint uri
      *
@@ -946,12 +970,12 @@ public abstract class DefaultConfigurationProperties<T> {
     }
 
     /**
-     * Pattern for filtering routes to be excluded as supervised.
+     * Pattern for filtering routes to be included as supervised.
      *
      * The pattern is matching on route id, and endpoint uri for the route. Multiple patterns can be separated by comma.
      *
-     * For example to exclude all JMS routes, you can say <tt>jms:*</tt>. And to exclude routes with specific route ids
-     * <tt>mySpecialRoute,myOtherSpecialRoute</tt>. The pattern supports wildcards and uses the matcher from
+     * For example to include all kafka routes, you can say <tt>kafka:*</tt>. And to include routes with specific route
+     * ids <tt>myRoute,myOtherRoute</tt>. The pattern supports wildcards and uses the matcher from
      * org.apache.camel.support.PatternHelper#matchPattern.
      */
     public void setRouteControllerIncludeRoutes(String routeControllerIncludeRoutes) {
@@ -963,12 +987,12 @@ public abstract class DefaultConfigurationProperties<T> {
     }
 
     /**
-     * Pattern for filtering routes to be included as supervised.
+     * Pattern for filtering routes to be excluded as supervised.
      *
      * The pattern is matching on route id, and endpoint uri for the route. Multiple patterns can be separated by comma.
      *
-     * For example to include all kafka routes, you can say <tt>kafka:*</tt>. And to include routes with specific route
-     * ids <tt>myRoute,myOtherRoute</tt>. The pattern supports wildcards and uses the matcher from
+     * For example to exclude all JMS routes, you can say <tt>jms:*</tt>. And to exclude routes with specific route ids
+     * <tt>mySpecialRoute,myOtherSpecialRoute</tt>. The pattern supports wildcards and uses the matcher from
      * org.apache.camel.support.PatternHelper#matchPattern.
      */
     public void setRouteControllerExcludeRoutes(String routeControllerExcludeRoutes) {
@@ -1453,17 +1477,6 @@ public abstract class DefaultConfigurationProperties<T> {
     }
 
     /**
-     * Whether the endpoint should use basic property binding (Camel 2.x) or the newer property binding with additional
-     * capabilities.
-     *
-     * The default value is false.
-     */
-    public T withEndpointBasicPropertyBinding(boolean endpointBasicPropertyBinding) {
-        this.endpointBasicPropertyBinding = endpointBasicPropertyBinding;
-        return (T) this;
-    }
-
-    /**
      * Whether to enable using data type on Camel messages.
      *
      * Data type are automatic turned on if one ore more routes has been explicit configured with input and output
@@ -1479,6 +1492,24 @@ public abstract class DefaultConfigurationProperties<T> {
      */
     public T withUseBreadcrumb(boolean useBreadcrumb) {
         this.useBreadcrumb = useBreadcrumb;
+        return (T) this;
+    }
+
+    /**
+     * Can be used to turn off bean post processing.
+     *
+     * Be careful to turn this off, as this means that beans that use Camel annotations such as
+     * {@link org.apache.camel.EndpointInject}, {@link org.apache.camel.ProducerTemplate},
+     * {@link org.apache.camel.Produce}, {@link org.apache.camel.Consume} etc will not be injected and in use.
+     *
+     * Turning this off should only be done if you are sure you do not use any of these Camel features.
+     *
+     * Not all runtimes allow turning this off (such as camel-blueprint or camel-cdi with XML).
+     *
+     * The default value is true (enabled).
+     */
+    public T withBeanPostProcessorEnabled(boolean beanPostProcessorEnabled) {
+        this.beanPostProcessorEnabled = beanPostProcessorEnabled;
         return (T) this;
     }
 
@@ -1714,6 +1745,7 @@ public abstract class DefaultConfigurationProperties<T> {
      * a single Camel application (microservice like camel-main, camel-quarkus, camel-spring-boot).
      * As this affects the entire JVM where Camel JARs are on the classpath.
      */
+    @Experimental
     public T withLightweight(boolean lightweight) {
         this.lightweight = lightweight;
         return (T) this;

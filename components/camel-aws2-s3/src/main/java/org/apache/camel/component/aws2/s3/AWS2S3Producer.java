@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,10 +40,13 @@ import org.apache.camel.util.ObjectHelper;
 import org.apache.camel.util.URISupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
+import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.core.ResponseInputStream;
 import software.amazon.awssdk.core.SdkBytes;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.core.sync.ResponseTransformer;
+import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.AbortMultipartUploadRequest;
 import software.amazon.awssdk.services.s3.model.BucketCannedACL;
@@ -66,10 +70,14 @@ import software.amazon.awssdk.services.s3.model.ObjectCannedACL;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectResponse;
 import software.amazon.awssdk.services.s3.model.UploadPartRequest;
+import software.amazon.awssdk.services.s3.presigner.S3Presigner;
+import software.amazon.awssdk.services.s3.presigner.model.GetObjectPresignRequest;
+import software.amazon.awssdk.services.s3.presigner.model.PresignedGetObjectRequest;
 
 /**
  * A Producer which sends messages to the Amazon Web Service Simple Storage Service
  * <a href="http://aws.amazon.com/s3/">AWS S3</a>
+ *
  */
 public class AWS2S3Producer extends DefaultProducer {
 
@@ -112,6 +120,9 @@ public class AWS2S3Producer extends DefaultProducer {
                     break;
                 case getObjectRange:
                     getObjectRange(getEndpoint().getS3Client(), exchange);
+                    break;
+                case createDownloadLink:
+                    createDownloadLink(getEndpoint().getS3Client(), exchange);
                     break;
                 default:
                     throw new IllegalArgumentException("Unsupported operation");
@@ -200,10 +211,15 @@ public class AWS2S3Producer extends DefaultProducer {
                         .partNumber(part).build();
 
                 LOG.trace("Uploading part [{}] for {}", part, keyName);
-                String etag = getEndpoint().getS3Client().uploadPart(uploadRequest, RequestBody.fromFile(filePayload)).eTag();
-                CompletedPart partUpload = CompletedPart.builder().partNumber(part).eTag(etag).build();
-                completedParts.add(partUpload);
-                filePosition += partSize;
+                try (InputStream fileInputStream = new FileInputStream(filePayload)) {
+                    fileInputStream.skip(filePosition);
+
+                    String etag = getEndpoint().getS3Client()
+                            .uploadPart(uploadRequest, RequestBody.fromInputStream(fileInputStream, partSize)).eTag();
+                    CompletedPart partUpload = CompletedPart.builder().partNumber(part).eTag(etag).build();
+                    completedParts.add(partUpload);
+                    filePosition += partSize;
+                }
             }
             CompletedMultipartUpload completeMultipartUpload = CompletedMultipartUpload.builder().parts(completedParts).build();
             CompleteMultipartUploadRequest compRequest
@@ -489,6 +505,49 @@ public class AWS2S3Producer extends DefaultProducer {
 
             Message message = getMessageForResponse(exchange);
             message.setBody(objectList.contents());
+        }
+    }
+
+    private void createDownloadLink(S3Client s3Client, Exchange exchange) {
+        final String bucketName = determineBucketName(exchange);
+        final String key = determineKey(exchange);
+
+        long milliSeconds = 0;
+
+        Long expirationMillis = exchange.getIn().getHeader(AWS2S3Constants.DOWNLOAD_LINK_EXPIRATION_TIME, Long.class);
+        if (expirationMillis != null) {
+            milliSeconds += expirationMillis;
+        } else {
+            milliSeconds += 1000 * 60 * 60;
+        }
+        S3Presigner presigner;
+
+        if (ObjectHelper.isNotEmpty(getConfiguration().getAmazonS3Presigner())) {
+            presigner = getConfiguration().getAmazonS3Presigner();
+        } else {
+            presigner = S3Presigner.builder()
+                    .credentialsProvider(StaticCredentialsProvider.create(
+                            AwsBasicCredentials.create(getConfiguration().getAccessKey(), getConfiguration().getSecretKey())))
+                    .region(Region.of(getConfiguration().getRegion())).build();
+        }
+
+        GetObjectRequest getObjectRequest = GetObjectRequest.builder()
+                .bucket(bucketName)
+                .key(key)
+                .build();
+
+        GetObjectPresignRequest getObjectPresignRequest = GetObjectPresignRequest.builder()
+                .signatureDuration(Duration.ofMillis(milliSeconds))
+                .getObjectRequest(getObjectRequest)
+                .build();
+
+        PresignedGetObjectRequest presignedGetObjectRequest = presigner.presignGetObject(getObjectPresignRequest);
+
+        Message message = getMessageForResponse(exchange);
+        message.setBody(presignedGetObjectRequest.url().toString());
+
+        if (ObjectHelper.isEmpty(getConfiguration().getAmazonS3Presigner())) {
+            presigner.close();
         }
     }
 

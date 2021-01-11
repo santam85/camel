@@ -110,7 +110,7 @@ public class PropertiesComponent extends ServiceSupport
     private boolean defaultFallbackEnabled = true;
     private Properties initialProperties;
     private Properties overrideProperties;
-    private ThreadLocal<Properties> localProperties = new ThreadLocal<>();
+    private final ThreadLocal<Properties> localProperties = new ThreadLocal<>();
     private int systemPropertiesMode = SYSTEM_PROPERTIES_MODE_OVERRIDE;
     private int environmentVariableMode = ENVIRONMENT_VARIABLES_MODE_OVERRIDE;
     private boolean autoDiscoverPropertiesSources = true;
@@ -581,7 +581,7 @@ public class PropertiesComponent extends ServiceSupport
                 }
 
                 FactoryFinder factoryFinder = getCamelContext().adapt(ExtendedCamelContext.class)
-                        .getFactoryFinder("META-INF/services/org/apache/camel/");
+                        .getBootstrapFactoryFinder();
                 Class<?> type = factoryFinder.findClass("properties-source-factory").orElse(null);
                 if (type != null) {
                     Object obj = getCamelContext().getInjector().newInstance(type, false);

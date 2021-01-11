@@ -43,6 +43,7 @@ import io.apicurio.datamodels.openapi.v3.models.Oas30License;
 import io.apicurio.datamodels.openapi.v3.models.Oas30Server;
 import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
+import org.apache.camel.ExtendedCamelContext;
 import org.apache.camel.impl.engine.BaseServiceResolver;
 import org.apache.camel.model.rest.RestDefinition;
 import org.apache.camel.spi.ClassResolver;
@@ -193,9 +194,12 @@ public class RestOpenApiSupport {
     }
 
     protected RestDefinitionsResolver createJmxRestDefinitionsResolver(CamelContext camelContext) {
-        return new BaseServiceResolver<>(JMX_REST_DEFINITION_RESOLVER, RestDefinitionsResolver.class)
-                .resolve(camelContext)
-                .orElseThrow(() -> new IllegalArgumentException("Cannot find JMX_REST_DEFINITION_RESOLVER on classpath."));
+        return new BaseServiceResolver<>(
+                JMX_REST_DEFINITION_RESOLVER, RestDefinitionsResolver.class,
+                camelContext.adapt(ExtendedCamelContext.class).getBootstrapFactoryFinder())
+                        .resolve(camelContext)
+                        .orElseThrow(
+                                () -> new IllegalArgumentException("Cannot find camel-openapi-java on classpath."));
     }
 
     public void renderResourceListing(

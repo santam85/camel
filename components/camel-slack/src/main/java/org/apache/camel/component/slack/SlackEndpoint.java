@@ -46,10 +46,13 @@ public class SlackEndpoint extends ScheduledPollEndpoint {
     @UriParam(label = "producer")
     private String webhookUrl;
     @UriParam(label = "producer", secret = true)
+    @Deprecated
     private String username;
     @UriParam(label = "producer")
+    @Deprecated
     private String iconUrl;
     @UriParam(label = "producer")
+    @Deprecated
     private String iconEmoji;
     @UriParam(label = "consumer", secret = true)
     private String token;
@@ -82,6 +85,10 @@ public class SlackEndpoint extends ScheduledPollEndpoint {
         if (ObjectHelper.isEmpty(token)) {
             throw new RuntimeCamelException(
                     "Missing required endpoint configuration: token must be defined for Slack consumer");
+        }
+        if (ObjectHelper.isEmpty(channel)) {
+            throw new RuntimeCamelException(
+                    "Missing required endpoint configuration: channel must be defined for Slack consumer");
         }
         SlackConsumer consumer = new SlackConsumer(this, processor);
         configureConsumer(consumer);

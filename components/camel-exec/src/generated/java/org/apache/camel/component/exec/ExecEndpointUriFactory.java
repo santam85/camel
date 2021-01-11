@@ -2,6 +2,7 @@
 package org.apache.camel.component.exec;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,21 +18,22 @@ public class ExecEndpointUriFactory extends org.apache.camel.support.component.E
     private static final String BASE = ":executable";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(12);
-        set.add("executable");
-        set.add("args");
-        set.add("binding");
-        set.add("commandExecutor");
-        set.add("commandLogLevel");
-        set.add("lazyStartProducer");
-        set.add("outFile");
-        set.add("timeout");
-        set.add("useStderrOnEmptyStdout");
-        set.add("workingDir");
-        set.add("basicPropertyBinding");
-        set.add("synchronous");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(11);
+        props.add("args");
+        props.add("lazyStartProducer");
+        props.add("useStderrOnEmptyStdout");
+        props.add("outFile");
+        props.add("synchronous");
+        props.add("workingDir");
+        props.add("binding");
+        props.add("commandLogLevel");
+        props.add("commandExecutor");
+        props.add("executable");
+        props.add("timeout");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        SECRET_PROPERTY_NAMES = Collections.emptySet();
     }
 
     @Override
@@ -40,20 +42,25 @@ public class ExecEndpointUriFactory extends org.apache.camel.support.component.E
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
         Map<String, Object> copy = new HashMap<>(properties);
 
         uri = buildPathParameter(syntax, uri, "executable", null, true, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

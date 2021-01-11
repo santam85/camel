@@ -88,6 +88,11 @@ public interface Route extends RuntimeConfiguration {
     Processor getProcessor();
 
     /**
+     * Sets the {@link Processor}
+     */
+    void setProcessor(Processor processor);
+
+    /**
      * Whether or not the route supports suspension (suspend and resume)
      *
      * @return <tt>true</tt> if this route supports suspension
@@ -233,11 +238,18 @@ public interface Route extends RuntimeConfiguration {
     String getRouteDescription();
 
     /**
-     * Get the route type
+     * Get the route type.
      *
-     * @return the route type
+     * Important: is null after the route has been created.
+     *
+     * @return the route type during creation of the route, is null after the route has been created.
      */
     NamedNode getRoute();
+
+    /**
+     * Clears the route model when its no longer needed.
+     */
+    void clearRouteModel();
 
     //
     // CREATION TIME
@@ -279,24 +291,25 @@ public interface Route extends RuntimeConfiguration {
      */
     List<RoutePolicy> getRoutePolicyList();
 
+    // called at completion time
     void setErrorHandlerFactory(ErrorHandlerFactory errorHandlerFactory);
 
+    // called at runtime
     ErrorHandlerFactory getErrorHandlerFactory();
 
-    Processor createErrorHandler(Processor processor) throws Exception;
-
-    Collection<Processor> getOnCompletions();
-
     // called at runtime
-    Processor getOnCompletion(String onCompletionId);
+    Collection<Processor> getOnCompletions();
 
     // called at completion time
     void setOnCompletion(String onCompletionId, Processor processor);
 
+    // called at runtime
     Collection<Processor> getOnExceptions();
 
+    // called at runtime
     Processor getOnException(String onExceptionId);
 
+    // called at completion time
     void setOnException(String onExceptionId, Processor processor);
 
     /**

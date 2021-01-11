@@ -2,6 +2,7 @@
 package org.apache.camel.component.vertx.http;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,34 +18,35 @@ public class VertxHttpEndpointUriFactory extends org.apache.camel.support.compon
     private static final String BASE = ":httpUri";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(25);
-        set.add("httpUri");
-        set.add("connectTimeout");
-        set.add("cookieStore");
-        set.add("headerFilterStrategy");
-        set.add("httpMethod");
-        set.add("lazyStartProducer");
-        set.add("okStatusCodeRange");
-        set.add("sessionManagement");
-        set.add("throwExceptionOnFailure");
-        set.add("timeout");
-        set.add("transferException");
-        set.add("useCompression");
-        set.add("vertxHttpBinding");
-        set.add("webClientOptions");
-        set.add("basicPropertyBinding");
-        set.add("synchronous");
-        set.add("proxyHost");
-        set.add("proxyPassword");
-        set.add("proxyPort");
-        set.add("proxyType");
-        set.add("proxyUsername");
-        set.add("basicAuthPassword");
-        set.add("basicAuthUsername");
-        set.add("bearerToken");
-        set.add("sslContextParameters");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(24);
+        props.add("throwExceptionOnFailure");
+        props.add("proxyUsername");
+        props.add("sessionManagement");
+        props.add("synchronous");
+        props.add("webClientOptions");
+        props.add("proxyPassword");
+        props.add("proxyType");
+        props.add("basicAuthPassword");
+        props.add("sslContextParameters");
+        props.add("httpMethod");
+        props.add("useCompression");
+        props.add("vertxHttpBinding");
+        props.add("okStatusCodeRange");
+        props.add("proxyHost");
+        props.add("timeout");
+        props.add("proxyPort");
+        props.add("lazyStartProducer");
+        props.add("bearerToken");
+        props.add("basicAuthUsername");
+        props.add("httpUri");
+        props.add("headerFilterStrategy");
+        props.add("transferException");
+        props.add("connectTimeout");
+        props.add("cookieStore");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        SECRET_PROPERTY_NAMES = Collections.emptySet();
     }
 
     @Override
@@ -53,20 +55,25 @@ public class VertxHttpEndpointUriFactory extends org.apache.camel.support.compon
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
         Map<String, Object> copy = new HashMap<>(properties);
 
         uri = buildPathParameter(syntax, uri, "httpUri", null, true, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

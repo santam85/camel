@@ -7,7 +7,7 @@
 :description: Evaluate Camel's built-in Simple language expression against the Camel Exchange.
 :since: 1.1
 :supportLevel: Stable
-include::{cq-version}@camel-quarkus:ROOT:partial$reference/languages/simple.adoc[]
+include::{cq-version}@camel-quarkus:ROOT:partial$reference/languages/simple.adoc[opts=optional]
 
 *Since Camel {since}*
 
@@ -29,6 +29,11 @@ choose a more expressive and powerful language such as:
 * xref:ognl-language.adoc[OGNL]
 
 The simple language uses `${body`} placeholders for complex expressions or functions.
+
+[NOTE]
+====
+See also the xref:csimple-language.adoc[CSimple] language which is *compiled*.
+====
 
 [TIP]
 ====

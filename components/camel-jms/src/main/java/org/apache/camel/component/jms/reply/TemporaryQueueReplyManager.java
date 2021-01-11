@@ -186,9 +186,8 @@ public class TemporaryQueueReplyManager extends ReplyManagerSupport {
         @Override
         public void onException(JMSException exception) {
             // capture exceptions, and schedule a refresh of the ReplyTo destination
-            log.warn("Exception inside the DMLC for Temporary ReplyTo Queue for destination " + endpoint.getDestinationName()
-                     + ", refreshing ReplyTo destination",
-                    exception);
+            log.warn("Exception inside the DMLC for Temporary ReplyTo Queue for destination {}, refreshing ReplyTo destination",
+                    endpoint.getDestinationName(), exception);
             destResolver.scheduleRefresh();
             // serve as a proxy for any exception listener the user may have set explicitly
             if (delegate != null) {
@@ -200,7 +199,7 @@ public class TemporaryQueueReplyManager extends ReplyManagerSupport {
 
     private final class TemporaryReplyQueueDestinationResolver implements DestinationResolver {
         private TemporaryQueue queue;
-        private final AtomicBoolean refreshWanted = new AtomicBoolean(false);
+        private final AtomicBoolean refreshWanted = new AtomicBoolean();
 
         @Override
         public Destination resolveDestinationName(Session session, String destinationName, boolean pubSubDomain)

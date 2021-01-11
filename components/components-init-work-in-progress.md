@@ -12,7 +12,7 @@
 |camel-as2|REJECT| |
 |camel-asn1|DONE| |
 |camel-asterisk|DONE| |
-|camel-atmos| | |
+|camel-atmos|REJECT | |
 |camel-atmosphere-websocket|DONE| |
 |camel-atom|DONE| |
 |camel-atomix|DONE| |
@@ -75,7 +75,7 @@
 |camel-browse|DONE| |
 |camel-cache|DONE| |
 |camel-caffeine|REJECT|create thread pool|
-|camel-cassandraql| | |
+|camel-cassandraql|REJECT | |
 |camel-castor|DONE| |
 |camel-cbor|DONE| |
 |camel-cdi|REJECT|addConsumer should be in doStart|
@@ -84,22 +84,19 @@
 |camel-chunk|REJECT|load theme folder from the disk|
 |camel-cmis|DONE| |
 |camel-cm-sms|REJECT|open network connection|
-|camel-coap| | |
-|camel-cometd| | |
-|camel-consul| | |
-|camel-context| | |
-|camel-controlbus| | |
+|camel-coap|REJECT | |
+|camel-cometd|REJECT | |
+|camel-consul|REJECT | |
+|camel-controlbus|DONE | |
 |camel-corda|REJECT|open network connection|
-|camel-core-osgi| | |
-|camel-core-xml| | |
-|camel-couchbase| | |
-|camel-couchdb| | |
-|camel-cron| | |
-|camel-crypto| | |
-|camel-crypto-cms| | |
+|camel-couchbase|DONE | |
+|camel-couchdb|DONE | |
+|camel-cron|DONE | |
+|camel-crypto|DONE | |
+|camel-crypto-cms|REJECT | |
 |camel-csv|DONE| |
 |camel-cxf|REJECT|start a server|
-|camel-cxf-transport| | |
+|camel-cxf-transport|REJECT | |
 |camel-dataformat|DONE| |
 |camel-dataset|DONE| |
 |camel-debezium| | |
@@ -109,8 +106,8 @@
 |camel-debezium-postgres| | |
 |camel-debezium-sqlserver| | |
 |camel-digitalocean|REJECT|create a http client|
-|camel-direct| | |
-|camel-directvm| | |
+|camel-direct|DONE | |
+|camel-directvm|DONE | |
 |camel-disruptor|REJECT|start a thread|
 |camel-djl| | |
 |camel-dns| | |
@@ -166,7 +163,6 @@
 |camel-hdfs2| | |
 |camel-headersmap| | |
 |camel-hessian| | |
-|camel-hipchat| | |
 |camel-hl7| | |
 |camel-http| | |
 |camel-http-base| | |
@@ -223,7 +219,7 @@
 |camel-kubernetes|REJECT|OKHttp client create thread pool |
 |camel-kudu|REJECT|create thread pool|
 |camel-kura| | |
-|camel-language| | |
+|camel-language|DONE | |
 |camel-ldap| | |
 |camel-ldif| | |
 |camel-leveldb| | |
@@ -274,7 +270,7 @@
 |camel-pgevent| | |
 |camel-pg-replication-slot| | |
 |camel-platform-http|DONE| |
-|camel-platform-http-vertx| | |
+|camel-platform-http-vertx|DONE | |
 |camel-printer| | |
 |camel-properties| | |
 |camel-protobuf| | |
@@ -347,7 +343,7 @@
 |camel-spring-ws| | |
 |camel-sql|DONE| |
 |camel-ssh| | |
-|camel-stax| | |
+|camel-stax|DONE | |
 |camel-stomp| | |
 |camel-stream|DONE| |
 |camel-stringtemplate| | |
@@ -370,7 +366,7 @@
 |camel-testng| | |
 |camel-test-spring| | |
 |camel-test-spring-junit5| | |
-|camel-threadpoolfactory-vertx| | |
+|camel-threadpoolfactory-vertx|DONE | |
 |camel-thrift| | |
 |camel-tika| | |
 |camel-timer|DONE| |
@@ -383,9 +379,9 @@
 |camel-urlrewrite| | |
 |camel-validator| | |
 |camel-velocity| | |
-|camel-vertx| | |
-|camel-vertx-http| | |
-|camel-vertx-websocket| | |
+|camel-vertx|DONE | |
+|camel-vertx-http|DONE | |
+|camel-vertx-websocket|DONE | |
 |camel-vm| | |
 |camel-weather| | |
 |camel-web3j| | |
@@ -401,9 +397,9 @@
 |camel-xmlrpc| | |
 |camel-xmlsecurity| | |
 |camel-xmpp| | |
-|camel-xpath| | |
+|camel-xpath|DONE | |
 |camel-xslt|DONE| |
-|camel-xslt-saxon| | |
+|camel-xslt-saxon|DONE | |
 |camel-xstream| | |
 |camel-yammer| | |
 |camel-zendesk| | |

@@ -37,6 +37,8 @@ public interface Aws2EventbridgeComponentBuilderFactory {
      * Category: cloud,management
      * Since: 3.6
      * Maven coordinates: org.apache.camel:camel-aws2-eventbridge
+     * 
+     * @return the dsl builder
      */
     static Aws2EventbridgeComponentBuilder aws2Eventbridge() {
         return new Aws2EventbridgeComponentBuilderImpl();
@@ -49,27 +51,15 @@ public interface Aws2EventbridgeComponentBuilderFactory {
             extends
                 ComponentBuilder<EventbridgeComponent> {
         /**
-         * Setting the autoDiscoverClient mechanism, if true, the component will
-         * look for a client instance in the registry automatically otherwise it
-         * will skip that checking.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: true
-         * Group: common
-         */
-        default Aws2EventbridgeComponentBuilder autoDiscoverClient(
-                boolean autoDiscoverClient) {
-            doSetProperty("autoDiscoverClient", autoDiscoverClient);
-            return this;
-        }
-        /**
          * Component configuration.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.aws2.eventbridge.EventbridgeConfiguration</code> type.
+         * &lt;code&gt;org.apache.camel.component.aws2.eventbridge.EventbridgeConfiguration&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param configuration the value to set
+         * @return the dsl builder
          */
         default Aws2EventbridgeComponentBuilder configuration(
                 org.apache.camel.component.aws2.eventbridge.EventbridgeConfiguration configuration) {
@@ -80,9 +70,12 @@ public interface Aws2EventbridgeComponentBuilderFactory {
          * To use a existing configured AWS Eventbridge as client.
          * 
          * The option is a:
-         * <code>software.amazon.awssdk.services.eventbridge.EventBridgeClient</code> type.
+         * &lt;code&gt;software.amazon.awssdk.services.eventbridge.EventBridgeClient&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param eventbridgeClient the value to set
+         * @return the dsl builder
          */
         default Aws2EventbridgeComponentBuilder eventbridgeClient(
                 software.amazon.awssdk.services.eventbridge.EventBridgeClient eventbridgeClient) {
@@ -92,9 +85,12 @@ public interface Aws2EventbridgeComponentBuilderFactory {
         /**
          * EventPattern File.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param eventPatternFile the value to set
+         * @return the dsl builder
          */
         default Aws2EventbridgeComponentBuilder eventPatternFile(
                 java.lang.String eventPatternFile) {
@@ -112,10 +108,13 @@ public interface Aws2EventbridgeComponentBuilderFactory {
          * producer may take a little time and prolong the total processing time
          * of the processing.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param lazyStartProducer the value to set
+         * @return the dsl builder
          */
         default Aws2EventbridgeComponentBuilder lazyStartProducer(
                 boolean lazyStartProducer) {
@@ -126,10 +125,13 @@ public interface Aws2EventbridgeComponentBuilderFactory {
          * The operation to perform.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.aws2.eventbridge.EventbridgeOperations</code> type.
+         * &lt;code&gt;org.apache.camel.component.aws2.eventbridge.EventbridgeOperations&lt;/code&gt; type.
          * 
          * Default: putRule
          * Group: producer
+         * 
+         * @param operation the value to set
+         * @return the dsl builder
          */
         default Aws2EventbridgeComponentBuilder operation(
                 org.apache.camel.component.aws2.eventbridge.EventbridgeOperations operation) {
@@ -139,10 +141,13 @@ public interface Aws2EventbridgeComponentBuilderFactory {
         /**
          * If we want to use a POJO request as body or not.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param pojoRequest the value to set
+         * @return the dsl builder
          */
         default Aws2EventbridgeComponentBuilder pojoRequest(boolean pojoRequest) {
             doSetProperty("pojoRequest", pojoRequest);
@@ -151,9 +156,12 @@ public interface Aws2EventbridgeComponentBuilderFactory {
         /**
          * To define a proxy host when instantiating the Eventbridge client.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param proxyHost the value to set
+         * @return the dsl builder
          */
         default Aws2EventbridgeComponentBuilder proxyHost(
                 java.lang.String proxyHost) {
@@ -163,9 +171,12 @@ public interface Aws2EventbridgeComponentBuilderFactory {
         /**
          * To define a proxy port when instantiating the Eventbridge client.
          * 
-         * The option is a: <code>java.lang.Integer</code> type.
+         * The option is a: &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param proxyPort the value to set
+         * @return the dsl builder
          */
         default Aws2EventbridgeComponentBuilder proxyPort(
                 java.lang.Integer proxyPort) {
@@ -175,11 +186,14 @@ public interface Aws2EventbridgeComponentBuilderFactory {
         /**
          * To define a proxy protocol when instantiating the Eventbridge client.
          * 
-         * The option is a: <code>software.amazon.awssdk.core.Protocol</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;software.amazon.awssdk.core.Protocol&lt;/code&gt; type.
          * 
          * Default: HTTPS
          * Group: producer
+         * 
+         * @param proxyProtocol the value to set
+         * @return the dsl builder
          */
         default Aws2EventbridgeComponentBuilder proxyProtocol(
                 software.amazon.awssdk.core.Protocol proxyProtocol) {
@@ -192,9 +206,12 @@ public interface Aws2EventbridgeComponentBuilderFactory {
          * region (for example ap-east-1) You'll need to use the name
          * Region.EU_WEST_1.id().
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param region the value to set
+         * @return the dsl builder
          */
         default Aws2EventbridgeComponentBuilder region(java.lang.String region) {
             doSetProperty("region", region);
@@ -204,10 +221,13 @@ public interface Aws2EventbridgeComponentBuilderFactory {
          * If we want to trust all certificates in case of overriding the
          * endpoint.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param trustAllCertificates the value to set
+         * @return the dsl builder
          */
         default Aws2EventbridgeComponentBuilder trustAllCertificates(
                 boolean trustAllCertificates) {
@@ -215,26 +235,35 @@ public interface Aws2EventbridgeComponentBuilderFactory {
             return this;
         }
         /**
-         * Whether the component should use basic property binding (Camel 2.x)
-         * or the newer property binding with additional capabilities.
+         * Whether autowiring is enabled. This is used for automatic autowiring
+         * options (the option must be marked as autowired) by looking up in the
+         * registry to find if there is a single instance of matching type,
+         * which then gets configured on the component. This can be used for
+         * automatic configuring JDBC data sources, JMS connection factories,
+         * AWS Clients, etc.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
-         * Default: false
+         * Default: true
          * Group: advanced
+         * 
+         * @param autowiredEnabled the value to set
+         * @return the dsl builder
          */
-        @Deprecated
-        default Aws2EventbridgeComponentBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
+        default Aws2EventbridgeComponentBuilder autowiredEnabled(
+                boolean autowiredEnabled) {
+            doSetProperty("autowiredEnabled", autowiredEnabled);
             return this;
         }
         /**
          * Amazon AWS Access Key.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param accessKey the value to set
+         * @return the dsl builder
          */
         default Aws2EventbridgeComponentBuilder accessKey(
                 java.lang.String accessKey) {
@@ -244,9 +273,12 @@ public interface Aws2EventbridgeComponentBuilderFactory {
         /**
          * Amazon AWS Secret Key.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param secretKey the value to set
+         * @return the dsl builder
          */
         default Aws2EventbridgeComponentBuilder secretKey(
                 java.lang.String secretKey) {
@@ -277,7 +309,6 @@ public interface Aws2EventbridgeComponentBuilderFactory {
                 String name,
                 Object value) {
             switch (name) {
-            case "autoDiscoverClient": getOrCreateConfiguration((EventbridgeComponent) component).setAutoDiscoverClient((boolean) value); return true;
             case "configuration": ((EventbridgeComponent) component).setConfiguration((org.apache.camel.component.aws2.eventbridge.EventbridgeConfiguration) value); return true;
             case "eventbridgeClient": getOrCreateConfiguration((EventbridgeComponent) component).setEventbridgeClient((software.amazon.awssdk.services.eventbridge.EventBridgeClient) value); return true;
             case "eventPatternFile": getOrCreateConfiguration((EventbridgeComponent) component).setEventPatternFile((java.lang.String) value); return true;
@@ -289,7 +320,7 @@ public interface Aws2EventbridgeComponentBuilderFactory {
             case "proxyProtocol": getOrCreateConfiguration((EventbridgeComponent) component).setProxyProtocol((software.amazon.awssdk.core.Protocol) value); return true;
             case "region": getOrCreateConfiguration((EventbridgeComponent) component).setRegion((java.lang.String) value); return true;
             case "trustAllCertificates": getOrCreateConfiguration((EventbridgeComponent) component).setTrustAllCertificates((boolean) value); return true;
-            case "basicPropertyBinding": ((EventbridgeComponent) component).setBasicPropertyBinding((boolean) value); return true;
+            case "autowiredEnabled": ((EventbridgeComponent) component).setAutowiredEnabled((boolean) value); return true;
             case "accessKey": getOrCreateConfiguration((EventbridgeComponent) component).setAccessKey((java.lang.String) value); return true;
             case "secretKey": getOrCreateConfiguration((EventbridgeComponent) component).setSecretKey((java.lang.String) value); return true;
             default: return false;

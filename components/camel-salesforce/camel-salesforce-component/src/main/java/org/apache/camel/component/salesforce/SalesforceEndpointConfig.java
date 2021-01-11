@@ -41,7 +41,7 @@ import org.apache.camel.spi.UriParams;
 public class SalesforceEndpointConfig implements Cloneable {
 
     // default API version
-    public static final String DEFAULT_VERSION = "34.0";
+    public static final String DEFAULT_VERSION = "50.0";
 
     // general parameter
     public static final String API_VERSION = "apiVersion";
@@ -61,6 +61,7 @@ public class SalesforceEndpointConfig implements Cloneable {
     public static final String SOBJECT_SEARCH = "sObjectSearch";
     public static final String APEX_METHOD = "apexMethod";
     public static final String APEX_URL = "apexUrl";
+    public static final String COMPOSITE_METHOD = "compositeMethod";
     public static final String LIMIT = "limit";
 
     // prefix for parameters in headers
@@ -81,6 +82,7 @@ public class SalesforceEndpointConfig implements Cloneable {
     // parameters for Streaming API
     public static final String DEFAULT_REPLAY_ID = "defaultReplayId";
     public static final String INITIAL_REPLAY_ID_MAP = "initialReplayIdMap";
+    public static final long REPLAY_FROM_TIP = -1L;
 
     // parameters for Approval API
     public static final String APPROVAL = "approval";
@@ -124,7 +126,9 @@ public class SalesforceEndpointConfig implements Cloneable {
     private String sObjectSearch;
     @UriParam
     private String apexMethod;
-    @UriParam
+    @UriParam(label = "producer")
+    private String compositeMethod;
+    @UriParam(label = "producer")
     private String apexUrl;
     @UriParam
     private Map<String, Object> apexQueryParams;
@@ -166,8 +170,9 @@ public class SalesforceEndpointConfig implements Cloneable {
     private String instanceId;
 
     // Streaming API properties
-    @UriParam
-    private Long defaultReplayId;
+    @UriParam(description = "Default replayId setting if no value is found in initialReplayIdMap",
+              defaultValue = "" + REPLAY_FROM_TIP)
+    private Long defaultReplayId = REPLAY_FROM_TIP;
     @UriParam
     private Map<String, Long> initialReplayIdMap;
 
@@ -373,6 +378,17 @@ public class SalesforceEndpointConfig implements Cloneable {
      */
     public void setApexQueryParams(Map<String, Object> apexQueryParams) {
         this.apexQueryParams = apexQueryParams;
+    }
+
+    public String getCompositeMethod() {
+        return compositeMethod;
+    }
+
+    /**
+     * Composite (raw) method.
+     */
+    public void setCompositeMethod(String compositeMethod) {
+        this.compositeMethod = compositeMethod;
     }
 
     public ApprovalRequest getApproval() {
@@ -614,6 +630,7 @@ public class SalesforceEndpointConfig implements Cloneable {
         valueMap.put(SOBJECT_SEARCH, sObjectSearch);
         valueMap.put(APEX_METHOD, apexMethod);
         valueMap.put(APEX_URL, apexUrl);
+        valueMap.put(COMPOSITE_METHOD, compositeMethod);
         valueMap.put(LIMIT, limit);
         valueMap.put(APPROVAL, approval);
         // apexQueryParams are handled explicitly in AbstractRestProcessor

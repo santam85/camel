@@ -2,6 +2,7 @@
 package org.apache.camel.component.xmlsecurity;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,39 +18,40 @@ public class XmlSignerEndpointUriFactory extends org.apache.camel.support.compon
     private static final String BASE = ":name";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(30);
-        set.add("name");
-        set.add("addKeyInfoReference");
-        set.add("baseUri");
-        set.add("canonicalizationMethod");
-        set.add("clearHeaders");
-        set.add("contentObjectId");
-        set.add("contentReferenceType");
-        set.add("contentReferenceUri");
-        set.add("cryptoContextProperties");
-        set.add("digestAlgorithm");
-        set.add("disallowDoctypeDecl");
-        set.add("keyAccessor");
-        set.add("lazyStartProducer");
-        set.add("omitXmlDeclaration");
-        set.add("outputXmlEncoding");
-        set.add("parentLocalName");
-        set.add("parentNamespace");
-        set.add("parentXpath");
-        set.add("plainText");
-        set.add("plainTextEncoding");
-        set.add("prefixForXmlSignatureNamespace");
-        set.add("properties");
-        set.add("schemaResourceUri");
-        set.add("signatureAlgorithm");
-        set.add("signatureId");
-        set.add("transformMethods");
-        set.add("xpathsToIdAttributes");
-        set.add("basicPropertyBinding");
-        set.add("synchronous");
-        set.add("uriDereferencer");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(29);
+        props.add("canonicalizationMethod");
+        props.add("omitXmlDeclaration");
+        props.add("clearHeaders");
+        props.add("synchronous");
+        props.add("outputXmlEncoding");
+        props.add("contentObjectId");
+        props.add("parentNamespace");
+        props.add("signatureId");
+        props.add("transformMethods");
+        props.add("parentXpath");
+        props.add("xpathsToIdAttributes");
+        props.add("parentLocalName");
+        props.add("contentReferenceType");
+        props.add("uriDereferencer");
+        props.add("keyAccessor");
+        props.add("prefixForXmlSignatureNamespace");
+        props.add("plainText");
+        props.add("plainTextEncoding");
+        props.add("addKeyInfoReference");
+        props.add("digestAlgorithm");
+        props.add("schemaResourceUri");
+        props.add("signatureAlgorithm");
+        props.add("lazyStartProducer");
+        props.add("contentReferenceUri");
+        props.add("disallowDoctypeDecl");
+        props.add("baseUri");
+        props.add("name");
+        props.add("cryptoContextProperties");
+        props.add("properties");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        SECRET_PROPERTY_NAMES = Collections.emptySet();
     }
 
     @Override
@@ -58,20 +60,25 @@ public class XmlSignerEndpointUriFactory extends org.apache.camel.support.compon
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
         Map<String, Object> copy = new HashMap<>(properties);
 
         uri = buildPathParameter(syntax, uri, "name", null, true, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

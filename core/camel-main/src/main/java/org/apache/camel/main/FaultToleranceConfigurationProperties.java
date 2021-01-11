@@ -16,16 +16,17 @@
  */
 package org.apache.camel.main;
 
+import org.apache.camel.spi.BootstrapCloseable;
 import org.apache.camel.spi.Configurer;
 import org.apache.camel.spi.Metadata;
 
 /**
  * Global configuration for MicroProfile Fault Tolerance EIP circuit breaker.
  */
-@Configurer
-public class FaultToleranceConfigurationProperties {
+@Configurer(bootstrap = true, extended = true)
+public class FaultToleranceConfigurationProperties implements BootstrapCloseable {
 
-    private final MainConfigurationProperties parent;
+    private MainConfigurationProperties parent;
 
     private String circuitBreakerRef;
     @Metadata(defaultValue = "5")
@@ -57,6 +58,11 @@ public class FaultToleranceConfigurationProperties {
 
     public MainConfigurationProperties end() {
         return parent;
+    }
+
+    @Override
+    public void close() {
+        parent = null;
     }
 
     // getter and setters

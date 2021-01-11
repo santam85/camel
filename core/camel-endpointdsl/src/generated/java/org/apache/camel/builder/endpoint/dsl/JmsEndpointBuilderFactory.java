@@ -50,9 +50,12 @@ public interface JmsEndpointBuilderFactory {
          * subscriptions. If using Apache ActiveMQ you may prefer to use Virtual
          * Topics instead.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param clientId the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder clientId(String clientId) {
             doSetProperty("clientId", clientId);
@@ -62,9 +65,13 @@ public interface JmsEndpointBuilderFactory {
          * The connection factory to be use. A connection factory must be
          * configured either on the component or endpoint.
          * 
-         * The option is a: <code>javax.jms.ConnectionFactory</code> type.
+         * The option is a: &lt;code&gt;javax.jms.ConnectionFactory&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param connectionFactory the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder connectionFactory(
                 Object connectionFactory) {
@@ -76,9 +83,12 @@ public interface JmsEndpointBuilderFactory {
          * configured either on the component or endpoint.
          * 
          * The option will be converted to a
-         * <code>javax.jms.ConnectionFactory</code> type.
+         * &lt;code&gt;javax.jms.ConnectionFactory&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param connectionFactory the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder connectionFactory(
                 String connectionFactory) {
@@ -95,10 +105,13 @@ public interface JmsEndpointBuilderFactory {
          * to use Camel as a proxy between different message brokers and you
          * want to route message from one system to another.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableReplyTo the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder disableReplyTo(boolean disableReplyTo) {
             doSetProperty("disableReplyTo", disableReplyTo);
@@ -114,10 +127,14 @@ public interface JmsEndpointBuilderFactory {
          * to use Camel as a proxy between different message brokers and you
          * want to route message from one system to another.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableReplyTo the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder disableReplyTo(String disableReplyTo) {
             doSetProperty("disableReplyTo", disableReplyTo);
@@ -127,9 +144,12 @@ public interface JmsEndpointBuilderFactory {
          * The durable subscriber name for specifying durable topic
          * subscriptions. The clientId option must be configured as well.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param durableSubscriptionName the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder durableSubscriptionName(
                 String durableSubscriptionName) {
@@ -144,9 +164,12 @@ public interface JmsEndpointBuilderFactory {
          * to specify it.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.JmsMessageType</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsMessageType&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param jmsMessageType the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder jmsMessageType(
                 JmsMessageType jmsMessageType) {
@@ -161,9 +184,12 @@ public interface JmsEndpointBuilderFactory {
          * to specify it.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.JmsMessageType</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsMessageType&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param jmsMessageType the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder jmsMessageType(String jmsMessageType) {
             doSetProperty("jmsMessageType", jmsMessageType);
@@ -173,9 +199,12 @@ public interface JmsEndpointBuilderFactory {
          * Provides an explicit ReplyTo destination (overrides any incoming
          * value of Message.getJMSReplyTo() in consumer).
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param replyTo the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder replyTo(String replyTo) {
             doSetProperty("replyTo", replyTo);
@@ -188,10 +217,13 @@ public interface JmsEndpointBuilderFactory {
          * Camel throws an exception on startup. This ensures that Camel is not
          * started with failed connections. The JMS producers is tested as well.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param testConnectionOnStartup the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder testConnectionOnStartup(
                 boolean testConnectionOnStartup) {
@@ -205,10 +237,14 @@ public interface JmsEndpointBuilderFactory {
          * Camel throws an exception on startup. This ensures that Camel is not
          * started with failed connections. The JMS producers is tested as well.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param testConnectionOnStartup the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder testConnectionOnStartup(
                 String testConnectionOnStartup) {
@@ -219,10 +255,13 @@ public interface JmsEndpointBuilderFactory {
          * The JMS acknowledgement name, which is one of: SESSION_TRANSACTED,
          * CLIENT_ACKNOWLEDGE, AUTO_ACKNOWLEDGE, DUPS_OK_ACKNOWLEDGE.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: AUTO_ACKNOWLEDGE
          * Group: consumer
+         * 
+         * @param acknowledgementModeName the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder acknowledgementModeName(
                 String acknowledgementModeName) {
@@ -241,10 +280,13 @@ public interface JmsEndpointBuilderFactory {
          * transaction must be executed synchronously (Camel 3.0 may support
          * async transactions).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param asyncConsumer the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder asyncConsumer(boolean asyncConsumer) {
             doSetProperty("asyncConsumer", asyncConsumer);
@@ -262,10 +304,14 @@ public interface JmsEndpointBuilderFactory {
          * transaction must be executed synchronously (Camel 3.0 may support
          * async transactions).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param asyncConsumer the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder asyncConsumer(String asyncConsumer) {
             doSetProperty("asyncConsumer", asyncConsumer);
@@ -274,10 +320,13 @@ public interface JmsEndpointBuilderFactory {
         /**
          * Specifies whether the consumer container should auto-startup.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: consumer
+         * 
+         * @param autoStartup the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder autoStartup(boolean autoStartup) {
             doSetProperty("autoStartup", autoStartup);
@@ -286,10 +335,14 @@ public interface JmsEndpointBuilderFactory {
         /**
          * Specifies whether the consumer container should auto-startup.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: consumer
+         * 
+         * @param autoStartup the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder autoStartup(String autoStartup) {
             doSetProperty("autoStartup", autoStartup);
@@ -299,9 +352,12 @@ public interface JmsEndpointBuilderFactory {
          * Sets the cache level by ID for the underlying JMS resources. See
          * cacheLevelName option for more details.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param cacheLevel the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder cacheLevel(int cacheLevel) {
             doSetProperty("cacheLevel", cacheLevel);
@@ -311,9 +367,12 @@ public interface JmsEndpointBuilderFactory {
          * Sets the cache level by ID for the underlying JMS resources. See
          * cacheLevelName option for more details.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param cacheLevel the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder cacheLevel(String cacheLevel) {
             doSetProperty("cacheLevel", cacheLevel);
@@ -326,10 +385,13 @@ public interface JmsEndpointBuilderFactory {
          * the Spring documentation and Transactions Cache Levels for more
          * information.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: CACHE_AUTO
          * Group: consumer
+         * 
+         * @param cacheLevelName the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder cacheLevelName(String cacheLevelName) {
             doSetProperty("cacheLevelName", cacheLevelName);
@@ -343,10 +405,13 @@ public interface JmsEndpointBuilderFactory {
          * replyToConcurrentConsumers is used to control number of concurrent
          * consumers on the reply message listener.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: consumer
+         * 
+         * @param concurrentConsumers the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder concurrentConsumers(
                 int concurrentConsumers) {
@@ -361,10 +426,13 @@ public interface JmsEndpointBuilderFactory {
          * replyToConcurrentConsumers is used to control number of concurrent
          * consumers on the reply message listener.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: consumer
+         * 
+         * @param concurrentConsumers the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder concurrentConsumers(
                 String concurrentConsumers) {
@@ -379,9 +447,12 @@ public interface JmsEndpointBuilderFactory {
          * replyToMaxConcurrentConsumers is used to control number of concurrent
          * consumers on the reply message listener.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param maxConcurrentConsumers the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder maxConcurrentConsumers(
                 int maxConcurrentConsumers) {
@@ -396,9 +467,12 @@ public interface JmsEndpointBuilderFactory {
          * replyToMaxConcurrentConsumers is used to control number of concurrent
          * consumers on the reply message listener.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param maxConcurrentConsumers the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder maxConcurrentConsumers(
                 String maxConcurrentConsumers) {
@@ -408,10 +482,13 @@ public interface JmsEndpointBuilderFactory {
         /**
          * Specifies whether to use persistent delivery by default for replies.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: consumer
+         * 
+         * @param replyToDeliveryPersistent the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder replyToDeliveryPersistent(
                 boolean replyToDeliveryPersistent) {
@@ -421,10 +498,14 @@ public interface JmsEndpointBuilderFactory {
         /**
          * Specifies whether to use persistent delivery by default for replies.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: consumer
+         * 
+         * @param replyToDeliveryPersistent the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder replyToDeliveryPersistent(
                 String replyToDeliveryPersistent) {
@@ -434,9 +515,12 @@ public interface JmsEndpointBuilderFactory {
         /**
          * Sets the JMS selector to use.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param selector the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder selector(String selector) {
             doSetProperty("selector", selector);
@@ -452,10 +536,13 @@ public interface JmsEndpointBuilderFactory {
          * a topic (pub-sub domain), therefore this method switches the
          * pubSubDomain flag as well.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param subscriptionDurable the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder subscriptionDurable(
                 boolean subscriptionDurable) {
@@ -472,10 +559,14 @@ public interface JmsEndpointBuilderFactory {
          * a topic (pub-sub domain), therefore this method switches the
          * pubSubDomain flag as well.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param subscriptionDurable the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder subscriptionDurable(
                 String subscriptionDurable) {
@@ -491,9 +582,12 @@ public interface JmsEndpointBuilderFactory {
          * message listener container) is allowed for each subscription, except
          * for a shared subscription (which requires JMS 2.0).
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param subscriptionName the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder subscriptionName(
                 String subscriptionName) {
@@ -513,10 +607,13 @@ public interface JmsEndpointBuilderFactory {
          * pubSubDomain flag as well. Requires a JMS 2.0 compatible message
          * broker.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param subscriptionShared the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder subscriptionShared(
                 boolean subscriptionShared) {
@@ -536,10 +633,14 @@ public interface JmsEndpointBuilderFactory {
          * pubSubDomain flag as well. Requires a JMS 2.0 compatible message
          * broker.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param subscriptionShared the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder subscriptionShared(
                 String subscriptionShared) {
@@ -550,10 +651,14 @@ public interface JmsEndpointBuilderFactory {
          * Allows to configure the default errorHandler logging level for
          * logging uncaught exceptions.
          * 
-         * The option is a: <code>org.apache.camel.LoggingLevel</code> type.
+         * The option is a:
+         * &lt;code&gt;org.apache.camel.LoggingLevel&lt;/code&gt; type.
          * 
          * Default: WARN
          * Group: logging
+         * 
+         * @param errorHandlerLoggingLevel the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder errorHandlerLoggingLevel(
                 LoggingLevel errorHandlerLoggingLevel) {
@@ -565,10 +670,13 @@ public interface JmsEndpointBuilderFactory {
          * logging uncaught exceptions.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.LoggingLevel</code> type.
+         * &lt;code&gt;org.apache.camel.LoggingLevel&lt;/code&gt; type.
          * 
          * Default: WARN
          * Group: logging
+         * 
+         * @param errorHandlerLoggingLevel the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder errorHandlerLoggingLevel(
                 String errorHandlerLoggingLevel) {
@@ -579,10 +687,13 @@ public interface JmsEndpointBuilderFactory {
          * Allows to control whether stacktraces should be logged or not, by the
          * default errorHandler.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: logging
+         * 
+         * @param errorHandlerLogStackTrace the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder errorHandlerLogStackTrace(
                 boolean errorHandlerLogStackTrace) {
@@ -593,10 +704,14 @@ public interface JmsEndpointBuilderFactory {
          * Allows to control whether stacktraces should be logged or not, by the
          * default errorHandler.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: logging
+         * 
+         * @param errorHandlerLogStackTrace the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder errorHandlerLogStackTrace(
                 String errorHandlerLogStackTrace) {
@@ -607,9 +722,12 @@ public interface JmsEndpointBuilderFactory {
          * Password to use with the ConnectionFactory. You can also configure
          * username/password directly on the ConnectionFactory.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param password the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder password(String password) {
             doSetProperty("password", password);
@@ -619,9 +737,12 @@ public interface JmsEndpointBuilderFactory {
          * Username to use with the ConnectionFactory. You can also configure
          * username/password directly on the ConnectionFactory.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param username the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder username(String username) {
             doSetProperty("username", username);
@@ -630,10 +751,13 @@ public interface JmsEndpointBuilderFactory {
         /**
          * Specifies whether to use transacted mode.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transacted the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder transacted(boolean transacted) {
             doSetProperty("transacted", transacted);
@@ -642,10 +766,14 @@ public interface JmsEndpointBuilderFactory {
         /**
          * Specifies whether to use transacted mode.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transacted the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder transacted(String transacted) {
             doSetProperty("transacted", transacted);
@@ -670,10 +798,13 @@ public interface JmsEndpointBuilderFactory {
          * be a native JDBC transaction), with the JMS transaction committing
          * right after the main transaction.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transactedInOut the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder transactedInOut(
                 boolean transactedInOut) {
@@ -699,10 +830,14 @@ public interface JmsEndpointBuilderFactory {
          * be a native JDBC transaction), with the JMS transaction committing
          * right after the main transaction.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transactedInOut the value to set
+         * @return the dsl builder
          */
         default JmsEndpointConsumerBuilder transactedInOut(
                 String transactedInOut) {
@@ -730,10 +865,13 @@ public interface JmsEndpointBuilderFactory {
          * message may be moved at a dead letter queue on the JMS broker. To
          * avoid this its recommended to enable this option.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param acceptMessagesWhileStopping the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder acceptMessagesWhileStopping(
                 boolean acceptMessagesWhileStopping) {
@@ -750,10 +888,14 @@ public interface JmsEndpointBuilderFactory {
          * message may be moved at a dead letter queue on the JMS broker. To
          * avoid this its recommended to enable this option.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param acceptMessagesWhileStopping the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder acceptMessagesWhileStopping(
                 String acceptMessagesWhileStopping) {
@@ -769,10 +911,13 @@ public interface JmsEndpointBuilderFactory {
          * stop ability is enabled by default in the regular JMS consumers but
          * to enable for reply managers you must enable this flag.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param allowReplyManagerQuickStop the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder allowReplyManagerQuickStop(
                 boolean allowReplyManagerQuickStop) {
@@ -788,10 +933,14 @@ public interface JmsEndpointBuilderFactory {
          * stop ability is enabled by default in the regular JMS consumers but
          * to enable for reply managers you must enable this flag.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param allowReplyManagerQuickStop the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder allowReplyManagerQuickStop(
                 String allowReplyManagerQuickStop) {
@@ -811,10 +960,14 @@ public interface JmsEndpointBuilderFactory {
          * use.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.ConsumerType</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.ConsumerType&lt;/code&gt;
+         * type.
          * 
          * Default: Default
          * Group: consumer (advanced)
+         * 
+         * @param consumerType the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder consumerType(
                 ConsumerType consumerType) {
@@ -834,10 +987,14 @@ public interface JmsEndpointBuilderFactory {
          * use.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.ConsumerType</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.ConsumerType&lt;/code&gt;
+         * type.
          * 
          * Default: Default
          * Group: consumer (advanced)
+         * 
+         * @param consumerType the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder consumerType(
                 String consumerType) {
@@ -857,10 +1014,12 @@ public interface JmsEndpointBuilderFactory {
          * decreasing concurrent consumers.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.DefaultTaskExecutorType</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.DefaultTaskExecutorType&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param defaultTaskExecutorType the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder defaultTaskExecutorType(
                 DefaultTaskExecutorType defaultTaskExecutorType) {
@@ -880,10 +1039,12 @@ public interface JmsEndpointBuilderFactory {
          * decreasing concurrent consumers.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.DefaultTaskExecutorType</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.DefaultTaskExecutorType&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param defaultTaskExecutorType the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder defaultTaskExecutorType(
                 String defaultTaskExecutorType) {
@@ -897,10 +1058,13 @@ public interface JmsEndpointBuilderFactory {
          * issues with the underlying JMS provider and the use of JMS
          * properties. See also the option eagerPoisonBody.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param eagerLoadingOfProperties the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder eagerLoadingOfProperties(
                 boolean eagerLoadingOfProperties) {
@@ -914,10 +1078,14 @@ public interface JmsEndpointBuilderFactory {
          * issues with the underlying JMS provider and the use of JMS
          * properties. See also the option eagerPoisonBody.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param eagerLoadingOfProperties the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder eagerLoadingOfProperties(
                 String eagerLoadingOfProperties) {
@@ -932,10 +1100,13 @@ public interface JmsEndpointBuilderFactory {
          * the Exchange). This can be turned off by setting
          * eagerPoisonBody=false. See also the option eagerLoadingOfProperties.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: Poison JMS message due to ${exception.message}
          * Group: consumer (advanced)
+         * 
+         * @param eagerPoisonBody the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder eagerPoisonBody(
                 String eagerPoisonBody) {
@@ -948,10 +1119,13 @@ public interface JmsEndpointBuilderFactory {
          * By default the consumer will deal with exceptions, that will be
          * logged at WARN or ERROR level and ignored.
          * 
-         * The option is a: <code>org.apache.camel.spi.ExceptionHandler</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;org.apache.camel.spi.ExceptionHandler&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exceptionHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder exceptionHandler(
                 ExceptionHandler exceptionHandler) {
@@ -965,9 +1139,12 @@ public interface JmsEndpointBuilderFactory {
          * logged at WARN or ERROR level and ignored.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.spi.ExceptionHandler</code> type.
+         * &lt;code&gt;org.apache.camel.spi.ExceptionHandler&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exceptionHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder exceptionHandler(
                 String exceptionHandler) {
@@ -977,9 +1154,13 @@ public interface JmsEndpointBuilderFactory {
         /**
          * Sets the exchange pattern when the consumer creates an exchange.
          * 
-         * The option is a: <code>org.apache.camel.ExchangePattern</code> type.
+         * The option is a:
+         * &lt;code&gt;org.apache.camel.ExchangePattern&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exchangePattern the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder exchangePattern(
                 ExchangePattern exchangePattern) {
@@ -990,9 +1171,12 @@ public interface JmsEndpointBuilderFactory {
          * Sets the exchange pattern when the consumer creates an exchange.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.ExchangePattern</code> type.
+         * &lt;code&gt;org.apache.camel.ExchangePattern&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exchangePattern the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder exchangePattern(
                 String exchangePattern) {
@@ -1003,10 +1187,13 @@ public interface JmsEndpointBuilderFactory {
          * Specifies whether the listener session should be exposed when
          * consuming messages.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param exposeListenerSession the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder exposeListenerSession(
                 boolean exposeListenerSession) {
@@ -1017,10 +1204,14 @@ public interface JmsEndpointBuilderFactory {
          * Specifies whether the listener session should be exposed when
          * consuming messages.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param exposeListenerSession the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder exposeListenerSession(
                 String exposeListenerSession) {
@@ -1033,10 +1224,13 @@ public interface JmsEndpointBuilderFactory {
          * an endless loop by consuming and sending back the same message to
          * itself.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param replyToSameDestinationAllowed the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder replyToSameDestinationAllowed(
                 boolean replyToSameDestinationAllowed) {
@@ -1049,10 +1243,14 @@ public interface JmsEndpointBuilderFactory {
          * an endless loop by consuming and sending back the same message to
          * itself.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param replyToSameDestinationAllowed the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder replyToSameDestinationAllowed(
                 String replyToSameDestinationAllowed) {
@@ -1063,9 +1261,13 @@ public interface JmsEndpointBuilderFactory {
          * Allows you to specify a custom task executor for consuming messages.
          * 
          * The option is a:
-         * <code>org.springframework.core.task.TaskExecutor</code> type.
+         * &lt;code&gt;org.springframework.core.task.TaskExecutor&lt;/code&gt;
+         * type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param taskExecutor the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder taskExecutor(
                 Object taskExecutor) {
@@ -1076,9 +1278,13 @@ public interface JmsEndpointBuilderFactory {
          * Allows you to specify a custom task executor for consuming messages.
          * 
          * The option will be converted to a
-         * <code>org.springframework.core.task.TaskExecutor</code> type.
+         * &lt;code&gt;org.springframework.core.task.TaskExecutor&lt;/code&gt;
+         * type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param taskExecutor the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder taskExecutor(
                 String taskExecutor) {
@@ -1091,10 +1297,13 @@ public interface JmsEndpointBuilderFactory {
          * serializable. Camel will exclude any non-serializable objects and log
          * it at WARN level.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param allowSerializedHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder allowSerializedHeaders(
                 boolean allowSerializedHeaders) {
@@ -1107,10 +1316,14 @@ public interface JmsEndpointBuilderFactory {
          * serializable. Camel will exclude any non-serializable objects and log
          * it at WARN level.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param allowSerializedHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder allowSerializedHeaders(
                 String allowSerializedHeaders) {
@@ -1120,10 +1333,13 @@ public interface JmsEndpointBuilderFactory {
         /**
          * Whether optimizing for Apache Artemis streaming mode.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param artemisStreamingEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder artemisStreamingEnabled(
                 boolean artemisStreamingEnabled) {
@@ -1133,10 +1349,14 @@ public interface JmsEndpointBuilderFactory {
         /**
          * Whether optimizing for Apache Artemis streaming mode.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param artemisStreamingEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder artemisStreamingEnabled(
                 String artemisStreamingEnabled) {
@@ -1155,10 +1375,13 @@ public interface JmsEndpointBuilderFactory {
          * logged at WARN level, and the consumer will not be able to receive
          * messages; You can then restart the route to retry.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStartListener the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder asyncStartListener(
                 boolean asyncStartListener) {
@@ -1177,10 +1400,14 @@ public interface JmsEndpointBuilderFactory {
          * logged at WARN level, and the consumer will not be able to receive
          * messages; You can then restart the route to retry.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStartListener the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder asyncStartListener(
                 String asyncStartListener) {
@@ -1191,10 +1418,13 @@ public interface JmsEndpointBuilderFactory {
          * Whether to stop the JmsConsumer message listener asynchronously, when
          * stopping a route.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStopListener the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder asyncStopListener(
                 boolean asyncStopListener) {
@@ -1205,42 +1435,18 @@ public interface JmsEndpointBuilderFactory {
          * Whether to stop the JmsConsumer message listener asynchronously, when
          * stopping a route.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStopListener the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder asyncStopListener(
                 String asyncStopListener) {
             doSetProperty("asyncStopListener", asyncStopListener);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedJmsEndpointConsumerBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedJmsEndpointConsumerBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
             return this;
         }
         /**
@@ -1250,9 +1456,12 @@ public interface JmsEndpointBuilderFactory {
          * destination in a JNDI registry).
          * 
          * The option is a:
-         * <code>org.springframework.jms.support.destination.DestinationResolver</code> type.
+         * &lt;code&gt;org.springframework.jms.support.destination.DestinationResolver&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param destinationResolver the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder destinationResolver(
                 Object destinationResolver) {
@@ -1266,9 +1475,12 @@ public interface JmsEndpointBuilderFactory {
          * destination in a JNDI registry).
          * 
          * The option will be converted to a
-         * <code>org.springframework.jms.support.destination.DestinationResolver</code> type.
+         * &lt;code&gt;org.springframework.jms.support.destination.DestinationResolver&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param destinationResolver the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder destinationResolver(
                 String destinationResolver) {
@@ -1284,10 +1496,13 @@ public interface JmsEndpointBuilderFactory {
          * and errorHandlerLogStackTrace options. This makes it much easier to
          * configure, than having to code a custom errorHandler.
          * 
-         * The option is a: <code>org.springframework.util.ErrorHandler</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;org.springframework.util.ErrorHandler&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param errorHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder errorHandler(
                 Object errorHandler) {
@@ -1304,9 +1519,12 @@ public interface JmsEndpointBuilderFactory {
          * configure, than having to code a custom errorHandler.
          * 
          * The option will be converted to a
-         * <code>org.springframework.util.ErrorHandler</code> type.
+         * &lt;code&gt;org.springframework.util.ErrorHandler&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param errorHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder errorHandler(
                 String errorHandler) {
@@ -1317,9 +1535,13 @@ public interface JmsEndpointBuilderFactory {
          * Specifies the JMS Exception Listener that is to be notified of any
          * underlying JMS exceptions.
          * 
-         * The option is a: <code>javax.jms.ExceptionListener</code> type.
+         * The option is a: &lt;code&gt;javax.jms.ExceptionListener&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param exceptionListener the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder exceptionListener(
                 Object exceptionListener) {
@@ -1331,9 +1553,12 @@ public interface JmsEndpointBuilderFactory {
          * underlying JMS exceptions.
          * 
          * The option will be converted to a
-         * <code>javax.jms.ExceptionListener</code> type.
+         * &lt;code&gt;javax.jms.ExceptionListener&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param exceptionListener the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder exceptionListener(
                 String exceptionListener) {
@@ -1345,9 +1570,13 @@ public interface JmsEndpointBuilderFactory {
          * Camel message.
          * 
          * The option is a:
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder headerFilterStrategy(
                 HeaderFilterStrategy headerFilterStrategy) {
@@ -1359,9 +1588,13 @@ public interface JmsEndpointBuilderFactory {
          * Camel message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder headerFilterStrategy(
                 String headerFilterStrategy) {
@@ -1372,10 +1605,13 @@ public interface JmsEndpointBuilderFactory {
          * Specify the limit for the number of consumers that are allowed to be
          * idle at any given time.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleConsumerLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder idleConsumerLimit(
                 int idleConsumerLimit) {
@@ -1386,10 +1622,13 @@ public interface JmsEndpointBuilderFactory {
          * Specify the limit for the number of consumers that are allowed to be
          * idle at any given time.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleConsumerLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder idleConsumerLimit(
                 String idleConsumerLimit) {
@@ -1403,10 +1642,13 @@ public interface JmsEndpointBuilderFactory {
          * (in the case of dynamic scheduling; see the maxConcurrentConsumers
          * setting). There is additional doc available from Spring.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleTaskExecutionLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder idleTaskExecutionLimit(
                 int idleTaskExecutionLimit) {
@@ -1420,10 +1662,13 @@ public interface JmsEndpointBuilderFactory {
          * (in the case of dynamic scheduling; see the maxConcurrentConsumers
          * setting). There is additional doc available from Spring.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleTaskExecutionLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder idleTaskExecutionLimit(
                 String idleTaskExecutionLimit) {
@@ -1436,10 +1681,13 @@ public interface JmsEndpointBuilderFactory {
          * JMSXAppID, and JMSXUserID etc. Note: If you are using a custom
          * headerFilterStrategy then this option does not apply.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param includeAllJMSXProperties the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder includeAllJMSXProperties(
                 boolean includeAllJMSXProperties) {
@@ -1452,10 +1700,14 @@ public interface JmsEndpointBuilderFactory {
          * JMSXAppID, and JMSXUserID etc. Note: If you are using a custom
          * headerFilterStrategy then this option does not apply.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param includeAllJMSXProperties the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder includeAllJMSXProperties(
                 String includeAllJMSXProperties) {
@@ -1474,10 +1726,12 @@ public interface JmsEndpointBuilderFactory {
          * using the # notation.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.JmsKeyFormatStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsKeyFormatStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param jmsKeyFormatStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder jmsKeyFormatStrategy(
                 Object jmsKeyFormatStrategy) {
@@ -1496,10 +1750,12 @@ public interface JmsEndpointBuilderFactory {
          * using the # notation.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.JmsKeyFormatStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsKeyFormatStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param jmsKeyFormatStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder jmsKeyFormatStrategy(
                 String jmsKeyFormatStrategy) {
@@ -1510,10 +1766,13 @@ public interface JmsEndpointBuilderFactory {
          * Specifies whether Camel should auto map the received JMS message to a
          * suited payload type, such as javax.jms.TextMessage to a String etc.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapJmsMessage the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder mapJmsMessage(
                 boolean mapJmsMessage) {
@@ -1524,10 +1783,14 @@ public interface JmsEndpointBuilderFactory {
          * Specifies whether Camel should auto map the received JMS message to a
          * suited payload type, such as javax.jms.TextMessage to a String etc.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapJmsMessage the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder mapJmsMessage(
                 String mapJmsMessage) {
@@ -1540,10 +1803,13 @@ public interface JmsEndpointBuilderFactory {
          * to set a value to eg 100 to control how fast the consumers will
          * shrink when less work is required.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: advanced
+         * 
+         * @param maxMessagesPerTask the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder maxMessagesPerTask(
                 int maxMessagesPerTask) {
@@ -1556,10 +1822,13 @@ public interface JmsEndpointBuilderFactory {
          * to set a value to eg 100 to control how fast the consumers will
          * shrink when less work is required.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: advanced
+         * 
+         * @param maxMessagesPerTask the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder maxMessagesPerTask(
                 String maxMessagesPerTask) {
@@ -1572,9 +1841,12 @@ public interface JmsEndpointBuilderFactory {
          * be in control how to map to/from a javax.jms.Message.
          * 
          * The option is a:
-         * <code>org.springframework.jms.support.converter.MessageConverter</code> type.
+         * &lt;code&gt;org.springframework.jms.support.converter.MessageConverter&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageConverter the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder messageConverter(
                 Object messageConverter) {
@@ -1587,9 +1859,12 @@ public interface JmsEndpointBuilderFactory {
          * be in control how to map to/from a javax.jms.Message.
          * 
          * The option will be converted to a
-         * <code>org.springframework.jms.support.converter.MessageConverter</code> type.
+         * &lt;code&gt;org.springframework.jms.support.converter.MessageConverter&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageConverter the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder messageConverter(
                 String messageConverter) {
@@ -1602,10 +1877,12 @@ public interface JmsEndpointBuilderFactory {
          * sending a JMS message.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.MessageCreatedStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageCreatedStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageCreatedStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder messageCreatedStrategy(
                 Object messageCreatedStrategy) {
@@ -1618,10 +1895,12 @@ public interface JmsEndpointBuilderFactory {
          * sending a JMS message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.MessageCreatedStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageCreatedStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageCreatedStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder messageCreatedStrategy(
                 String messageCreatedStrategy) {
@@ -1635,10 +1914,13 @@ public interface JmsEndpointBuilderFactory {
          * provider ignores the hint, the message ID must be set to its normal
          * unique value.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageIdEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder messageIdEnabled(
                 boolean messageIdEnabled) {
@@ -1652,10 +1934,14 @@ public interface JmsEndpointBuilderFactory {
          * provider ignores the hint, the message ID must be set to its normal
          * unique value.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageIdEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder messageIdEnabled(
                 String messageIdEnabled) {
@@ -1670,9 +1956,12 @@ public interface JmsEndpointBuilderFactory {
          * consumerType to Custom.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.MessageListenerContainerFactory</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageListenerContainerFactory&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageListenerContainerFactory the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder messageListenerContainerFactory(
                 Object messageListenerContainerFactory) {
@@ -1687,9 +1976,12 @@ public interface JmsEndpointBuilderFactory {
          * consumerType to Custom.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.MessageListenerContainerFactory</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageListenerContainerFactory&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageListenerContainerFactory the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder messageListenerContainerFactory(
                 String messageListenerContainerFactory) {
@@ -1703,10 +1995,13 @@ public interface JmsEndpointBuilderFactory {
          * zero; if the provider ignores the hint the timestamp must be set to
          * its normal value.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageTimestampEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder messageTimestampEnabled(
                 boolean messageTimestampEnabled) {
@@ -1720,10 +2015,14 @@ public interface JmsEndpointBuilderFactory {
          * zero; if the provider ignores the hint the timestamp must be set to
          * its normal value.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageTimestampEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder messageTimestampEnabled(
                 String messageTimestampEnabled) {
@@ -1734,10 +2033,13 @@ public interface JmsEndpointBuilderFactory {
          * Specifies whether to inhibit the delivery of messages published by
          * its own connection.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param pubSubNoLocal the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder pubSubNoLocal(
                 boolean pubSubNoLocal) {
@@ -1748,10 +2050,14 @@ public interface JmsEndpointBuilderFactory {
          * Specifies whether to inhibit the delivery of messages published by
          * its own connection.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param pubSubNoLocal the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder pubSubNoLocal(
                 String pubSubNoLocal) {
@@ -1761,10 +2067,13 @@ public interface JmsEndpointBuilderFactory {
         /**
          * The timeout for receiving messages (in milliseconds).
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param receiveTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder receiveTimeout(
                 long receiveTimeout) {
@@ -1774,10 +2083,13 @@ public interface JmsEndpointBuilderFactory {
         /**
          * The timeout for receiving messages (in milliseconds).
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param receiveTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder receiveTimeout(
                 String receiveTimeout) {
@@ -1789,10 +2101,13 @@ public interface JmsEndpointBuilderFactory {
          * connection is being refreshed, in milliseconds. The default is 5000
          * ms, that is, 5 seconds.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 5000
          * Group: advanced
+         * 
+         * @param recoveryInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder recoveryInterval(
                 long recoveryInterval) {
@@ -1804,10 +2119,13 @@ public interface JmsEndpointBuilderFactory {
          * connection is being refreshed, in milliseconds. The default is 5000
          * ms, that is, 5 seconds.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 5000
          * Group: advanced
+         * 
+         * @param recoveryInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder recoveryInterval(
                 String recoveryInterval) {
@@ -1821,10 +2139,13 @@ public interface JmsEndpointBuilderFactory {
          * can lower this interval, to check more frequently. The timeout is
          * determined by the option requestTimeout.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param requestTimeoutCheckerInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder requestTimeoutCheckerInterval(
                 long requestTimeoutCheckerInterval) {
@@ -1838,10 +2159,13 @@ public interface JmsEndpointBuilderFactory {
          * can lower this interval, to check more frequently. The timeout is
          * determined by the option requestTimeout.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param requestTimeoutCheckerInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder requestTimeoutCheckerInterval(
                 String requestTimeoutCheckerInterval) {
@@ -1852,10 +2176,13 @@ public interface JmsEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder synchronous(
                 boolean synchronous) {
@@ -1866,10 +2193,14 @@ public interface JmsEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder synchronous(
                 String synchronous) {
@@ -1892,10 +2223,13 @@ public interface JmsEndpointBuilderFactory {
          * level, which forces a strong coupling between the producers and
          * consumer!.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder transferException(
                 boolean transferException) {
@@ -1918,10 +2252,14 @@ public interface JmsEndpointBuilderFactory {
          * level, which forces a strong coupling between the producers and
          * consumer!.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder transferException(
                 String transferException) {
@@ -1942,10 +2280,13 @@ public interface JmsEndpointBuilderFactory {
          * between the producers and consumer having to use compatible Camel
          * versions!.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferExchange the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder transferExchange(
                 boolean transferExchange) {
@@ -1966,10 +2307,14 @@ public interface JmsEndpointBuilderFactory {
          * between the producers and consumer having to use compatible Camel
          * versions!.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferExchange the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder transferExchange(
                 String transferExchange) {
@@ -1980,10 +2325,13 @@ public interface JmsEndpointBuilderFactory {
          * Specifies whether JMSMessageID should always be used as
          * JMSCorrelationID for InOut messages.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param useMessageIDAsCorrelationID the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder useMessageIDAsCorrelationID(
                 boolean useMessageIDAsCorrelationID) {
@@ -1994,10 +2342,14 @@ public interface JmsEndpointBuilderFactory {
          * Specifies whether JMSMessageID should always be used as
          * JMSCorrelationID for InOut messages.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param useMessageIDAsCorrelationID the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder useMessageIDAsCorrelationID(
                 String useMessageIDAsCorrelationID) {
@@ -2009,10 +2361,13 @@ public interface JmsEndpointBuilderFactory {
          * to the actual correlation id when doing request/reply over JMS and
          * when the option useMessageIDAsCorrelationID is enabled.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 50
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedCounter the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder waitForProvisionCorrelationToBeUpdatedCounter(
                 int waitForProvisionCorrelationToBeUpdatedCounter) {
@@ -2024,10 +2379,13 @@ public interface JmsEndpointBuilderFactory {
          * to the actual correlation id when doing request/reply over JMS and
          * when the option useMessageIDAsCorrelationID is enabled.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 50
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedCounter the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder waitForProvisionCorrelationToBeUpdatedCounter(
                 String waitForProvisionCorrelationToBeUpdatedCounter) {
@@ -2038,10 +2396,14 @@ public interface JmsEndpointBuilderFactory {
          * Interval in millis to sleep each time while waiting for provisional
          * correlation id to be updated.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 100
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedThreadSleepingTime the
+         * value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder waitForProvisionCorrelationToBeUpdatedThreadSleepingTime(
                 long waitForProvisionCorrelationToBeUpdatedThreadSleepingTime) {
@@ -2052,10 +2414,14 @@ public interface JmsEndpointBuilderFactory {
          * Interval in millis to sleep each time while waiting for provisional
          * correlation id to be updated.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 100
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedThreadSleepingTime the
+         * value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder waitForProvisionCorrelationToBeUpdatedThreadSleepingTime(
                 String waitForProvisionCorrelationToBeUpdatedThreadSleepingTime) {
@@ -2066,10 +2432,13 @@ public interface JmsEndpointBuilderFactory {
          * If true, Camel will create a JmsTransactionManager, if there is no
          * transactionManager injected when option transacted=true.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: transaction (advanced)
+         * 
+         * @param lazyCreateTransactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder lazyCreateTransactionManager(
                 boolean lazyCreateTransactionManager) {
@@ -2080,10 +2449,14 @@ public interface JmsEndpointBuilderFactory {
          * If true, Camel will create a JmsTransactionManager, if there is no
          * transactionManager injected when option transacted=true.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: transaction (advanced)
+         * 
+         * @param lazyCreateTransactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder lazyCreateTransactionManager(
                 String lazyCreateTransactionManager) {
@@ -2094,9 +2467,12 @@ public interface JmsEndpointBuilderFactory {
          * The Spring transaction manager to use.
          * 
          * The option is a:
-         * <code>org.springframework.transaction.PlatformTransactionManager</code> type.
+         * &lt;code&gt;org.springframework.transaction.PlatformTransactionManager&lt;/code&gt; type.
          * 
          * Group: transaction (advanced)
+         * 
+         * @param transactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder transactionManager(
                 Object transactionManager) {
@@ -2107,9 +2483,12 @@ public interface JmsEndpointBuilderFactory {
          * The Spring transaction manager to use.
          * 
          * The option will be converted to a
-         * <code>org.springframework.transaction.PlatformTransactionManager</code> type.
+         * &lt;code&gt;org.springframework.transaction.PlatformTransactionManager&lt;/code&gt; type.
          * 
          * Group: transaction (advanced)
+         * 
+         * @param transactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder transactionManager(
                 String transactionManager) {
@@ -2119,9 +2498,12 @@ public interface JmsEndpointBuilderFactory {
         /**
          * The name of the transaction to use.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: transaction (advanced)
+         * 
+         * @param transactionName the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder transactionName(
                 String transactionName) {
@@ -2132,10 +2514,13 @@ public interface JmsEndpointBuilderFactory {
          * The timeout value of the transaction (in seconds), if using
          * transacted mode.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: transaction (advanced)
+         * 
+         * @param transactionTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder transactionTimeout(
                 int transactionTimeout) {
@@ -2146,10 +2531,13 @@ public interface JmsEndpointBuilderFactory {
          * The timeout value of the transaction (in seconds), if using
          * transacted mode.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: transaction (advanced)
+         * 
+         * @param transactionTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointConsumerBuilder transactionTimeout(
                 String transactionTimeout) {
@@ -2174,9 +2562,12 @@ public interface JmsEndpointBuilderFactory {
          * subscriptions. If using Apache ActiveMQ you may prefer to use Virtual
          * Topics instead.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param clientId the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder clientId(String clientId) {
             doSetProperty("clientId", clientId);
@@ -2186,9 +2577,13 @@ public interface JmsEndpointBuilderFactory {
          * The connection factory to be use. A connection factory must be
          * configured either on the component or endpoint.
          * 
-         * The option is a: <code>javax.jms.ConnectionFactory</code> type.
+         * The option is a: &lt;code&gt;javax.jms.ConnectionFactory&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param connectionFactory the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder connectionFactory(
                 Object connectionFactory) {
@@ -2200,9 +2595,12 @@ public interface JmsEndpointBuilderFactory {
          * configured either on the component or endpoint.
          * 
          * The option will be converted to a
-         * <code>javax.jms.ConnectionFactory</code> type.
+         * &lt;code&gt;javax.jms.ConnectionFactory&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param connectionFactory the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder connectionFactory(
                 String connectionFactory) {
@@ -2219,10 +2617,13 @@ public interface JmsEndpointBuilderFactory {
          * to use Camel as a proxy between different message brokers and you
          * want to route message from one system to another.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableReplyTo the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder disableReplyTo(boolean disableReplyTo) {
             doSetProperty("disableReplyTo", disableReplyTo);
@@ -2238,10 +2639,14 @@ public interface JmsEndpointBuilderFactory {
          * to use Camel as a proxy between different message brokers and you
          * want to route message from one system to another.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableReplyTo the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder disableReplyTo(String disableReplyTo) {
             doSetProperty("disableReplyTo", disableReplyTo);
@@ -2251,9 +2656,12 @@ public interface JmsEndpointBuilderFactory {
          * The durable subscriber name for specifying durable topic
          * subscriptions. The clientId option must be configured as well.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param durableSubscriptionName the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder durableSubscriptionName(
                 String durableSubscriptionName) {
@@ -2268,9 +2676,12 @@ public interface JmsEndpointBuilderFactory {
          * to specify it.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.JmsMessageType</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsMessageType&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param jmsMessageType the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder jmsMessageType(
                 JmsMessageType jmsMessageType) {
@@ -2285,9 +2696,12 @@ public interface JmsEndpointBuilderFactory {
          * to specify it.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.JmsMessageType</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsMessageType&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param jmsMessageType the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder jmsMessageType(String jmsMessageType) {
             doSetProperty("jmsMessageType", jmsMessageType);
@@ -2297,9 +2711,12 @@ public interface JmsEndpointBuilderFactory {
          * Provides an explicit ReplyTo destination (overrides any incoming
          * value of Message.getJMSReplyTo() in consumer).
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param replyTo the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder replyTo(String replyTo) {
             doSetProperty("replyTo", replyTo);
@@ -2312,10 +2729,13 @@ public interface JmsEndpointBuilderFactory {
          * Camel throws an exception on startup. This ensures that Camel is not
          * started with failed connections. The JMS producers is tested as well.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param testConnectionOnStartup the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder testConnectionOnStartup(
                 boolean testConnectionOnStartup) {
@@ -2329,10 +2749,14 @@ public interface JmsEndpointBuilderFactory {
          * Camel throws an exception on startup. This ensures that Camel is not
          * started with failed connections. The JMS producers is tested as well.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param testConnectionOnStartup the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder testConnectionOnStartup(
                 String testConnectionOnStartup) {
@@ -2343,10 +2767,13 @@ public interface JmsEndpointBuilderFactory {
          * Sets delivery delay to use for send calls for JMS. This option
          * requires JMS 2.0 compliant broker.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: producer
+         * 
+         * @param deliveryDelay the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder deliveryDelay(long deliveryDelay) {
             doSetProperty("deliveryDelay", deliveryDelay);
@@ -2356,10 +2783,13 @@ public interface JmsEndpointBuilderFactory {
          * Sets delivery delay to use for send calls for JMS. This option
          * requires JMS 2.0 compliant broker.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: producer
+         * 
+         * @param deliveryDelay the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder deliveryDelay(String deliveryDelay) {
             doSetProperty("deliveryDelay", deliveryDelay);
@@ -2370,9 +2800,12 @@ public interface JmsEndpointBuilderFactory {
          * defined by javax.jms.DeliveryMode. NON_PERSISTENT = 1 and PERSISTENT
          * = 2.
          * 
-         * The option is a: <code>java.lang.Integer</code> type.
+         * The option is a: &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param deliveryMode the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder deliveryMode(Integer deliveryMode) {
             doSetProperty("deliveryMode", deliveryMode);
@@ -2383,10 +2816,13 @@ public interface JmsEndpointBuilderFactory {
          * defined by javax.jms.DeliveryMode. NON_PERSISTENT = 1 and PERSISTENT
          * = 2.
          * 
-         * The option will be converted to a <code>java.lang.Integer</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param deliveryMode the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder deliveryMode(String deliveryMode) {
             doSetProperty("deliveryMode", deliveryMode);
@@ -2395,10 +2831,13 @@ public interface JmsEndpointBuilderFactory {
         /**
          * Specifies whether persistent delivery is used by default.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: producer
+         * 
+         * @param deliveryPersistent the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder deliveryPersistent(
                 boolean deliveryPersistent) {
@@ -2408,10 +2847,14 @@ public interface JmsEndpointBuilderFactory {
         /**
          * Specifies whether persistent delivery is used by default.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: producer
+         * 
+         * @param deliveryPersistent the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder deliveryPersistent(
                 String deliveryPersistent) {
@@ -2426,10 +2869,13 @@ public interface JmsEndpointBuilderFactory {
          * preserveMessageQos option, which operates at message granularity,
          * reading QoS properties exclusively from the Camel In message headers.
          * 
-         * The option is a: <code>java.lang.Boolean</code> type.
+         * The option is a: &lt;code&gt;java.lang.Boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param explicitQosEnabled the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder explicitQosEnabled(
                 Boolean explicitQosEnabled) {
@@ -2444,11 +2890,14 @@ public interface JmsEndpointBuilderFactory {
          * preserveMessageQos option, which operates at message granularity,
          * reading QoS properties exclusively from the Camel In message headers.
          * 
-         * The option will be converted to a <code>java.lang.Boolean</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param explicitQosEnabled the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder explicitQosEnabled(
                 String explicitQosEnabled) {
@@ -2459,10 +2908,13 @@ public interface JmsEndpointBuilderFactory {
          * Sets whether JMS date properties should be formatted according to the
          * ISO 8601 standard.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param formatDateHeadersToIso8601 the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder formatDateHeadersToIso8601(
                 boolean formatDateHeadersToIso8601) {
@@ -2473,10 +2925,14 @@ public interface JmsEndpointBuilderFactory {
          * Sets whether JMS date properties should be formatted according to the
          * ISO 8601 standard.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param formatDateHeadersToIso8601 the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder formatDateHeadersToIso8601(
                 String formatDateHeadersToIso8601) {
@@ -2494,10 +2950,13 @@ public interface JmsEndpointBuilderFactory {
          * producer may take a little time and prolong the total processing time
          * of the processing.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param lazyStartProducer the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder lazyStartProducer(
                 boolean lazyStartProducer) {
@@ -2515,10 +2974,14 @@ public interface JmsEndpointBuilderFactory {
          * producer may take a little time and prolong the total processing time
          * of the processing.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param lazyStartProducer the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder lazyStartProducer(
                 String lazyStartProducer) {
@@ -2536,10 +2999,13 @@ public interface JmsEndpointBuilderFactory {
          * by contrast, will only use options set on the endpoint, and not
          * values from the message header.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param preserveMessageQos the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder preserveMessageQos(
                 boolean preserveMessageQos) {
@@ -2557,10 +3023,14 @@ public interface JmsEndpointBuilderFactory {
          * by contrast, will only use options set on the endpoint, and not
          * values from the message header.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param preserveMessageQos the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder preserveMessageQos(
                 String preserveMessageQos) {
@@ -2569,14 +3039,17 @@ public interface JmsEndpointBuilderFactory {
         }
         /**
          * Values greater than 1 specify the message priority when sending
-         * (where 0 is the lowest priority and 9 is the highest). The
+         * (where 1 is the lowest priority and 9 is the highest). The
          * explicitQosEnabled option must also be enabled in order for this
          * option to have any effect.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 4
          * Group: producer
+         * 
+         * @param priority the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder priority(int priority) {
             doSetProperty("priority", priority);
@@ -2584,14 +3057,17 @@ public interface JmsEndpointBuilderFactory {
         }
         /**
          * Values greater than 1 specify the message priority when sending
-         * (where 0 is the lowest priority and 9 is the highest). The
+         * (where 1 is the lowest priority and 9 is the highest). The
          * explicitQosEnabled option must also be enabled in order for this
          * option to have any effect.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 4
          * Group: producer
+         * 
+         * @param priority the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder priority(String priority) {
             doSetProperty("priority", priority);
@@ -2602,10 +3078,13 @@ public interface JmsEndpointBuilderFactory {
          * request/reply over JMS. See also the maxMessagesPerTask option to
          * control dynamic scaling up/down of threads.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: producer
+         * 
+         * @param replyToConcurrentConsumers the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder replyToConcurrentConsumers(
                 int replyToConcurrentConsumers) {
@@ -2617,10 +3096,13 @@ public interface JmsEndpointBuilderFactory {
          * request/reply over JMS. See also the maxMessagesPerTask option to
          * control dynamic scaling up/down of threads.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: producer
+         * 
+         * @param replyToConcurrentConsumers the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder replyToConcurrentConsumers(
                 String replyToConcurrentConsumers) {
@@ -2632,9 +3114,12 @@ public interface JmsEndpointBuilderFactory {
          * request/reply over JMS. See also the maxMessagesPerTask option to
          * control dynamic scaling up/down of threads.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param replyToMaxConcurrentConsumers the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder replyToMaxConcurrentConsumers(
                 int replyToMaxConcurrentConsumers) {
@@ -2646,9 +3131,12 @@ public interface JmsEndpointBuilderFactory {
          * request/reply over JMS. See also the maxMessagesPerTask option to
          * control dynamic scaling up/down of threads.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param replyToMaxConcurrentConsumers the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder replyToMaxConcurrentConsumers(
                 String replyToMaxConcurrentConsumers) {
@@ -2659,10 +3147,13 @@ public interface JmsEndpointBuilderFactory {
          * Specifies the maximum number of concurrent consumers for continue
          * routing when timeout occurred when using request/reply over JMS.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: producer
+         * 
+         * @param replyToOnTimeoutMaxConcurrentConsumers the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder replyToOnTimeoutMaxConcurrentConsumers(
                 int replyToOnTimeoutMaxConcurrentConsumers) {
@@ -2673,10 +3164,13 @@ public interface JmsEndpointBuilderFactory {
          * Specifies the maximum number of concurrent consumers for continue
          * routing when timeout occurred when using request/reply over JMS.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: producer
+         * 
+         * @param replyToOnTimeoutMaxConcurrentConsumers the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder replyToOnTimeoutMaxConcurrentConsumers(
                 String replyToOnTimeoutMaxConcurrentConsumers) {
@@ -2689,9 +3183,12 @@ public interface JmsEndpointBuilderFactory {
          * the message to a remote Queue and receive the reply message from the
          * ReplyTo destination.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param replyToOverride the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder replyToOverride(
                 String replyToOverride) {
@@ -2710,9 +3207,13 @@ public interface JmsEndpointBuilderFactory {
          * lower performance than its alternatives Temporary and Exclusive.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.ReplyToType</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.ReplyToType&lt;/code&gt;
+         * type.
          * 
          * Group: producer
+         * 
+         * @param replyToType the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder replyToType(ReplyToType replyToType) {
             doSetProperty("replyToType", replyToType);
@@ -2730,9 +3231,13 @@ public interface JmsEndpointBuilderFactory {
          * lower performance than its alternatives Temporary and Exclusive.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.ReplyToType</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.ReplyToType&lt;/code&gt;
+         * type.
          * 
          * Group: producer
+         * 
+         * @param replyToType the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder replyToType(String replyToType) {
             doSetProperty("replyToType", replyToType);
@@ -2745,10 +3250,13 @@ public interface JmsEndpointBuilderFactory {
          * configured timeout value, and thus have per message individual
          * timeout values. See also the requestTimeoutCheckerInterval option.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 20000
          * Group: producer
+         * 
+         * @param requestTimeout the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder requestTimeout(long requestTimeout) {
             doSetProperty("requestTimeout", requestTimeout);
@@ -2761,10 +3269,13 @@ public interface JmsEndpointBuilderFactory {
          * configured timeout value, and thus have per message individual
          * timeout values. See also the requestTimeoutCheckerInterval option.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 20000
          * Group: producer
+         * 
+         * @param requestTimeout the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder requestTimeout(String requestTimeout) {
             doSetProperty("requestTimeout", requestTimeout);
@@ -2774,10 +3285,13 @@ public interface JmsEndpointBuilderFactory {
          * When sending messages, specifies the time-to-live of the message (in
          * milliseconds).
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: producer
+         * 
+         * @param timeToLive the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder timeToLive(long timeToLive) {
             doSetProperty("timeToLive", timeToLive);
@@ -2787,10 +3301,13 @@ public interface JmsEndpointBuilderFactory {
          * When sending messages, specifies the time-to-live of the message (in
          * milliseconds).
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: producer
+         * 
+         * @param timeToLive the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder timeToLive(String timeToLive) {
             doSetProperty("timeToLive", timeToLive);
@@ -2800,9 +3317,12 @@ public interface JmsEndpointBuilderFactory {
          * Password to use with the ConnectionFactory. You can also configure
          * username/password directly on the ConnectionFactory.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param password the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder password(String password) {
             doSetProperty("password", password);
@@ -2812,9 +3332,12 @@ public interface JmsEndpointBuilderFactory {
          * Username to use with the ConnectionFactory. You can also configure
          * username/password directly on the ConnectionFactory.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param username the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder username(String username) {
             doSetProperty("username", username);
@@ -2823,10 +3346,13 @@ public interface JmsEndpointBuilderFactory {
         /**
          * Specifies whether to use transacted mode.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transacted the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder transacted(boolean transacted) {
             doSetProperty("transacted", transacted);
@@ -2835,10 +3361,14 @@ public interface JmsEndpointBuilderFactory {
         /**
          * Specifies whether to use transacted mode.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transacted the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder transacted(String transacted) {
             doSetProperty("transacted", transacted);
@@ -2863,10 +3393,13 @@ public interface JmsEndpointBuilderFactory {
          * be a native JDBC transaction), with the JMS transaction committing
          * right after the main transaction.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transactedInOut the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder transactedInOut(
                 boolean transactedInOut) {
@@ -2892,10 +3425,14 @@ public interface JmsEndpointBuilderFactory {
          * be a native JDBC transaction), with the JMS transaction committing
          * right after the main transaction.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transactedInOut the value to set
+         * @return the dsl builder
          */
         default JmsEndpointProducerBuilder transactedInOut(
                 String transactedInOut) {
@@ -2921,9 +3458,12 @@ public interface JmsEndpointBuilderFactory {
          * types. You can specify multiple header names separated by comma, and
          * use as suffix for wildcard matching.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer (advanced)
+         * 
+         * @param allowAdditionalHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder allowAdditionalHeaders(
                 String allowAdditionalHeaders) {
@@ -2934,10 +3474,13 @@ public interface JmsEndpointBuilderFactory {
          * Whether to allow sending messages with no body. If this option is
          * false and the message body is null, then an JMSException is thrown.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: producer (advanced)
+         * 
+         * @param allowNullBody the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder allowNullBody(
                 boolean allowNullBody) {
@@ -2948,10 +3491,14 @@ public interface JmsEndpointBuilderFactory {
          * Whether to allow sending messages with no body. If this option is
          * false and the message body is null, then an JMSException is thrown.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: producer (advanced)
+         * 
+         * @param allowNullBody the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder allowNullBody(
                 String allowNullBody) {
@@ -2966,10 +3513,13 @@ public interface JmsEndpointBuilderFactory {
          * the alwaysCopyMessage option to true, if a
          * replyToDestinationSelectorName is set).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param alwaysCopyMessage the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder alwaysCopyMessage(
                 boolean alwaysCopyMessage) {
@@ -2984,10 +3534,14 @@ public interface JmsEndpointBuilderFactory {
          * the alwaysCopyMessage option to true, if a
          * replyToDestinationSelectorName is set).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param alwaysCopyMessage the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder alwaysCopyMessage(
                 String alwaysCopyMessage) {
@@ -3000,9 +3554,12 @@ public interface JmsEndpointBuilderFactory {
          * will be correlated solely on the value of this property
          * JMSCorrelationID property will be ignored and not set by Camel.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer (advanced)
+         * 
+         * @param correlationProperty the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder correlationProperty(
                 String correlationProperty) {
@@ -3020,10 +3577,13 @@ public interface JmsEndpointBuilderFactory {
          * on the receiver system. See below in section About time to live for
          * more details.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param disableTimeToLive the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder disableTimeToLive(
                 boolean disableTimeToLive) {
@@ -3041,10 +3601,14 @@ public interface JmsEndpointBuilderFactory {
          * on the receiver system. See below in section About time to live for
          * more details.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param disableTimeToLive the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder disableTimeToLive(
                 String disableTimeToLive) {
@@ -3057,10 +3621,13 @@ public interface JmsEndpointBuilderFactory {
          * during the route. Set this option to true to force Camel to send the
          * original JMS message that was received.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param forceSendOriginalMessage the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder forceSendOriginalMessage(
                 boolean forceSendOriginalMessage) {
@@ -3073,10 +3640,14 @@ public interface JmsEndpointBuilderFactory {
          * during the route. Set this option to true to force Camel to send the
          * original JMS message that was received.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param forceSendOriginalMessage the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder forceSendOriginalMessage(
                 String forceSendOriginalMessage) {
@@ -3089,10 +3660,13 @@ public interface JmsEndpointBuilderFactory {
          * the actual JMSMessageID that was used by the JMS client when the
          * message was sent to the JMS destination.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param includeSentJMSMessageID the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder includeSentJMSMessageID(
                 boolean includeSentJMSMessageID) {
@@ -3105,10 +3679,14 @@ public interface JmsEndpointBuilderFactory {
          * the actual JMSMessageID that was used by the JMS client when the
          * message was sent to the JMS destination.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param includeSentJMSMessageID the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder includeSentJMSMessageID(
                 String includeSentJMSMessageID) {
@@ -3126,9 +3704,12 @@ public interface JmsEndpointBuilderFactory {
          * queues then CACHE_NONE is not allowed, and you must use a higher
          * value such as CACHE_CONSUMER or CACHE_SESSION.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer (advanced)
+         * 
+         * @param replyToCacheLevelName the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder replyToCacheLevelName(
                 String replyToCacheLevelName) {
@@ -3140,9 +3721,12 @@ public interface JmsEndpointBuilderFactory {
          * filter out your own replies from the others when using a shared queue
          * (that is, if you are not using a temporary reply queue).
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer (advanced)
+         * 
+         * @param replyToDestinationSelectorName the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder replyToDestinationSelectorName(
                 String replyToDestinationSelectorName) {
@@ -3158,10 +3742,13 @@ public interface JmsEndpointBuilderFactory {
          * option the message payload is read into memory in chunks and each
          * chunk is then written to the StreamMessage until no more data.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param streamMessageTypeEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder streamMessageTypeEnabled(
                 boolean streamMessageTypeEnabled) {
@@ -3177,10 +3764,14 @@ public interface JmsEndpointBuilderFactory {
          * option the message payload is read into memory in chunks and each
          * chunk is then written to the StreamMessage until no more data.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param streamMessageTypeEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder streamMessageTypeEnabled(
                 String streamMessageTypeEnabled) {
@@ -3193,10 +3784,13 @@ public interface JmsEndpointBuilderFactory {
          * serializable. Camel will exclude any non-serializable objects and log
          * it at WARN level.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param allowSerializedHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder allowSerializedHeaders(
                 boolean allowSerializedHeaders) {
@@ -3209,10 +3803,14 @@ public interface JmsEndpointBuilderFactory {
          * serializable. Camel will exclude any non-serializable objects and log
          * it at WARN level.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param allowSerializedHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder allowSerializedHeaders(
                 String allowSerializedHeaders) {
@@ -3222,10 +3820,13 @@ public interface JmsEndpointBuilderFactory {
         /**
          * Whether optimizing for Apache Artemis streaming mode.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param artemisStreamingEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder artemisStreamingEnabled(
                 boolean artemisStreamingEnabled) {
@@ -3235,10 +3836,14 @@ public interface JmsEndpointBuilderFactory {
         /**
          * Whether optimizing for Apache Artemis streaming mode.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param artemisStreamingEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder artemisStreamingEnabled(
                 String artemisStreamingEnabled) {
@@ -3257,10 +3862,13 @@ public interface JmsEndpointBuilderFactory {
          * logged at WARN level, and the consumer will not be able to receive
          * messages; You can then restart the route to retry.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStartListener the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder asyncStartListener(
                 boolean asyncStartListener) {
@@ -3279,10 +3887,14 @@ public interface JmsEndpointBuilderFactory {
          * logged at WARN level, and the consumer will not be able to receive
          * messages; You can then restart the route to retry.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStartListener the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder asyncStartListener(
                 String asyncStartListener) {
@@ -3293,10 +3905,13 @@ public interface JmsEndpointBuilderFactory {
          * Whether to stop the JmsConsumer message listener asynchronously, when
          * stopping a route.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStopListener the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder asyncStopListener(
                 boolean asyncStopListener) {
@@ -3307,42 +3922,18 @@ public interface JmsEndpointBuilderFactory {
          * Whether to stop the JmsConsumer message listener asynchronously, when
          * stopping a route.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStopListener the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder asyncStopListener(
                 String asyncStopListener) {
             doSetProperty("asyncStopListener", asyncStopListener);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedJmsEndpointProducerBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedJmsEndpointProducerBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
             return this;
         }
         /**
@@ -3352,9 +3943,12 @@ public interface JmsEndpointBuilderFactory {
          * destination in a JNDI registry).
          * 
          * The option is a:
-         * <code>org.springframework.jms.support.destination.DestinationResolver</code> type.
+         * &lt;code&gt;org.springframework.jms.support.destination.DestinationResolver&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param destinationResolver the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder destinationResolver(
                 Object destinationResolver) {
@@ -3368,9 +3962,12 @@ public interface JmsEndpointBuilderFactory {
          * destination in a JNDI registry).
          * 
          * The option will be converted to a
-         * <code>org.springframework.jms.support.destination.DestinationResolver</code> type.
+         * &lt;code&gt;org.springframework.jms.support.destination.DestinationResolver&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param destinationResolver the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder destinationResolver(
                 String destinationResolver) {
@@ -3386,10 +3983,13 @@ public interface JmsEndpointBuilderFactory {
          * and errorHandlerLogStackTrace options. This makes it much easier to
          * configure, than having to code a custom errorHandler.
          * 
-         * The option is a: <code>org.springframework.util.ErrorHandler</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;org.springframework.util.ErrorHandler&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param errorHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder errorHandler(
                 Object errorHandler) {
@@ -3406,9 +4006,12 @@ public interface JmsEndpointBuilderFactory {
          * configure, than having to code a custom errorHandler.
          * 
          * The option will be converted to a
-         * <code>org.springframework.util.ErrorHandler</code> type.
+         * &lt;code&gt;org.springframework.util.ErrorHandler&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param errorHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder errorHandler(
                 String errorHandler) {
@@ -3419,9 +4022,13 @@ public interface JmsEndpointBuilderFactory {
          * Specifies the JMS Exception Listener that is to be notified of any
          * underlying JMS exceptions.
          * 
-         * The option is a: <code>javax.jms.ExceptionListener</code> type.
+         * The option is a: &lt;code&gt;javax.jms.ExceptionListener&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param exceptionListener the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder exceptionListener(
                 Object exceptionListener) {
@@ -3433,9 +4040,12 @@ public interface JmsEndpointBuilderFactory {
          * underlying JMS exceptions.
          * 
          * The option will be converted to a
-         * <code>javax.jms.ExceptionListener</code> type.
+         * &lt;code&gt;javax.jms.ExceptionListener&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param exceptionListener the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder exceptionListener(
                 String exceptionListener) {
@@ -3447,9 +4057,13 @@ public interface JmsEndpointBuilderFactory {
          * Camel message.
          * 
          * The option is a:
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder headerFilterStrategy(
                 HeaderFilterStrategy headerFilterStrategy) {
@@ -3461,9 +4075,13 @@ public interface JmsEndpointBuilderFactory {
          * Camel message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder headerFilterStrategy(
                 String headerFilterStrategy) {
@@ -3474,10 +4092,13 @@ public interface JmsEndpointBuilderFactory {
          * Specify the limit for the number of consumers that are allowed to be
          * idle at any given time.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleConsumerLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder idleConsumerLimit(
                 int idleConsumerLimit) {
@@ -3488,10 +4109,13 @@ public interface JmsEndpointBuilderFactory {
          * Specify the limit for the number of consumers that are allowed to be
          * idle at any given time.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleConsumerLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder idleConsumerLimit(
                 String idleConsumerLimit) {
@@ -3505,10 +4129,13 @@ public interface JmsEndpointBuilderFactory {
          * (in the case of dynamic scheduling; see the maxConcurrentConsumers
          * setting). There is additional doc available from Spring.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleTaskExecutionLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder idleTaskExecutionLimit(
                 int idleTaskExecutionLimit) {
@@ -3522,10 +4149,13 @@ public interface JmsEndpointBuilderFactory {
          * (in the case of dynamic scheduling; see the maxConcurrentConsumers
          * setting). There is additional doc available from Spring.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleTaskExecutionLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder idleTaskExecutionLimit(
                 String idleTaskExecutionLimit) {
@@ -3538,10 +4168,13 @@ public interface JmsEndpointBuilderFactory {
          * JMSXAppID, and JMSXUserID etc. Note: If you are using a custom
          * headerFilterStrategy then this option does not apply.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param includeAllJMSXProperties the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder includeAllJMSXProperties(
                 boolean includeAllJMSXProperties) {
@@ -3554,10 +4187,14 @@ public interface JmsEndpointBuilderFactory {
          * JMSXAppID, and JMSXUserID etc. Note: If you are using a custom
          * headerFilterStrategy then this option does not apply.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param includeAllJMSXProperties the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder includeAllJMSXProperties(
                 String includeAllJMSXProperties) {
@@ -3576,10 +4213,12 @@ public interface JmsEndpointBuilderFactory {
          * using the # notation.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.JmsKeyFormatStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsKeyFormatStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param jmsKeyFormatStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder jmsKeyFormatStrategy(
                 Object jmsKeyFormatStrategy) {
@@ -3598,10 +4237,12 @@ public interface JmsEndpointBuilderFactory {
          * using the # notation.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.JmsKeyFormatStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsKeyFormatStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param jmsKeyFormatStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder jmsKeyFormatStrategy(
                 String jmsKeyFormatStrategy) {
@@ -3612,10 +4253,13 @@ public interface JmsEndpointBuilderFactory {
          * Specifies whether Camel should auto map the received JMS message to a
          * suited payload type, such as javax.jms.TextMessage to a String etc.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapJmsMessage the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder mapJmsMessage(
                 boolean mapJmsMessage) {
@@ -3626,10 +4270,14 @@ public interface JmsEndpointBuilderFactory {
          * Specifies whether Camel should auto map the received JMS message to a
          * suited payload type, such as javax.jms.TextMessage to a String etc.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapJmsMessage the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder mapJmsMessage(
                 String mapJmsMessage) {
@@ -3642,10 +4290,13 @@ public interface JmsEndpointBuilderFactory {
          * to set a value to eg 100 to control how fast the consumers will
          * shrink when less work is required.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: advanced
+         * 
+         * @param maxMessagesPerTask the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder maxMessagesPerTask(
                 int maxMessagesPerTask) {
@@ -3658,10 +4309,13 @@ public interface JmsEndpointBuilderFactory {
          * to set a value to eg 100 to control how fast the consumers will
          * shrink when less work is required.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: advanced
+         * 
+         * @param maxMessagesPerTask the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder maxMessagesPerTask(
                 String maxMessagesPerTask) {
@@ -3674,9 +4328,12 @@ public interface JmsEndpointBuilderFactory {
          * be in control how to map to/from a javax.jms.Message.
          * 
          * The option is a:
-         * <code>org.springframework.jms.support.converter.MessageConverter</code> type.
+         * &lt;code&gt;org.springframework.jms.support.converter.MessageConverter&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageConverter the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder messageConverter(
                 Object messageConverter) {
@@ -3689,9 +4346,12 @@ public interface JmsEndpointBuilderFactory {
          * be in control how to map to/from a javax.jms.Message.
          * 
          * The option will be converted to a
-         * <code>org.springframework.jms.support.converter.MessageConverter</code> type.
+         * &lt;code&gt;org.springframework.jms.support.converter.MessageConverter&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageConverter the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder messageConverter(
                 String messageConverter) {
@@ -3704,10 +4364,12 @@ public interface JmsEndpointBuilderFactory {
          * sending a JMS message.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.MessageCreatedStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageCreatedStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageCreatedStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder messageCreatedStrategy(
                 Object messageCreatedStrategy) {
@@ -3720,10 +4382,12 @@ public interface JmsEndpointBuilderFactory {
          * sending a JMS message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.MessageCreatedStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageCreatedStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageCreatedStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder messageCreatedStrategy(
                 String messageCreatedStrategy) {
@@ -3737,10 +4401,13 @@ public interface JmsEndpointBuilderFactory {
          * provider ignores the hint, the message ID must be set to its normal
          * unique value.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageIdEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder messageIdEnabled(
                 boolean messageIdEnabled) {
@@ -3754,10 +4421,14 @@ public interface JmsEndpointBuilderFactory {
          * provider ignores the hint, the message ID must be set to its normal
          * unique value.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageIdEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder messageIdEnabled(
                 String messageIdEnabled) {
@@ -3772,9 +4443,12 @@ public interface JmsEndpointBuilderFactory {
          * consumerType to Custom.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.MessageListenerContainerFactory</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageListenerContainerFactory&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageListenerContainerFactory the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder messageListenerContainerFactory(
                 Object messageListenerContainerFactory) {
@@ -3789,9 +4463,12 @@ public interface JmsEndpointBuilderFactory {
          * consumerType to Custom.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.MessageListenerContainerFactory</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageListenerContainerFactory&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageListenerContainerFactory the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder messageListenerContainerFactory(
                 String messageListenerContainerFactory) {
@@ -3805,10 +4482,13 @@ public interface JmsEndpointBuilderFactory {
          * zero; if the provider ignores the hint the timestamp must be set to
          * its normal value.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageTimestampEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder messageTimestampEnabled(
                 boolean messageTimestampEnabled) {
@@ -3822,10 +4502,14 @@ public interface JmsEndpointBuilderFactory {
          * zero; if the provider ignores the hint the timestamp must be set to
          * its normal value.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageTimestampEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder messageTimestampEnabled(
                 String messageTimestampEnabled) {
@@ -3836,10 +4520,13 @@ public interface JmsEndpointBuilderFactory {
          * Specifies whether to inhibit the delivery of messages published by
          * its own connection.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param pubSubNoLocal the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder pubSubNoLocal(
                 boolean pubSubNoLocal) {
@@ -3850,10 +4537,14 @@ public interface JmsEndpointBuilderFactory {
          * Specifies whether to inhibit the delivery of messages published by
          * its own connection.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param pubSubNoLocal the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder pubSubNoLocal(
                 String pubSubNoLocal) {
@@ -3863,10 +4554,13 @@ public interface JmsEndpointBuilderFactory {
         /**
          * The timeout for receiving messages (in milliseconds).
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param receiveTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder receiveTimeout(
                 long receiveTimeout) {
@@ -3876,10 +4570,13 @@ public interface JmsEndpointBuilderFactory {
         /**
          * The timeout for receiving messages (in milliseconds).
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param receiveTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder receiveTimeout(
                 String receiveTimeout) {
@@ -3891,10 +4588,13 @@ public interface JmsEndpointBuilderFactory {
          * connection is being refreshed, in milliseconds. The default is 5000
          * ms, that is, 5 seconds.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 5000
          * Group: advanced
+         * 
+         * @param recoveryInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder recoveryInterval(
                 long recoveryInterval) {
@@ -3906,10 +4606,13 @@ public interface JmsEndpointBuilderFactory {
          * connection is being refreshed, in milliseconds. The default is 5000
          * ms, that is, 5 seconds.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 5000
          * Group: advanced
+         * 
+         * @param recoveryInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder recoveryInterval(
                 String recoveryInterval) {
@@ -3923,10 +4626,13 @@ public interface JmsEndpointBuilderFactory {
          * can lower this interval, to check more frequently. The timeout is
          * determined by the option requestTimeout.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param requestTimeoutCheckerInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder requestTimeoutCheckerInterval(
                 long requestTimeoutCheckerInterval) {
@@ -3940,10 +4646,13 @@ public interface JmsEndpointBuilderFactory {
          * can lower this interval, to check more frequently. The timeout is
          * determined by the option requestTimeout.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param requestTimeoutCheckerInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder requestTimeoutCheckerInterval(
                 String requestTimeoutCheckerInterval) {
@@ -3954,10 +4663,13 @@ public interface JmsEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder synchronous(
                 boolean synchronous) {
@@ -3968,10 +4680,14 @@ public interface JmsEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder synchronous(
                 String synchronous) {
@@ -3994,10 +4710,13 @@ public interface JmsEndpointBuilderFactory {
          * level, which forces a strong coupling between the producers and
          * consumer!.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder transferException(
                 boolean transferException) {
@@ -4020,10 +4739,14 @@ public interface JmsEndpointBuilderFactory {
          * level, which forces a strong coupling between the producers and
          * consumer!.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder transferException(
                 String transferException) {
@@ -4044,10 +4767,13 @@ public interface JmsEndpointBuilderFactory {
          * between the producers and consumer having to use compatible Camel
          * versions!.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferExchange the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder transferExchange(
                 boolean transferExchange) {
@@ -4068,10 +4794,14 @@ public interface JmsEndpointBuilderFactory {
          * between the producers and consumer having to use compatible Camel
          * versions!.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferExchange the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder transferExchange(
                 String transferExchange) {
@@ -4082,10 +4812,13 @@ public interface JmsEndpointBuilderFactory {
          * Specifies whether JMSMessageID should always be used as
          * JMSCorrelationID for InOut messages.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param useMessageIDAsCorrelationID the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder useMessageIDAsCorrelationID(
                 boolean useMessageIDAsCorrelationID) {
@@ -4096,10 +4829,14 @@ public interface JmsEndpointBuilderFactory {
          * Specifies whether JMSMessageID should always be used as
          * JMSCorrelationID for InOut messages.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param useMessageIDAsCorrelationID the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder useMessageIDAsCorrelationID(
                 String useMessageIDAsCorrelationID) {
@@ -4111,10 +4848,13 @@ public interface JmsEndpointBuilderFactory {
          * to the actual correlation id when doing request/reply over JMS and
          * when the option useMessageIDAsCorrelationID is enabled.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 50
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedCounter the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder waitForProvisionCorrelationToBeUpdatedCounter(
                 int waitForProvisionCorrelationToBeUpdatedCounter) {
@@ -4126,10 +4866,13 @@ public interface JmsEndpointBuilderFactory {
          * to the actual correlation id when doing request/reply over JMS and
          * when the option useMessageIDAsCorrelationID is enabled.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 50
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedCounter the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder waitForProvisionCorrelationToBeUpdatedCounter(
                 String waitForProvisionCorrelationToBeUpdatedCounter) {
@@ -4140,10 +4883,14 @@ public interface JmsEndpointBuilderFactory {
          * Interval in millis to sleep each time while waiting for provisional
          * correlation id to be updated.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 100
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedThreadSleepingTime the
+         * value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder waitForProvisionCorrelationToBeUpdatedThreadSleepingTime(
                 long waitForProvisionCorrelationToBeUpdatedThreadSleepingTime) {
@@ -4154,10 +4901,14 @@ public interface JmsEndpointBuilderFactory {
          * Interval in millis to sleep each time while waiting for provisional
          * correlation id to be updated.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 100
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedThreadSleepingTime the
+         * value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder waitForProvisionCorrelationToBeUpdatedThreadSleepingTime(
                 String waitForProvisionCorrelationToBeUpdatedThreadSleepingTime) {
@@ -4168,10 +4919,13 @@ public interface JmsEndpointBuilderFactory {
          * If true, Camel will create a JmsTransactionManager, if there is no
          * transactionManager injected when option transacted=true.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: transaction (advanced)
+         * 
+         * @param lazyCreateTransactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder lazyCreateTransactionManager(
                 boolean lazyCreateTransactionManager) {
@@ -4182,10 +4936,14 @@ public interface JmsEndpointBuilderFactory {
          * If true, Camel will create a JmsTransactionManager, if there is no
          * transactionManager injected when option transacted=true.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: transaction (advanced)
+         * 
+         * @param lazyCreateTransactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder lazyCreateTransactionManager(
                 String lazyCreateTransactionManager) {
@@ -4196,9 +4954,12 @@ public interface JmsEndpointBuilderFactory {
          * The Spring transaction manager to use.
          * 
          * The option is a:
-         * <code>org.springframework.transaction.PlatformTransactionManager</code> type.
+         * &lt;code&gt;org.springframework.transaction.PlatformTransactionManager&lt;/code&gt; type.
          * 
          * Group: transaction (advanced)
+         * 
+         * @param transactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder transactionManager(
                 Object transactionManager) {
@@ -4209,9 +4970,12 @@ public interface JmsEndpointBuilderFactory {
          * The Spring transaction manager to use.
          * 
          * The option will be converted to a
-         * <code>org.springframework.transaction.PlatformTransactionManager</code> type.
+         * &lt;code&gt;org.springframework.transaction.PlatformTransactionManager&lt;/code&gt; type.
          * 
          * Group: transaction (advanced)
+         * 
+         * @param transactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder transactionManager(
                 String transactionManager) {
@@ -4221,9 +4985,12 @@ public interface JmsEndpointBuilderFactory {
         /**
          * The name of the transaction to use.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: transaction (advanced)
+         * 
+         * @param transactionName the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder transactionName(
                 String transactionName) {
@@ -4234,10 +5001,13 @@ public interface JmsEndpointBuilderFactory {
          * The timeout value of the transaction (in seconds), if using
          * transacted mode.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: transaction (advanced)
+         * 
+         * @param transactionTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder transactionTimeout(
                 int transactionTimeout) {
@@ -4248,10 +5018,13 @@ public interface JmsEndpointBuilderFactory {
          * The timeout value of the transaction (in seconds), if using
          * transacted mode.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: transaction (advanced)
+         * 
+         * @param transactionTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointProducerBuilder transactionTimeout(
                 String transactionTimeout) {
@@ -4277,9 +5050,12 @@ public interface JmsEndpointBuilderFactory {
          * subscriptions. If using Apache ActiveMQ you may prefer to use Virtual
          * Topics instead.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param clientId the value to set
+         * @return the dsl builder
          */
         default JmsEndpointBuilder clientId(String clientId) {
             doSetProperty("clientId", clientId);
@@ -4289,9 +5065,13 @@ public interface JmsEndpointBuilderFactory {
          * The connection factory to be use. A connection factory must be
          * configured either on the component or endpoint.
          * 
-         * The option is a: <code>javax.jms.ConnectionFactory</code> type.
+         * The option is a: &lt;code&gt;javax.jms.ConnectionFactory&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param connectionFactory the value to set
+         * @return the dsl builder
          */
         default JmsEndpointBuilder connectionFactory(Object connectionFactory) {
             doSetProperty("connectionFactory", connectionFactory);
@@ -4302,9 +5082,12 @@ public interface JmsEndpointBuilderFactory {
          * configured either on the component or endpoint.
          * 
          * The option will be converted to a
-         * <code>javax.jms.ConnectionFactory</code> type.
+         * &lt;code&gt;javax.jms.ConnectionFactory&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param connectionFactory the value to set
+         * @return the dsl builder
          */
         default JmsEndpointBuilder connectionFactory(String connectionFactory) {
             doSetProperty("connectionFactory", connectionFactory);
@@ -4320,10 +5103,13 @@ public interface JmsEndpointBuilderFactory {
          * to use Camel as a proxy between different message brokers and you
          * want to route message from one system to another.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableReplyTo the value to set
+         * @return the dsl builder
          */
         default JmsEndpointBuilder disableReplyTo(boolean disableReplyTo) {
             doSetProperty("disableReplyTo", disableReplyTo);
@@ -4339,10 +5125,14 @@ public interface JmsEndpointBuilderFactory {
          * to use Camel as a proxy between different message brokers and you
          * want to route message from one system to another.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableReplyTo the value to set
+         * @return the dsl builder
          */
         default JmsEndpointBuilder disableReplyTo(String disableReplyTo) {
             doSetProperty("disableReplyTo", disableReplyTo);
@@ -4352,9 +5142,12 @@ public interface JmsEndpointBuilderFactory {
          * The durable subscriber name for specifying durable topic
          * subscriptions. The clientId option must be configured as well.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param durableSubscriptionName the value to set
+         * @return the dsl builder
          */
         default JmsEndpointBuilder durableSubscriptionName(
                 String durableSubscriptionName) {
@@ -4369,9 +5162,12 @@ public interface JmsEndpointBuilderFactory {
          * to specify it.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.JmsMessageType</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsMessageType&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param jmsMessageType the value to set
+         * @return the dsl builder
          */
         default JmsEndpointBuilder jmsMessageType(JmsMessageType jmsMessageType) {
             doSetProperty("jmsMessageType", jmsMessageType);
@@ -4385,9 +5181,12 @@ public interface JmsEndpointBuilderFactory {
          * to specify it.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.JmsMessageType</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsMessageType&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param jmsMessageType the value to set
+         * @return the dsl builder
          */
         default JmsEndpointBuilder jmsMessageType(String jmsMessageType) {
             doSetProperty("jmsMessageType", jmsMessageType);
@@ -4397,9 +5196,12 @@ public interface JmsEndpointBuilderFactory {
          * Provides an explicit ReplyTo destination (overrides any incoming
          * value of Message.getJMSReplyTo() in consumer).
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param replyTo the value to set
+         * @return the dsl builder
          */
         default JmsEndpointBuilder replyTo(String replyTo) {
             doSetProperty("replyTo", replyTo);
@@ -4412,10 +5214,13 @@ public interface JmsEndpointBuilderFactory {
          * Camel throws an exception on startup. This ensures that Camel is not
          * started with failed connections. The JMS producers is tested as well.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param testConnectionOnStartup the value to set
+         * @return the dsl builder
          */
         default JmsEndpointBuilder testConnectionOnStartup(
                 boolean testConnectionOnStartup) {
@@ -4429,10 +5234,14 @@ public interface JmsEndpointBuilderFactory {
          * Camel throws an exception on startup. This ensures that Camel is not
          * started with failed connections. The JMS producers is tested as well.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param testConnectionOnStartup the value to set
+         * @return the dsl builder
          */
         default JmsEndpointBuilder testConnectionOnStartup(
                 String testConnectionOnStartup) {
@@ -4443,9 +5252,12 @@ public interface JmsEndpointBuilderFactory {
          * Password to use with the ConnectionFactory. You can also configure
          * username/password directly on the ConnectionFactory.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param password the value to set
+         * @return the dsl builder
          */
         default JmsEndpointBuilder password(String password) {
             doSetProperty("password", password);
@@ -4455,9 +5267,12 @@ public interface JmsEndpointBuilderFactory {
          * Username to use with the ConnectionFactory. You can also configure
          * username/password directly on the ConnectionFactory.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param username the value to set
+         * @return the dsl builder
          */
         default JmsEndpointBuilder username(String username) {
             doSetProperty("username", username);
@@ -4466,10 +5281,13 @@ public interface JmsEndpointBuilderFactory {
         /**
          * Specifies whether to use transacted mode.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transacted the value to set
+         * @return the dsl builder
          */
         default JmsEndpointBuilder transacted(boolean transacted) {
             doSetProperty("transacted", transacted);
@@ -4478,10 +5296,14 @@ public interface JmsEndpointBuilderFactory {
         /**
          * Specifies whether to use transacted mode.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transacted the value to set
+         * @return the dsl builder
          */
         default JmsEndpointBuilder transacted(String transacted) {
             doSetProperty("transacted", transacted);
@@ -4506,10 +5328,13 @@ public interface JmsEndpointBuilderFactory {
          * be a native JDBC transaction), with the JMS transaction committing
          * right after the main transaction.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transactedInOut the value to set
+         * @return the dsl builder
          */
         default JmsEndpointBuilder transactedInOut(boolean transactedInOut) {
             doSetProperty("transactedInOut", transactedInOut);
@@ -4534,10 +5359,14 @@ public interface JmsEndpointBuilderFactory {
          * be a native JDBC transaction), with the JMS transaction committing
          * right after the main transaction.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: transaction
+         * 
+         * @param transactedInOut the value to set
+         * @return the dsl builder
          */
         default JmsEndpointBuilder transactedInOut(String transactedInOut) {
             doSetProperty("transactedInOut", transactedInOut);
@@ -4561,10 +5390,13 @@ public interface JmsEndpointBuilderFactory {
          * serializable. Camel will exclude any non-serializable objects and log
          * it at WARN level.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param allowSerializedHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder allowSerializedHeaders(
                 boolean allowSerializedHeaders) {
@@ -4577,10 +5409,14 @@ public interface JmsEndpointBuilderFactory {
          * serializable. Camel will exclude any non-serializable objects and log
          * it at WARN level.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param allowSerializedHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder allowSerializedHeaders(
                 String allowSerializedHeaders) {
@@ -4590,10 +5426,13 @@ public interface JmsEndpointBuilderFactory {
         /**
          * Whether optimizing for Apache Artemis streaming mode.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param artemisStreamingEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder artemisStreamingEnabled(
                 boolean artemisStreamingEnabled) {
@@ -4603,10 +5442,14 @@ public interface JmsEndpointBuilderFactory {
         /**
          * Whether optimizing for Apache Artemis streaming mode.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param artemisStreamingEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder artemisStreamingEnabled(
                 String artemisStreamingEnabled) {
@@ -4625,10 +5468,13 @@ public interface JmsEndpointBuilderFactory {
          * logged at WARN level, and the consumer will not be able to receive
          * messages; You can then restart the route to retry.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStartListener the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder asyncStartListener(
                 boolean asyncStartListener) {
@@ -4647,10 +5493,14 @@ public interface JmsEndpointBuilderFactory {
          * logged at WARN level, and the consumer will not be able to receive
          * messages; You can then restart the route to retry.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStartListener the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder asyncStartListener(
                 String asyncStartListener) {
@@ -4661,10 +5511,13 @@ public interface JmsEndpointBuilderFactory {
          * Whether to stop the JmsConsumer message listener asynchronously, when
          * stopping a route.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStopListener the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder asyncStopListener(
                 boolean asyncStopListener) {
@@ -4675,42 +5528,18 @@ public interface JmsEndpointBuilderFactory {
          * Whether to stop the JmsConsumer message listener asynchronously, when
          * stopping a route.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param asyncStopListener the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder asyncStopListener(
                 String asyncStopListener) {
             doSetProperty("asyncStopListener", asyncStopListener);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedJmsEndpointBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedJmsEndpointBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
             return this;
         }
         /**
@@ -4720,9 +5549,12 @@ public interface JmsEndpointBuilderFactory {
          * destination in a JNDI registry).
          * 
          * The option is a:
-         * <code>org.springframework.jms.support.destination.DestinationResolver</code> type.
+         * &lt;code&gt;org.springframework.jms.support.destination.DestinationResolver&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param destinationResolver the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder destinationResolver(
                 Object destinationResolver) {
@@ -4736,9 +5568,12 @@ public interface JmsEndpointBuilderFactory {
          * destination in a JNDI registry).
          * 
          * The option will be converted to a
-         * <code>org.springframework.jms.support.destination.DestinationResolver</code> type.
+         * &lt;code&gt;org.springframework.jms.support.destination.DestinationResolver&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param destinationResolver the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder destinationResolver(
                 String destinationResolver) {
@@ -4754,10 +5589,13 @@ public interface JmsEndpointBuilderFactory {
          * and errorHandlerLogStackTrace options. This makes it much easier to
          * configure, than having to code a custom errorHandler.
          * 
-         * The option is a: <code>org.springframework.util.ErrorHandler</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;org.springframework.util.ErrorHandler&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param errorHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder errorHandler(Object errorHandler) {
             doSetProperty("errorHandler", errorHandler);
@@ -4773,9 +5611,12 @@ public interface JmsEndpointBuilderFactory {
          * configure, than having to code a custom errorHandler.
          * 
          * The option will be converted to a
-         * <code>org.springframework.util.ErrorHandler</code> type.
+         * &lt;code&gt;org.springframework.util.ErrorHandler&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param errorHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder errorHandler(String errorHandler) {
             doSetProperty("errorHandler", errorHandler);
@@ -4785,9 +5626,13 @@ public interface JmsEndpointBuilderFactory {
          * Specifies the JMS Exception Listener that is to be notified of any
          * underlying JMS exceptions.
          * 
-         * The option is a: <code>javax.jms.ExceptionListener</code> type.
+         * The option is a: &lt;code&gt;javax.jms.ExceptionListener&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param exceptionListener the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder exceptionListener(
                 Object exceptionListener) {
@@ -4799,9 +5644,12 @@ public interface JmsEndpointBuilderFactory {
          * underlying JMS exceptions.
          * 
          * The option will be converted to a
-         * <code>javax.jms.ExceptionListener</code> type.
+         * &lt;code&gt;javax.jms.ExceptionListener&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param exceptionListener the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder exceptionListener(
                 String exceptionListener) {
@@ -4813,9 +5661,13 @@ public interface JmsEndpointBuilderFactory {
          * Camel message.
          * 
          * The option is a:
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder headerFilterStrategy(
                 HeaderFilterStrategy headerFilterStrategy) {
@@ -4827,9 +5679,13 @@ public interface JmsEndpointBuilderFactory {
          * Camel message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder headerFilterStrategy(
                 String headerFilterStrategy) {
@@ -4840,10 +5696,13 @@ public interface JmsEndpointBuilderFactory {
          * Specify the limit for the number of consumers that are allowed to be
          * idle at any given time.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleConsumerLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder idleConsumerLimit(
                 int idleConsumerLimit) {
@@ -4854,10 +5713,13 @@ public interface JmsEndpointBuilderFactory {
          * Specify the limit for the number of consumers that are allowed to be
          * idle at any given time.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleConsumerLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder idleConsumerLimit(
                 String idleConsumerLimit) {
@@ -4871,10 +5733,13 @@ public interface JmsEndpointBuilderFactory {
          * (in the case of dynamic scheduling; see the maxConcurrentConsumers
          * setting). There is additional doc available from Spring.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleTaskExecutionLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder idleTaskExecutionLimit(
                 int idleTaskExecutionLimit) {
@@ -4888,10 +5753,13 @@ public interface JmsEndpointBuilderFactory {
          * (in the case of dynamic scheduling; see the maxConcurrentConsumers
          * setting). There is additional doc available from Spring.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 1
          * Group: advanced
+         * 
+         * @param idleTaskExecutionLimit the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder idleTaskExecutionLimit(
                 String idleTaskExecutionLimit) {
@@ -4904,10 +5772,13 @@ public interface JmsEndpointBuilderFactory {
          * JMSXAppID, and JMSXUserID etc. Note: If you are using a custom
          * headerFilterStrategy then this option does not apply.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param includeAllJMSXProperties the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder includeAllJMSXProperties(
                 boolean includeAllJMSXProperties) {
@@ -4920,10 +5791,14 @@ public interface JmsEndpointBuilderFactory {
          * JMSXAppID, and JMSXUserID etc. Note: If you are using a custom
          * headerFilterStrategy then this option does not apply.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param includeAllJMSXProperties the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder includeAllJMSXProperties(
                 String includeAllJMSXProperties) {
@@ -4942,10 +5817,12 @@ public interface JmsEndpointBuilderFactory {
          * using the # notation.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.JmsKeyFormatStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsKeyFormatStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param jmsKeyFormatStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder jmsKeyFormatStrategy(
                 Object jmsKeyFormatStrategy) {
@@ -4964,10 +5841,12 @@ public interface JmsEndpointBuilderFactory {
          * using the # notation.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.JmsKeyFormatStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.JmsKeyFormatStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param jmsKeyFormatStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder jmsKeyFormatStrategy(
                 String jmsKeyFormatStrategy) {
@@ -4978,10 +5857,13 @@ public interface JmsEndpointBuilderFactory {
          * Specifies whether Camel should auto map the received JMS message to a
          * suited payload type, such as javax.jms.TextMessage to a String etc.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapJmsMessage the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder mapJmsMessage(boolean mapJmsMessage) {
             doSetProperty("mapJmsMessage", mapJmsMessage);
@@ -4991,10 +5873,14 @@ public interface JmsEndpointBuilderFactory {
          * Specifies whether Camel should auto map the received JMS message to a
          * suited payload type, such as javax.jms.TextMessage to a String etc.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapJmsMessage the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder mapJmsMessage(String mapJmsMessage) {
             doSetProperty("mapJmsMessage", mapJmsMessage);
@@ -5006,10 +5892,13 @@ public interface JmsEndpointBuilderFactory {
          * to set a value to eg 100 to control how fast the consumers will
          * shrink when less work is required.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: advanced
+         * 
+         * @param maxMessagesPerTask the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder maxMessagesPerTask(
                 int maxMessagesPerTask) {
@@ -5022,10 +5911,13 @@ public interface JmsEndpointBuilderFactory {
          * to set a value to eg 100 to control how fast the consumers will
          * shrink when less work is required.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: advanced
+         * 
+         * @param maxMessagesPerTask the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder maxMessagesPerTask(
                 String maxMessagesPerTask) {
@@ -5038,9 +5930,12 @@ public interface JmsEndpointBuilderFactory {
          * be in control how to map to/from a javax.jms.Message.
          * 
          * The option is a:
-         * <code>org.springframework.jms.support.converter.MessageConverter</code> type.
+         * &lt;code&gt;org.springframework.jms.support.converter.MessageConverter&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageConverter the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder messageConverter(
                 Object messageConverter) {
@@ -5053,9 +5948,12 @@ public interface JmsEndpointBuilderFactory {
          * be in control how to map to/from a javax.jms.Message.
          * 
          * The option will be converted to a
-         * <code>org.springframework.jms.support.converter.MessageConverter</code> type.
+         * &lt;code&gt;org.springframework.jms.support.converter.MessageConverter&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageConverter the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder messageConverter(
                 String messageConverter) {
@@ -5068,10 +5966,12 @@ public interface JmsEndpointBuilderFactory {
          * sending a JMS message.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.MessageCreatedStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageCreatedStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageCreatedStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder messageCreatedStrategy(
                 Object messageCreatedStrategy) {
@@ -5084,10 +5984,12 @@ public interface JmsEndpointBuilderFactory {
          * sending a JMS message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.MessageCreatedStrategy</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageCreatedStrategy&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageCreatedStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder messageCreatedStrategy(
                 String messageCreatedStrategy) {
@@ -5101,10 +6003,13 @@ public interface JmsEndpointBuilderFactory {
          * provider ignores the hint, the message ID must be set to its normal
          * unique value.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageIdEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder messageIdEnabled(
                 boolean messageIdEnabled) {
@@ -5118,10 +6023,14 @@ public interface JmsEndpointBuilderFactory {
          * provider ignores the hint, the message ID must be set to its normal
          * unique value.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageIdEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder messageIdEnabled(
                 String messageIdEnabled) {
@@ -5136,9 +6045,12 @@ public interface JmsEndpointBuilderFactory {
          * consumerType to Custom.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.jms.MessageListenerContainerFactory</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageListenerContainerFactory&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageListenerContainerFactory the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder messageListenerContainerFactory(
                 Object messageListenerContainerFactory) {
@@ -5153,9 +6065,12 @@ public interface JmsEndpointBuilderFactory {
          * consumerType to Custom.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.jms.MessageListenerContainerFactory</code> type.
+         * &lt;code&gt;org.apache.camel.component.jms.MessageListenerContainerFactory&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param messageListenerContainerFactory the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder messageListenerContainerFactory(
                 String messageListenerContainerFactory) {
@@ -5169,10 +6084,13 @@ public interface JmsEndpointBuilderFactory {
          * zero; if the provider ignores the hint the timestamp must be set to
          * its normal value.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageTimestampEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder messageTimestampEnabled(
                 boolean messageTimestampEnabled) {
@@ -5186,10 +6104,14 @@ public interface JmsEndpointBuilderFactory {
          * zero; if the provider ignores the hint the timestamp must be set to
          * its normal value.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param messageTimestampEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder messageTimestampEnabled(
                 String messageTimestampEnabled) {
@@ -5200,10 +6122,13 @@ public interface JmsEndpointBuilderFactory {
          * Specifies whether to inhibit the delivery of messages published by
          * its own connection.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param pubSubNoLocal the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder pubSubNoLocal(boolean pubSubNoLocal) {
             doSetProperty("pubSubNoLocal", pubSubNoLocal);
@@ -5213,10 +6138,14 @@ public interface JmsEndpointBuilderFactory {
          * Specifies whether to inhibit the delivery of messages published by
          * its own connection.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param pubSubNoLocal the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder pubSubNoLocal(String pubSubNoLocal) {
             doSetProperty("pubSubNoLocal", pubSubNoLocal);
@@ -5225,10 +6154,13 @@ public interface JmsEndpointBuilderFactory {
         /**
          * The timeout for receiving messages (in milliseconds).
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param receiveTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder receiveTimeout(long receiveTimeout) {
             doSetProperty("receiveTimeout", receiveTimeout);
@@ -5237,10 +6169,13 @@ public interface JmsEndpointBuilderFactory {
         /**
          * The timeout for receiving messages (in milliseconds).
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param receiveTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder receiveTimeout(String receiveTimeout) {
             doSetProperty("receiveTimeout", receiveTimeout);
@@ -5251,10 +6186,13 @@ public interface JmsEndpointBuilderFactory {
          * connection is being refreshed, in milliseconds. The default is 5000
          * ms, that is, 5 seconds.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 5000
          * Group: advanced
+         * 
+         * @param recoveryInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder recoveryInterval(
                 long recoveryInterval) {
@@ -5266,10 +6204,13 @@ public interface JmsEndpointBuilderFactory {
          * connection is being refreshed, in milliseconds. The default is 5000
          * ms, that is, 5 seconds.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 5000
          * Group: advanced
+         * 
+         * @param recoveryInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder recoveryInterval(
                 String recoveryInterval) {
@@ -5283,10 +6224,13 @@ public interface JmsEndpointBuilderFactory {
          * can lower this interval, to check more frequently. The timeout is
          * determined by the option requestTimeout.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param requestTimeoutCheckerInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder requestTimeoutCheckerInterval(
                 long requestTimeoutCheckerInterval) {
@@ -5300,10 +6244,13 @@ public interface JmsEndpointBuilderFactory {
          * can lower this interval, to check more frequently. The timeout is
          * determined by the option requestTimeout.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: advanced
+         * 
+         * @param requestTimeoutCheckerInterval the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder requestTimeoutCheckerInterval(
                 String requestTimeoutCheckerInterval) {
@@ -5314,10 +6261,13 @@ public interface JmsEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder synchronous(boolean synchronous) {
             doSetProperty("synchronous", synchronous);
@@ -5327,10 +6277,14 @@ public interface JmsEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder synchronous(String synchronous) {
             doSetProperty("synchronous", synchronous);
@@ -5352,10 +6306,13 @@ public interface JmsEndpointBuilderFactory {
          * level, which forces a strong coupling between the producers and
          * consumer!.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder transferException(
                 boolean transferException) {
@@ -5378,10 +6335,14 @@ public interface JmsEndpointBuilderFactory {
          * level, which forces a strong coupling between the producers and
          * consumer!.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder transferException(
                 String transferException) {
@@ -5402,10 +6363,13 @@ public interface JmsEndpointBuilderFactory {
          * between the producers and consumer having to use compatible Camel
          * versions!.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferExchange the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder transferExchange(
                 boolean transferExchange) {
@@ -5426,10 +6390,14 @@ public interface JmsEndpointBuilderFactory {
          * between the producers and consumer having to use compatible Camel
          * versions!.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param transferExchange the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder transferExchange(
                 String transferExchange) {
@@ -5440,10 +6408,13 @@ public interface JmsEndpointBuilderFactory {
          * Specifies whether JMSMessageID should always be used as
          * JMSCorrelationID for InOut messages.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param useMessageIDAsCorrelationID the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder useMessageIDAsCorrelationID(
                 boolean useMessageIDAsCorrelationID) {
@@ -5454,10 +6425,14 @@ public interface JmsEndpointBuilderFactory {
          * Specifies whether JMSMessageID should always be used as
          * JMSCorrelationID for InOut messages.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param useMessageIDAsCorrelationID the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder useMessageIDAsCorrelationID(
                 String useMessageIDAsCorrelationID) {
@@ -5469,10 +6444,13 @@ public interface JmsEndpointBuilderFactory {
          * to the actual correlation id when doing request/reply over JMS and
          * when the option useMessageIDAsCorrelationID is enabled.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 50
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedCounter the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder waitForProvisionCorrelationToBeUpdatedCounter(
                 int waitForProvisionCorrelationToBeUpdatedCounter) {
@@ -5484,10 +6462,13 @@ public interface JmsEndpointBuilderFactory {
          * to the actual correlation id when doing request/reply over JMS and
          * when the option useMessageIDAsCorrelationID is enabled.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 50
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedCounter the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder waitForProvisionCorrelationToBeUpdatedCounter(
                 String waitForProvisionCorrelationToBeUpdatedCounter) {
@@ -5498,10 +6479,14 @@ public interface JmsEndpointBuilderFactory {
          * Interval in millis to sleep each time while waiting for provisional
          * correlation id to be updated.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 100
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedThreadSleepingTime the
+         * value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder waitForProvisionCorrelationToBeUpdatedThreadSleepingTime(
                 long waitForProvisionCorrelationToBeUpdatedThreadSleepingTime) {
@@ -5512,10 +6497,14 @@ public interface JmsEndpointBuilderFactory {
          * Interval in millis to sleep each time while waiting for provisional
          * correlation id to be updated.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 100
          * Group: advanced
+         * 
+         * @param waitForProvisionCorrelationToBeUpdatedThreadSleepingTime the
+         * value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder waitForProvisionCorrelationToBeUpdatedThreadSleepingTime(
                 String waitForProvisionCorrelationToBeUpdatedThreadSleepingTime) {
@@ -5526,10 +6515,13 @@ public interface JmsEndpointBuilderFactory {
          * If true, Camel will create a JmsTransactionManager, if there is no
          * transactionManager injected when option transacted=true.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: transaction (advanced)
+         * 
+         * @param lazyCreateTransactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder lazyCreateTransactionManager(
                 boolean lazyCreateTransactionManager) {
@@ -5540,10 +6532,14 @@ public interface JmsEndpointBuilderFactory {
          * If true, Camel will create a JmsTransactionManager, if there is no
          * transactionManager injected when option transacted=true.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: transaction (advanced)
+         * 
+         * @param lazyCreateTransactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder lazyCreateTransactionManager(
                 String lazyCreateTransactionManager) {
@@ -5554,9 +6550,12 @@ public interface JmsEndpointBuilderFactory {
          * The Spring transaction manager to use.
          * 
          * The option is a:
-         * <code>org.springframework.transaction.PlatformTransactionManager</code> type.
+         * &lt;code&gt;org.springframework.transaction.PlatformTransactionManager&lt;/code&gt; type.
          * 
          * Group: transaction (advanced)
+         * 
+         * @param transactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder transactionManager(
                 Object transactionManager) {
@@ -5567,9 +6566,12 @@ public interface JmsEndpointBuilderFactory {
          * The Spring transaction manager to use.
          * 
          * The option will be converted to a
-         * <code>org.springframework.transaction.PlatformTransactionManager</code> type.
+         * &lt;code&gt;org.springframework.transaction.PlatformTransactionManager&lt;/code&gt; type.
          * 
          * Group: transaction (advanced)
+         * 
+         * @param transactionManager the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder transactionManager(
                 String transactionManager) {
@@ -5579,9 +6581,12 @@ public interface JmsEndpointBuilderFactory {
         /**
          * The name of the transaction to use.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: transaction (advanced)
+         * 
+         * @param transactionName the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder transactionName(
                 String transactionName) {
@@ -5592,10 +6597,13 @@ public interface JmsEndpointBuilderFactory {
          * The timeout value of the transaction (in seconds), if using
          * transacted mode.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: transaction (advanced)
+         * 
+         * @param transactionTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder transactionTimeout(
                 int transactionTimeout) {
@@ -5606,10 +6614,13 @@ public interface JmsEndpointBuilderFactory {
          * The timeout value of the transaction (in seconds), if using
          * transacted mode.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: -1
          * Group: transaction (advanced)
+         * 
+         * @param transactionTimeout the value to set
+         * @return the dsl builder
          */
         default AdvancedJmsEndpointBuilder transactionTimeout(
                 String transactionTimeout) {
@@ -5681,6 +6692,7 @@ public interface JmsEndpointBuilderFactory {
          * Name of the queue or topic to use as destination
          * 
          * @param path destinationType:destinationName
+         * @return the dsl builder
          */
         default JmsEndpointBuilder jms(String path) {
             return JmsEndpointBuilderFactory.endpointBuilder("jms", path);
@@ -5707,6 +6719,7 @@ public interface JmsEndpointBuilderFactory {
          * @param componentName to use a custom component name for the endpoint
          * instead of the default name
          * @param path destinationType:destinationName
+         * @return the dsl builder
          */
         default JmsEndpointBuilder jms(String componentName, String path) {
             return JmsEndpointBuilderFactory.endpointBuilder(componentName, path);

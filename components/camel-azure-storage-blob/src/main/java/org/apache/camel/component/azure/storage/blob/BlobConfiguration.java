@@ -85,6 +85,8 @@ public class BlobConfiguration implements Cloneable {
     private Long pageBlobSize = BlobConstants.PAGE_BLOB_DEFAULT_SIZE;
     @UriParam(label = "producer", defaultValue = "COMMITTED")
     private BlockListType blockListType = BlockListType.COMMITTED;
+    @UriParam(label = "common")
+    private String regex;
 
     /**
      * Azure account name to be used for authentication with azure blob services
@@ -126,8 +128,8 @@ public class BlobConfiguration implements Cloneable {
      * to construct URLs to blobs and containers.
      *
      * This client contains operations on a service account. Operations on a container are available on
-     * {@link BlobContainerClient} through {@link #getBlobContainerClient(String)}, and operations on a blob are
-     * available on {@link BlobClient} through {@link #getBlobContainerClient(String).getBlobClient(String)}.
+     * {@link BlobContainerClient} through {@link BlobServiceClient#getBlobContainerClient(String)}, and operations on a
+     * blob are available on {@link BlobClient} through {@link BlobContainerClient#getBlobClient(String)}.
      */
     public BlobServiceClient getServiceClient() {
         return serviceClient;
@@ -160,7 +162,8 @@ public class BlobConfiguration implements Cloneable {
     }
 
     /**
-     * The blob name, required for consumer. However on producer, is only required for the operations on the blob level
+     * The blob name, to consume specific blob from a container. However on producer, is only required for the
+     * operations on the blob level
      */
     public String getBlobName() {
         return blobName;
@@ -372,6 +375,18 @@ public class BlobConfiguration implements Cloneable {
 
     public void setAutoDiscoverClient(boolean autoDiscoverClient) {
         this.autoDiscoverClient = autoDiscoverClient;
+    }
+
+    /**
+     * Filters the results to return only blobs whose names match the specified regular expression. May be null to
+     * return all if both prefix and regex are set, regex takes the priority and prefix is ignored.
+     */
+    public String getRegex() {
+        return regex;
+    }
+
+    public void setRegex(String regex) {
+        this.regex = regex;
     }
 
     // *************************************************

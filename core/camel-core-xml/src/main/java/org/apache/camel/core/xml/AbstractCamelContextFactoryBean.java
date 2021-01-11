@@ -50,9 +50,10 @@ import org.apache.camel.component.properties.PropertiesLocation;
 import org.apache.camel.component.properties.PropertiesParser;
 import org.apache.camel.health.HealthCheckRegistry;
 import org.apache.camel.health.HealthCheckRepository;
+import org.apache.camel.impl.debugger.BacklogTracer;
 import org.apache.camel.impl.engine.DefaultManagementStrategy;
-import org.apache.camel.impl.transformer.TransformerKey;
-import org.apache.camel.impl.validator.ValidatorKey;
+import org.apache.camel.impl.engine.TransformerKey;
+import org.apache.camel.impl.engine.ValidatorKey;
 import org.apache.camel.model.ContextScanDefinition;
 import org.apache.camel.model.FaultToleranceConfigurationDefinition;
 import org.apache.camel.model.FromDefinition;
@@ -87,10 +88,10 @@ import org.apache.camel.model.transformer.TransformerDefinition;
 import org.apache.camel.model.transformer.TransformersDefinition;
 import org.apache.camel.model.validator.ValidatorDefinition;
 import org.apache.camel.model.validator.ValidatorsDefinition;
-import org.apache.camel.processor.interceptor.BacklogTracer;
 import org.apache.camel.reifier.transformer.TransformerReifier;
 import org.apache.camel.reifier.validator.ValidatorReifier;
 import org.apache.camel.spi.AsyncProcessorAwaitManager;
+import org.apache.camel.spi.CamelBeanPostProcessor;
 import org.apache.camel.spi.ClassResolver;
 import org.apache.camel.spi.DataType;
 import org.apache.camel.spi.Debugger;
@@ -359,7 +360,7 @@ public abstract class AbstractCamelContextFactoryBean<T extends ModelCamelContex
                 ServiceRegistry service = entry.getValue();
 
                 if (service.getId() == null) {
-                    service.setId(getContext().getUuidGenerator().generateUuid());
+                    service.setGeneratedId(getContext().getUuidGenerator().generateUuid());
                 }
 
                 LOG.info("Using ServiceRegistry with id: {} and implementation: {}", service.getId(), service);
@@ -408,7 +409,7 @@ public abstract class AbstractCamelContextFactoryBean<T extends ModelCamelContex
         if (logListeners != null && !logListeners.isEmpty()) {
             for (Map.Entry<String, LogListener> entry : logListeners.entrySet()) {
                 LogListener logListener = entry.getValue();
-                if (!getContext().adapt(ExtendedCamelContext.class).getLogListeners().contains(logListener)) {
+                if (getContext().adapt(ExtendedCamelContext.class).getLogListeners() == null || !getContext().adapt(ExtendedCamelContext.class).getLogListeners().contains(logListener)) {
                     LOG.info("Using custom LogListener with id: {} and implementation: {}", entry.getKey(), logListener);
                     getContext().adapt(ExtendedCamelContext.class).addLogListener(logListener);
                 }
@@ -910,9 +911,13 @@ public abstract class AbstractCamelContextFactoryBean<T extends ModelCamelContex
 
     public abstract String getUseBreadcrumb();
 
+    public abstract String getBeanPostProcessorEnabled();
+
     public abstract String getAllowUseOriginalMessage();
 
     public abstract String getCaseInsensitiveHeaders();
+
+    public abstract String getAutowiredEnabled();
 
     public abstract String getRuntimeEndpointRegistryEnabled();
 
@@ -994,6 +999,12 @@ public abstract class AbstractCamelContextFactoryBean<T extends ModelCamelContex
      * @throws Exception is thrown if error occurred
      */
     protected void initCamelContext(T context) throws Exception {
+        if (getBeanPostProcessorEnabled() != null) {
+            CamelBeanPostProcessor cbpp = context.adapt(ExtendedCamelContext.class).getBeanPostProcessor();
+            if (cbpp != null) {
+                cbpp.setEnabled(CamelContextHelper.parseBoolean(context, getBeanPostProcessorEnabled()));
+            }
+        }
         if (getStreamCache() != null) {
             context.setStreamCaching(CamelContextHelper.parseBoolean(context, getStreamCache()));
         }
@@ -1044,6 +1055,9 @@ public abstract class AbstractCamelContextFactoryBean<T extends ModelCamelContex
         }
         if (getCaseInsensitiveHeaders() != null) {
             context.setCaseInsensitiveHeaders(CamelContextHelper.parseBoolean(context, getCaseInsensitiveHeaders()));
+        }
+        if (getAutowiredEnabled() != null) {
+            context.setAutowiredEnabled(CamelContextHelper.parseBoolean(context, getAutowiredEnabled()));
         }
         if (getRuntimeEndpointRegistryEnabled() != null) {
             context.getRuntimeEndpointRegistry()

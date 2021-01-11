@@ -170,7 +170,7 @@ public class PackageDataFormatMojo extends AbstractGeneratorMojo {
         // and create json schema model file for this data format
         try {
             if (apacheCamel && count > 0) {
-                File core = PackageHelper.findCamelCoreDirectory(project.getBasedir());
+                File core = PackageHelper.findCamelCoreModelDirectory(project.getBasedir());
                 if (core != null) {
                     for (Map.Entry<String, String> entry : javaTypes.entrySet()) {
                         String name = entry.getKey();
@@ -236,7 +236,7 @@ public class PackageDataFormatMojo extends AbstractGeneratorMojo {
                     }
                 } else {
                     throw new MojoExecutionException(
-                            "Error finding core/camel-core/target/camel-core-engine-" + project.getVersion()
+                            "Error finding core/camel-core/target/camel-core-model-" + project.getVersion()
                                                      + ".jar file. Make sure camel-core has been built first.");
                 }
             }
@@ -355,6 +355,14 @@ public class PackageDataFormatMojo extends AbstractGeneratorMojo {
                 }
 
             }
+            if ("objectMapper".equals(option.getName()) && "json-johnzon".equals(name)) {
+                option.setDisplayName("Mapper");
+                option.setDescription("Lookup and use the existing Mapper with the given id.");
+            }
+            if ("objectMapper".equals(option.getName()) && "json-jsonb".equals(name)) {
+                option.setDisplayName("Jsonb instance");
+                option.setDescription("Lookup and use the existing Jsonb instance with the given id.");
+            }
             if ("library".equals(option.getName()) && "json".equals(model.getModelName())) {
                 switch (name) {
                     case "json-gson":
@@ -365,6 +373,9 @@ public class PackageDataFormatMojo extends AbstractGeneratorMojo {
                         break;
                     case "json-johnzon":
                         option.setDefaultValue("Johnzon");
+                        break;
+                    case "json-jsonb":
+                        option.setDefaultValue("JSON-B");
                         break;
                     case "json-fastson":
                         option.setDefaultValue("Fastjson");
@@ -415,7 +426,7 @@ public class PackageDataFormatMojo extends AbstractGeneratorMojo {
     private static String asModelName(String name) {
         // special for some data formats
         if ("json-gson".equals(name) || "json-jackson".equals(name) || "json-johnzon".equals(name)
-                || "json-xstream".equals(name) || "json-fastjson".equals(name)) {
+                || "json-xstream".equals(name) || "json-fastjson".equals(name) || "json-jsonb".equals(name)) {
             return "json";
         } else if ("bindy-csv".equals(name) || "bindy-fixed".equals(name) || "bindy-kvp".equals(name)) {
             return "bindy";
@@ -433,6 +444,8 @@ public class PackageDataFormatMojo extends AbstractGeneratorMojo {
                 return "2.0.0";
             case "json-johnzon":
                 return "2.18.0";
+            case "json-jsonb":
+                return "3.7.0";
             case "json-xstream":
                 return "2.0.0";
             case "json-fastjson":
@@ -451,6 +464,8 @@ public class PackageDataFormatMojo extends AbstractGeneratorMojo {
             return "JSON Jackson";
         } else if ("json-johnzon".equals(name)) {
             return "JSON Johnzon";
+        } else if ("json-jsonb".equals(name)) {
+            return "JSON JSON-B";
         } else if ("json-xstream".equals(name)) {
             return "JSON XStream";
         } else if ("json-fastjson".equals(name)) {
@@ -515,7 +530,8 @@ public class PackageDataFormatMojo extends AbstractGeneratorMojo {
     private Optional<JavaClassSource> doParseJavaClassSource(String className) {
         try {
             Path srcDir = project.getBasedir().toPath().resolve("src/main/java");
-            Path file = srcDir.resolve(className.replace('.', '/') + ".java");
+            // Remove <.*> from className, as the string may contain generic types
+            Path file = srcDir.resolve(className.replaceAll("<.*>", "").replace('.', '/') + ".java");
             if (!Files.isRegularFile(file)) {
                 return Optional.empty();
             }

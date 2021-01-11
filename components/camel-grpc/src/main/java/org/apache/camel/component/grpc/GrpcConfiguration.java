@@ -17,7 +17,10 @@
 package org.apache.camel.component.grpc;
 
 import java.net.URI;
+import java.util.Collections;
+import java.util.List;
 
+import io.grpc.ClientInterceptor;
 import io.grpc.internal.GrpcUtil;
 import io.grpc.netty.NegotiationType;
 import io.grpc.netty.NettyChannelBuilder;
@@ -105,6 +108,14 @@ public class GrpcConfiguration {
     @UriParam(label = "consumer", defaultValue = "" + Integer.MAX_VALUE)
     private int maxConcurrentCallsPerConnection = Integer.MAX_VALUE;
 
+    @UriParam(label = "consumer", defaultValue = "false")
+    private boolean routeControlledStreamObserver;
+
+    private List<ClientInterceptor> clientInterceptors = Collections.emptyList();
+
+    @UriParam(label = "common", defaultValue = "true")
+    private boolean autoDiscoverClientInterceptors = true;
+
     /**
      * Fully qualified service name from the protocol buffer descriptor file (package dot service definition name)
      */
@@ -150,15 +161,15 @@ public class GrpcConfiguration {
         this.port = port;
     }
 
+    public NegotiationType getNegotiationType() {
+        return negotiationType;
+    }
+
     /**
      * Identifies the security negotiation type used for HTTP/2 communication
      */
     public void setNegotiationType(NegotiationType negotiationType) {
         this.negotiationType = negotiationType;
-    }
-
-    public NegotiationType getNegotiationType() {
-        return negotiationType;
     }
 
     /**
@@ -227,6 +238,10 @@ public class GrpcConfiguration {
         this.serviceAccountResource = serviceAccountResource;
     }
 
+    public String getKeyCertChainResource() {
+        return keyCertChainResource;
+    }
+
     /**
      * The X.509 certificate chain file resource in PEM format link
      */
@@ -234,8 +249,8 @@ public class GrpcConfiguration {
         this.keyCertChainResource = keyCertChainResource;
     }
 
-    public String getKeyCertChainResource() {
-        return keyCertChainResource;
+    public String getKeyResource() {
+        return keyResource;
     }
 
     /**
@@ -243,10 +258,6 @@ public class GrpcConfiguration {
      */
     public void setKeyResource(String keyResource) {
         this.keyResource = keyResource;
-    }
-
-    public String getKeyResource() {
-        return keyResource;
     }
 
     /**
@@ -260,15 +271,15 @@ public class GrpcConfiguration {
         this.keyPassword = keyPassword;
     }
 
+    public String getTrustCertCollectionResource() {
+        return trustCertCollectionResource;
+    }
+
     /**
      * The trusted certificates collection file resource in PEM format for verifying the remote endpoint's certificate
      */
     public void setTrustCertCollectionResource(String trustCertCollectionResource) {
         this.trustCertCollectionResource = trustCertCollectionResource;
-    }
-
-    public String getTrustCertCollectionResource() {
-        return trustCertCollectionResource;
     }
 
     /**
@@ -285,6 +296,10 @@ public class GrpcConfiguration {
         this.consumerStrategy = consumerStrategy;
     }
 
+    public boolean isForwardOnCompleted() {
+        return forwardOnCompleted;
+    }
+
     /**
      * Determines if onCompleted events should be pushed to the Camel route.
      */
@@ -292,8 +307,8 @@ public class GrpcConfiguration {
         this.forwardOnCompleted = forwardOnCompleted;
     }
 
-    public boolean isForwardOnCompleted() {
-        return forwardOnCompleted;
+    public boolean isForwardOnError() {
+        return forwardOnError;
     }
 
     /**
@@ -301,10 +316,6 @@ public class GrpcConfiguration {
      */
     public void setForwardOnError(boolean forwardOnError) {
         this.forwardOnError = forwardOnError;
-    }
-
-    public boolean isForwardOnError() {
-        return forwardOnError;
     }
 
     public GrpcProducerStrategy getProducerStrategy() {
@@ -353,6 +364,10 @@ public class GrpcConfiguration {
         this.flowControlWindow = flowControlWindow;
     }
 
+    public int getMaxMessageSize() {
+        return maxMessageSize;
+    }
+
     /**
      * The maximum message size allowed to be received/sent (MiB)
      */
@@ -360,8 +375,22 @@ public class GrpcConfiguration {
         this.maxMessageSize = maxMessageSize;
     }
 
-    public int getMaxMessageSize() {
-        return maxMessageSize;
+    /**
+     * Lets the route to take control over stream observer. If this value is set to true, then the response observer of
+     * gRPC call will be set with the name {@link GrpcConstants.GRPC_RESPONSE_OBSERVER} in the Exchange object.
+     * <p>
+     * Please note that the stream observer's onNext(), onError(), onCompleted() methods should be called in the route.
+     */
+    public boolean isRouteControlledStreamObserver() {
+        return routeControlledStreamObserver;
+    }
+
+    public void setRouteControlledStreamObserver(boolean routeControlledStreamObserver) {
+        this.routeControlledStreamObserver = routeControlledStreamObserver;
+    }
+
+    public int getMaxConcurrentCallsPerConnection() {
+        return maxConcurrentCallsPerConnection;
     }
 
     /**
@@ -371,8 +400,28 @@ public class GrpcConfiguration {
         this.maxConcurrentCallsPerConnection = maxConcurrentCallsPerConnection;
     }
 
-    public int getMaxConcurrentCallsPerConnection() {
-        return maxConcurrentCallsPerConnection;
+    public List<ClientInterceptor> getClientInterceptors() {
+        return clientInterceptors;
+    }
+
+    /**
+     * Setting the client interceptors on the netty channel in order to intercept outgoing calls before they are
+     * dispatched by the channel.
+     */
+    public void setClientInterceptors(List<ClientInterceptor> clientInterceptors) {
+        this.clientInterceptors = clientInterceptors;
+    }
+
+    public boolean isAutoDiscoverClientInterceptors() {
+        return autoDiscoverClientInterceptors;
+    }
+
+    /**
+     * Setting the autoDiscoverClientInterceptors mechanism, if true, the component will look for a ClientInterceptor
+     * instance in the registry automatically otherwise it will skip that checking.
+     */
+    public void setAutoDiscoverClientInterceptors(boolean autoDiscoverClientInterceptors) {
+        this.autoDiscoverClientInterceptors = autoDiscoverClientInterceptors;
     }
 
     public void parseURI(URI uri) {

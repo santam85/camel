@@ -18,16 +18,16 @@ package org.apache.camel.component.bean;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AccessibleObject;
-import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletionStage;
 
@@ -39,12 +39,16 @@ import org.apache.camel.ExchangePattern;
 import org.apache.camel.Expression;
 import org.apache.camel.ExpressionEvaluationException;
 import org.apache.camel.ExtendedCamelContext;
+import org.apache.camel.InOnly;
+import org.apache.camel.InOut;
 import org.apache.camel.Message;
 import org.apache.camel.NoTypeConversionAvailableException;
 import org.apache.camel.Pattern;
+import org.apache.camel.Processor;
 import org.apache.camel.RuntimeCamelException;
 import org.apache.camel.RuntimeExchangeException;
 import org.apache.camel.StreamCache;
+import org.apache.camel.spi.ErrorHandlerAware;
 import org.apache.camel.support.DefaultMessage;
 import org.apache.camel.support.ExchangeHelper;
 import org.apache.camel.support.ExpressionAdapter;
@@ -119,9 +123,10 @@ public class MethodInfo {
 
         Map<Class<?>, Annotation> collectedMethodAnnotation = collectMethodAnnotations(type, method);
 
-        Pattern oneway = findOneWayAnnotation(method);
-        if (oneway != null) {
-            pattern = oneway.value();
+        // configure MEP if there was an annotation with @Pattern/@InOnly/@InOut
+        ExchangePattern aep = findExchangePatternAnnotation(collectedMethodAnnotation);
+        if (aep != null) {
+            pattern = aep;
         }
 
         org.apache.camel.RoutingSlip routingSlipAnnotation
@@ -164,27 +169,70 @@ public class MethodInfo {
         }
     }
 
+    /**
+     * Finds the oneway annotation in priority order; look for method level annotations first, then the class level
+     * annotations, then super class annotations then interface annotations
+     */
     private Map<Class<?>, Annotation> collectMethodAnnotations(Class<?> c, Method method) {
         Map<Class<?>, Annotation> annotations = new HashMap<>();
-        collectMethodAnnotations(c, method, annotations);
+
+        Set<Class<?>> search = new LinkedHashSet<>();
+        // first look for the top class itself and its super classes
+        addTypeAndSuperTypes(c, search);
+        // and interfaces for all the classes as last
+        Set<Class<?>> searchInterfaces = new LinkedHashSet<>();
+        for (Class<?> aClazz : search) {
+            Class<?>[] interfaces = aClazz.getInterfaces();
+            for (Class<?> anInterface : interfaces) {
+                addTypeAndSuperTypes(anInterface, searchInterfaces);
+            }
+        }
+        search.addAll(searchInterfaces);
+        collectMethodAnnotations(search.iterator(), method.getName(), annotations);
         return annotations;
     }
 
-    private void collectMethodAnnotations(Class<?> c, Method method, Map<Class<?>, Annotation> annotations) {
-        for (Class<?> i : c.getInterfaces()) {
-            collectMethodAnnotations(i, method, annotations);
+    /**
+     * Adds the current class and all of its base classes (apart from {@link Object} to the given list
+     */
+    private static void addTypeAndSuperTypes(Class<?> type, Set<Class<?>> result) {
+        for (Class<?> t = type; t != null && t != Object.class; t = t.getSuperclass()) {
+            result.add(t);
         }
-        if (!c.isInterface() && c.getSuperclass() != null) {
-            collectMethodAnnotations(c.getSuperclass(), method, annotations);
-        }
-        // make sure the sub class can override the definition
-        try {
-            Annotation[] ma = c.getDeclaredMethod(method.getName(), method.getParameterTypes()).getAnnotations();
-            for (Annotation a : ma) {
-                annotations.put(a.annotationType(), a);
+    }
+
+    private void collectMethodAnnotations(
+            Iterator<?> it, String targetMethodName, Map<Class<?>, Annotation> annotations) {
+        Class<?>[] paramTypes = method.getParameterTypes();
+        boolean aep = false;
+        while (it.hasNext()) {
+            Class<?> searchType = (Class<?>) it.next();
+            Method[] methods = searchType.isInterface() ? searchType.getMethods() : searchType.getDeclaredMethods();
+            for (Method method : methods) {
+                if (targetMethodName.equals(method.getName()) && Arrays.equals(paramTypes, method.getParameterTypes())) {
+                    for (Annotation a : method.getAnnotations()) {
+                        // favour existing annotation so only add if not exists
+                        Class<?> at = a.annotationType();
+                        if (!annotations.containsKey(at)) {
+                            annotations.put(at, a);
+                        }
+                        aep |= at == Pattern.class || at == InOnly.class || at == InOut.class;
+                    }
+                }
             }
-        } catch (SecurityException | NoSuchMethodException e) {
-            // do nothing here
+            // special for @Pattern/@InOut/@InOnly
+            if (!aep) {
+                // look for this on class level
+                for (Annotation a : searchType.getAnnotations()) {
+                    // favour existing annotation so only add if not exists
+                    Class<?> at = a.annotationType();
+                    boolean valid = at == Pattern.class || at == InOnly.class || at == InOut.class;
+                    if (valid && !annotations.containsKey(at)) {
+                        aep = true;
+                        annotations.put(at, a);
+                    }
+                }
+            }
         }
     }
 
@@ -193,9 +241,25 @@ public class MethodInfo {
         return method.toString();
     }
 
+    /**
+     * For fine grained error handling for outputs of this EIP. The base error handler is used as base and then cloned
+     * for each output processor.
+     *
+     * This is used internally only by Camel - not for end users.
+     */
+    public void setErrorHandler(Processor errorHandler) {
+        // special for @RecipientList which needs to be injected with error handler it should use
+        if (recipientList instanceof ErrorHandlerAware) {
+            ((ErrorHandlerAware) recipientList).setErrorHandler(errorHandler);
+        }
+    }
+
     public MethodInvocation createMethodInvocation(final Object pojo, boolean hasParameters, final Exchange exchange) {
         final Object[] arguments;
         if (hasParameters) {
+            if (parametersExpression != null) {
+                parametersExpression.init(camelContext);
+            }
             arguments = parametersExpression.evaluate(exchange, Object[].class);
         } else {
             arguments = null;
@@ -232,9 +296,9 @@ public class MethodInfo {
                     if (!ServiceHelper.isStarted(dynamicRouter)) {
                         ServiceHelper.startService(dynamicRouter);
                     }
-                    // TODO: Maybe use a new constant than EVALUATE_EXPRESSION_RESULT
                     // use a expression which invokes the method to be used by dynamic router
                     Expression expression = new DynamicRouterExpression(pojo);
+                    expression.init(camelContext);
                     exchange.setProperty(Exchange.EVALUATE_EXPRESSION_RESULT, expression);
                     return dynamicRouter.process(exchange, callback);
                 }
@@ -452,119 +516,15 @@ public class MethodInfo {
         return new ParameterExpression(createParameterExpressions());
     }
 
-    /**
-     * Finds the oneway annotation in priority order; look for method level annotations first, then the class level
-     * annotations, then super class annotations then interface annotations
-     *
-     * @param  method the method on which to search
-     * @return        the first matching annotation or none if it is not available
-     */
-    protected Pattern findOneWayAnnotation(Method method) {
-        Pattern answer = getPatternAnnotation(method);
-        if (answer == null) {
-            Class<?> type = method.getDeclaringClass();
-
-            // create the search order of types to scan
-            List<Class<?>> typesToSearch = new ArrayList<>();
-            addTypeAndSuperTypes(type, typesToSearch);
-            Class<?>[] interfaces = type.getInterfaces();
-            for (Class<?> anInterface : interfaces) {
-                addTypeAndSuperTypes(anInterface, typesToSearch);
-            }
-
-            // now let's scan for a type which the current declared class overloads
-            answer = findOneWayAnnotationOnMethod(typesToSearch, method);
-            if (answer == null) {
-                answer = findOneWayAnnotation(typesToSearch);
-            }
+    protected ExchangePattern findExchangePatternAnnotation(Map<Class<?>, Annotation> collectedMethodAnnotation) {
+        if (collectedMethodAnnotation.get(InOnly.class) != null) {
+            return ExchangePattern.InOnly;
+        } else if (collectedMethodAnnotation.get(InOut.class) != null) {
+            return ExchangePattern.InOut;
+        } else {
+            Pattern pattern = (Pattern) collectedMethodAnnotation.get(Pattern.class);
+            return pattern != null ? pattern.value() : null;
         }
-        return answer;
-    }
-
-    /**
-     * Returns the pattern annotation on the given annotated element; either as a direct annotation or on an annotation
-     * which is also annotated
-     *
-     * @param  annotatedElement the element to look for the annotation
-     * @return                  the first matching annotation or null if none could be found
-     */
-    protected Pattern getPatternAnnotation(AnnotatedElement annotatedElement) {
-        return getPatternAnnotation(annotatedElement, 2);
-    }
-
-    /**
-     * Returns the pattern annotation on the given annotated element; either as a direct annotation or on an annotation
-     * which is also annotated
-     *
-     * @param  annotatedElement the element to look for the annotation
-     * @param  depth            the current depth
-     * @return                  the first matching annotation or null if none could be found
-     */
-    protected Pattern getPatternAnnotation(AnnotatedElement annotatedElement, int depth) {
-        Pattern answer = annotatedElement.getAnnotation(Pattern.class);
-        int nextDepth = depth - 1;
-
-        if (nextDepth > 0) {
-            // look at all the annotations to see if any of those are annotated
-            Annotation[] annotations = annotatedElement.getAnnotations();
-            for (Annotation annotation : annotations) {
-                Class<? extends Annotation> annotationType = annotation.annotationType();
-                if (annotation instanceof Pattern || annotationType.equals(annotatedElement)) {
-                    continue;
-                } else {
-                    Pattern another = getPatternAnnotation(annotationType, nextDepth);
-                    if (pattern != null) {
-                        if (answer == null) {
-                            answer = another;
-                        } else {
-                            LOG.warn("Duplicate pattern annotation: {} found on annotation: {} which will be ignored", another,
-                                    annotation);
-                        }
-                    }
-                }
-            }
-        }
-        return answer;
-    }
-
-    /**
-     * Adds the current class and all of its base classes (apart from {@link Object} to the given list
-     */
-    protected void addTypeAndSuperTypes(Class<?> type, List<Class<?>> result) {
-        for (Class<?> t = type; t != null && t != Object.class; t = t.getSuperclass()) {
-            result.add(t);
-        }
-    }
-
-    /**
-     * Finds the first annotation on the base methods defined in the list of classes
-     */
-    protected Pattern findOneWayAnnotationOnMethod(List<Class<?>> classes, Method method) {
-        for (Class<?> type : classes) {
-            try {
-                Method definedMethod = type.getMethod(method.getName(), method.getParameterTypes());
-                Pattern answer = getPatternAnnotation(definedMethod);
-                if (answer != null) {
-                    return answer;
-                }
-            } catch (NoSuchMethodException e) {
-                // ignore
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Finds the first annotation on the given list of classes
-     */
-    protected Pattern findOneWayAnnotation(List<Class<?>> classes) {
-        for (Class<?> type : classes) {
-            Pattern answer = getPatternAnnotation(type);
-            if (answer != null) {
-                return answer;
-            }
-        }
-        return null;
     }
 
     protected boolean hasExceptionParameter() {
@@ -584,6 +544,17 @@ public class MethodInfo {
 
         ParameterExpression(Expression[] expressions) {
             this.expressions = expressions;
+        }
+
+        @Override
+        public void init(CamelContext context) {
+            if (expressions != null) {
+                for (Expression exp : expressions) {
+                    if (exp != null) {
+                        exp.init(context);
+                    }
+                }
+            }
         }
 
         @Override
@@ -715,13 +686,16 @@ public class MethodInfo {
                 if (parameterType.isAssignableFrom(parameterValue.getClass())) {
                     valid = true;
                 } else {
-                    // the parameter value was not already valid, but since the simple language have evaluated the expression
-                    // which may change the parameterValue, so we have to check it again to see if its now valid
-                    exp = exchange.getContext().getTypeConverter().tryConvertTo(String.class, parameterValue);
                     // String values from the simple language is always valid
                     if (!valid) {
-                        // re validate if the parameter was not valid the first time (String values should be accepted)
-                        valid = parameterValue instanceof String || BeanHelper.isValidParameterValue(exp);
+                        valid = parameterValue instanceof String;
+                        if (!valid) {
+                            // the parameter value was not already valid, but since the simple language have evaluated the expression
+                            // which may change the parameterValue, so we have to check it again to see if its now valid
+                            exp = exchange.getContext().getTypeConverter().tryConvertTo(String.class, parameterValue);
+                            // re validate if the parameter was not valid the first time
+                            valid = BeanHelper.isValidParameterValue(exp);
+                        }
                     }
                 }
 
@@ -730,22 +704,20 @@ public class MethodInfo {
                     if (parameterValue instanceof String) {
                         parameterValue = StringHelper.removeLeadingAndEndingQuotes((String) parameterValue);
                     }
-                    if (parameterValue != null) {
-                        try {
-                            // its a valid parameter value, so convert it to the expected type of the parameter
-                            answer = exchange.getContext().getTypeConverter().mandatoryConvertTo(parameterType, exchange,
-                                    parameterValue);
-                            if (LOG.isTraceEnabled()) {
-                                LOG.trace("Parameter #{} evaluated as: {} type: {}", index, answer,
-                                        org.apache.camel.util.ObjectHelper.type(answer));
-                            }
-                        } catch (Exception e) {
-                            if (LOG.isDebugEnabled()) {
-                                LOG.debug("Cannot convert from type: {} to type: {} for parameter #{}",
-                                        org.apache.camel.util.ObjectHelper.type(parameterValue), parameterType, index);
-                            }
-                            throw new ParameterBindingException(e, method, index, parameterType, parameterValue);
+                    try {
+                        // its a valid parameter value, so convert it to the expected type of the parameter
+                        answer = exchange.getContext().getTypeConverter().mandatoryConvertTo(parameterType, exchange,
+                                parameterValue);
+                        if (LOG.isTraceEnabled()) {
+                            LOG.trace("Parameter #{} evaluated as: {} type: {}", index, answer,
+                                    org.apache.camel.util.ObjectHelper.type(answer));
                         }
+                    } catch (Exception e) {
+                        if (LOG.isDebugEnabled()) {
+                            LOG.debug("Cannot convert from type: {} to type: {} for parameter #{}",
+                                    org.apache.camel.util.ObjectHelper.type(parameterValue), parameterType, index);
+                        }
+                        throw new ParameterBindingException(e, method, index, parameterType, parameterValue);
                     }
                 }
             }

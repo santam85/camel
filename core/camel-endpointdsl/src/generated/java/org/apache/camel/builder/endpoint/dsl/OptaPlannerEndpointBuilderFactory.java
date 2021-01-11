@@ -44,10 +44,13 @@ public interface OptaPlannerEndpointBuilderFactory {
         /**
          * In case of using SolverManager : the problem id.
          * 
-         * The option is a: <code>java.lang.Long</code> type.
+         * The option is a: &lt;code&gt;java.lang.Long&lt;/code&gt; type.
          * 
          * Default: 1L
          * Group: common
+         * 
+         * @param problemId the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointConsumerBuilder problemId(Long problemId) {
             doSetProperty("problemId", problemId);
@@ -56,10 +59,14 @@ public interface OptaPlannerEndpointBuilderFactory {
         /**
          * In case of using SolverManager : the problem id.
          * 
-         * The option will be converted to a <code>java.lang.Long</code> type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Long&lt;/code&gt; type.
          * 
          * Default: 1L
          * Group: common
+         * 
+         * @param problemId the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointConsumerBuilder problemId(String problemId) {
             doSetProperty("problemId", problemId);
@@ -68,10 +75,13 @@ public interface OptaPlannerEndpointBuilderFactory {
         /**
          * Specifies the solverId to user for the solver instance key.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: DEFAULT_SOLVER
          * Group: common
+         * 
+         * @param solverId the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointConsumerBuilder solverId(String solverId) {
             doSetProperty("solverId", solverId);
@@ -81,10 +91,13 @@ public interface OptaPlannerEndpointBuilderFactory {
          * use SolverManager instead of XML file config. Use this mode on
          * Quarkus app.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param useSolverManager the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointConsumerBuilder useSolverManager(
                 boolean useSolverManager) {
@@ -95,10 +108,14 @@ public interface OptaPlannerEndpointBuilderFactory {
          * use SolverManager instead of XML file config. Use this mode on
          * Quarkus app.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param useSolverManager the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointConsumerBuilder useSolverManager(
                 String useSolverManager) {
@@ -114,10 +131,13 @@ public interface OptaPlannerEndpointBuilderFactory {
          * with exceptions, that will be logged at WARN or ERROR level and
          * ignored.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param bridgeErrorHandler the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointConsumerBuilder bridgeErrorHandler(
                 boolean bridgeErrorHandler) {
@@ -133,10 +153,14 @@ public interface OptaPlannerEndpointBuilderFactory {
          * with exceptions, that will be logged at WARN or ERROR level and
          * ignored.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param bridgeErrorHandler the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointConsumerBuilder bridgeErrorHandler(
                 String bridgeErrorHandler) {
@@ -160,10 +184,13 @@ public interface OptaPlannerEndpointBuilderFactory {
          * By default the consumer will deal with exceptions, that will be
          * logged at WARN or ERROR level and ignored.
          * 
-         * The option is a: <code>org.apache.camel.spi.ExceptionHandler</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;org.apache.camel.spi.ExceptionHandler&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exceptionHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedOptaPlannerEndpointConsumerBuilder exceptionHandler(
                 ExceptionHandler exceptionHandler) {
@@ -177,9 +204,12 @@ public interface OptaPlannerEndpointBuilderFactory {
          * logged at WARN or ERROR level and ignored.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.spi.ExceptionHandler</code> type.
+         * &lt;code&gt;org.apache.camel.spi.ExceptionHandler&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exceptionHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedOptaPlannerEndpointConsumerBuilder exceptionHandler(
                 String exceptionHandler) {
@@ -189,9 +219,13 @@ public interface OptaPlannerEndpointBuilderFactory {
         /**
          * Sets the exchange pattern when the consumer creates an exchange.
          * 
-         * The option is a: <code>org.apache.camel.ExchangePattern</code> type.
+         * The option is a:
+         * &lt;code&gt;org.apache.camel.ExchangePattern&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exchangePattern the value to set
+         * @return the dsl builder
          */
         default AdvancedOptaPlannerEndpointConsumerBuilder exchangePattern(
                 ExchangePattern exchangePattern) {
@@ -202,9 +236,12 @@ public interface OptaPlannerEndpointBuilderFactory {
          * Sets the exchange pattern when the consumer creates an exchange.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.ExchangePattern</code> type.
+         * &lt;code&gt;org.apache.camel.ExchangePattern&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exchangePattern the value to set
+         * @return the dsl builder
          */
         default AdvancedOptaPlannerEndpointConsumerBuilder exchangePattern(
                 String exchangePattern) {
@@ -212,41 +249,16 @@ public interface OptaPlannerEndpointBuilderFactory {
             return this;
         }
         /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedOptaPlannerEndpointConsumerBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedOptaPlannerEndpointConsumerBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedOptaPlannerEndpointConsumerBuilder synchronous(
                 boolean synchronous) {
@@ -257,10 +269,14 @@ public interface OptaPlannerEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedOptaPlannerEndpointConsumerBuilder synchronous(
                 String synchronous) {
@@ -281,10 +297,13 @@ public interface OptaPlannerEndpointBuilderFactory {
         /**
          * In case of using SolverManager : the problem id.
          * 
-         * The option is a: <code>java.lang.Long</code> type.
+         * The option is a: &lt;code&gt;java.lang.Long&lt;/code&gt; type.
          * 
          * Default: 1L
          * Group: common
+         * 
+         * @param problemId the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointProducerBuilder problemId(Long problemId) {
             doSetProperty("problemId", problemId);
@@ -293,10 +312,14 @@ public interface OptaPlannerEndpointBuilderFactory {
         /**
          * In case of using SolverManager : the problem id.
          * 
-         * The option will be converted to a <code>java.lang.Long</code> type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Long&lt;/code&gt; type.
          * 
          * Default: 1L
          * Group: common
+         * 
+         * @param problemId the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointProducerBuilder problemId(String problemId) {
             doSetProperty("problemId", problemId);
@@ -305,10 +328,13 @@ public interface OptaPlannerEndpointBuilderFactory {
         /**
          * Specifies the solverId to user for the solver instance key.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: DEFAULT_SOLVER
          * Group: common
+         * 
+         * @param solverId the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointProducerBuilder solverId(String solverId) {
             doSetProperty("solverId", solverId);
@@ -318,10 +344,13 @@ public interface OptaPlannerEndpointBuilderFactory {
          * use SolverManager instead of XML file config. Use this mode on
          * Quarkus app.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param useSolverManager the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointProducerBuilder useSolverManager(
                 boolean useSolverManager) {
@@ -332,10 +361,14 @@ public interface OptaPlannerEndpointBuilderFactory {
          * use SolverManager instead of XML file config. Use this mode on
          * Quarkus app.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param useSolverManager the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointProducerBuilder useSolverManager(
                 String useSolverManager) {
@@ -345,10 +378,13 @@ public interface OptaPlannerEndpointBuilderFactory {
         /**
          * Specifies to perform operations in async mode.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param async the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointProducerBuilder async(boolean async) {
             doSetProperty("async", async);
@@ -357,10 +393,14 @@ public interface OptaPlannerEndpointBuilderFactory {
         /**
          * Specifies to perform operations in async mode.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param async the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointProducerBuilder async(String async) {
             doSetProperty("async", async);
@@ -377,10 +417,13 @@ public interface OptaPlannerEndpointBuilderFactory {
          * producer may take a little time and prolong the total processing time
          * of the processing.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param lazyStartProducer the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointProducerBuilder lazyStartProducer(
                 boolean lazyStartProducer) {
@@ -398,10 +441,14 @@ public interface OptaPlannerEndpointBuilderFactory {
          * producer may take a little time and prolong the total processing time
          * of the processing.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param lazyStartProducer the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointProducerBuilder lazyStartProducer(
                 String lazyStartProducer) {
@@ -411,10 +458,13 @@ public interface OptaPlannerEndpointBuilderFactory {
         /**
          * Specifies the thread pool size to use when async is true.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 10
          * Group: producer
+         * 
+         * @param threadPoolSize the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointProducerBuilder threadPoolSize(
                 int threadPoolSize) {
@@ -424,10 +474,13 @@ public interface OptaPlannerEndpointBuilderFactory {
         /**
          * Specifies the thread pool size to use when async is true.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 10
          * Group: producer
+         * 
+         * @param threadPoolSize the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointProducerBuilder threadPoolSize(
                 String threadPoolSize) {
@@ -446,41 +499,16 @@ public interface OptaPlannerEndpointBuilderFactory {
             return (OptaPlannerEndpointProducerBuilder) this;
         }
         /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedOptaPlannerEndpointProducerBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedOptaPlannerEndpointProducerBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedOptaPlannerEndpointProducerBuilder synchronous(
                 boolean synchronous) {
@@ -491,10 +519,14 @@ public interface OptaPlannerEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedOptaPlannerEndpointProducerBuilder synchronous(
                 String synchronous) {
@@ -516,10 +548,13 @@ public interface OptaPlannerEndpointBuilderFactory {
         /**
          * In case of using SolverManager : the problem id.
          * 
-         * The option is a: <code>java.lang.Long</code> type.
+         * The option is a: &lt;code&gt;java.lang.Long&lt;/code&gt; type.
          * 
          * Default: 1L
          * Group: common
+         * 
+         * @param problemId the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointBuilder problemId(Long problemId) {
             doSetProperty("problemId", problemId);
@@ -528,10 +563,14 @@ public interface OptaPlannerEndpointBuilderFactory {
         /**
          * In case of using SolverManager : the problem id.
          * 
-         * The option will be converted to a <code>java.lang.Long</code> type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Long&lt;/code&gt; type.
          * 
          * Default: 1L
          * Group: common
+         * 
+         * @param problemId the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointBuilder problemId(String problemId) {
             doSetProperty("problemId", problemId);
@@ -540,10 +579,13 @@ public interface OptaPlannerEndpointBuilderFactory {
         /**
          * Specifies the solverId to user for the solver instance key.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: DEFAULT_SOLVER
          * Group: common
+         * 
+         * @param solverId the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointBuilder solverId(String solverId) {
             doSetProperty("solverId", solverId);
@@ -553,10 +595,13 @@ public interface OptaPlannerEndpointBuilderFactory {
          * use SolverManager instead of XML file config. Use this mode on
          * Quarkus app.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param useSolverManager the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointBuilder useSolverManager(
                 boolean useSolverManager) {
@@ -567,10 +612,14 @@ public interface OptaPlannerEndpointBuilderFactory {
          * use SolverManager instead of XML file config. Use this mode on
          * Quarkus app.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param useSolverManager the value to set
+         * @return the dsl builder
          */
         default OptaPlannerEndpointBuilder useSolverManager(
                 String useSolverManager) {
@@ -590,41 +639,16 @@ public interface OptaPlannerEndpointBuilderFactory {
             return (OptaPlannerEndpointBuilder) this;
         }
         /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedOptaPlannerEndpointBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedOptaPlannerEndpointBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedOptaPlannerEndpointBuilder synchronous(
                 boolean synchronous) {
@@ -635,10 +659,14 @@ public interface OptaPlannerEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedOptaPlannerEndpointBuilder synchronous(
                 String synchronous) {
@@ -667,6 +695,7 @@ public interface OptaPlannerEndpointBuilderFactory {
          * Quarkus or Spring.
          * 
          * @param path configFile
+         * @return the dsl builder
          */
         default OptaPlannerEndpointBuilder optaplanner(String path) {
             return OptaPlannerEndpointBuilderFactory.endpointBuilder("optaplanner", path);
@@ -692,6 +721,7 @@ public interface OptaPlannerEndpointBuilderFactory {
          * @param componentName to use a custom component name for the endpoint
          * instead of the default name
          * @param path configFile
+         * @return the dsl builder
          */
         default OptaPlannerEndpointBuilder optaplanner(
                 String componentName,

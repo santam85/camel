@@ -350,9 +350,18 @@ public class MockEndpoint extends DefaultEndpoint implements BrowsableEndpoint, 
      * @param expression which is use to set the message body
      */
     public void returnReplyBody(Expression expression) {
-        this.defaultProcessor = exchange -> {
-            Object exp = expression.evaluate(exchange, Object.class);
-            exchange.getMessage().setBody(exp);
+        this.defaultProcessor = new Processor() {
+            private boolean initDone;
+
+            @Override
+            public void process(Exchange exchange) throws Exception {
+                if (!initDone) {
+                    expression.init(exchange.getContext());
+                    initDone = true;
+                }
+                Object exp = expression.evaluate(exchange, Object.class);
+                exchange.getMessage().setBody(exp);
+            }
         };
     }
 
@@ -363,9 +372,18 @@ public class MockEndpoint extends DefaultEndpoint implements BrowsableEndpoint, 
      * @param expression which is use to set the message header
      */
     public void returnReplyHeader(String headerName, Expression expression) {
-        this.defaultProcessor = exchange -> {
-            Object exp = expression.evaluate(exchange, Object.class);
-            exchange.getMessage().setHeader(headerName, exp);
+        this.defaultProcessor = new Processor() {
+            private boolean initDone;
+
+            @Override
+            public void process(Exchange exchange) throws Exception {
+                if (!initDone) {
+                    expression.init(exchange.getContext());
+                    initDone = true;
+                }
+                Object exp = expression.evaluate(exchange, Object.class);
+                exchange.getMessage().setHeader(headerName, exp);
+            }
         };
     }
 
@@ -431,7 +449,7 @@ public class MockEndpoint extends DefaultEndpoint implements BrowsableEndpoint, 
 
         for (Throwable failure : failures) {
             if (failure != null) {
-                LOG.error("Caught exception on " + getEndpointUri() + " due to: " + failure.getMessage(), failure);
+                LOG.error("Caught exception on {} due to: {}", getEndpointUri(), failure.getMessage(), failure);
                 fail(failure);
             }
         }
@@ -449,9 +467,9 @@ public class MockEndpoint extends DefaultEndpoint implements BrowsableEndpoint, 
         } catch (AssertionError e) {
             if (LOG.isDebugEnabled()) {
                 // log incl stacktrace
-                LOG.debug("Caught expected failure: " + e.getMessage(), e);
+                LOG.debug("Caught expected failure: {}", e.getMessage(), e);
             } else {
-                LOG.info("Caught expected failure: " + e.getMessage());
+                LOG.info("Caught expected failure: {}", e.getMessage());
             }
         }
         if (failed) {
@@ -474,9 +492,9 @@ public class MockEndpoint extends DefaultEndpoint implements BrowsableEndpoint, 
         } catch (AssertionError e) {
             if (LOG.isDebugEnabled()) {
                 // log incl stacktrace
-                LOG.debug("Caught expected failure: " + e.getMessage(), e);
+                LOG.debug("Caught expected failure: {}", e.getMessage(), e);
             } else {
-                LOG.info("Caught expected failure: " + e.getMessage());
+                LOG.info("Caught expected failure: {}", e.getMessage());
             }
         }
         if (failed) {
@@ -952,12 +970,22 @@ public class MockEndpoint extends DefaultEndpoint implements BrowsableEndpoint, 
      */
     public void expectsAscending(final Expression expression) {
         expects(new AssertionTask() {
+            private boolean initDone;
+
             @Override
             public void assertOnIndex(int index) {
+                if (!initDone) {
+                    expression.init(getCamelContext());
+                    initDone = true;
+                }
                 assertMessagesSorted(expression, true, index);
             }
 
             public void run() {
+                if (!initDone) {
+                    expression.init(getCamelContext());
+                    initDone = true;
+                }
                 assertMessagesAscending(expression);
             }
         });
@@ -988,12 +1016,22 @@ public class MockEndpoint extends DefaultEndpoint implements BrowsableEndpoint, 
      */
     public void expectsDescending(final Expression expression) {
         expects(new AssertionTask() {
+            private boolean initDone;
+
             @Override
             public void assertOnIndex(int index) {
+                if (!initDone) {
+                    expression.init(getCamelContext());
+                    initDone = true;
+                }
                 assertMessagesSorted(expression, false, index);
             }
 
             public void run() {
+                if (!initDone) {
+                    expression.init(getCamelContext());
+                    initDone = true;
+                }
                 assertMessagesDescending(expression);
             }
         });
@@ -1028,10 +1066,15 @@ public class MockEndpoint extends DefaultEndpoint implements BrowsableEndpoint, 
      */
     public void expectsNoDuplicates(final Expression expression) {
         expects(new AssertionTask() {
+            private boolean initDone;
             private Map<Object, Exchange> map = new HashMap<>();
 
             @Override
             public void assertOnIndex(int index) {
+                if (!initDone) {
+                    expression.init(getCamelContext());
+                    initDone = true;
+                }
                 List<Exchange> list = getReceivedExchanges();
                 Exchange e2 = list.get(index);
                 Object key = expression.evaluate(e2, Object.class);
@@ -1045,6 +1088,10 @@ public class MockEndpoint extends DefaultEndpoint implements BrowsableEndpoint, 
             }
 
             public void run() {
+                if (!initDone) {
+                    expression.init(getCamelContext());
+                    initDone = true;
+                }
                 for (int i = 0; i < getReceivedExchanges().size(); i++) {
                     assertOnIndex(i);
                 }
@@ -1092,6 +1139,7 @@ public class MockEndpoint extends DefaultEndpoint implements BrowsableEndpoint, 
      * Asserts that the messages have ascending values of the given expression
      */
     public void assertMessagesAscending(Expression expression) {
+        expression.init(getCamelContext());
         assertMessagesSorted(expression, true);
     }
 
@@ -1099,6 +1147,7 @@ public class MockEndpoint extends DefaultEndpoint implements BrowsableEndpoint, 
      * Asserts that the messages have descending values of the given expression
      */
     public void assertMessagesDescending(Expression expression) {
+        expression.init(getCamelContext());
         assertMessagesSorted(expression, false);
     }
 
@@ -1143,6 +1192,7 @@ public class MockEndpoint extends DefaultEndpoint implements BrowsableEndpoint, 
      * @param expression the expression to use for duplication check
      */
     public void assertNoDuplicates(Expression expression) {
+        expression.init(getCamelContext());
         Map<Object, Exchange> map = new HashMap<>();
         List<Exchange> list = getReceivedExchanges();
         for (int i = 0; i < list.size(); i++) {
@@ -1517,7 +1567,7 @@ public class MockEndpoint extends DefaultEndpoint implements BrowsableEndpoint, 
                         } catch (AssertionError e) {
                             failFastAssertionError = e;
                             // signal latch we are done as we are failing fast
-                            LOG.debug("Assertion failed fast on " + index + " received exchange due to " + e.getMessage());
+                            LOG.debug("Assertion failed fast on {} received exchange due to {}", index, e.getMessage());
                             while (latch != null && latch.getCount() > 0) {
                                 latch.countDown();
                             }
@@ -1679,7 +1729,9 @@ public class MockEndpoint extends DefaultEndpoint implements BrowsableEndpoint, 
 
         // now let's wait for the results
         LOG.debug("Waiting on the latch for: {} millis", timeout);
-        latch.await(waitTime, TimeUnit.MILLISECONDS);
+        if (!latch.await(waitTime, TimeUnit.MILLISECONDS)) {
+            LOG.warn("The latch did not reach 0 within the specified time");
+        }
     }
 
     protected void assertEquals(String message, Object expectedValue, Object actualValue) {

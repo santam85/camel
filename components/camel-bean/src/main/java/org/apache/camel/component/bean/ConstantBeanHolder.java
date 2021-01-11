@@ -42,11 +42,19 @@ public class ConstantBeanHolder implements BeanHolder {
         this.beanInfo = beanInfo;
     }
 
-    public ConstantBeanHolder(Object bean, CamelContext context) {
+    public ConstantBeanHolder(Object bean, CamelContext context, ParameterMappingStrategy parameterMappingStrategy,
+                              BeanComponent beanComponent) {
         ObjectHelper.notNull(bean, "bean");
 
         this.bean = bean;
-        this.beanInfo = new BeanInfo(context, bean.getClass());
+        this.beanInfo = new BeanInfo(context, bean.getClass(), parameterMappingStrategy, beanComponent);
+    }
+
+    @Override
+    public void setErrorHandler(Processor errorHandler) {
+        for (MethodInfo mi : beanInfo.getMethods()) {
+            mi.setErrorHandler(errorHandler);
+        }
     }
 
     @Override

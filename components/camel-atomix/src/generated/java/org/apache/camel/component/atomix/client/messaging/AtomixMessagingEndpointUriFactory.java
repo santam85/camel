@@ -2,6 +2,7 @@
 package org.apache.camel.component.atomix.client.messaging;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,31 +18,32 @@ public class AtomixMessagingEndpointUriFactory extends org.apache.camel.support.
     private static final String BASE = ":resourceName";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(22);
-        set.add("resourceName");
-        set.add("atomix");
-        set.add("broadcastType");
-        set.add("channelName");
-        set.add("configurationUri");
-        set.add("defaultAction");
-        set.add("memberName");
-        set.add("nodes");
-        set.add("resultHeader");
-        set.add("transportClassName");
-        set.add("bridgeErrorHandler");
-        set.add("exceptionHandler");
-        set.add("exchangePattern");
-        set.add("lazyStartProducer");
-        set.add("basicPropertyBinding");
-        set.add("defaultResourceConfig");
-        set.add("defaultResourceOptions");
-        set.add("ephemeral");
-        set.add("readConsistency");
-        set.add("resourceConfigs");
-        set.add("resourceOptions");
-        set.add("synchronous");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(21);
+        props.add("synchronous");
+        props.add("exchangePattern");
+        props.add("memberName");
+        props.add("ephemeral");
+        props.add("resourceName");
+        props.add("resourceConfigs");
+        props.add("resultHeader");
+        props.add("broadcastType");
+        props.add("configurationUri");
+        props.add("defaultResourceOptions");
+        props.add("resourceOptions");
+        props.add("lazyStartProducer");
+        props.add("defaultAction");
+        props.add("nodes");
+        props.add("bridgeErrorHandler");
+        props.add("defaultResourceConfig");
+        props.add("channelName");
+        props.add("transportClassName");
+        props.add("atomix");
+        props.add("exceptionHandler");
+        props.add("readConsistency");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        SECRET_PROPERTY_NAMES = Collections.emptySet();
     }
 
     @Override
@@ -50,20 +52,25 @@ public class AtomixMessagingEndpointUriFactory extends org.apache.camel.support.
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
         Map<String, Object> copy = new HashMap<>(properties);
 
         uri = buildPathParameter(syntax, uri, "resourceName", null, true, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

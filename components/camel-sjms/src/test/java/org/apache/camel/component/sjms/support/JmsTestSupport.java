@@ -52,11 +52,14 @@ public class JmsTestSupport extends CamelTestSupport {
 
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
+    protected boolean addSjmsComponent = true;
+
     @Produce
     protected ProducerTemplate template;
     protected String brokerUri;
     protected boolean externalAmq;
     protected Properties properties;
+    protected ActiveMQConnectionFactory connectionFactory;
 
     private BrokerService broker;
     private Connection connection;
@@ -65,10 +68,6 @@ public class JmsTestSupport extends CamelTestSupport {
 
     /**
      * Set up the Broker
-     *
-     * @see              org.apache.camel.test.junit5.CamelTestSupport#doPreSetup()
-     *
-     * @throws Exception
      */
     @Override
     protected void doPreSetup() throws Exception {
@@ -98,8 +97,13 @@ public class JmsTestSupport extends CamelTestSupport {
         }
     }
 
+    @Override
+    protected boolean useJmx() {
+        return false;
+    }
+
     protected void configureBroker(BrokerService broker) throws Exception {
-        broker.setUseJmx(true);
+        broker.setUseJmx(false);
         broker.setPersistent(false);
         broker.deleteAllMessages();
         broker.addConnector(brokerUri);
@@ -142,23 +146,19 @@ public class JmsTestSupport extends CamelTestSupport {
         }
     }
 
-    /*
-     * @see org.apache.camel.test.junit5.CamelTestSupport#createCamelContext()
-     * @return
-     * @throws Exception
-     */
     @Override
     protected CamelContext createCamelContext() throws Exception {
         CamelContext camelContext = super.createCamelContext();
-        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(brokerUri);
+        connectionFactory = new ActiveMQConnectionFactory(brokerUri);
         setupFactoryExternal(connectionFactory);
         connection = connectionFactory.createConnection();
         connection.start();
         session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-        SjmsComponent component = new SjmsComponent();
-        component.setConnectionCount(1);
-        component.setConnectionFactory(connectionFactory);
-        camelContext.addComponent("sjms", component);
+        if (addSjmsComponent) {
+            SjmsComponent component = new SjmsComponent();
+            component.setConnectionFactory(connectionFactory);
+            camelContext.addComponent("sjms", component);
+        }
         return camelContext;
     }
 

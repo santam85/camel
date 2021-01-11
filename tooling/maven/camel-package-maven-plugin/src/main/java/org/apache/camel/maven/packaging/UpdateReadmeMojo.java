@@ -204,17 +204,21 @@ public class UpdateReadmeMojo extends AbstractGeneratorMojo {
 
                     if (updated || exists) {
                         try {
-                            Path root = findCamelDirectory(project.getBasedir(), "core/camel-core").toPath().getParent()
-                                    .getParent();
-                            String text = PackageHelper.loadText(file);
-                            updateResource(
-                                    root.resolve("catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/docs"),
-                                    file.getName(), text);
-                            String rep = "$1\n"
-                                         + "//THIS FILE IS COPIED: EDIT THE SOURCE FILE:\n"
-                                         + ":page-source: " + root.relativize(file.toPath());
-                            text = Pattern.compile("^(= .+)$", Pattern.MULTILINE).matcher(text).replaceAll(rep);
-                            updateResource(root.resolve("docs/components/modules/ROOT/pages"), file.getName(), text);
+                            // if we run in camel-core project then add additional meta-data
+                            File rootFile = findCamelDirectory(project.getBasedir(), "core/camel-core");
+                            if (rootFile != null) {
+                                Path root = rootFile.toPath().getParent().getParent();
+                                String text = PackageHelper.loadText(file);
+                                updateResource(
+                                        root.resolve(
+                                                "catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/docs"),
+                                        file.getName(), text);
+                                String rep = "$1\n"
+                                             + "//THIS FILE IS COPIED: EDIT THE SOURCE FILE:\n"
+                                             + ":page-source: " + root.relativize(file.toPath());
+                                text = Pattern.compile("^(= .+)$", Pattern.MULTILINE).matcher(text).replaceAll(rep);
+                                updateResource(root.resolve("docs/components/modules/ROOT/pages"), file.getName(), text);
+                            }
                         } catch (IOException e) {
                             throw new MojoExecutionException("Error reading file " + file + " Reason: " + e, e);
                         }
@@ -263,17 +267,21 @@ public class UpdateReadmeMojo extends AbstractGeneratorMojo {
 
                     if (updated || exists) {
                         try {
-                            Path root = findCamelDirectory(project.getBasedir(), "core/camel-core").toPath().getParent()
-                                    .getParent();
-                            String text = PackageHelper.loadText(file);
-                            updateResource(
-                                    root.resolve("catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/docs"),
-                                    file.getName(), text);
-                            String rep = "$1\n"
-                                         + "//THIS FILE IS COPIED: EDIT THE SOURCE FILE:\n"
-                                         + ":page-source: " + root.relativize(file.toPath());
-                            text = Pattern.compile("^(= .+)$", Pattern.MULTILINE).matcher(text).replaceAll(rep);
-                            updateResource(root.resolve("docs/components/modules/others/pages"), file.getName(), text);
+                            // if we run in camel-core project then add additional meta-data
+                            File rootFile = findCamelDirectory(project.getBasedir(), "core/camel-core");
+                            if (rootFile != null) {
+                                Path root = rootFile.toPath().getParent().getParent();
+                                String text = PackageHelper.loadText(file);
+                                updateResource(
+                                        root.resolve(
+                                                "catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/docs"),
+                                        file.getName(), text);
+                                String rep = "$1\n"
+                                             + "//THIS FILE IS COPIED: EDIT THE SOURCE FILE:\n"
+                                             + ":page-source: " + root.relativize(file.toPath());
+                                text = Pattern.compile("^(= .+)$", Pattern.MULTILINE).matcher(text).replaceAll(rep);
+                                updateResource(root.resolve("docs/components/modules/others/pages"), file.getName(), text);
+                            }
                         } catch (IOException e) {
                             throw new MojoExecutionException("Error reading file " + file + " Reason: " + e, e);
                         }
@@ -334,17 +342,21 @@ public class UpdateReadmeMojo extends AbstractGeneratorMojo {
 
                     if (updated || exists) {
                         try {
-                            Path root = findCamelDirectory(project.getBasedir(), "core/camel-core").toPath().getParent()
-                                    .getParent();
-                            String text = PackageHelper.loadText(file);
-                            updateResource(
-                                    root.resolve("catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/docs"),
-                                    file.getName(), text);
-                            String rep = "$1\n"
-                                         + "//THIS FILE IS COPIED: EDIT THE SOURCE FILE:\n"
-                                         + ":page-source: " + root.relativize(file.toPath());
-                            text = Pattern.compile("^(= .+)$", Pattern.MULTILINE).matcher(text).replaceAll(rep);
-                            updateResource(root.resolve("docs/components/modules/dataformats/pages"), file.getName(), text);
+                            // if we run in camel-core project then add additional meta-data
+                            File rootFile = findCamelDirectory(project.getBasedir(), "core/camel-core");
+                            if (rootFile != null) {
+                                Path root = rootFile.toPath().getParent().getParent();
+                                String text = PackageHelper.loadText(file);
+                                updateResource(
+                                        root.resolve(
+                                                "catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/docs"),
+                                        file.getName(), text);
+                                String rep = "$1\n"
+                                             + "//THIS FILE IS COPIED: EDIT THE SOURCE FILE:\n"
+                                             + ":page-source: " + root.relativize(file.toPath());
+                                text = Pattern.compile("^(= .+)$", Pattern.MULTILINE).matcher(text).replaceAll(rep);
+                                updateResource(root.resolve("docs/components/modules/dataformats/pages"), file.getName(), text);
+                            }
                         } catch (IOException e) {
                             throw new MojoExecutionException("Error reading file " + file + " Reason: " + e, e);
                         }
@@ -389,6 +401,10 @@ public class UpdateReadmeMojo extends AbstractGeneratorMojo {
                     // skip option named id
                     model.getOptions().removeIf(
                             opt -> Objects.equals(opt.getName(), "id") || Objects.equals(opt.getName(), "expression"));
+                    // enhanced for autowired
+                    model.getOptions().stream().filter(BaseOptionModel::isAutowired).forEach(option -> {
+                        option.setDescription("*Autowired* " + option.getDescription());
+                    });
                     // enhance description for deprecated options
                     model.getOptions().stream().filter(BaseOptionModel::isDeprecated).forEach(option -> {
                         String desc = "*Deprecated* " + option.getDescription();
@@ -421,17 +437,21 @@ public class UpdateReadmeMojo extends AbstractGeneratorMojo {
 
                     if (updated || exists) {
                         try {
-                            Path root = findCamelDirectory(project.getBasedir(), "core/camel-core").toPath().getParent()
-                                    .getParent();
-                            String text = PackageHelper.loadText(file);
-                            updateResource(
-                                    root.resolve("catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/docs"),
-                                    file.getName(), text);
-                            String rep = "$1\n"
-                                         + "//THIS FILE IS COPIED: EDIT THE SOURCE FILE:\n"
-                                         + ":page-source: " + root.relativize(file.toPath());
-                            text = Pattern.compile("^(= .+)$", Pattern.MULTILINE).matcher(text).replaceAll(rep);
-                            updateResource(root.resolve("docs/components/modules/languages/pages"), file.getName(), text);
+                            // if we run in camel-core project then add additional meta-data
+                            File rootFile = findCamelDirectory(project.getBasedir(), "core/camel-core");
+                            if (rootFile != null) {
+                                Path root = rootFile.toPath().getParent().getParent();
+                                String text = PackageHelper.loadText(file);
+                                updateResource(
+                                        root.resolve(
+                                                "catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/docs"),
+                                        file.getName(), text);
+                                String rep = "$1\n"
+                                             + "//THIS FILE IS COPIED: EDIT THE SOURCE FILE:\n"
+                                             + ":page-source: " + root.relativize(file.toPath());
+                                text = Pattern.compile("^(= .+)$", Pattern.MULTILINE).matcher(text).replaceAll(rep);
+                                updateResource(root.resolve("docs/components/modules/languages/pages"), file.getName(), text);
+                            }
                         } catch (IOException e) {
                             throw new MojoExecutionException("Error reading file " + file + " Reason: " + e, e);
                         }
@@ -442,9 +462,9 @@ public class UpdateReadmeMojo extends AbstractGeneratorMojo {
     }
 
     private void executeEips() throws MojoExecutionException {
-        // only run if in camel-core-engine
+        // only run if in camel-core-model
         String currentDir = Paths.get(".").normalize().toAbsolutePath().toString();
-        if (!currentDir.endsWith("camel-core-engine")) {
+        if (!currentDir.endsWith("camel-core-model")) {
             return;
         }
 
@@ -457,7 +477,7 @@ public class UpdateReadmeMojo extends AbstractGeneratorMojo {
             PackageHelper.findJsonFiles(target, jsonFiles);
         }
 
-        // only if there is dataformat we should update the documentation files
+        // only if there is EIP we should update the documentation files
         if (!jsonFiles.isEmpty()) {
             getLog().debug("Found " + jsonFiles.size() + " eips");
             for (File jsonFile : jsonFiles) {
@@ -469,6 +489,11 @@ public class UpdateReadmeMojo extends AbstractGeneratorMojo {
                             .removeIf(option -> "id".equals(option.getName()) || "description".equals(option.getName())
                                     || "expression".equals(option.getName())
                                     || "outputs".equals(option.getName()));
+                    // lets put autowired in the description
+                    model.getOptions().stream().filter(EipOptionModel::isAutowired).forEach(option -> {
+                        String desc = "*Autowired* " + option.getDescription();
+                        option.setDescription(desc);
+                    });
                     // lets put required in the description
                     model.getOptions().stream().filter(EipOptionModel::isRequired).forEach(option -> {
                         String desc = "*Required* " + option.getDescription();
@@ -516,12 +541,16 @@ public class UpdateReadmeMojo extends AbstractGeneratorMojo {
 
                     if (updated || exists) {
                         try {
-                            Path root = findCamelDirectory(project.getBasedir(), "core/camel-core").toPath().getParent()
-                                    .getParent();
-                            String text = PackageHelper.loadText(file);
-                            updateResource(
-                                    root.resolve("catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/docs"),
-                                    file.getName(), text);
+                            // if we run in camel-core project then add additional meta-data
+                            File rootFile = findCamelDirectory(project.getBasedir(), "core/camel-core");
+                            if (rootFile != null) {
+                                Path root = rootFile.toPath().getParent().getParent();
+                                String text = PackageHelper.loadText(file);
+                                updateResource(
+                                        root.resolve(
+                                                "catalog/camel-catalog/src/generated/resources/org/apache/camel/catalog/docs"),
+                                        file.getName(), text);
+                            }
                         } catch (IOException e) {
                             throw new MojoExecutionException("Error reading file " + file + " Reason: " + e, e);
                         }
@@ -626,7 +655,9 @@ public class UpdateReadmeMojo extends AbstractGeneratorMojo {
                 }
             }
 
-            newLines.add("include::{cq-version}@camel-quarkus:ROOT:partial$reference/" + kind + "s/" + name + ".adoc[]");
+            newLines.add(
+                    "include::{cq-version}@camel-quarkus:ROOT:partial$reference/" + kind + "s/" + name
+                         + ".adoc[opts=optional]");
 
             if (!manualAttributes.isEmpty()) {
                 newLines.add("//Manually maintained attributes");
@@ -812,6 +843,11 @@ public class UpdateReadmeMojo extends AbstractGeneratorMojo {
     private ComponentModel generateComponentModel(String json) {
         ComponentModel component = JsonMapper.generateComponentModel(json);
         Stream.concat(component.getComponentOptions().stream(), component.getEndpointOptions().stream())
+                .filter(BaseOptionModel::isAutowired).forEach(option -> {
+                    String desc = "*Autowired* " + option.getDescription();
+                    option.setDescription(desc);
+                });
+        Stream.concat(component.getComponentOptions().stream(), component.getEndpointOptions().stream())
                 .filter(BaseOptionModel::isRequired).forEach(option -> {
                     String desc = "*Required* " + option.getDescription();
                     option.setDescription(desc);
@@ -849,6 +885,10 @@ public class UpdateReadmeMojo extends AbstractGeneratorMojo {
         DataFormatModel model = JsonMapper.generateDataFormatModel(json);
         // skip option named id
         model.getOptions().removeIf(opt -> Objects.equals(opt.getName(), "id"));
+        model.getOptions().stream().filter(BaseOptionModel::isAutowired).forEach(option -> {
+            String desc = "*Autowired* " + option.getDescription();
+            option.setDescription(desc);
+        });
         // enhance description for deprecated options
         model.getOptions().stream().filter(BaseOptionModel::isDeprecated).forEach(option -> {
             String desc = "*Deprecated* " + option.getDescription();

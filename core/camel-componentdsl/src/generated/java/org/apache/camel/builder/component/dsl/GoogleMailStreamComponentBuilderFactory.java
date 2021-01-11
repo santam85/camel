@@ -37,6 +37,8 @@ public interface GoogleMailStreamComponentBuilderFactory {
      * Category: cloud,api,mail
      * Since: 2.22
      * Maven coordinates: org.apache.camel:camel-google-mail
+     * 
+     * @return the dsl builder
      */
     static GoogleMailStreamComponentBuilder googleMailStream() {
         return new GoogleMailStreamComponentBuilderImpl();
@@ -51,9 +53,12 @@ public interface GoogleMailStreamComponentBuilderFactory {
         /**
          * Google mail application name. Example would be camel-google-mail/1.0.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param applicationName the value to set
+         * @return the dsl builder
          */
         default GoogleMailStreamComponentBuilder applicationName(
                 java.lang.String applicationName) {
@@ -69,10 +74,13 @@ public interface GoogleMailStreamComponentBuilderFactory {
          * with exceptions, that will be logged at WARN or ERROR level and
          * ignored.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param bridgeErrorHandler the value to set
+         * @return the dsl builder
          */
         default GoogleMailStreamComponentBuilder bridgeErrorHandler(
                 boolean bridgeErrorHandler) {
@@ -82,9 +90,12 @@ public interface GoogleMailStreamComponentBuilderFactory {
         /**
          * Client ID of the mail application.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param clientId the value to set
+         * @return the dsl builder
          */
         default GoogleMailStreamComponentBuilder clientId(
                 java.lang.String clientId) {
@@ -94,9 +105,12 @@ public interface GoogleMailStreamComponentBuilderFactory {
         /**
          * Comma separated list of labels to take into account.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param labels the value to set
+         * @return the dsl builder
          */
         default GoogleMailStreamComponentBuilder labels(java.lang.String labels) {
             doSetProperty("labels", labels);
@@ -105,10 +119,13 @@ public interface GoogleMailStreamComponentBuilderFactory {
         /**
          * Mark the message as read once it has been consumed.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param markAsRead the value to set
+         * @return the dsl builder
          */
         default GoogleMailStreamComponentBuilder markAsRead(boolean markAsRead) {
             doSetProperty("markAsRead", markAsRead);
@@ -117,10 +134,13 @@ public interface GoogleMailStreamComponentBuilderFactory {
         /**
          * Max results to be returned.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 10
          * Group: consumer
+         * 
+         * @param maxResults the value to set
+         * @return the dsl builder
          */
         default GoogleMailStreamComponentBuilder maxResults(long maxResults) {
             doSetProperty("maxResults", maxResults);
@@ -129,37 +149,49 @@ public interface GoogleMailStreamComponentBuilderFactory {
         /**
          * The query to execute on gmail box.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: is:unread
          * Group: consumer
+         * 
+         * @param query the value to set
+         * @return the dsl builder
          */
         default GoogleMailStreamComponentBuilder query(java.lang.String query) {
             doSetProperty("query", query);
             return this;
         }
         /**
-         * Whether the component should use basic property binding (Camel 2.x)
-         * or the newer property binding with additional capabilities.
+         * Whether autowiring is enabled. This is used for automatic autowiring
+         * options (the option must be marked as autowired) by looking up in the
+         * registry to find if there is a single instance of matching type,
+         * which then gets configured on the component. This can be used for
+         * automatic configuring JDBC data sources, JMS connection factories,
+         * AWS Clients, etc.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
-         * Default: false
+         * Default: true
          * Group: advanced
+         * 
+         * @param autowiredEnabled the value to set
+         * @return the dsl builder
          */
-        @Deprecated
-        default GoogleMailStreamComponentBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
+        default GoogleMailStreamComponentBuilder autowiredEnabled(
+                boolean autowiredEnabled) {
+            doSetProperty("autowiredEnabled", autowiredEnabled);
             return this;
         }
         /**
          * The client Factory.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.google.mail.GoogleMailClientFactory</code> type.
+         * &lt;code&gt;org.apache.camel.component.google.mail.GoogleMailClientFactory&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param clientFactory the value to set
+         * @return the dsl builder
          */
         default GoogleMailStreamComponentBuilder clientFactory(
                 org.apache.camel.component.google.mail.GoogleMailClientFactory clientFactory) {
@@ -170,9 +202,12 @@ public interface GoogleMailStreamComponentBuilderFactory {
          * The configuration.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.google.mail.stream.GoogleMailStreamConfiguration</code> type.
+         * &lt;code&gt;org.apache.camel.component.google.mail.stream.GoogleMailStreamConfiguration&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param configuration the value to set
+         * @return the dsl builder
          */
         default GoogleMailStreamComponentBuilder configuration(
                 org.apache.camel.component.google.mail.stream.GoogleMailStreamConfiguration configuration) {
@@ -183,9 +218,12 @@ public interface GoogleMailStreamComponentBuilderFactory {
          * OAuth 2 access token. This typically expires after an hour so
          * refreshToken is recommended for long term usage.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param accessToken the value to set
+         * @return the dsl builder
          */
         default GoogleMailStreamComponentBuilder accessToken(
                 java.lang.String accessToken) {
@@ -195,9 +233,12 @@ public interface GoogleMailStreamComponentBuilderFactory {
         /**
          * Client secret of the mail application.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param clientSecret the value to set
+         * @return the dsl builder
          */
         default GoogleMailStreamComponentBuilder clientSecret(
                 java.lang.String clientSecret) {
@@ -209,9 +250,12 @@ public interface GoogleMailStreamComponentBuilderFactory {
          * obtain a new accessToken whenever the current one expires - a
          * necessity if the application is long-lived.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param refreshToken the value to set
+         * @return the dsl builder
          */
         default GoogleMailStreamComponentBuilder refreshToken(
                 java.lang.String refreshToken) {
@@ -249,7 +293,7 @@ public interface GoogleMailStreamComponentBuilderFactory {
             case "markAsRead": getOrCreateConfiguration((GoogleMailStreamComponent) component).setMarkAsRead((boolean) value); return true;
             case "maxResults": getOrCreateConfiguration((GoogleMailStreamComponent) component).setMaxResults((long) value); return true;
             case "query": getOrCreateConfiguration((GoogleMailStreamComponent) component).setQuery((java.lang.String) value); return true;
-            case "basicPropertyBinding": ((GoogleMailStreamComponent) component).setBasicPropertyBinding((boolean) value); return true;
+            case "autowiredEnabled": ((GoogleMailStreamComponent) component).setAutowiredEnabled((boolean) value); return true;
             case "clientFactory": ((GoogleMailStreamComponent) component).setClientFactory((org.apache.camel.component.google.mail.GoogleMailClientFactory) value); return true;
             case "configuration": ((GoogleMailStreamComponent) component).setConfiguration((org.apache.camel.component.google.mail.stream.GoogleMailStreamConfiguration) value); return true;
             case "accessToken": getOrCreateConfiguration((GoogleMailStreamComponent) component).setAccessToken((java.lang.String) value); return true;

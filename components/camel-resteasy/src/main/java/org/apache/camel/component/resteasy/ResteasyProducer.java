@@ -174,7 +174,7 @@ public class ResteasyProducer extends DefaultProducer {
             ResteasyEndpoint resteasyEndpoint, Map<String, String> parameters,
             WebTarget resteasyWebTarget) {
         if (resteasyEndpoint.getBasicAuth() != null && Boolean.TRUE.equals(resteasyEndpoint.getBasicAuth())) {
-            if (parameters.get(RESTEASY_USERNAME_OPTION) != null && parameters.get(RESTEASY_USERNAME_OPTION) != null) {
+            if (parameters.get(RESTEASY_USERNAME_OPTION) != null) {
                 resteasyWebTarget.register(new BasicAuthentication(
                         parameters.get(RESTEASY_USERNAME_OPTION), parameters.get(RESTEASY_USERNAME_OPTION)));
                 if (LOG.isTraceEnabled()) {
@@ -329,9 +329,9 @@ public class ResteasyProducer extends DefaultProducer {
         headers.put(ResteasyConstants.RESTEASY_RESPONSE, response);
         exchange.getMessage().setHeaders(headers);
 
-        LOG.debug("Headers from exchange.getIn() : {}", exchange.getIn().getHeaders().toString());
-        LOG.debug("Headers from exchange.getOut() before copying : {}", exchange.getMessage().getHeaders().toString());
-        LOG.debug("Header from response : {}", response.getHeaders().toString());
+        LOG.debug("Headers from exchange.getIn() : {}", exchange.getIn().getHeaders());
+        LOG.debug("Headers from exchange.getOut() before copying : {}", exchange.getMessage().getHeaders());
+        LOG.debug("Header from response : {}", response.getHeaders());
 
         if (response.hasEntity()) {
             exchange.getMessage().setBody(response.readEntity(String.class));

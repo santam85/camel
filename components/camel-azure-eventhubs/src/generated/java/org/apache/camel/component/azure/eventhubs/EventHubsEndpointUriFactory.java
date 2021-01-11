@@ -2,6 +2,7 @@
 package org.apache.camel.component.azure.eventhubs;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,34 +18,40 @@ public class EventHubsEndpointUriFactory extends org.apache.camel.support.compon
     private static final String BASE = ":namespace/eventHubName";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(25);
-        set.add("namespace");
-        set.add("eventHubName");
-        set.add("amqpRetryOptions");
-        set.add("amqpTransportType");
-        set.add("autoDiscoverClient");
-        set.add("blobAccessKey");
-        set.add("blobAccountName");
-        set.add("blobContainerName");
-        set.add("blobStorageSharedKeyCredential");
-        set.add("bridgeErrorHandler");
-        set.add("checkpointStore");
-        set.add("consumerGroupName");
-        set.add("eventPosition");
-        set.add("prefetchCount");
-        set.add("exceptionHandler");
-        set.add("exchangePattern");
-        set.add("lazyStartProducer");
-        set.add("partitionId");
-        set.add("partitionKey");
-        set.add("producerAsyncClient");
-        set.add("basicPropertyBinding");
-        set.add("synchronous");
-        set.add("connectionString");
-        set.add("sharedAccessKey");
-        set.add("sharedAccessName");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(24);
+        props.add("blobStorageSharedKeyCredential");
+        props.add("connectionString");
+        props.add("autoDiscoverClient");
+        props.add("prefetchCount");
+        props.add("sharedAccessKey");
+        props.add("sharedAccessName");
+        props.add("partitionId");
+        props.add("checkpointStore");
+        props.add("synchronous");
+        props.add("exchangePattern");
+        props.add("amqpTransportType");
+        props.add("consumerGroupName");
+        props.add("eventPosition");
+        props.add("lazyStartProducer");
+        props.add("blobAccountName");
+        props.add("bridgeErrorHandler");
+        props.add("producerAsyncClient");
+        props.add("partitionKey");
+        props.add("namespace");
+        props.add("amqpRetryOptions");
+        props.add("blobContainerName");
+        props.add("eventHubName");
+        props.add("exceptionHandler");
+        props.add("blobAccessKey");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        Set<String> secretProps = new HashSet<>(4);
+        secretProps.add("blobStorageSharedKeyCredential");
+        secretProps.add("connectionString");
+        secretProps.add("sharedAccessKey");
+        secretProps.add("blobAccessKey");
+        SECRET_PROPERTY_NAMES = Collections.unmodifiableSet(secretProps);
     }
 
     @Override
@@ -53,7 +60,7 @@ public class EventHubsEndpointUriFactory extends org.apache.camel.support.compon
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
@@ -61,13 +68,18 @@ public class EventHubsEndpointUriFactory extends org.apache.camel.support.compon
 
         uri = buildPathParameter(syntax, uri, "namespace", null, false, copy);
         uri = buildPathParameter(syntax, uri, "eventHubName", null, false, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

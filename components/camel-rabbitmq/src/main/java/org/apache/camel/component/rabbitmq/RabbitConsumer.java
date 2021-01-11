@@ -21,6 +21,7 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeoutException;
 
 import com.rabbitmq.client.AMQP;
+import com.rabbitmq.client.AlreadyClosedException;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Consumer;
@@ -41,7 +42,6 @@ class RabbitConsumer extends ServiceSupport implements com.rabbitmq.client.Consu
     private final RabbitMQConsumer consumer;
     private Channel channel;
     private String tag;
-    /** Consumer tag for this consumer. */
     private volatile String consumerTag;
     private volatile boolean stopping;
 
@@ -127,6 +127,23 @@ class RabbitConsumer extends ServiceSupport implements com.rabbitmq.client.Consu
             if (sendReply && exchange.getPattern().isOutCapable()) {
                 try {
                     consumer.getEndpoint().publishExchangeToChannel(exchange, channel, properties.getReplyTo());
+                } catch (AlreadyClosedException alreadyClosedException) {
+                    LOG.warn(
+                            "Connection or channel closed during reply to exchange {} for correlationId {}. Will reconnect and try again.",
+                            exchange.getExchangeId(), properties.getCorrelationId());
+                    // RPC call could not be responded because channel (or connection has been closed during the processing ...
+                    // will try to reconnect
+                    try {
+                        reconnect();
+                        LOG.debug("Sending again the reply to exchange {} for correlationId {}", exchange.getExchangeId(),
+                                properties.getCorrelationId());
+                        consumer.getEndpoint().publishExchangeToChannel(exchange, channel, properties.getReplyTo());
+                    } catch (Exception e) {
+                        LOG.error("Couldn't sending again the reply to exchange {} for correlationId {}",
+                                exchange.getExchangeId(), properties.getCorrelationId());
+                        exchange.setException(e);
+                        consumer.getExceptionHandler().handleException("Error processing exchange", exchange, e);
+                    }
                 } catch (RuntimeCamelException e) {
                     // set the exception on the exchange so it can send the
                     // exception back to the producer
@@ -159,9 +176,11 @@ class RabbitConsumer extends ServiceSupport implements com.rabbitmq.client.Consu
                     channel.basicAck(deliveryTag, false);
                 }
             } else {
-                boolean isRequeueHeaderSet = false;
+                boolean isRequeueHeaderSet = consumer.getEndpoint().isReQueue();
                 try {
-                    isRequeueHeaderSet = msg.getHeader(RabbitMQConstants.REQUEUE, false, boolean.class);
+                    isRequeueHeaderSet = msg.getHeader(RabbitMQConstants.REQUEUE, isRequeueHeaderSet, boolean.class);
+                    LOG.trace("Consumer requeue property is overridden using the message header requeue property as: {}",
+                            isRequeueHeaderSet);
                 } catch (Exception e) {
                     // ignore as its an invalid header
                 }
@@ -326,9 +345,13 @@ class RabbitConsumer extends ServiceSupport implements com.rabbitmq.client.Consu
         } else if (channel == null || !isAutomaticRecoveryEnabled()) {
             LOG.info("Attempting to open a new rabbitMQ channel");
             Connection conn = consumer.getConnection();
-            channel = openChannel(conn);
-            // Register the channel to the tag
-            start();
+            try {
+                stop();
+            } finally {
+                channel = openChannel(conn);
+                // Register the channel to the tag
+                start();
+            }
         }
     }
 

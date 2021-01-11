@@ -18,7 +18,7 @@
  */
 
 def AGENT_LABEL = env.AGENT_LABEL ?: 'ubuntu'
-def JDK_NAME = env.JDK_NAME ?: 'JDK 1.8 (latest)'
+def JDK_NAME = env.JDK_NAME ?: 'jdk_1.8_latest'
 
 def MAVEN_PARAMS = "-U -B -e -fae -V -Dnoassembly -Dmaven.compiler.fork=true -Dsurefire.rerunFailingTestsCount=2"
 
@@ -43,7 +43,20 @@ pipeline {
         disableConcurrentBuilds()
     }
 
+    parameters {
+        booleanParam(name: 'CLEAN', defaultValue: true, description: 'Perform the build in clean workspace')
+    }
+
     stages {
+
+        stage('Clean workspace') {
+             when {
+                 expression { params.CLEAN }
+             }
+             steps {
+                 sh 'git clean -fdx'
+           }
+        }
 
         stage('Build & Deploy') {
             when {
@@ -61,7 +74,7 @@ pipeline {
             }
 
             steps {
-                build job: 'Camel.website/master', wait: false
+                build job: 'Camel/Camel.website/master', wait: false
             }
         }
 

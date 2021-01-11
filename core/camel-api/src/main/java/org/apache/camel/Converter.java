@@ -70,4 +70,20 @@ public @interface Converter {
      */
     boolean generateLoader() default false;
 
+    /**
+     * Whether to let the Camel compiler plugin to generate java source code for fast loading of the type converters,
+     * bulked together into a single class for optimal performance.
+     * <p/>
+     * This can be done for almost all regular type converters, and not for fallback converters.
+     * <p/>
+     * Important this configuration must be set on the class-level, not on the method.
+     */
+    boolean generateBulkLoader() default false;
+
+    /**
+     * To be used for ordering converter methods when source code generating bulk loaders. The order is lowest to
+     * highest, eg 1, 2, 3.
+     */
+    int order() default 0;
+
 }

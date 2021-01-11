@@ -17,17 +17,23 @@
 package org.apache.camel.component.aws2.s3;
 
 import org.apache.camel.RuntimeCamelException;
+import org.apache.camel.spi.Metadata;
 import org.apache.camel.spi.UriParam;
 import org.apache.camel.spi.UriParams;
 import software.amazon.awssdk.core.Protocol;
 import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.presigner.S3Presigner;
 
 @UriParams
 public class AWS2S3Configuration implements Cloneable {
 
     private String bucketName;
     @UriParam
+    @Metadata(autowired = true)
     private S3Client amazonS3Client;
+    @UriParam
+    @Metadata(autowired = true)
+    private S3Presigner amazonS3Presigner;
     @UriParam(label = "security", secret = true)
     private String accessKey;
     @UriParam(label = "security", secret = true)
@@ -91,7 +97,7 @@ public class AWS2S3Configuration implements Cloneable {
     @UriParam(label = "common,advanced")
     private String customerAlgorithm;
     @UriParam(defaultValue = "false")
-    private boolean useIAMCredentials;
+    private boolean useDefaultCredentialsProvider;
     @UriParam(label = "producer")
     private String keyName;
     @UriParam(defaultValue = "false")
@@ -102,8 +108,6 @@ public class AWS2S3Configuration implements Cloneable {
     private String uriEndpointOverride;
     @UriParam(defaultValue = "false")
     private boolean pojoRequest;
-    @UriParam(label = "common", defaultValue = "true")
-    private boolean autoDiscoverClient = true;
 
     public long getPartSize() {
         return partSize;
@@ -232,10 +236,12 @@ public class AWS2S3Configuration implements Cloneable {
     }
 
     /**
-     * If it is true, the exchange body will be set to a stream to the contents of the file. If false, the headers will
-     * be set with the S3 object metadata, but the body will be null. This option is strongly related to autocloseBody
-     * option. In case of setting includeBody to true and autocloseBody to false, it will be up to the caller to close
-     * the S3Object stream. Setting autocloseBody to true, will close the S3Object stream automatically.
+     * If it is true, the S3Object exchange will be consumed and put into the body and closed. If false the S3Object
+     * stream will be put raw into the body and the headers will be set with the S3 object metadata. This option is
+     * strongly related to autocloseBody option. In case of setting includeBody to true because the S3Object stream will
+     * be consumed then it will also be closed in case of includeBody false then it will be up to the caller to close
+     * the S3Object stream. However setting autocloseBody to true when includeBody is false it will schedule to close
+     * the S3Object stream automatically on exchange completion.
      */
     public void setIncludeBody(boolean includeBody) {
         this.includeBody = includeBody;
@@ -390,8 +396,8 @@ public class AWS2S3Configuration implements Cloneable {
     }
 
     /**
-     * If this option is true and includeBody is true, then the S3Object.close() method will be called on exchange
-     * completion. This option is strongly related to includeBody option. In case of setting includeBody to true and
+     * If this option is true and includeBody is false, then the S3Object.close() method will be called on exchange
+     * completion. This option is strongly related to includeBody option. In case of setting includeBody to false and
      * autocloseBody to false, it will be up to the caller to close the S3Object stream. Setting autocloseBody to true,
      * will close the S3Object stream automatically.
      */
@@ -466,15 +472,15 @@ public class AWS2S3Configuration implements Cloneable {
     }
 
     /**
-     * Set whether the S3 client should expect to load credentials on an EC2 instance or to expect static credentials to
-     * be passed in.
+     * Set whether the S3 client should expect to load credentials through a default credentials provider or to expect
+     * static credentials to be passed in.
      */
-    public void setUseIAMCredentials(Boolean useIAMCredentials) {
-        this.useIAMCredentials = useIAMCredentials;
+    public void setUseDefaultCredentialsProvider(Boolean useDefaultCredentialsProvider) {
+        this.useDefaultCredentialsProvider = useDefaultCredentialsProvider;
     }
 
-    public Boolean isUseIAMCredentials() {
-        return useIAMCredentials;
+    public Boolean isUseDefaultCredentialsProvider() {
+        return useDefaultCredentialsProvider;
     }
 
     public boolean isAutoCreateBucket() {
@@ -545,16 +551,15 @@ public class AWS2S3Configuration implements Cloneable {
         this.trustAllCertificates = trustAllCertificates;
     }
 
-    public boolean isAutoDiscoverClient() {
-        return autoDiscoverClient;
+    public S3Presigner getAmazonS3Presigner() {
+        return amazonS3Presigner;
     }
 
     /**
-     * Setting the autoDiscoverClient mechanism, if true, the component will look for a client instance in the registry
-     * automatically otherwise it will skip that checking.
+     * An S3 Presigner for Request, used mainly in createDownloadLink operation
      */
-    public void setAutoDiscoverClient(boolean autoDiscoverClient) {
-        this.autoDiscoverClient = autoDiscoverClient;
+    public void setAmazonS3Presigner(S3Presigner amazonS3Presigner) {
+        this.amazonS3Presigner = amazonS3Presigner;
     }
 
     public AWS2S3Configuration copy() {

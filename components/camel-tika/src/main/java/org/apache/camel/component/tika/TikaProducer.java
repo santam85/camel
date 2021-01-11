@@ -90,29 +90,33 @@ public class TikaProducer extends DefaultProducer {
                 throw new IllegalArgumentException(String.format("Unknown operation %s", tikaConfiguration.getOperation()));
         }
         // propagate headers
-        exchange.getOut().setHeaders(exchange.getIn().getHeaders());
+        exchange.getMessage().setHeaders(exchange.getIn().getHeaders());
         // and set result
-        exchange.getOut().setBody(result);
+        exchange.getMessage().setBody(result);
     }
 
     private Object doDetect(Exchange exchange) throws IOException {
-        InputStream inputStream = exchange.getIn().getBody(InputStream.class);
-        Metadata metadata = new Metadata();
-        MediaType result = this.detector.detect(inputStream, metadata);
-        convertMetadataToHeaders(metadata, exchange);
+        MediaType result;
+        try (InputStream inputStream = exchange.getIn().getBody(InputStream.class)) {
+            Metadata metadata = new Metadata();
+            result = this.detector.detect(inputStream, metadata);
+            convertMetadataToHeaders(metadata, exchange);
+        }
         return result.toString();
     }
 
     private Object doParse(Exchange exchange)
             throws TikaException, IOException, SAXException, TransformerConfigurationException {
-        InputStream inputStream = exchange.getIn().getBody(InputStream.class);
+
         OutputStream result = new ByteArrayOutputStream();
-        ContentHandler contentHandler = getContentHandler(this.tikaConfiguration, result);
-        ParseContext context = new ParseContext();
-        context.set(Parser.class, this.parser);
-        Metadata metadata = new Metadata();
-        this.parser.parse(inputStream, contentHandler, metadata, context);
-        convertMetadataToHeaders(metadata, exchange);
+        try (InputStream inputStream = exchange.getIn().getBody(InputStream.class)) {
+            ContentHandler contentHandler = getContentHandler(this.tikaConfiguration, result);
+            ParseContext context = new ParseContext();
+            context.set(Parser.class, this.parser);
+            Metadata metadata = new Metadata();
+            this.parser.parse(inputStream, contentHandler, metadata, context);
+            convertMetadataToHeaders(metadata, exchange);
+        }
         return result;
     }
 

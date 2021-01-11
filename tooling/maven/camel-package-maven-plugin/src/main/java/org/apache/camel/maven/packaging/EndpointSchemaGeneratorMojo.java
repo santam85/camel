@@ -711,6 +711,7 @@ public class EndpointSchemaGeneratorMojo extends AbstractGeneratorMojo {
                 boolean required = metadata != null && metadata.required();
                 String label = metadata != null ? metadata.label() : null;
                 boolean secret = metadata != null && metadata.secret();
+                boolean autowired = metadata != null && metadata.autowired();
 
                 // we do not yet have default values / notes / as no annotation
                 // support yet
@@ -768,12 +769,31 @@ public class EndpointSchemaGeneratorMojo extends AbstractGeneratorMojo {
                     }
                 }
 
-                if (isNullOrEmpty(defaultValue) && "boolean".equals(fieldTypeName)) {
-                    defaultValue = false;
+                // generics for collection types
+                String nestedType = null;
+                String desc = fieldTypeName;
+                if (desc.contains("<") && desc.contains(">")) {
+                    desc = Strings.between(desc, "<", ">");
+                    // if it has additional nested types, then we only want the outer type
+                    int pos = desc.indexOf('<');
+                    if (pos != -1) {
+                        desc = desc.substring(0, pos);
+                    }
+                    // if its a map then it has a key/value, so we only want the last part
+                    pos = desc.indexOf(',');
+                    if (pos != -1) {
+                        desc = desc.substring(pos + 1);
+                    }
+                    desc = desc.replace('$', '.');
+                    desc = desc.trim();
+                    // skip if the type is generic or a wildcard
+                    if (!desc.isEmpty() && desc.indexOf('?') == -1 && !desc.contains(" extends ")) {
+                        nestedType = desc;
+                    }
                 }
-                if (isNullOrEmpty(defaultValue)) {
-                    defaultValue = "";
-                }
+
+                // prepare default value so its value is correct according to its type
+                defaultValue = getDefaultValue(defaultValue, fieldTypeName, isDuration);
 
                 String group = EndpointHelper.labelAsGroupName(label, componentModel.isConsumerOnly(),
                         componentModel.isProducerOnly());
@@ -812,9 +832,11 @@ public class EndpointSchemaGeneratorMojo extends AbstractGeneratorMojo {
                     option.setDeprecated(deprecated);
                     option.setDeprecationNote(deprecationNote);
                     option.setSecret(secret);
+                    option.setAutowired(autowired);
                     option.setGroup(group);
                     option.setLabel(label);
                     option.setEnums(enums);
+                    option.setNestedType(nestedType);
                     option.setConfigurationClass(nestedTypeName);
                     option.setConfigurationField(nestedFieldName);
                     componentModel.addComponentOption(option);
@@ -934,16 +956,38 @@ public class EndpointSchemaGeneratorMojo extends AbstractGeneratorMojo {
                             fieldTypeName = mjt;
                         }
                     }
-                    if (isNullOrEmpty(defaultValue) && "boolean".equals(fieldTypeName)) {
-                        defaultValue = false;
-                    }
-                    if (isNullOrEmpty(defaultValue)) {
-                        defaultValue = null;
-                    }
+
+                    // prepare default value so its value is correct according to its type
+                    defaultValue = getDefaultValue(defaultValue, fieldTypeName, isDuration);
 
                     boolean isSecret = secret != null && secret || path.secret();
+                    boolean isAutowired = metadata != null && metadata.autowired();
                     String group = EndpointHelper.labelAsGroupName(label, componentModel.isConsumerOnly(),
                             componentModel.isProducerOnly());
+
+                    // generics for collection types
+                    String nestedType = null;
+                    String desc = fieldTypeName;
+                    if (desc.contains("<") && desc.contains(">")) {
+                        desc = Strings.between(desc, "<", ">");
+                        // if it has additional nested types, then we only want the outer type
+                        int pos = desc.indexOf('<');
+                        if (pos != -1) {
+                            desc = desc.substring(0, pos);
+                        }
+                        // if its a map then it has a key/value, so we only want the last part
+                        pos = desc.indexOf(',');
+                        if (pos != -1) {
+                            desc = desc.substring(pos + 1);
+                        }
+                        desc = desc.replace('$', '.');
+                        desc = desc.trim();
+                        // skip if the type is generic or a wildcard
+                        if (!desc.isEmpty() && desc.indexOf('?') == -1 && !desc.contains(" extends ")) {
+                            nestedType = desc;
+                        }
+                    }
+
                     BaseOptionModel option;
                     if (componentOption) {
                         option = new ComponentOptionModel();
@@ -962,9 +1006,11 @@ public class EndpointSchemaGeneratorMojo extends AbstractGeneratorMojo {
                     option.setDeprecated(deprecated);
                     option.setDeprecationNote(deprecationNote);
                     option.setSecret(isSecret);
+                    option.setAutowired(isAutowired);
                     option.setGroup(group);
                     option.setLabel(label);
                     option.setEnums(enums);
+                    option.setNestedType(nestedType);
                     option.setConfigurationClass(nestedTypeName);
                     option.setConfigurationField(nestedFieldName);
                     if (componentModel.getEndpointOptions().stream().noneMatch(opt -> name.equals(opt.getName()))) {
@@ -1058,16 +1104,37 @@ public class EndpointSchemaGeneratorMojo extends AbstractGeneratorMojo {
                             }
                         }
 
-                        if (isNullOrEmpty(defaultValue) && "boolean".equals(fieldTypeName)) {
-                            defaultValue = false;
-                        }
-                        if (isNullOrEmpty(defaultValue)) {
-                            defaultValue = "";
-                        }
+                        // prepare default value so its value is correct according to its type
+                        defaultValue = getDefaultValue(defaultValue, fieldTypeName, isDuration);
 
                         boolean isSecret = secret != null && secret || param.secret();
+                        boolean isAutowired = metadata != null && metadata.autowired();
                         String group = EndpointHelper.labelAsGroupName(label, componentModel.isConsumerOnly(),
                                 componentModel.isProducerOnly());
+
+                        // generics for collection types
+                        String nestedType = null;
+                        String desc = fieldTypeName;
+                        if (desc.contains("<") && desc.contains(">")) {
+                            desc = Strings.between(desc, "<", ">");
+                            // if it has additional nested types, then we only want the outer type
+                            int pos = desc.indexOf('<');
+                            if (pos != -1) {
+                                desc = desc.substring(0, pos);
+                            }
+                            // if its a map then it has a key/value, so we only want the last part
+                            pos = desc.indexOf(',');
+                            if (pos != -1) {
+                                desc = desc.substring(pos + 1);
+                            }
+                            desc = desc.replace('$', '.');
+                            desc = desc.trim();
+                            // skip if the type is generic or a wildcard
+                            if (!desc.isEmpty() && desc.indexOf('?') == -1 && !desc.contains(" extends ")) {
+                                nestedType = desc;
+                            }
+                        }
+
                         BaseOptionModel option;
                         if (componentOption) {
                             option = new ComponentOptionModel();
@@ -1087,9 +1154,11 @@ public class EndpointSchemaGeneratorMojo extends AbstractGeneratorMojo {
                         option.setDeprecated(deprecated);
                         option.setDeprecationNote(deprecationNote);
                         option.setSecret(isSecret);
+                        option.setAutowired(isAutowired);
                         option.setGroup(group);
                         option.setLabel(label);
                         option.setEnums(enums);
+                        option.setNestedType(nestedType);
                         option.setConfigurationClass(nestedTypeName);
                         option.setConfigurationField(nestedFieldName);
                         option.setPrefix(paramPrefix);
@@ -1219,8 +1288,9 @@ public class EndpointSchemaGeneratorMojo extends AbstractGeneratorMojo {
             Collection<? extends BaseOptionModel> options, ComponentModel model) {
 
         try (Writer w = new StringWriter()) {
-            PropertyConfigurerGenerator.generatePropertyConfigurer(pn, cn, en, pfqn, psn, hasSuper, component, options, model,
-                    w);
+            boolean extended = model.isApi(); // if the component is api then the generated configurer should be an extended configurer
+            PropertyConfigurerGenerator.generatePropertyConfigurer(pn, cn, en, pfqn, psn, hasSuper, component, extended, false,
+                    options, model, w);
             updateResource(sourcesOutputDir.toPath(), fqn.replace('.', '/') + ".java", w.toString());
         } catch (Exception e) {
             throw new RuntimeException("Unable to generate source code file: " + fqn + ": " + e.getMessage(), e);
@@ -1513,6 +1583,53 @@ public class EndpointSchemaGeneratorMojo extends AbstractGeneratorMojo {
         }
 
         return null;
+    }
+
+    /**
+     * Gets the default value accordingly to its type
+     *
+     * @param defaultValue  the current default value
+     * @param fieldTypeName the field type such as int, boolean, String etc
+     */
+    private static Object getDefaultValue(Object defaultValue, String fieldTypeName, boolean isDuration) {
+        // special for boolean as it should not be literal
+        if ("boolean".equals(fieldTypeName)) {
+            if (isNullOrEmpty(defaultValue)) {
+                defaultValue = false;
+            } else {
+                defaultValue = "true".equalsIgnoreCase(defaultValue.toString());
+            }
+        }
+        if (!isDuration) {
+            // special for integer as it should not be literal
+            if ("int".equals(fieldTypeName)) {
+                if (!isNullOrEmpty(defaultValue) && defaultValue instanceof String) {
+                    defaultValue = Integer.parseInt(defaultValue.toString());
+                }
+            }
+            // special for long as it should not be literal
+            if ("long".equals(fieldTypeName)) {
+                if (!isNullOrEmpty(defaultValue) && defaultValue instanceof String) {
+                    defaultValue = Long.parseLong(defaultValue.toString());
+                }
+            }
+            // special for double as it should not be literal
+            if ("double".equals(fieldTypeName)) {
+                if (!isNullOrEmpty(defaultValue) && defaultValue instanceof String) {
+                    defaultValue = Double.parseDouble(defaultValue.toString());
+                }
+            }
+            // special for double as it should not be literal
+            if ("float".equals(fieldTypeName)) {
+                if (!isNullOrEmpty(defaultValue) && defaultValue instanceof String) {
+                    defaultValue = Float.parseFloat(defaultValue.toString());
+                }
+            }
+        }
+        if (isNullOrEmpty(defaultValue)) {
+            defaultValue = "";
+        }
+        return defaultValue;
     }
 
 }

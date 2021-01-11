@@ -17,6 +17,7 @@
 package org.apache.camel.util;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,7 +41,7 @@ public final class OgnlHelper {
      * @return            <tt>true</tt> if a Camel OGNL expression, otherwise <tt>false</tt>.
      */
     public static boolean isValidOgnlExpression(String expression) {
-        if (ObjectHelper.isEmpty(expression)) {
+        if (expression == null || expression.isEmpty()) {
             return false;
         }
 
@@ -55,11 +56,11 @@ public final class OgnlHelper {
     }
 
     public static boolean isInvalidValidOgnlExpression(String expression) {
-        if (ObjectHelper.isEmpty(expression)) {
+        if (expression == null) {
             return false;
         }
 
-        if (!expression.contains(".") && !expression.contains("[") && !expression.contains("]")) {
+        if (expression.indexOf('.') == -1 && expression.indexOf('[') == -1 && expression.indexOf(']') == -1) {
             return false;
         }
 
@@ -83,9 +84,6 @@ public final class OgnlHelper {
      * {@link IllegalArgumentException} if the method name is invalid.
      */
     public static void validateMethodName(String method) {
-        if (ObjectHelper.isEmpty(method)) {
-            return;
-        }
         for (int i = 0; i < method.length(); i++) {
             char ch = method.charAt(i);
             if (i == 0 && '.' == ch) {
@@ -113,10 +111,6 @@ public final class OgnlHelper {
      * @return                <tt>true</tt> if the null safe operator is used, otherwise <tt>false</tt>.
      */
     public static boolean isNullSafeOperator(String ognlExpression) {
-        if (ObjectHelper.isEmpty(ognlExpression)) {
-            return false;
-        }
-
         return ognlExpression.startsWith("?");
     }
 
@@ -129,17 +123,12 @@ public final class OgnlHelper {
      * @return                the Camel OGNL expression without any leading operators.
      */
     public static String removeLeadingOperators(String ognlExpression) {
-        if (ObjectHelper.isEmpty(ognlExpression)) {
-            return ognlExpression;
-        }
-
         if (ognlExpression.startsWith("?")) {
             ognlExpression = ognlExpression.substring(1);
         }
         if (ognlExpression.startsWith(".")) {
             ognlExpression = ognlExpression.substring(1);
         }
-
         return ognlExpression;
     }
 
@@ -150,12 +139,9 @@ public final class OgnlHelper {
      * @return                the Camel OGNL expression without any trailing operators.
      */
     public static String removeTrailingOperators(String ognlExpression) {
-        if (ObjectHelper.isEmpty(ognlExpression)) {
-            return ognlExpression;
-        }
-
-        if (ognlExpression.contains("[")) {
-            return StringHelper.before(ognlExpression, "[");
+        int pos = ognlExpression.indexOf('[');
+        if (pos != -1) {
+            return ognlExpression.substring(0, pos);
         }
         return ognlExpression;
     }
@@ -170,13 +156,13 @@ public final class OgnlHelper {
 
             // to avoid empty strings as we want key/value to be null in such cases
             String key = matcher.group(1);
-            if (ObjectHelper.isEmpty(key)) {
+            if (key != null && key.isEmpty()) {
                 key = null;
             }
 
             // to avoid empty strings as we want key/value to be null in such cases
             String value = matcher.group(2);
-            if (ObjectHelper.isEmpty(value)) {
+            if (value != null && value.isEmpty()) {
                 value = null;
             }
 
@@ -195,13 +181,12 @@ public final class OgnlHelper {
      * @throws IllegalArgumentException if the last method has a missing ending parenthesis
      */
     public static List<String> splitOgnl(String ognl) {
-        List<String> methods = new ArrayList<>();
-
         // return an empty list if ognl is empty
-        if (ObjectHelper.isEmpty(ognl)) {
-            return methods;
+        if (ognl == null || ognl.isEmpty() || ognl.trim().isEmpty()) {
+            return Collections.EMPTY_LIST;
         }
 
+        List<String> methods = new ArrayList<>(4);
         StringBuilder sb = new StringBuilder();
 
         int j = 0; // j is used as counter per method
@@ -289,6 +274,40 @@ public final class OgnlHelper {
         }
 
         return methods;
+    }
+
+    public static String methodAsDoubleQuotes(String ognl) {
+        StringBuilder sb = new StringBuilder();
+
+        int singleBracketCnt = 0;
+        int doubleBracketCnt = 0;
+        for (int i = 0; i < ognl.length(); i++) {
+            char ch = ognl.charAt(i);
+            char next = i < ognl.length() - 1 ? ognl.charAt(i + 1) : 0;
+
+            if (ch == '\\' && next == '\'') {
+                if (singleBracketCnt % 2 != 0) {
+                    // its an escaped single quote inside an existing quote
+                    // then unescape it
+                    sb.append('\'');
+                    // and skip over to next
+                    i++;
+                    continue;
+                }
+            }
+
+            if (doubleBracketCnt % 2 == 0 && ch == '\'') {
+                singleBracketCnt++;
+                sb.append('"');
+            } else if (singleBracketCnt % 2 == 0 && ch == '"') {
+                doubleBracketCnt++;
+                sb.append('"');
+            } else {
+                sb.append(ch);
+            }
+        }
+
+        return sb.toString();
     }
 
 }

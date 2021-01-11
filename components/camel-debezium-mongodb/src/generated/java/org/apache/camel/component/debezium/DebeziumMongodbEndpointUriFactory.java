@@ -2,6 +2,7 @@
 package org.apache.camel.component.debezium;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,61 +18,70 @@ public class DebeziumMongodbEndpointUriFactory extends org.apache.camel.support.
     private static final String BASE = ":name";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(52);
-        set.add("name");
-        set.add("additionalProperties");
-        set.add("bridgeErrorHandler");
-        set.add("internalKeyConverter");
-        set.add("internalValueConverter");
-        set.add("offsetCommitPolicy");
-        set.add("offsetCommitTimeoutMs");
-        set.add("offsetFlushIntervalMs");
-        set.add("offsetStorage");
-        set.add("offsetStorageFileName");
-        set.add("offsetStoragePartitions");
-        set.add("offsetStorageReplicationFactor");
-        set.add("offsetStorageTopic");
-        set.add("exceptionHandler");
-        set.add("exchangePattern");
-        set.add("basicPropertyBinding");
-        set.add("synchronous");
-        set.add("collectionBlacklist");
-        set.add("collectionWhitelist");
-        set.add("connectBackoffInitialDelayMs");
-        set.add("connectBackoffMaxDelayMs");
-        set.add("connectMaxAttempts");
-        set.add("converters");
-        set.add("databaseBlacklist");
-        set.add("databaseHistoryFileFilename");
-        set.add("databaseWhitelist");
-        set.add("eventProcessingFailureHandlingMode");
-        set.add("fieldBlacklist");
-        set.add("fieldRenames");
-        set.add("heartbeatIntervalMs");
-        set.add("heartbeatTopicsPrefix");
-        set.add("initialSyncMaxThreads");
-        set.add("maxBatchSize");
-        set.add("maxQueueSize");
-        set.add("mongodbAuthsource");
-        set.add("mongodbHosts");
-        set.add("mongodbMembersAutoDiscover");
-        set.add("mongodbName");
-        set.add("mongodbPassword");
-        set.add("mongodbPollIntervalSec");
-        set.add("mongodbSslEnabled");
-        set.add("mongodbSslInvalidHostnameAllowed");
-        set.add("mongodbUser");
-        set.add("pollIntervalMs");
-        set.add("provideTransactionMetadata");
-        set.add("sanitizeFieldNames");
-        set.add("skippedOperations");
-        set.add("snapshotDelayMs");
-        set.add("snapshotFetchSize");
-        set.add("snapshotMode");
-        set.add("sourceStructVersion");
-        set.add("tombstonesOnDelete");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(59);
+        props.add("mongodbServerSelectionTimeoutMs");
+        props.add("maxBatchSize");
+        props.add("internalKeyConverter");
+        props.add("synchronous");
+        props.add("snapshotDelayMs");
+        props.add("mongodbSslEnabled");
+        props.add("offsetStorageTopic");
+        props.add("bridgeErrorHandler");
+        props.add("connectMaxAttempts");
+        props.add("provideTransactionMetadata");
+        props.add("converters");
+        props.add("tombstonesOnDelete");
+        props.add("heartbeatIntervalMs");
+        props.add("heartbeatTopicsPrefix");
+        props.add("snapshotCollectionFilterOverrides");
+        props.add("skippedOperations");
+        props.add("mongodbHosts");
+        props.add("sourceStructVersion");
+        props.add("mongodbName");
+        props.add("connectBackoffInitialDelayMs");
+        props.add("connectBackoffMaxDelayMs");
+        props.add("fieldRenames");
+        props.add("eventProcessingFailureHandlingMode");
+        props.add("offsetCommitTimeoutMs");
+        props.add("mongodbPollIntervalMs");
+        props.add("mongodbAuthsource");
+        props.add("databaseIncludeList");
+        props.add("offsetFlushIntervalMs");
+        props.add("mongodbMembersAutoDiscover");
+        props.add("offsetStorageFileName");
+        props.add("name");
+        props.add("snapshotFetchSize");
+        props.add("offsetStoragePartitions");
+        props.add("databaseExcludeList");
+        props.add("additionalProperties");
+        props.add("offsetStorageReplicationFactor");
+        props.add("exceptionHandler");
+        props.add("mongodbConnectTimeoutMs");
+        props.add("snapshotIncludeCollectionList");
+        props.add("databaseHistoryFileFilename");
+        props.add("offsetStorage");
+        props.add("internalValueConverter");
+        props.add("snapshotMaxThreads");
+        props.add("retriableRestartConnectorWaitMs");
+        props.add("maxQueueSize");
+        props.add("collectionExcludeList");
+        props.add("mongodbSslInvalidHostnameAllowed");
+        props.add("pollIntervalMs");
+        props.add("sanitizeFieldNames");
+        props.add("fieldExcludeList");
+        props.add("mongodbPassword");
+        props.add("mongodbUser");
+        props.add("exchangePattern");
+        props.add("mongodbSocketTimeoutMs");
+        props.add("collectionIncludeList");
+        props.add("queryFetchSize");
+        props.add("snapshotMode");
+        props.add("maxQueueSizeInBytes");
+        props.add("offsetCommitPolicy");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        SECRET_PROPERTY_NAMES = Collections.emptySet();
     }
 
     @Override
@@ -80,20 +90,25 @@ public class DebeziumMongodbEndpointUriFactory extends org.apache.camel.support.
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
         Map<String, Object> copy = new HashMap<>(properties);
 
         uri = buildPathParameter(syntax, uri, "name", null, true, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

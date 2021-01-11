@@ -24,7 +24,6 @@ import org.apache.camel.Component;
 import org.apache.camel.Consumer;
 import org.apache.camel.DelegateProcessor;
 import org.apache.camel.Endpoint;
-import org.apache.camel.ErrorHandlerFactory;
 import org.apache.camel.NamedNode;
 import org.apache.camel.Processor;
 import org.apache.camel.Producer;
@@ -51,7 +50,6 @@ import org.apache.camel.management.mbean.ManagedDelayer;
 import org.apache.camel.management.mbean.ManagedDynamicRouter;
 import org.apache.camel.management.mbean.ManagedEndpoint;
 import org.apache.camel.management.mbean.ManagedEnricher;
-import org.apache.camel.management.mbean.ManagedErrorHandler;
 import org.apache.camel.management.mbean.ManagedEventNotifier;
 import org.apache.camel.management.mbean.ManagedFailoverLoadBalancer;
 import org.apache.camel.management.mbean.ManagedFilter;
@@ -127,11 +125,9 @@ import org.apache.camel.model.ValidateDefinition;
 import org.apache.camel.model.loadbalancer.CustomLoadBalancerDefinition;
 import org.apache.camel.processor.ChoiceProcessor;
 import org.apache.camel.processor.ClaimCheckProcessor;
-import org.apache.camel.processor.ConvertBodyProcessor;
 import org.apache.camel.processor.Delayer;
 import org.apache.camel.processor.DynamicRouter;
 import org.apache.camel.processor.Enricher;
-import org.apache.camel.processor.ErrorHandler;
 import org.apache.camel.processor.ExchangePatternProcessor;
 import org.apache.camel.processor.FilterProcessor;
 import org.apache.camel.processor.LogProcessor;
@@ -174,11 +170,13 @@ import org.apache.camel.processor.loadbalancer.TopicLoadBalancer;
 import org.apache.camel.processor.loadbalancer.WeightedLoadBalancer;
 import org.apache.camel.spi.BrowsableEndpoint;
 import org.apache.camel.spi.DataFormat;
+import org.apache.camel.spi.ErrorHandler;
 import org.apache.camel.spi.EventNotifier;
 import org.apache.camel.spi.ManagementObjectStrategy;
 import org.apache.camel.spi.RouteController;
 import org.apache.camel.spi.SupervisingRouteController;
 import org.apache.camel.support.ScheduledPollConsumer;
+import org.apache.camel.support.processor.ConvertBodyProcessor;
 import org.apache.camel.support.processor.MarshalProcessor;
 import org.apache.camel.support.processor.PredicateValidatingProcessor;
 import org.apache.camel.support.processor.ThroughputLogger;
@@ -236,15 +234,6 @@ public class DefaultManagementObjectStrategy implements ManagementObjectStrategy
             me.init(context.getManagementStrategy());
             return me;
         }
-    }
-
-    @Override
-    public Object getManagedObjectForErrorHandler(
-            CamelContext context, Route route,
-            Processor errorHandler, ErrorHandlerFactory errorHandlerBuilder) {
-        ManagedErrorHandler me = new ManagedErrorHandler(route, errorHandler, errorHandlerBuilder);
-        me.init(context.getManagementStrategy());
-        return me;
     }
 
     @Override

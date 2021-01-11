@@ -29,10 +29,9 @@ import org.apache.camel.Service;
 import org.apache.camel.TypeConverter;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.impl.converter.DefaultTypeConverter;
-import org.apache.camel.impl.engine.DefaultClassResolver;
-import org.apache.camel.impl.engine.DefaultFactoryFinder;
 import org.apache.camel.impl.engine.DefaultPackageScanClassResolver;
 import org.apache.camel.model.ModelCamelContext;
+import org.apache.camel.spi.CamelBeanPostProcessor;
 import org.apache.camel.spi.ExecutorServiceManager;
 import org.apache.camel.spi.InflightRepository;
 import org.apache.camel.spi.Injector;
@@ -83,8 +82,7 @@ public class AbstractCamelContextFactoryBeanTest {
                 public boolean supportsAutoWiring() {
                     return false;
                 }
-            },
-            new DefaultFactoryFinder(new DefaultClassResolver(), "META-INF/services/org/apache/camel/"), false);
+            }, false);
 
     // properties that should return value that can be converted to boolean
     Set<String> valuesThatReturnBoolean = new HashSet<>(
@@ -92,7 +90,7 @@ public class AbstractCamelContextFactoryBeanTest {
                     "{{getMessageHistory}}", "{{getLogMask}}", "{{getLogExhaustedMessageBody}}", "{{getHandleFault}}",
                     "{{getCaseInsensitiveHeaders}}",
                     "{{getAutoStartup}}", "{{getUseMDCLogging}}", "{{getUseDataType}}", "{{getUseBreadcrumb}}",
-                    "{{getAllowUseOriginalMessage}}",
+                    "{{getBeanPostProcessorEnabled}}", "{{getAllowUseOriginalMessage}}",
                     "{{getLoadTypeConverters}}", "{{getTypeConverterStatisticsEnabled}}",
                     "{{getInflightRepositoryBrowseEnabled}}"));
 
@@ -135,6 +133,7 @@ public class AbstractCamelContextFactoryBeanTest {
         when(context.getManagementNameStrategy()).thenReturn(mock(ManagementNameStrategy.class));
         when(context.getExecutorServiceManager()).thenReturn(mock(ExecutorServiceManager.class));
         when(context.getInflightRepository()).thenReturn(mock(InflightRepository.class));
+        when(context.getBeanPostProcessor()).thenReturn(mock(CamelBeanPostProcessor.class));
 
         @SuppressWarnings("unchecked")
         final AbstractCamelContextFactoryBean<ModelCamelContext> factory = mock(AbstractCamelContextFactoryBean.class);

@@ -2,6 +2,7 @@
 package org.apache.camel.component.digitalocean;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,22 +18,27 @@ public class DigitalOceanEndpointUriFactory extends org.apache.camel.support.com
     private static final String BASE = ":operation";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(13);
-        set.add("operation");
-        set.add("lazyStartProducer");
-        set.add("page");
-        set.add("perPage");
-        set.add("resource");
-        set.add("basicPropertyBinding");
-        set.add("digitalOceanClient");
-        set.add("synchronous");
-        set.add("httpProxyHost");
-        set.add("httpProxyPassword");
-        set.add("httpProxyPort");
-        set.add("httpProxyUser");
-        set.add("oAuthToken");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(12);
+        props.add("lazyStartProducer");
+        props.add("oAuthToken");
+        props.add("perPage");
+        props.add("resource");
+        props.add("synchronous");
+        props.add("httpProxyHost");
+        props.add("httpProxyPort");
+        props.add("page");
+        props.add("operation");
+        props.add("httpProxyPassword");
+        props.add("httpProxyUser");
+        props.add("digitalOceanClient");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        Set<String> secretProps = new HashSet<>(3);
+        secretProps.add("oAuthToken");
+        secretProps.add("httpProxyPassword");
+        secretProps.add("httpProxyUser");
+        SECRET_PROPERTY_NAMES = Collections.unmodifiableSet(secretProps);
     }
 
     @Override
@@ -41,20 +47,25 @@ public class DigitalOceanEndpointUriFactory extends org.apache.camel.support.com
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
         Map<String, Object> copy = new HashMap<>(properties);
 
         uri = buildPathParameter(syntax, uri, "operation", null, false, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

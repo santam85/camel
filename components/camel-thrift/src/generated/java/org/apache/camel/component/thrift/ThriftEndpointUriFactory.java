@@ -2,6 +2,7 @@
 package org.apache.camel.component.thrift;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,26 +18,27 @@ public class ThriftEndpointUriFactory extends org.apache.camel.support.component
     private static final String BASE = ":host:port/service";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(17);
-        set.add("host");
-        set.add("port");
-        set.add("service");
-        set.add("compressionType");
-        set.add("exchangeProtocol");
-        set.add("bridgeErrorHandler");
-        set.add("clientTimeout");
-        set.add("maxPoolSize");
-        set.add("poolSize");
-        set.add("exceptionHandler");
-        set.add("exchangePattern");
-        set.add("lazyStartProducer");
-        set.add("method");
-        set.add("basicPropertyBinding");
-        set.add("synchronous");
-        set.add("negotiationType");
-        set.add("sslParameters");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(16);
+        props.add("method");
+        props.add("synchronous");
+        props.add("poolSize");
+        props.add("exchangePattern");
+        props.add("clientTimeout");
+        props.add("compressionType");
+        props.add("exchangeProtocol");
+        props.add("negotiationType");
+        props.add("lazyStartProducer");
+        props.add("bridgeErrorHandler");
+        props.add("port");
+        props.add("service");
+        props.add("host");
+        props.add("sslParameters");
+        props.add("maxPoolSize");
+        props.add("exceptionHandler");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        SECRET_PROPERTY_NAMES = Collections.emptySet();
     }
 
     @Override
@@ -45,7 +47,7 @@ public class ThriftEndpointUriFactory extends org.apache.camel.support.component
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
@@ -54,13 +56,18 @@ public class ThriftEndpointUriFactory extends org.apache.camel.support.component
         uri = buildPathParameter(syntax, uri, "host", null, false, copy);
         uri = buildPathParameter(syntax, uri, "port", null, true, copy);
         uri = buildPathParameter(syntax, uri, "service", null, true, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

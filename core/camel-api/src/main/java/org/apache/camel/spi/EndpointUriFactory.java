@@ -42,12 +42,29 @@ public interface EndpointUriFactory extends CamelContextAware {
      * @param  properties endpoint options
      * @return            the constructed endpoint uri
      */
-    String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException;
+    default String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+        return buildUri(scheme, properties, true);
+    }
+
+    /**
+     * Assembles an endpoint uri for the given component name with the given parameters.
+     *
+     * @param  scheme     the component name
+     * @param  properties endpoint options
+     * @param  encode     whether to URL encode the returned uri or not
+     * @return            the constructed endpoint uri
+     */
+    String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException;
 
     /**
      * Returns all the names this endpoint supports.
      */
     Set<String> propertyNames();
+
+    /**
+     * Returns the names of the secret properties this endpoin supports.
+     */
+    Set<String> secretPropertyNames();
 
     /**
      * Whether the endpoint is lenient or not.

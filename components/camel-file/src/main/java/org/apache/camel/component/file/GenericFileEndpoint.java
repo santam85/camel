@@ -40,7 +40,6 @@ import org.apache.camel.spi.ExceptionHandler;
 import org.apache.camel.spi.IdempotentRepository;
 import org.apache.camel.spi.Language;
 import org.apache.camel.spi.UriParam;
-import org.apache.camel.support.ObjectHelper;
 import org.apache.camel.support.ScheduledPollEndpoint;
 import org.apache.camel.support.processor.idempotent.MemoryIdempotentRepository;
 import org.apache.camel.support.service.ServiceHelper;
@@ -229,6 +228,14 @@ public abstract class GenericFileEndpoint<T> extends ScheduledPollEndpoint imple
                                                        + ""
                                                        + "endpoint uris</a>")
     protected String exclude;
+    @UriParam(label = "consumer,filter",
+              description = "Is used to include files matching file extension name (case insensitive). For example to include txt files, then use includeExt=txt."
+                            + " Multiple extensions can be separated by comma, for example to include txt and xml files, use includeExt=txt,xml")
+    protected String includeExt;
+    @UriParam(label = "consumer,filter",
+              description = "Is used to exclude files matching file extension name (case insensitive). For example to exclude bak files, then use excludeExt=bak."
+                            + " Multiple extensions can be separated by comma, for example to exclude bak and dat files, use excludeExt=bak,dat.")
+    protected String excludeExt;
     @UriParam(label = "consumer,filter", javaType = "java.lang.String", description = "Expression (such as Simple "
                                                                                       + "Language) used to dynamically set the filename when moving it after processing. To move files into "
                                                                                       + "a .done subdirectory just enter .done.")
@@ -598,6 +605,32 @@ public abstract class GenericFileEndpoint<T> extends ScheduledPollEndpoint imple
 
     public GenericFileFilter<T> getAntFilter() {
         return antFilter;
+    }
+
+    public String getIncludeExt() {
+        return includeExt;
+    }
+
+    /**
+     * Is used to include files matching file extension name (case insensitive). For example to include txt files, then
+     * use includeExt=txt. Multiple extensions can be separated by comma, for example to include txt and xml files, use
+     * includeExt=txt,xml
+     */
+    public void setIncludeExt(String includeExt) {
+        this.includeExt = includeExt;
+    }
+
+    public String getExcludeExt() {
+        return excludeExt;
+    }
+
+    /**
+     * Is used to exclude files matching file extension name (case insensitive). For example to exclude bak files, then
+     * use excludeExt=bak. Multiple extensions can be separated by comma, for example to exclude bak and dat files, use
+     * excludeExt=bak,dat.
+     */
+    public void setExcludeExt(String excludeExt) {
+        this.excludeExt = excludeExt;
     }
 
     public boolean isPreSort() {
@@ -1723,6 +1756,29 @@ public abstract class GenericFileEndpoint<T> extends ScheduledPollEndpoint imple
         }
         if (antFilter != null) {
             antFilter.setCaseSensitive(antFilterCaseSensitive);
+        }
+
+        // initialize expressions
+        if (fileName != null) {
+            fileName.init(getCamelContext());
+        }
+        if (tempFileName != null) {
+            tempFileName.init(getCamelContext());
+        }
+        if (move != null) {
+            move.init(getCamelContext());
+        }
+        if (moveFailed != null) {
+            moveFailed.init(getCamelContext());
+        }
+        if (preMove != null) {
+            preMove.init(getCamelContext());
+        }
+        if (moveExisting != null) {
+            moveExisting.init(getCamelContext());
+        }
+        if (idempotentKey != null) {
+            idempotentKey.init(getCamelContext());
         }
     }
 

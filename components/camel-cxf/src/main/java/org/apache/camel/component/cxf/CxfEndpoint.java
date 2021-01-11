@@ -130,7 +130,7 @@ public class CxfEndpoint extends DefaultEndpoint implements AsyncEndpoint, Heade
     protected Bus bus;
 
     protected volatile boolean createBus;
-    private final AtomicBoolean getBusHasBeenCalled = new AtomicBoolean(false);
+    private final AtomicBoolean getBusHasBeenCalled = new AtomicBoolean();
 
     private BindingConfiguration bindingConfig;
     private DataBinding dataBinding;
@@ -639,8 +639,8 @@ public class CxfEndpoint extends DefaultEndpoint implements AsyncEndpoint, Heade
 
     void checkName(Object value, String name) {
         if (ObjectHelper.isEmpty(value)) {
-            LOG.warn("The " + name + " of " + this.getEndpointUri()
-                     + " is empty, cxf will try to load the first one in wsdl for you.");
+            LOG.warn("The {} of {} is empty, cxf will try to load the first one in wsdl for you.", name,
+                    this.getEndpointUri());
         }
     }
 

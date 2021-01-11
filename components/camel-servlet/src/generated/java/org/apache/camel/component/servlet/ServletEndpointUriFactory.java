@@ -2,6 +2,7 @@
 package org.apache.camel.component.servlet;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,34 +18,35 @@ public class ServletEndpointUriFactory extends org.apache.camel.support.componen
     private static final String BASE = ":contextPath";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(25);
-        set.add("contextPath");
-        set.add("chunked");
-        set.add("disableStreamCache");
-        set.add("headerFilterStrategy");
-        set.add("httpBinding");
-        set.add("async");
-        set.add("bridgeErrorHandler");
-        set.add("httpMethodRestrict");
-        set.add("matchOnUriPrefix");
-        set.add("muteException");
-        set.add("responseBufferSize");
-        set.add("servletName");
-        set.add("transferException");
-        set.add("attachmentMultipartBinding");
-        set.add("eagerCheckContentAvailable");
-        set.add("exceptionHandler");
-        set.add("exchangePattern");
-        set.add("fileNameExtWhitelist");
-        set.add("optionsEnabled");
-        set.add("traceEnabled");
-        set.add("basicPropertyBinding");
-        set.add("mapHttpMessageBody");
-        set.add("mapHttpMessageFormUrlEncodedBody");
-        set.add("mapHttpMessageHeaders");
-        set.add("synchronous");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(24);
+        props.add("muteException");
+        props.add("httpMethodRestrict");
+        props.add("eagerCheckContentAvailable");
+        props.add("httpBinding");
+        props.add("synchronous");
+        props.add("matchOnUriPrefix");
+        props.add("attachmentMultipartBinding");
+        props.add("contextPath");
+        props.add("exchangePattern");
+        props.add("chunked");
+        props.add("mapHttpMessageBody");
+        props.add("servletName");
+        props.add("mapHttpMessageFormUrlEncodedBody");
+        props.add("fileNameExtWhitelist");
+        props.add("async");
+        props.add("responseBufferSize");
+        props.add("bridgeErrorHandler");
+        props.add("disableStreamCache");
+        props.add("headerFilterStrategy");
+        props.add("transferException");
+        props.add("optionsEnabled");
+        props.add("mapHttpMessageHeaders");
+        props.add("traceEnabled");
+        props.add("exceptionHandler");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        SECRET_PROPERTY_NAMES = Collections.emptySet();
     }
 
     @Override
@@ -53,20 +55,25 @@ public class ServletEndpointUriFactory extends org.apache.camel.support.componen
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
         Map<String, Object> copy = new HashMap<>(properties);
 
         uri = buildPathParameter(syntax, uri, "contextPath", null, true, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

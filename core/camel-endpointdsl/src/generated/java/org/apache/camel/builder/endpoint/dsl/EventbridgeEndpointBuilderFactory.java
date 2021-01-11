@@ -40,42 +40,15 @@ public interface EventbridgeEndpointBuilderFactory {
             return (AdvancedEventbridgeEndpointBuilder) this;
         }
         /**
-         * Setting the autoDiscoverClient mechanism, if true, the component will
-         * look for a client instance in the registry automatically otherwise it
-         * will skip that checking.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: true
-         * Group: common
-         */
-        default EventbridgeEndpointBuilder autoDiscoverClient(
-                boolean autoDiscoverClient) {
-            doSetProperty("autoDiscoverClient", autoDiscoverClient);
-            return this;
-        }
-        /**
-         * Setting the autoDiscoverClient mechanism, if true, the component will
-         * look for a client instance in the registry automatically otherwise it
-         * will skip that checking.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: true
-         * Group: common
-         */
-        default EventbridgeEndpointBuilder autoDiscoverClient(
-                String autoDiscoverClient) {
-            doSetProperty("autoDiscoverClient", autoDiscoverClient);
-            return this;
-        }
-        /**
          * To use a existing configured AWS Eventbridge as client.
          * 
          * The option is a:
-         * <code>software.amazon.awssdk.services.eventbridge.EventBridgeClient</code> type.
+         * &lt;code&gt;software.amazon.awssdk.services.eventbridge.EventBridgeClient&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param eventbridgeClient the value to set
+         * @return the dsl builder
          */
         default EventbridgeEndpointBuilder eventbridgeClient(
                 Object eventbridgeClient) {
@@ -86,9 +59,12 @@ public interface EventbridgeEndpointBuilderFactory {
          * To use a existing configured AWS Eventbridge as client.
          * 
          * The option will be converted to a
-         * <code>software.amazon.awssdk.services.eventbridge.EventBridgeClient</code> type.
+         * &lt;code&gt;software.amazon.awssdk.services.eventbridge.EventBridgeClient&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param eventbridgeClient the value to set
+         * @return the dsl builder
          */
         default EventbridgeEndpointBuilder eventbridgeClient(
                 String eventbridgeClient) {
@@ -98,9 +74,12 @@ public interface EventbridgeEndpointBuilderFactory {
         /**
          * EventPattern File.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param eventPatternFile the value to set
+         * @return the dsl builder
          */
         default EventbridgeEndpointBuilder eventPatternFile(
                 String eventPatternFile) {
@@ -118,10 +97,13 @@ public interface EventbridgeEndpointBuilderFactory {
          * producer may take a little time and prolong the total processing time
          * of the processing.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param lazyStartProducer the value to set
+         * @return the dsl builder
          */
         default EventbridgeEndpointBuilder lazyStartProducer(
                 boolean lazyStartProducer) {
@@ -139,10 +121,14 @@ public interface EventbridgeEndpointBuilderFactory {
          * producer may take a little time and prolong the total processing time
          * of the processing.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param lazyStartProducer the value to set
+         * @return the dsl builder
          */
         default EventbridgeEndpointBuilder lazyStartProducer(
                 String lazyStartProducer) {
@@ -153,11 +139,14 @@ public interface EventbridgeEndpointBuilderFactory {
          * The operation to perform.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.aws2.eventbridge.EventbridgeOperations</code> type.
+         * &lt;code&gt;org.apache.camel.component.aws2.eventbridge.EventbridgeOperations&lt;/code&gt; type.
          * 
          * Required: true
          * Default: putRule
          * Group: producer
+         * 
+         * @param operation the value to set
+         * @return the dsl builder
          */
         default EventbridgeEndpointBuilder operation(
                 EventbridgeOperations operation) {
@@ -168,11 +157,14 @@ public interface EventbridgeEndpointBuilderFactory {
          * The operation to perform.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.aws2.eventbridge.EventbridgeOperations</code> type.
+         * &lt;code&gt;org.apache.camel.component.aws2.eventbridge.EventbridgeOperations&lt;/code&gt; type.
          * 
          * Required: true
          * Default: putRule
          * Group: producer
+         * 
+         * @param operation the value to set
+         * @return the dsl builder
          */
         default EventbridgeEndpointBuilder operation(String operation) {
             doSetProperty("operation", operation);
@@ -181,10 +173,13 @@ public interface EventbridgeEndpointBuilderFactory {
         /**
          * If we want to use a POJO request as body or not.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param pojoRequest the value to set
+         * @return the dsl builder
          */
         default EventbridgeEndpointBuilder pojoRequest(boolean pojoRequest) {
             doSetProperty("pojoRequest", pojoRequest);
@@ -193,10 +188,14 @@ public interface EventbridgeEndpointBuilderFactory {
         /**
          * If we want to use a POJO request as body or not.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param pojoRequest the value to set
+         * @return the dsl builder
          */
         default EventbridgeEndpointBuilder pojoRequest(String pojoRequest) {
             doSetProperty("pojoRequest", pojoRequest);
@@ -205,9 +204,12 @@ public interface EventbridgeEndpointBuilderFactory {
         /**
          * To define a proxy host when instantiating the Eventbridge client.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param proxyHost the value to set
+         * @return the dsl builder
          */
         default EventbridgeEndpointBuilder proxyHost(String proxyHost) {
             doSetProperty("proxyHost", proxyHost);
@@ -216,9 +218,12 @@ public interface EventbridgeEndpointBuilderFactory {
         /**
          * To define a proxy port when instantiating the Eventbridge client.
          * 
-         * The option is a: <code>java.lang.Integer</code> type.
+         * The option is a: &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param proxyPort the value to set
+         * @return the dsl builder
          */
         default EventbridgeEndpointBuilder proxyPort(Integer proxyPort) {
             doSetProperty("proxyPort", proxyPort);
@@ -227,10 +232,13 @@ public interface EventbridgeEndpointBuilderFactory {
         /**
          * To define a proxy port when instantiating the Eventbridge client.
          * 
-         * The option will be converted to a <code>java.lang.Integer</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param proxyPort the value to set
+         * @return the dsl builder
          */
         default EventbridgeEndpointBuilder proxyPort(String proxyPort) {
             doSetProperty("proxyPort", proxyPort);
@@ -239,11 +247,14 @@ public interface EventbridgeEndpointBuilderFactory {
         /**
          * To define a proxy protocol when instantiating the Eventbridge client.
          * 
-         * The option is a: <code>software.amazon.awssdk.core.Protocol</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;software.amazon.awssdk.core.Protocol&lt;/code&gt; type.
          * 
          * Default: HTTPS
          * Group: producer
+         * 
+         * @param proxyProtocol the value to set
+         * @return the dsl builder
          */
         default EventbridgeEndpointBuilder proxyProtocol(Protocol proxyProtocol) {
             doSetProperty("proxyProtocol", proxyProtocol);
@@ -253,10 +264,13 @@ public interface EventbridgeEndpointBuilderFactory {
          * To define a proxy protocol when instantiating the Eventbridge client.
          * 
          * The option will be converted to a
-         * <code>software.amazon.awssdk.core.Protocol</code> type.
+         * &lt;code&gt;software.amazon.awssdk.core.Protocol&lt;/code&gt; type.
          * 
          * Default: HTTPS
          * Group: producer
+         * 
+         * @param proxyProtocol the value to set
+         * @return the dsl builder
          */
         default EventbridgeEndpointBuilder proxyProtocol(String proxyProtocol) {
             doSetProperty("proxyProtocol", proxyProtocol);
@@ -268,9 +282,12 @@ public interface EventbridgeEndpointBuilderFactory {
          * region (for example ap-east-1) You'll need to use the name
          * Region.EU_WEST_1.id().
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param region the value to set
+         * @return the dsl builder
          */
         default EventbridgeEndpointBuilder region(String region) {
             doSetProperty("region", region);
@@ -280,10 +297,13 @@ public interface EventbridgeEndpointBuilderFactory {
          * If we want to trust all certificates in case of overriding the
          * endpoint.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param trustAllCertificates the value to set
+         * @return the dsl builder
          */
         default EventbridgeEndpointBuilder trustAllCertificates(
                 boolean trustAllCertificates) {
@@ -294,10 +314,14 @@ public interface EventbridgeEndpointBuilderFactory {
          * If we want to trust all certificates in case of overriding the
          * endpoint.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param trustAllCertificates the value to set
+         * @return the dsl builder
          */
         default EventbridgeEndpointBuilder trustAllCertificates(
                 String trustAllCertificates) {
@@ -307,9 +331,12 @@ public interface EventbridgeEndpointBuilderFactory {
         /**
          * Amazon AWS Access Key.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param accessKey the value to set
+         * @return the dsl builder
          */
         default EventbridgeEndpointBuilder accessKey(String accessKey) {
             doSetProperty("accessKey", accessKey);
@@ -318,9 +345,12 @@ public interface EventbridgeEndpointBuilderFactory {
         /**
          * Amazon AWS Secret Key.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param secretKey the value to set
+         * @return the dsl builder
          */
         default EventbridgeEndpointBuilder secretKey(String secretKey) {
             doSetProperty("secretKey", secretKey);
@@ -338,41 +368,16 @@ public interface EventbridgeEndpointBuilderFactory {
             return (EventbridgeEndpointBuilder) this;
         }
         /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedEventbridgeEndpointBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedEventbridgeEndpointBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedEventbridgeEndpointBuilder synchronous(
                 boolean synchronous) {
@@ -383,10 +388,14 @@ public interface EventbridgeEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedEventbridgeEndpointBuilder synchronous(
                 String synchronous) {
@@ -435,6 +444,7 @@ public interface EventbridgeEndpointBuilderFactory {
          * Event bus name or ARN
          * 
          * @param path //eventbusNameOrArn
+         * @return the dsl builder
          */
         default EventbridgeEndpointBuilder aws2Eventbridge(String path) {
             return EventbridgeEndpointBuilderFactory.endpointBuilder("aws2-eventbridge", path);
@@ -455,6 +465,7 @@ public interface EventbridgeEndpointBuilderFactory {
          * @param componentName to use a custom component name for the endpoint
          * instead of the default name
          * @param path //eventbusNameOrArn
+         * @return the dsl builder
          */
         default EventbridgeEndpointBuilder aws2Eventbridge(
                 String componentName,

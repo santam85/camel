@@ -2,6 +2,7 @@
 package org.apache.camel.component.redis;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,23 +18,24 @@ public class RedisEndpointUriFactory extends org.apache.camel.support.component.
     private static final String BASE = ":host:port";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(14);
-        set.add("host");
-        set.add("port");
-        set.add("channels");
-        set.add("command");
-        set.add("connectionFactory");
-        set.add("redisTemplate");
-        set.add("serializer");
-        set.add("bridgeErrorHandler");
-        set.add("exceptionHandler");
-        set.add("exchangePattern");
-        set.add("listenerContainer");
-        set.add("lazyStartProducer");
-        set.add("basicPropertyBinding");
-        set.add("synchronous");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(13);
+        props.add("redisTemplate");
+        props.add("synchronous");
+        props.add("exchangePattern");
+        props.add("serializer");
+        props.add("command");
+        props.add("lazyStartProducer");
+        props.add("bridgeErrorHandler");
+        props.add("channels");
+        props.add("port");
+        props.add("connectionFactory");
+        props.add("host");
+        props.add("listenerContainer");
+        props.add("exceptionHandler");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        SECRET_PROPERTY_NAMES = Collections.emptySet();
     }
 
     @Override
@@ -42,7 +44,7 @@ public class RedisEndpointUriFactory extends org.apache.camel.support.component.
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
@@ -50,13 +52,18 @@ public class RedisEndpointUriFactory extends org.apache.camel.support.component.
 
         uri = buildPathParameter(syntax, uri, "host", null, true, copy);
         uri = buildPathParameter(syntax, uri, "port", null, true, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

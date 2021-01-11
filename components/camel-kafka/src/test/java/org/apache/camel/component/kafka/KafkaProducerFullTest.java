@@ -18,6 +18,7 @@ package org.apache.camel.component.kafka;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -83,8 +84,8 @@ public class KafkaProducerFullTest extends BaseEmbeddedKafkaTest {
     private MockEndpoint mockEndpoint;
 
     @EndpointInject("kafka:" + TOPIC_BYTES + "?requestRequiredAcks=-1"
-                    + "&serializerClass=org.apache.kafka.common.serialization.ByteArraySerializer&"
-                    + "keySerializerClass=org.apache.kafka.common.serialization.ByteArraySerializer")
+                    + "&valueSerializer=org.apache.kafka.common.serialization.ByteArraySerializer&"
+                    + "keySerializer=org.apache.kafka.common.serialization.ByteArraySerializer")
     private Endpoint toBytes;
 
     @EndpointInject("kafka:" + TOPIC_PROPAGATED_HEADERS + "?requestRequiredAcks=-1")
@@ -419,8 +420,8 @@ public class KafkaProducerFullTest extends BaseEmbeddedKafkaTest {
     @Test
     public void headerSerializerCouldBeOverridden() {
         KafkaEndpoint kafkaEndpoint = context
-                .getEndpoint("kafka:TOPIC_PROPAGATED_HEADERS?kafkaHeaderSerializer=#myHeaderSerializer", KafkaEndpoint.class);
-        assertIsInstanceOf(MyKafkaHeadersSerializer.class, kafkaEndpoint.getConfiguration().getKafkaHeaderSerializer());
+                .getEndpoint("kafka:TOPIC_PROPAGATED_HEADERS?headerSerializer=#myHeaderSerializer", KafkaEndpoint.class);
+        assertIsInstanceOf(MyKafkaHeadersSerializer.class, kafkaEndpoint.getConfiguration().getHeaderSerializer());
     }
 
     private byte[] getHeaderValue(String headerKey, Headers headers) {
@@ -472,7 +473,7 @@ public class KafkaProducerFullTest extends BaseEmbeddedKafkaTest {
 
         new Thread(() -> {
             while (messagesLatch.getCount() != 0) {
-                for (ConsumerRecord<String, String> record : consumerConn.poll(100)) {
+                for (ConsumerRecord<String, String> record : consumerConn.poll(Duration.ofMillis(100))) {
                     consumedRecords.add(record);
                     messagesLatch.countDown();
                 }
@@ -489,7 +490,7 @@ public class KafkaProducerFullTest extends BaseEmbeddedKafkaTest {
         boolean run = true;
 
         while (run) {
-            ConsumerRecords<String, String> records = consumerConn.poll(100);
+            ConsumerRecords<String, String> records = consumerConn.poll(Duration.ofMillis(100));
             for (int i = 0; i < records.count(); i++) {
                 messagesLatch.countDown();
                 if (messagesLatch.getCount() == 0) {
@@ -507,7 +508,7 @@ public class KafkaProducerFullTest extends BaseEmbeddedKafkaTest {
         boolean run = true;
 
         while (run) {
-            ConsumerRecords<byte[], byte[]> records = consumerConn.poll(100);
+            ConsumerRecords<byte[], byte[]> records = consumerConn.poll(Duration.ofMillis(100));
             for (int i = 0; i < records.count(); i++) {
                 messagesLatch.countDown();
                 if (messagesLatch.getCount() == 0) {

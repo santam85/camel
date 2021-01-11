@@ -30,7 +30,7 @@ import org.apache.camel.util.URISupport;
  * Base class used by Camel Package Maven Plugin when it generates source code for fast endpoint uri factory via
  * {@link EndpointUriFactory}.
  */
-public abstract class EndpointUriFactorySupport implements CamelContextAware {
+public abstract class EndpointUriFactorySupport implements CamelContextAware, EndpointUriFactory {
 
     protected CamelContext camelContext;
 
@@ -74,11 +74,21 @@ public abstract class EndpointUriFactorySupport implements CamelContextAware {
         return uri;
     }
 
-    protected String buildQueryParameters(String uri, Map<String, Object> parameters)
+    protected String buildQueryParameters(String uri, Map<String, Object> parameters, boolean encode)
             throws URISyntaxException {
         // we want sorted parameters
         Map<String, Object> map = new TreeMap<>(parameters);
-        String query = URISupport.createQueryString(map);
+        for (String secretParameter : secretPropertyNames()) {
+            Object val = map.get(secretParameter);
+            if (val instanceof String) {
+                String answer = (String) val;
+                if (!answer.startsWith("#") && !answer.startsWith("RAW(")) {
+                    map.put(secretParameter, "RAW(" + val + ")");
+                }
+            }
+        }
+
+        String query = URISupport.createQueryString(map, encode);
         if (ObjectHelper.isNotEmpty(query)) {
             // there may be a ? sign in the context path then use & instead
             // (this is not correct but lets deal with this as the camel-catalog handled this)

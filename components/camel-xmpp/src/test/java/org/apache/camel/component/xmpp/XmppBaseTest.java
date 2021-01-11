@@ -18,29 +18,24 @@ package org.apache.camel.component.xmpp;
 
 import org.apache.camel.spi.Registry;
 import org.apache.camel.support.SimpleRegistry;
+import org.apache.camel.test.infra.xmpp.services.XmppService;
+import org.apache.camel.test.infra.xmpp.services.XmppServiceFactory;
 import org.apache.camel.test.junit5.CamelTestSupport;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
 public class XmppBaseTest extends CamelTestSupport {
-    protected XmppServerContainer xmppServer;
+    @RegisterExtension
+    static XmppService service = XmppServiceFactory.createService();
 
     @Override
     protected Registry createCamelRegistry() throws Exception {
         Registry registry = new SimpleRegistry();
-        xmppServer.bindSSLContextTo(registry);
+
+        XmppTestUtil.bindSSLContextTo(registry, service.host(), service.port());
         return registry;
     }
 
-    @Override
-    public void doPreSetup() {
-        xmppServer = new XmppServerContainer();
-        xmppServer.start();
-    }
-
-    @Override
-    @AfterEach
-    public void tearDown() throws Exception {
-        super.tearDown();
-        xmppServer.stop();
+    protected String getUrl() {
+        return service.getUrl();
     }
 }

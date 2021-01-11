@@ -58,7 +58,7 @@ public class JmsProducer extends DefaultAsyncProducer {
 
     private static final String GENERATED_CORRELATION_ID_PREFIX = "Camel-";
     private final JmsEndpoint endpoint;
-    private final AtomicBoolean started = new AtomicBoolean(false);
+    private final AtomicBoolean started = new AtomicBoolean();
     private JmsOperations inOnlyTemplate;
     private JmsOperations inOutTemplate;
     private UuidGenerator uuidGenerator;
@@ -426,25 +426,9 @@ public class JmsProducer extends DefaultAsyncProducer {
 
         // destination should be preferred
         if (destination != null) {
-            if (inOut) {
-                if (template != null) {
-                    template.send(destination, messageCreator, callback);
-                }
-            } else {
-                if (template != null) {
-                    template.send(destination, messageCreator, callback);
-                }
-            }
+            template.send(destination, messageCreator, callback);
         } else if (destinationName != null) {
-            if (inOut) {
-                if (template != null) {
-                    template.send(destinationName, messageCreator, callback);
-                }
-            } else {
-                if (template != null) {
-                    template.send(destinationName, messageCreator, callback);
-                }
-            }
+            template.send(destinationName, messageCreator, callback);
         } else {
             throw new IllegalArgumentException(
                     "Neither destination nor destinationName is specified on this endpoint: " + endpoint);

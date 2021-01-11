@@ -2,6 +2,7 @@
 package org.apache.camel.component.graphql;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,21 +18,27 @@ public class GraphqlEndpointUriFactory extends org.apache.camel.support.componen
     private static final String BASE = ":httpUri";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(12);
-        set.add("httpUri");
-        set.add("lazyStartProducer");
-        set.add("operationName");
-        set.add("proxyHost");
-        set.add("query");
-        set.add("queryFile");
-        set.add("variables");
-        set.add("basicPropertyBinding");
-        set.add("synchronous");
-        set.add("accessToken");
-        set.add("password");
-        set.add("username");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(12);
+        props.add("lazyStartProducer");
+        props.add("queryFile");
+        props.add("variables");
+        props.add("password");
+        props.add("jwtAuthorizationType");
+        props.add("httpUri");
+        props.add("synchronous");
+        props.add("query");
+        props.add("operationName");
+        props.add("accessToken");
+        props.add("proxyHost");
+        props.add("username");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        Set<String> secretProps = new HashSet<>(3);
+        secretProps.add("password");
+        secretProps.add("accessToken");
+        secretProps.add("username");
+        SECRET_PROPERTY_NAMES = Collections.unmodifiableSet(secretProps);
     }
 
     @Override
@@ -40,20 +47,25 @@ public class GraphqlEndpointUriFactory extends org.apache.camel.support.componen
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
         Map<String, Object> copy = new HashMap<>(properties);
 
         uri = buildPathParameter(syntax, uri, "httpUri", null, true, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

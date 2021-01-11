@@ -49,7 +49,7 @@ public class BlobConfigurationOptionsProxy {
     }
 
     public ListBlobContainersOptions getListBlobContainersOptions(final Exchange exchange) {
-        return BlobExchangeHeaders.getListBlobContainersOptionsFromHeaders(exchange);
+        return getOption(BlobExchangeHeaders::getListBlobContainersOptionsFromHeaders, () -> null, exchange);
     }
 
     public Duration getTimeout(final Exchange exchange) {
@@ -57,15 +57,23 @@ public class BlobConfigurationOptionsProxy {
     }
 
     public ListBlobsOptions getListBlobsOptions(final Exchange exchange) {
-        return BlobExchangeHeaders.getListBlobsOptionsFromHeaders(exchange);
+        return getOption(BlobExchangeHeaders::getListBlobsOptionsFromHeaders, () -> null, exchange);
     }
 
     public BlobListDetails getBlobListDetails(final Exchange exchange) {
-        return BlobExchangeHeaders.getBlobListDetailsFromHeaders(exchange);
+        return getOption(BlobExchangeHeaders::getBlobListDetailsFromHeaders, () -> null, exchange);
     }
 
     public String getPrefix(final Exchange exchange) {
+        //if regex is set, prefix will not take effect
+        if (ObjectHelper.isNotEmpty(getRegex(exchange))) {
+            return null;
+        }
         return getOption(BlobExchangeHeaders::getPrefixFromHeaders, configuration::getPrefix, exchange);
+    }
+
+    public String getRegex(final Exchange exchange) {
+        return getOption(BlobExchangeHeaders::getRegexFromHeaders, configuration::getRegex, exchange);
     }
 
     public Integer getMaxResultsPerPage(final Exchange exchange) {
@@ -74,6 +82,10 @@ public class BlobConfigurationOptionsProxy {
 
     public ListBlobsOptions getListBlobOptions(final Exchange exchange) {
         ListBlobsOptions blobsOptions = getListBlobsOptions(exchange);
+
+        if (blobsOptions == null) {
+            blobsOptions = new ListBlobsOptions();
+        }
 
         if (!ObjectHelper.isEmpty(blobsOptions)) {
             return blobsOptions;

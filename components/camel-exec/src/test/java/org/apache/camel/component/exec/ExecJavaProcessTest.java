@@ -27,12 +27,12 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.Produce;
 import org.apache.camel.ProducerTemplate;
+import org.apache.camel.builder.AdviceWith;
 import org.apache.camel.builder.AdviceWithRouteBuilder;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.exec.impl.ProvokeExceptionExecCommandExecutor;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.converter.IOConverter;
-import org.apache.camel.reifier.RouteReifier;
 import org.apache.camel.test.junit5.CamelTestSupport;
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Test;
@@ -54,7 +54,6 @@ import static org.apache.camel.component.exec.ExecutableJavaProgram.PRINT_IN_STD
 import static org.apache.camel.component.exec.ExecutableJavaProgram.READ_INPUT_LINES_AND_PRINT_THEM;
 import static org.apache.camel.component.exec.ExecutableJavaProgram.SLEEP_WITH_TIMEOUT;
 import static org.apache.camel.component.exec.ExecutableJavaProgram.THREADS;
-import static org.apache.commons.io.IOUtils.LINE_SEPARATOR;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -250,8 +249,8 @@ public class ExecJavaProcessTest extends CamelTestSupport {
 
         String err = IOUtils.toString(exchange.getIn().getHeader(EXEC_STDERR, InputStream.class), Charset.defaultCharset());
         ExecResult result = exchange.getIn().getBody(ExecResult.class);
-        String[] outs = IOUtils.toString(result.getStdout(), Charset.defaultCharset()).split(LINE_SEPARATOR);
-        String[] errs = err.split(LINE_SEPARATOR);
+        String[] outs = IOUtils.toString(result.getStdout(), Charset.defaultCharset()).split(System.lineSeparator());
+        String[] errs = err.split(System.lineSeparator());
 
         output.assertIsSatisfied();
         assertEquals(ExecutableJavaProgram.LINES_TO_PRINT_FROM_EACH_THREAD, outs.length);
@@ -387,7 +386,7 @@ public class ExecJavaProcessTest extends CamelTestSupport {
         final StringBuilder builder = new StringBuilder();
         int lines = 10;
         for (int t = 1; t < lines; t++) {
-            builder.append("Line" + t + LINE_SEPARATOR);
+            builder.append("Line" + t + System.lineSeparator());
         }
         String whiteSpaceSeparatedLines = builder.toString();
         String expected = builder.toString();
@@ -402,7 +401,7 @@ public class ExecJavaProcessTest extends CamelTestSupport {
      */
     @Test
     public void testExecJavaProcessWithThrownExecException() throws Exception {
-        RouteReifier.adviceWith(context.getRouteDefinitions().get(0), context, new AdviceWithRouteBuilder() {
+        AdviceWith.adviceWith(context.getRouteDefinitions().get(0), context, new AdviceWithRouteBuilder() {
             @Override
             public void configure() throws Exception {
                 weaveByToString(".*java.*").replace().to("exec:java?commandExecutor=#executorMock");

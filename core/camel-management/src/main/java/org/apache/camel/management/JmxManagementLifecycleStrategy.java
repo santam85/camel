@@ -36,7 +36,6 @@ import org.apache.camel.Channel;
 import org.apache.camel.Component;
 import org.apache.camel.Consumer;
 import org.apache.camel.Endpoint;
-import org.apache.camel.ErrorHandlerFactory;
 import org.apache.camel.ExtendedCamelContext;
 import org.apache.camel.ManagementStatisticsLevel;
 import org.apache.camel.NamedNode;
@@ -51,6 +50,8 @@ import org.apache.camel.TimerListener;
 import org.apache.camel.VetoCamelContextStartException;
 import org.apache.camel.cluster.CamelClusterService;
 import org.apache.camel.health.HealthCheckRegistry;
+import org.apache.camel.impl.debugger.BacklogDebugger;
+import org.apache.camel.impl.debugger.BacklogTracer;
 import org.apache.camel.management.mbean.ManagedAsyncProcessorAwaitManager;
 import org.apache.camel.management.mbean.ManagedBacklogDebugger;
 import org.apache.camel.management.mbean.ManagedBacklogTracer;
@@ -79,9 +80,6 @@ import org.apache.camel.model.PolicyDefinition;
 import org.apache.camel.model.ProcessorDefinition;
 import org.apache.camel.model.ProcessorDefinitionHelper;
 import org.apache.camel.model.RouteDefinition;
-import org.apache.camel.processor.CamelInternalProcessor;
-import org.apache.camel.processor.interceptor.BacklogDebugger;
-import org.apache.camel.processor.interceptor.BacklogTracer;
 import org.apache.camel.spi.AsyncProcessorAwaitManager;
 import org.apache.camel.spi.BeanIntrospection;
 import org.apache.camel.spi.ConsumerCache;
@@ -89,6 +87,7 @@ import org.apache.camel.spi.DataFormat;
 import org.apache.camel.spi.EndpointRegistry;
 import org.apache.camel.spi.EventNotifier;
 import org.apache.camel.spi.InflightRepository;
+import org.apache.camel.spi.InternalProcessor;
 import org.apache.camel.spi.LifecycleStrategy;
 import org.apache.camel.spi.ManagementAgent;
 import org.apache.camel.spi.ManagementInterceptStrategy.InstrumentationProcessor;
@@ -633,8 +632,8 @@ public class JmxManagementLifecycleStrategy extends ServiceSupport implements Li
             // get the wrapped instrumentation processor from this route
             // and set me as the counter
             Processor processor = route.getProcessor();
-            if (processor instanceof CamelInternalProcessor && mr instanceof ManagedRoute) {
-                CamelInternalProcessor internal = (CamelInternalProcessor) processor;
+            if (processor instanceof InternalProcessor && mr instanceof ManagedRoute) {
+                InternalProcessor internal = (InternalProcessor) processor;
                 ManagedRoute routeMBean = (ManagedRoute) mr;
 
                 DefaultInstrumentationProcessor task = internal.getAdvice(DefaultInstrumentationProcessor.class);
@@ -688,52 +687,6 @@ public class JmxManagementLifecycleStrategy extends ServiceSupport implements Li
         // after the routes has been removed, we should clear the wrapped processors as we no longer need them
         // as they were just a provisional map used during creation of routes
         removeWrappedProcessorsForRoutes(routes);
-    }
-
-    @Override
-    public void onErrorHandlerAdd(Route route, Processor errorHandler, ErrorHandlerFactory errorHandlerBuilder) {
-        if (!initialized) {
-            // pre register so we can register later when we have been initialized
-            preServices.add(lf -> lf.onErrorHandlerAdd(route, errorHandler, errorHandlerBuilder));
-            return;
-        }
-
-        if (!shouldRegister(errorHandler, null)) {
-            // avoid registering if not needed
-            return;
-        }
-
-        Object me = getManagementObjectStrategy().getManagedObjectForErrorHandler(camelContext, route, errorHandler,
-                errorHandlerBuilder);
-
-        // skip already managed services, for example if a route has been restarted
-        if (getManagementStrategy().isManaged(me)) {
-            LOG.trace("The error handler builder is already managed: {}", errorHandlerBuilder);
-            return;
-        }
-
-        try {
-            manageObject(me);
-        } catch (Exception e) {
-            LOG.warn("Could not register error handler builder: " + errorHandlerBuilder + " as ErrorHandler MBean.", e);
-        }
-    }
-
-    @Override
-    public void onErrorHandlerRemove(Route route, Processor errorHandler, ErrorHandlerFactory errorHandlerBuilder) {
-        if (!initialized) {
-            return;
-        }
-
-        Object me = getManagementObjectStrategy().getManagedObjectForErrorHandler(camelContext, route, errorHandler,
-                errorHandlerBuilder);
-        if (me != null) {
-            try {
-                unmanageObject(me);
-            } catch (Exception e) {
-                LOG.warn("Could not unregister error handler: " + me + " as ErrorHandler MBean.", e);
-            }
-        }
     }
 
     @Override

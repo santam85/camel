@@ -158,7 +158,7 @@ public class BindyCsvDataFormat extends BindyAbstractDataFormat {
             org.apache.camel.util.ObjectHelper.notNull(separator,
                     "The separator has not been defined in the annotation @CsvRecord or not instantiated during initModel.");
             Boolean removeQuotes = factory.getRemoveQuotes();
-            AtomicInteger count = new AtomicInteger(0);
+            AtomicInteger count = new AtomicInteger();
 
             // Use a Stream to stream a file across.
             try (Stream<String> lines = new BufferedReader(in).lines()) {
@@ -205,8 +205,8 @@ public class BindyCsvDataFormat extends BindyAbstractDataFormat {
 
                 // if separator is a tab, don't trim any leading whitespaces (could be empty values separated by tabs)
                 if (separator.equals("\t")) {
-                    // trim only trailing whitespaces
-                    trimmedLine = line.replaceAll("\\s+$", "");
+                    // trim only trailing whitespaces (remove new lines etc but keep tab character)
+                    trimmedLine = line.replaceAll("[ \\n\\x0B\\f\\r]+$", "");
                 } else {
                     trimmedLine = line.trim();
                 }

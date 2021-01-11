@@ -23,6 +23,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.NoSuchElementException;
 import java.util.concurrent.Callable;
 import java.util.regex.Pattern;
@@ -37,7 +38,6 @@ import org.apache.camel.Ordered;
 import org.apache.camel.RuntimeCamelException;
 import org.apache.camel.TypeConverter;
 import org.apache.camel.util.Scanner;
-import org.apache.camel.util.StringHelper;
 
 /**
  * A number of useful helper methods for working with Objects
@@ -119,10 +119,29 @@ public final class ObjectHelper {
                 Long rightNum = (Long) rightValue;
                 return leftNum.compareTo(rightNum) == 0;
             }
+        } else if ((rightValue instanceof String) &&
+                (leftValue instanceof Integer || leftValue instanceof Long)) {
+            if (leftValue instanceof Integer) {
+                Integer leftNum = (Integer) leftValue;
+                Integer rightNum = Integer.valueOf((String) rightValue);
+                return leftNum.compareTo(rightNum) == 0;
+            } else {
+                Long leftNum = (Long) leftValue;
+                Long rightNum = Long.valueOf((String) rightValue);
+                return leftNum.compareTo(rightNum) == 0;
+            }
         } else if (rightValue instanceof Double && leftValue instanceof String && isFloatingNumber((String) leftValue)) {
             Double leftNum = Double.valueOf((String) leftValue);
             Double rightNum = (Double) rightValue;
             return leftNum.compareTo(rightNum) == 0;
+        } else if (rightValue instanceof Boolean && leftValue instanceof String) {
+            Boolean leftBool = Boolean.valueOf((String) leftValue);
+            Boolean rightBool = (Boolean) rightValue;
+            return leftBool.compareTo(rightBool) == 0;
+        } else if (rightValue instanceof String && leftValue instanceof Boolean) {
+            Boolean leftBool = (Boolean) leftValue;
+            Boolean rightBool = Boolean.valueOf((String) rightValue);
+            return leftBool.compareTo(rightBool) == 0;
         }
 
         // try without type coerce
@@ -200,10 +219,29 @@ public final class ObjectHelper {
                 Long rightNum = (Long) rightValue;
                 return leftNum.compareTo(rightNum);
             }
+        } else if ((rightValue instanceof String) &&
+                (leftValue instanceof Integer || leftValue instanceof Long)) {
+            if (leftValue instanceof Integer) {
+                Integer leftNum = (Integer) leftValue;
+                Integer rightNum = Integer.valueOf((String) rightValue);
+                return leftNum.compareTo(rightNum);
+            } else {
+                Long leftNum = (Long) leftValue;
+                Long rightNum = Long.valueOf((String) rightValue);
+                return leftNum.compareTo(rightNum);
+            }
         } else if (rightValue instanceof Double && leftValue instanceof String && isFloatingNumber((String) leftValue)) {
             Double leftNum = Double.valueOf((String) leftValue);
             Double rightNum = (Double) rightValue;
             return leftNum.compareTo(rightNum);
+        } else if (rightValue instanceof Boolean && leftValue instanceof String) {
+            Boolean leftBool = Boolean.valueOf((String) leftValue);
+            Boolean rightBool = (Boolean) rightValue;
+            return leftBool.compareTo(rightBool);
+        } else if (rightValue instanceof String && leftValue instanceof Boolean) {
+            Boolean leftBool = (Boolean) leftValue;
+            Boolean rightBool = Boolean.valueOf((String) rightValue);
+            return leftBool.compareTo(rightBool);
         }
 
         // if both values is numeric then compare using numeric
@@ -745,7 +783,7 @@ public final class ObjectHelper {
     /**
      * Returns true if the collection contains the specified value
      * 
-     * @deprecated use {@link #typeCoerceContains(TypeConverter, Object, Object)}
+     * @deprecated use {@link #typeCoerceContains(TypeConverter, Object, Object, boolean)}
      */
     @Deprecated
     public static boolean contains(Object collectionOrArray, Object value) {
@@ -779,62 +817,50 @@ public final class ObjectHelper {
     /**
      * Returns true if the collection contains the specified value
      */
-    public static boolean typeCoerceContains(TypeConverter typeConverter, Object collectionOrArray, Object value) {
+    public static boolean typeCoerceContains(
+            TypeConverter typeConverter, Object collectionOrArray, Object value, boolean ignoreCase) {
         // favor String types
         if (collectionOrArray != null
                 && (collectionOrArray instanceof StringBuffer || collectionOrArray instanceof StringBuilder)) {
             collectionOrArray = collectionOrArray.toString();
         }
-        if (value != null && (value instanceof StringBuffer || value instanceof StringBuilder)) {
+        if (value instanceof StringBuffer || value instanceof StringBuilder) {
             value = value.toString();
         }
 
         if (collectionOrArray instanceof Collection) {
             Collection<?> collection = (Collection<?>) collectionOrArray;
-            return collection.contains(value);
-        } else if (collectionOrArray instanceof String && value instanceof String) {
+            if (ignoreCase) {
+                String lower = value.toString().toLowerCase(Locale.ENGLISH);
+                return collection.stream().anyMatch(c -> c.toString().toLowerCase(Locale.ENGLISH).contains(lower));
+            } else {
+                return collection.contains(value);
+            }
+        } else if (collectionOrArray instanceof String) {
             String str = (String) collectionOrArray;
-            String subStr = (String) value;
-            return str.contains(subStr);
-        } else {
-            Iterator<?> iter = createIterator(collectionOrArray);
-            while (iter.hasNext()) {
-                if (typeCoerceEquals(typeConverter, value, iter.next())) {
-                    return true;
+            String subStr;
+            if (value instanceof String) {
+                subStr = (String) value;
+            } else {
+                subStr = typeConverter.tryConvertTo(String.class, value);
+            }
+            if (subStr != null) {
+                if (ignoreCase) {
+                    String lower = subStr.toLowerCase(Locale.ENGLISH);
+                    return str.toLowerCase(Locale.ENGLISH).contains(lower);
+                } else {
+                    return str.contains(subStr);
                 }
+            }
+        }
+
+        Iterator<?> iter = createIterator(collectionOrArray);
+        while (iter.hasNext()) {
+            if (typeCoerceEquals(typeConverter, value, iter.next(), ignoreCase)) {
+                return true;
             }
         }
         return false;
     }
 
-    /**
-     * Returns true if the collection contains the specified value by considering case insensitivity
-     */
-    public static boolean typeCoerceContainsIgnoreCase(TypeConverter typeConverter, Object collectionOrArray, Object value) {
-        // favor String types
-        if (collectionOrArray != null
-                && (collectionOrArray instanceof StringBuffer || collectionOrArray instanceof StringBuilder)) {
-            collectionOrArray = collectionOrArray.toString();
-        }
-        if (value != null && (value instanceof StringBuffer || value instanceof StringBuilder)) {
-            value = value.toString();
-        }
-
-        if (collectionOrArray instanceof Collection) {
-            Collection<?> collection = (Collection<?>) collectionOrArray;
-            return collection.contains(value);
-        } else if (collectionOrArray instanceof String && value instanceof String) {
-            String str = (String) collectionOrArray;
-            String subStr = (String) value;
-            return StringHelper.containsIgnoreCase(str, subStr);
-        } else {
-            Iterator<?> iter = createIterator(collectionOrArray);
-            while (iter.hasNext()) {
-                if (typeCoerceEquals(typeConverter, value, iter.next(), true)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 }

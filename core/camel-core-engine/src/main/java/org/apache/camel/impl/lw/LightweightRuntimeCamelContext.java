@@ -25,12 +25,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import org.apache.camel.AsyncProcessor;
 import org.apache.camel.CamelContext;
 import org.apache.camel.CamelContextAware;
 import org.apache.camel.CatalogCamelContext;
@@ -71,6 +69,7 @@ import org.apache.camel.spi.AsyncProcessorAwaitManager;
 import org.apache.camel.spi.BeanIntrospection;
 import org.apache.camel.spi.BeanProcessorFactory;
 import org.apache.camel.spi.BeanProxyFactory;
+import org.apache.camel.spi.BootstrapCloseable;
 import org.apache.camel.spi.CamelBeanPostProcessor;
 import org.apache.camel.spi.CamelContextNameStrategy;
 import org.apache.camel.spi.ClassResolver;
@@ -91,8 +90,10 @@ import org.apache.camel.spi.FactoryFinderResolver;
 import org.apache.camel.spi.HeadersMapFactory;
 import org.apache.camel.spi.InflightRepository;
 import org.apache.camel.spi.Injector;
+import org.apache.camel.spi.InterceptEndpointFactory;
 import org.apache.camel.spi.InterceptSendToEndpoint;
 import org.apache.camel.spi.InterceptStrategy;
+import org.apache.camel.spi.InternalProcessorFactory;
 import org.apache.camel.spi.Language;
 import org.apache.camel.spi.LanguageResolver;
 import org.apache.camel.spi.LifecycleStrategy;
@@ -115,6 +116,7 @@ import org.apache.camel.spi.RestBindingJaxbDataFormatFactory;
 import org.apache.camel.spi.RestConfiguration;
 import org.apache.camel.spi.RestRegistry;
 import org.apache.camel.spi.RouteController;
+import org.apache.camel.spi.RouteFactory;
 import org.apache.camel.spi.RoutePolicyFactory;
 import org.apache.camel.spi.RouteStartupOrder;
 import org.apache.camel.spi.RuntimeEndpointRegistry;
@@ -169,6 +171,8 @@ public class LightweightRuntimeCamelContext implements ExtendedCamelContext, Cat
     private final ClassLoader applicationContextClassLoader;
     private final UnitOfWorkFactory unitOfWorkFactory;
     private final RouteController routeController;
+    private final ProcessorFactory processorFactory;
+    private final InternalProcessorFactory internalProcessorFactory;
     private final InflightRepository inflightRepository;
     private final Injector injector;
     private final ClassResolver classResolver;
@@ -209,6 +213,8 @@ public class LightweightRuntimeCamelContext implements ExtendedCamelContext, Cat
         shutdownStrategy = context.getShutdownStrategy();
         applicationContextClassLoader = context.getApplicationContextClassLoader();
         unitOfWorkFactory = context.adapt(ExtendedCamelContext.class).getUnitOfWorkFactory();
+        processorFactory = context.adapt(ExtendedCamelContext.class).getProcessorFactory();
+        internalProcessorFactory = context.adapt(ExtendedCamelContext.class).getInternalProcessorFactory();
         routeController = context.getRouteController();
         inflightRepository = context.getInflightRepository();
         globalOptions = context.getGlobalOptions();
@@ -248,6 +254,11 @@ public class LightweightRuntimeCamelContext implements ExtendedCamelContext, Cat
 
     public CamelContext getCamelContextReference() {
         return reference;
+    }
+
+    @Override
+    public void disposeModel() {
+        // noop
     }
 
     @Override
@@ -449,6 +460,16 @@ public class LightweightRuntimeCamelContext implements ExtendedCamelContext, Cat
     }
 
     @Override
+    public Boolean isAutowiredEnabled() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setAutowiredEnabled(Boolean autowiredEnabled) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public Registry getRegistry() {
         return registry;
     }
@@ -645,6 +666,15 @@ public class LightweightRuntimeCamelContext implements ExtendedCamelContext, Cat
     @Override
     public boolean removeService(Object object) throws Exception {
         return false;
+    }
+
+    @Override
+    public void addBootstrap(BootstrapCloseable bootstrap) {
+    }
+
+    @Override
+    public List<Service> getServices() {
+        return null;
     }
 
     @Override
@@ -1310,12 +1340,6 @@ public class LightweightRuntimeCamelContext implements ExtendedCamelContext, Cat
     }
 
     @Override
-    public AsyncProcessor createMulticast(
-            Collection<Processor> processors, ExecutorService executor, boolean shutdownExecutorService) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public ErrorHandlerFactory getErrorHandlerFactory() {
         throw new UnsupportedOperationException();
     }
@@ -1355,6 +1379,26 @@ public class LightweightRuntimeCamelContext implements ExtendedCamelContext, Cat
     }
 
     @Override
+    public ConfigurerResolver getBootstrapConfigurerResolver() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setBootstrapConfigurerResolver(ConfigurerResolver configurerResolver) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public FactoryFinder getBootstrapFactoryFinder() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setBootstrapFactoryFinder(FactoryFinder factoryFinder) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public FactoryFinder getFactoryFinder(String path) {
         throw new UnsupportedOperationException();
     }
@@ -1371,7 +1415,7 @@ public class LightweightRuntimeCamelContext implements ExtendedCamelContext, Cat
 
     @Override
     public ProcessorFactory getProcessorFactory() {
-        throw new UnsupportedOperationException();
+        return processorFactory;
     }
 
     @Override
@@ -1380,7 +1424,42 @@ public class LightweightRuntimeCamelContext implements ExtendedCamelContext, Cat
     }
 
     @Override
+    public InternalProcessorFactory getInternalProcessorFactory() {
+        return internalProcessorFactory;
+    }
+
+    @Override
+    public void setInternalProcessorFactory(InternalProcessorFactory internalProcessorFactory) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public InterceptEndpointFactory getInterceptEndpointFactory() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setInterceptEndpointFactory(InterceptEndpointFactory interceptEndpointFactory) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public RouteFactory getRouteFactory() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setRouteFactory(RouteFactory routeFactory) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public DeferServiceFactory getDeferServiceFactory() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setDeferServiceFactory(DeferServiceFactory deferServiceFactory) {
         throw new UnsupportedOperationException();
     }
 
@@ -1396,6 +1475,11 @@ public class LightweightRuntimeCamelContext implements ExtendedCamelContext, Cat
 
     @Override
     public AnnotationBasedProcessorFactory getAnnotationBasedProcessorFactory() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setAnnotationBasedProcessorFactory(AnnotationBasedProcessorFactory annotationBasedProcessorFactory) {
         throw new UnsupportedOperationException();
     }
 
@@ -1751,6 +1835,16 @@ public class LightweightRuntimeCamelContext implements ExtendedCamelContext, Cat
     public String addRouteFromTemplate(String routeId, String routeTemplateId, Map<String, Object> parameters)
             throws Exception {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setLightweight(boolean lightweight) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean isLightweight() {
+        return true;
     }
 
     @Override

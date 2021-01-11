@@ -2,6 +2,7 @@
 package org.apache.camel.component.rest.openapi;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,19 +18,20 @@ public class RestOpenApiEndpointUriFactory extends org.apache.camel.support.comp
     private static final String BASE = ":specificationUri#operationId";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(10);
-        set.add("specificationUri");
-        set.add("operationId");
-        set.add("basePath");
-        set.add("componentName");
-        set.add("consumes");
-        set.add("host");
-        set.add("lazyStartProducer");
-        set.add("produces");
-        set.add("basicPropertyBinding");
-        set.add("synchronous");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(9);
+        props.add("lazyStartProducer");
+        props.add("basePath");
+        props.add("synchronous");
+        props.add("host");
+        props.add("produces");
+        props.add("operationId");
+        props.add("componentName");
+        props.add("specificationUri");
+        props.add("consumes");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        SECRET_PROPERTY_NAMES = Collections.emptySet();
     }
 
     @Override
@@ -38,7 +40,7 @@ public class RestOpenApiEndpointUriFactory extends org.apache.camel.support.comp
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
@@ -46,13 +48,18 @@ public class RestOpenApiEndpointUriFactory extends org.apache.camel.support.comp
 
         uri = buildPathParameter(syntax, uri, "specificationUri", "openapi.json", false, copy);
         uri = buildPathParameter(syntax, uri, "operationId", null, true, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

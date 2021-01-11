@@ -21,26 +21,44 @@ import java.util.Set;
 
 import org.apache.camel.BeanScope;
 import org.apache.camel.CamelContext;
+import org.apache.camel.CamelContextAware;
 import org.apache.camel.Processor;
 import org.apache.camel.RuntimeCamelException;
+import org.apache.camel.StaticService;
 import org.apache.camel.spi.BeanProcessorFactory;
 import org.apache.camel.spi.annotations.JdkService;
 import org.apache.camel.support.CamelContextHelper;
+import org.apache.camel.support.service.ServiceSupport;
 import org.apache.camel.util.ObjectHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @JdkService(BeanProcessorFactory.FACTORY)
-public final class DefaultBeanProcessorFactory implements BeanProcessorFactory {
+public final class DefaultBeanProcessorFactory extends ServiceSupport
+        implements BeanProcessorFactory, CamelContextAware, StaticService {
 
     private static final Logger LOG = LoggerFactory.getLogger(DefaultBeanProcessorFactory.class);
+
+    private CamelContext camelContext;
+    private ParameterMappingStrategy parameterMappingStrategy;
+    private BeanComponent beanComponent;
 
     public DefaultBeanProcessorFactory() {
     }
 
     @Override
+    public CamelContext getCamelContext() {
+        return camelContext;
+    }
+
+    @Override
+    public void setCamelContext(CamelContext camelContext) {
+        this.camelContext = camelContext;
+    }
+
+    @Override
     public Processor createBeanProcessor(CamelContext camelContext, Object bean, Method method) throws Exception {
-        BeanInfo info = new BeanInfo(camelContext, method);
+        BeanInfo info = new BeanInfo(camelContext, method, parameterMappingStrategy, beanComponent);
         return new BeanProcessor(bean, info);
     }
 
@@ -57,12 +75,13 @@ public final class DefaultBeanProcessorFactory implements BeanProcessorFactory {
         if (ObjectHelper.isNotEmpty(ref)) {
             if (scope == BeanScope.Singleton) {
                 // cache the registry lookup which avoids repeat lookup in the registry
-                beanHolder = new RegistryBean(camelContext, ref).createCacheHolder();
+                beanHolder = new RegistryBean(camelContext, ref, parameterMappingStrategy, beanComponent)
+                        .createCacheHolder();
                 // bean holder will check if the bean exists
                 bean = beanHolder.getBean(null);
             } else {
                 // we do not cache so we invoke on-demand
-                beanHolder = new RegistryBean(camelContext, ref);
+                beanHolder = new RegistryBean(camelContext, ref, parameterMappingStrategy, beanComponent);
             }
             if (scope == BeanScope.Request) {
                 // wrap in registry scoped holder
@@ -89,7 +108,7 @@ public final class DefaultBeanProcessorFactory implements BeanProcessorFactory {
                 if (scope == BeanScope.Singleton && clazz != null) {
                     // attempt to lookup in registry by type to favour using it (like bean ref would do to lookup in registry)
                     Set<?> beans = camelContext.getRegistry().findByType(clazz);
-                    if (beans.size() > 0) {
+                    if (!beans.isEmpty()) {
                         if (beans.size() == 1) {
                             LOG.debug("Exactly one instance of type: {} in registry found.", clazz);
                             bean = beans.iterator().next();
@@ -105,7 +124,7 @@ public final class DefaultBeanProcessorFactory implements BeanProcessorFactory {
                         LOG.debug("Attempting to create new bean instance from class: {} via auto-wiring enabled", clazz);
                         bean = CamelContextHelper.newInstance(camelContext, clazz);
                     } catch (Throwable e) {
-                        LOG.debug("Error creating new bean instance from class: " + clazz + ". This exception is ignored", e);
+                        LOG.debug("Error creating new bean instance from class: {}. This exception is ignored", clazz, e);
                     }
                 }
 
@@ -127,14 +146,15 @@ public final class DefaultBeanProcessorFactory implements BeanProcessorFactory {
 
             // the holder should either be bean or type based
             if (bean != null) {
-                beanHolder = new ConstantBeanHolder(bean, camelContext);
+                beanHolder = new ConstantBeanHolder(bean, camelContext, parameterMappingStrategy, beanComponent);
             } else {
                 if (scope == BeanScope.Singleton && ObjectHelper.hasDefaultPublicNoArgConstructor(clazz)) {
                     // we can only cache if we can create an instance of the bean, and for that we need a public constructor
-                    beanHolder = new ConstantTypeBeanHolder(clazz, camelContext).createCacheHolder();
+                    beanHolder = new ConstantTypeBeanHolder(clazz, camelContext, parameterMappingStrategy, beanComponent)
+                            .createCacheHolder();
                 } else {
                     if (ObjectHelper.hasDefaultPublicNoArgConstructor(clazz)) {
-                        beanHolder = new ConstantTypeBeanHolder(clazz, camelContext);
+                        beanHolder = new ConstantTypeBeanHolder(clazz, camelContext, parameterMappingStrategy, beanComponent);
                     } else if (clazz.isInterface()) {
                         throw new IllegalArgumentException(
                                 "The bean is an interface type: " + clazz
@@ -142,7 +162,8 @@ public final class DefaultBeanProcessorFactory implements BeanProcessorFactory {
                                                            + " Otherwise the bean must be a class type.");
                     } else {
                         // this is only for invoking static methods on the bean
-                        beanHolder = new ConstantStaticTypeBeanHolder(clazz, camelContext);
+                        beanHolder = new ConstantStaticTypeBeanHolder(
+                                clazz, camelContext, parameterMappingStrategy, beanComponent);
                     }
                 }
             }
@@ -178,5 +199,11 @@ public final class DefaultBeanProcessorFactory implements BeanProcessorFactory {
         }
 
         return answer;
+    }
+
+    @Override
+    protected void doInit() throws Exception {
+        parameterMappingStrategy = ParameterMappingStrategyHelper.createParameterMappingStrategy(getCamelContext());
+        beanComponent = getCamelContext().getComponent("bean", BeanComponent.class);
     }
 }

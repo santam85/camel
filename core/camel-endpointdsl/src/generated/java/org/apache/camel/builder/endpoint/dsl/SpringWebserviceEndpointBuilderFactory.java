@@ -47,9 +47,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * to process your headers or attachments by your own.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.spring.ws.filter.MessageFilter</code> type.
+         * &lt;code&gt;org.apache.camel.component.spring.ws.filter.MessageFilter&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param messageFilter the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointConsumerBuilder messageFilter(
                 Object messageFilter) {
@@ -61,13 +64,50 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * to process your headers or attachments by your own.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.spring.ws.filter.MessageFilter</code> type.
+         * &lt;code&gt;org.apache.camel.component.spring.ws.filter.MessageFilter&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param messageFilter the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointConsumerBuilder messageFilter(
                 String messageFilter) {
             doSetProperty("messageFilter", messageFilter);
+            return this;
+        }
+        /**
+         * Option to provide a custom MessageIdStrategy to control generation of
+         * WS-Addressing unique message ids.
+         * 
+         * The option is a:
+         * &lt;code&gt;org.springframework.ws.soap.addressing.messageid.MessageIdStrategy&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param messageIdStrategy the value to set
+         * @return the dsl builder
+         */
+        default SpringWebserviceEndpointConsumerBuilder messageIdStrategy(
+                Object messageIdStrategy) {
+            doSetProperty("messageIdStrategy", messageIdStrategy);
+            return this;
+        }
+        /**
+         * Option to provide a custom MessageIdStrategy to control generation of
+         * WS-Addressing unique message ids.
+         * 
+         * The option will be converted to a
+         * &lt;code&gt;org.springframework.ws.soap.addressing.messageid.MessageIdStrategy&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param messageIdStrategy the value to set
+         * @return the dsl builder
+         */
+        default SpringWebserviceEndpointConsumerBuilder messageIdStrategy(
+                String messageIdStrategy) {
+            doSetProperty("messageIdStrategy", messageIdStrategy);
             return this;
         }
         /**
@@ -79,10 +119,13 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * with exceptions, that will be logged at WARN or ERROR level and
          * ignored.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param bridgeErrorHandler the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointConsumerBuilder bridgeErrorHandler(
                 boolean bridgeErrorHandler) {
@@ -98,10 +141,14 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * with exceptions, that will be logged at WARN or ERROR level and
          * ignored.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param bridgeErrorHandler the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointConsumerBuilder bridgeErrorHandler(
                 String bridgeErrorHandler) {
@@ -115,9 +162,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * PayloadRootQNameEndpointMapping, SoapActionEndpointMapping, etc.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.spring.ws.bean.CamelEndpointDispatcher</code> type.
+         * &lt;code&gt;org.apache.camel.component.spring.ws.bean.CamelEndpointDispatcher&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param endpointDispatcher the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointConsumerBuilder endpointDispatcher(
                 Object endpointDispatcher) {
@@ -131,9 +181,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * PayloadRootQNameEndpointMapping, SoapActionEndpointMapping, etc.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.spring.ws.bean.CamelEndpointDispatcher</code> type.
+         * &lt;code&gt;org.apache.camel.component.spring.ws.bean.CamelEndpointDispatcher&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param endpointDispatcher the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointConsumerBuilder endpointDispatcher(
                 String endpointDispatcher) {
@@ -150,9 +203,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * (like root QName, SOAP action, etc).
          * 
          * The option is a:
-         * <code>org.apache.camel.component.spring.ws.bean.CamelSpringWSEndpointMapping</code> type.
+         * &lt;code&gt;org.apache.camel.component.spring.ws.bean.CamelSpringWSEndpointMapping&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param endpointMapping the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointConsumerBuilder endpointMapping(
                 Object endpointMapping) {
@@ -169,9 +225,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * (like root QName, SOAP action, etc).
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.spring.ws.bean.CamelSpringWSEndpointMapping</code> type.
+         * &lt;code&gt;org.apache.camel.component.spring.ws.bean.CamelSpringWSEndpointMapping&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param endpointMapping the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointConsumerBuilder endpointMapping(
                 String endpointMapping) {
@@ -179,40 +238,15 @@ public interface SpringWebserviceEndpointBuilderFactory {
             return this;
         }
         /**
-         * Option to provide a custom MessageIdStrategy to control generation of
-         * WS-Addressing unique message ids.
-         * 
-         * The option is a:
-         * <code>org.springframework.ws.soap.addressing.messageid.MessageIdStrategy</code> type.
-         * 
-         * Group: consumer
-         */
-        default SpringWebserviceEndpointConsumerBuilder messageIdStrategy(
-                Object messageIdStrategy) {
-            doSetProperty("messageIdStrategy", messageIdStrategy);
-            return this;
-        }
-        /**
-         * Option to provide a custom MessageIdStrategy to control generation of
-         * WS-Addressing unique message ids.
-         * 
-         * The option will be converted to a
-         * <code>org.springframework.ws.soap.addressing.messageid.MessageIdStrategy</code> type.
-         * 
-         * Group: consumer
-         */
-        default SpringWebserviceEndpointConsumerBuilder messageIdStrategy(
-                String messageIdStrategy) {
-            doSetProperty("messageIdStrategy", messageIdStrategy);
-            return this;
-        }
-        /**
          * To configure security using SSLContextParameters.
          * 
          * The option is a:
-         * <code>org.apache.camel.support.jsse.SSLContextParameters</code> type.
+         * &lt;code&gt;org.apache.camel.support.jsse.SSLContextParameters&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param sslContextParameters the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointConsumerBuilder sslContextParameters(
                 Object sslContextParameters) {
@@ -223,9 +257,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * To configure security using SSLContextParameters.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.support.jsse.SSLContextParameters</code> type.
+         * &lt;code&gt;org.apache.camel.support.jsse.SSLContextParameters&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param sslContextParameters the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointConsumerBuilder sslContextParameters(
                 String sslContextParameters) {
@@ -250,10 +287,13 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * By default the consumer will deal with exceptions, that will be
          * logged at WARN or ERROR level and ignored.
          * 
-         * The option is a: <code>org.apache.camel.spi.ExceptionHandler</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;org.apache.camel.spi.ExceptionHandler&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exceptionHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedSpringWebserviceEndpointConsumerBuilder exceptionHandler(
                 ExceptionHandler exceptionHandler) {
@@ -267,9 +307,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * logged at WARN or ERROR level and ignored.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.spi.ExceptionHandler</code> type.
+         * &lt;code&gt;org.apache.camel.spi.ExceptionHandler&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exceptionHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedSpringWebserviceEndpointConsumerBuilder exceptionHandler(
                 String exceptionHandler) {
@@ -279,9 +322,13 @@ public interface SpringWebserviceEndpointBuilderFactory {
         /**
          * Sets the exchange pattern when the consumer creates an exchange.
          * 
-         * The option is a: <code>org.apache.camel.ExchangePattern</code> type.
+         * The option is a:
+         * &lt;code&gt;org.apache.camel.ExchangePattern&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exchangePattern the value to set
+         * @return the dsl builder
          */
         default AdvancedSpringWebserviceEndpointConsumerBuilder exchangePattern(
                 ExchangePattern exchangePattern) {
@@ -292,9 +339,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * Sets the exchange pattern when the consumer creates an exchange.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.ExchangePattern</code> type.
+         * &lt;code&gt;org.apache.camel.ExchangePattern&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exchangePattern the value to set
+         * @return the dsl builder
          */
         default AdvancedSpringWebserviceEndpointConsumerBuilder exchangePattern(
                 String exchangePattern) {
@@ -302,41 +352,16 @@ public interface SpringWebserviceEndpointBuilderFactory {
             return this;
         }
         /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedSpringWebserviceEndpointConsumerBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedSpringWebserviceEndpointConsumerBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedSpringWebserviceEndpointConsumerBuilder synchronous(
                 boolean synchronous) {
@@ -347,10 +372,14 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedSpringWebserviceEndpointConsumerBuilder synchronous(
                 String synchronous) {
@@ -373,9 +402,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * to process your headers or attachments by your own.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.spring.ws.filter.MessageFilter</code> type.
+         * &lt;code&gt;org.apache.camel.component.spring.ws.filter.MessageFilter&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param messageFilter the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder messageFilter(
                 Object messageFilter) {
@@ -387,13 +419,50 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * to process your headers or attachments by your own.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.spring.ws.filter.MessageFilter</code> type.
+         * &lt;code&gt;org.apache.camel.component.spring.ws.filter.MessageFilter&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param messageFilter the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder messageFilter(
                 String messageFilter) {
             doSetProperty("messageFilter", messageFilter);
+            return this;
+        }
+        /**
+         * Option to provide a custom MessageIdStrategy to control generation of
+         * WS-Addressing unique message ids.
+         * 
+         * The option is a:
+         * &lt;code&gt;org.springframework.ws.soap.addressing.messageid.MessageIdStrategy&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param messageIdStrategy the value to set
+         * @return the dsl builder
+         */
+        default SpringWebserviceEndpointProducerBuilder messageIdStrategy(
+                Object messageIdStrategy) {
+            doSetProperty("messageIdStrategy", messageIdStrategy);
+            return this;
+        }
+        /**
+         * Option to provide a custom MessageIdStrategy to control generation of
+         * WS-Addressing unique message ids.
+         * 
+         * The option will be converted to a
+         * &lt;code&gt;org.springframework.ws.soap.addressing.messageid.MessageIdStrategy&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param messageIdStrategy the value to set
+         * @return the dsl builder
+         */
+        default SpringWebserviceEndpointProducerBuilder messageIdStrategy(
+                String messageIdStrategy) {
+            doSetProperty("messageIdStrategy", messageIdStrategy);
             return this;
         }
         /**
@@ -403,10 +472,13 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * true, allows the modified soap attachments to be overwritten in
          * in/out message attachments.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param allowResponseAttachmentOverride the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder allowResponseAttachmentOverride(
                 boolean allowResponseAttachmentOverride) {
@@ -420,10 +492,14 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * true, allows the modified soap attachments to be overwritten in
          * in/out message attachments.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param allowResponseAttachmentOverride the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder allowResponseAttachmentOverride(
                 String allowResponseAttachmentOverride) {
@@ -437,10 +513,13 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * allows the modified soap header to be overwritten in in/out message
          * headers.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param allowResponseHeaderOverride the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder allowResponseHeaderOverride(
                 boolean allowResponseHeaderOverride) {
@@ -454,10 +533,14 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * allows the modified soap header to be overwritten in in/out message
          * headers.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param allowResponseHeaderOverride the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder allowResponseHeaderOverride(
                 String allowResponseHeaderOverride) {
@@ -470,9 +553,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * org.springframework.ws.soap.addressing.server.annotation.Action
          * annotation for more details.
          * 
-         * The option is a: <code>java.net.URI</code> type.
+         * The option is a: &lt;code&gt;java.net.URI&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param faultAction the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder faultAction(
                 URI faultAction) {
@@ -485,9 +571,13 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * org.springframework.ws.soap.addressing.server.annotation.Action
          * annotation for more details.
          * 
-         * The option will be converted to a <code>java.net.URI</code> type.
+         * The option will be converted to a
+         * &lt;code&gt;java.net.URI&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param faultAction the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder faultAction(
                 String faultAction) {
@@ -500,9 +590,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * org.springframework.ws.soap.addressing.server.annotation.Action
          * annotation for more details.
          * 
-         * The option is a: <code>java.net.URI</code> type.
+         * The option is a: &lt;code&gt;java.net.URI&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param faultTo the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder faultTo(URI faultTo) {
             doSetProperty("faultTo", faultTo);
@@ -514,9 +607,13 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * org.springframework.ws.soap.addressing.server.annotation.Action
          * annotation for more details.
          * 
-         * The option will be converted to a <code>java.net.URI</code> type.
+         * The option will be converted to a
+         * &lt;code&gt;java.net.URI&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param faultTo the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder faultTo(String faultTo) {
             doSetProperty("faultTo", faultTo);
@@ -533,10 +630,13 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * producer may take a little time and prolong the total processing time
          * of the processing.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param lazyStartProducer the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder lazyStartProducer(
                 boolean lazyStartProducer) {
@@ -554,10 +654,14 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * producer may take a little time and prolong the total processing time
          * of the processing.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param lazyStartProducer the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder lazyStartProducer(
                 String lazyStartProducer) {
@@ -569,9 +673,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * you want Apache Axiom to handle web service messages instead of SAAJ.
          * 
          * The option is a:
-         * <code>org.springframework.ws.WebServiceMessageFactory</code> type.
+         * &lt;code&gt;org.springframework.ws.WebServiceMessageFactory&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param messageFactory the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder messageFactory(
                 Object messageFactory) {
@@ -583,9 +690,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * you want Apache Axiom to handle web service messages instead of SAAJ.
          * 
          * The option will be converted to a
-         * <code>org.springframework.ws.WebServiceMessageFactory</code> type.
+         * &lt;code&gt;org.springframework.ws.WebServiceMessageFactory&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param messageFactory the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder messageFactory(
                 String messageFactory) {
@@ -597,10 +707,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * perform authentication or use alternative transports.
          * 
          * The option is a:
-         * <code>org.springframework.ws.transport.WebServiceMessageSender</code>
-         * type.
+         * &lt;code&gt;org.springframework.ws.transport.WebServiceMessageSender&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param messageSender the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder messageSender(
                 Object messageSender) {
@@ -612,10 +724,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * perform authentication or use alternative transports.
          * 
          * The option will be converted to a
-         * <code>org.springframework.ws.transport.WebServiceMessageSender</code>
-         * type.
+         * &lt;code&gt;org.springframework.ws.transport.WebServiceMessageSender&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param messageSender the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder messageSender(
                 String messageSender) {
@@ -628,9 +742,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * org.springframework.ws.soap.addressing.server.annotation.Action
          * annotation for more details.
          * 
-         * The option is a: <code>java.net.URI</code> type.
+         * The option is a: &lt;code&gt;java.net.URI&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param outputAction the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder outputAction(
                 URI outputAction) {
@@ -643,9 +760,13 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * org.springframework.ws.soap.addressing.server.annotation.Action
          * annotation for more details.
          * 
-         * The option will be converted to a <code>java.net.URI</code> type.
+         * The option will be converted to a
+         * &lt;code&gt;java.net.URI&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param outputAction the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder outputAction(
                 String outputAction) {
@@ -658,9 +779,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * org.springframework.ws.soap.addressing.server.annotation.Action
          * annotation for more details.
          * 
-         * The option is a: <code>java.net.URI</code> type.
+         * The option is a: &lt;code&gt;java.net.URI&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param replyTo the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder replyTo(URI replyTo) {
             doSetProperty("replyTo", replyTo);
@@ -672,9 +796,13 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * org.springframework.ws.soap.addressing.server.annotation.Action
          * annotation for more details.
          * 
-         * The option will be converted to a <code>java.net.URI</code> type.
+         * The option will be converted to a
+         * &lt;code&gt;java.net.URI&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param replyTo the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder replyTo(String replyTo) {
             doSetProperty("replyTo", replyTo);
@@ -684,9 +812,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * SOAP action to include inside a SOAP request when accessing remote
          * web services.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param soapAction the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder soapAction(
                 String soapAction) {
@@ -707,9 +838,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * CommonsHttpMessageSender which has been deprecated, see
          * HttpComponentsMessageSender.setReadTimeout().
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param timeout the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder timeout(int timeout) {
             doSetProperty("timeout", timeout);
@@ -729,9 +863,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * CommonsHttpMessageSender which has been deprecated, see
          * HttpComponentsMessageSender.setReadTimeout().
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param timeout the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder timeout(String timeout) {
             doSetProperty("timeout", timeout);
@@ -744,10 +881,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * factory.
          * 
          * The option is a:
-         * <code>org.springframework.ws.client.core.WebServiceTemplate</code>
-         * type.
+         * &lt;code&gt;org.springframework.ws.client.core.WebServiceTemplate&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param webServiceTemplate the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder webServiceTemplate(
                 Object webServiceTemplate) {
@@ -761,10 +900,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * factory.
          * 
          * The option will be converted to a
-         * <code>org.springframework.ws.client.core.WebServiceTemplate</code>
-         * type.
+         * &lt;code&gt;org.springframework.ws.client.core.WebServiceTemplate&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param webServiceTemplate the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder webServiceTemplate(
                 String webServiceTemplate) {
@@ -776,9 +917,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * services. The To header is set to the address of the web service as
          * specified in the endpoint URI (default Spring-WS behavior).
          * 
-         * The option is a: <code>java.net.URI</code> type.
+         * The option is a: &lt;code&gt;java.net.URI&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param wsAddressingAction the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder wsAddressingAction(
                 URI wsAddressingAction) {
@@ -790,9 +934,13 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * services. The To header is set to the address of the web service as
          * specified in the endpoint URI (default Spring-WS behavior).
          * 
-         * The option will be converted to a <code>java.net.URI</code> type.
+         * The option will be converted to a
+         * &lt;code&gt;java.net.URI&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param wsAddressingAction the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder wsAddressingAction(
                 String wsAddressingAction) {
@@ -803,9 +951,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * To configure security using SSLContextParameters.
          * 
          * The option is a:
-         * <code>org.apache.camel.support.jsse.SSLContextParameters</code> type.
+         * &lt;code&gt;org.apache.camel.support.jsse.SSLContextParameters&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param sslContextParameters the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder sslContextParameters(
                 Object sslContextParameters) {
@@ -816,9 +967,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * To configure security using SSLContextParameters.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.support.jsse.SSLContextParameters</code> type.
+         * &lt;code&gt;org.apache.camel.support.jsse.SSLContextParameters&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param sslContextParameters the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointProducerBuilder sslContextParameters(
                 String sslContextParameters) {
@@ -838,41 +992,16 @@ public interface SpringWebserviceEndpointBuilderFactory {
             return (SpringWebserviceEndpointProducerBuilder) this;
         }
         /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedSpringWebserviceEndpointProducerBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedSpringWebserviceEndpointProducerBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedSpringWebserviceEndpointProducerBuilder synchronous(
                 boolean synchronous) {
@@ -883,10 +1012,14 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedSpringWebserviceEndpointProducerBuilder synchronous(
                 String synchronous) {
@@ -910,9 +1043,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * to process your headers or attachments by your own.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.spring.ws.filter.MessageFilter</code> type.
+         * &lt;code&gt;org.apache.camel.component.spring.ws.filter.MessageFilter&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param messageFilter the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointBuilder messageFilter(
                 Object messageFilter) {
@@ -924,9 +1060,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * to process your headers or attachments by your own.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.spring.ws.filter.MessageFilter</code> type.
+         * &lt;code&gt;org.apache.camel.component.spring.ws.filter.MessageFilter&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param messageFilter the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointBuilder messageFilter(
                 String messageFilter) {
@@ -934,12 +1073,49 @@ public interface SpringWebserviceEndpointBuilderFactory {
             return this;
         }
         /**
+         * Option to provide a custom MessageIdStrategy to control generation of
+         * WS-Addressing unique message ids.
+         * 
+         * The option is a:
+         * &lt;code&gt;org.springframework.ws.soap.addressing.messageid.MessageIdStrategy&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param messageIdStrategy the value to set
+         * @return the dsl builder
+         */
+        default SpringWebserviceEndpointBuilder messageIdStrategy(
+                Object messageIdStrategy) {
+            doSetProperty("messageIdStrategy", messageIdStrategy);
+            return this;
+        }
+        /**
+         * Option to provide a custom MessageIdStrategy to control generation of
+         * WS-Addressing unique message ids.
+         * 
+         * The option will be converted to a
+         * &lt;code&gt;org.springframework.ws.soap.addressing.messageid.MessageIdStrategy&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param messageIdStrategy the value to set
+         * @return the dsl builder
+         */
+        default SpringWebserviceEndpointBuilder messageIdStrategy(
+                String messageIdStrategy) {
+            doSetProperty("messageIdStrategy", messageIdStrategy);
+            return this;
+        }
+        /**
          * To configure security using SSLContextParameters.
          * 
          * The option is a:
-         * <code>org.apache.camel.support.jsse.SSLContextParameters</code> type.
+         * &lt;code&gt;org.apache.camel.support.jsse.SSLContextParameters&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param sslContextParameters the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointBuilder sslContextParameters(
                 Object sslContextParameters) {
@@ -950,9 +1126,12 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * To configure security using SSLContextParameters.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.support.jsse.SSLContextParameters</code> type.
+         * &lt;code&gt;org.apache.camel.support.jsse.SSLContextParameters&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param sslContextParameters the value to set
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointBuilder sslContextParameters(
                 String sslContextParameters) {
@@ -972,41 +1151,16 @@ public interface SpringWebserviceEndpointBuilderFactory {
             return (SpringWebserviceEndpointBuilder) this;
         }
         /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedSpringWebserviceEndpointBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedSpringWebserviceEndpointBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedSpringWebserviceEndpointBuilder synchronous(
                 boolean synchronous) {
@@ -1017,10 +1171,14 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedSpringWebserviceEndpointBuilder synchronous(
                 String synchronous) {
@@ -1068,6 +1226,7 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * option is required to be configured.
          * 
          * @param path type:lookupKey:webServiceEndpointUri
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointBuilder springWs(String path) {
             return SpringWebserviceEndpointBuilderFactory.endpointBuilder("spring-ws", path);
@@ -1112,6 +1271,7 @@ public interface SpringWebserviceEndpointBuilderFactory {
          * @param componentName to use a custom component name for the endpoint
          * instead of the default name
          * @param path type:lookupKey:webServiceEndpointUri
+         * @return the dsl builder
          */
         default SpringWebserviceEndpointBuilder springWs(
                 String componentName,

@@ -2,6 +2,7 @@
 package org.apache.camel.component.azure.storage.queue;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,29 +18,32 @@ public class QueueEndpointUriFactory extends org.apache.camel.support.component.
     private static final String BASE = ":accountName/queueName";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(20);
-        set.add("accountName");
-        set.add("queueName");
-        set.add("autoDiscoverClient");
-        set.add("serviceClient");
-        set.add("bridgeErrorHandler");
-        set.add("exceptionHandler");
-        set.add("exchangePattern");
-        set.add("createQueue");
-        set.add("lazyStartProducer");
-        set.add("operation");
-        set.add("basicPropertyBinding");
-        set.add("synchronous");
-        set.add("maxMessages");
-        set.add("messageId");
-        set.add("popReceipt");
-        set.add("timeout");
-        set.add("timeToLive");
-        set.add("visibilityTimeout");
-        set.add("accessKey");
-        set.add("credentials");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(19);
+        props.add("autoDiscoverClient");
+        props.add("accountName");
+        props.add("credentials");
+        props.add("synchronous");
+        props.add("maxMessages");
+        props.add("exchangePattern");
+        props.add("messageId");
+        props.add("popReceipt");
+        props.add("timeout");
+        props.add("visibilityTimeout");
+        props.add("timeToLive");
+        props.add("lazyStartProducer");
+        props.add("queueName");
+        props.add("bridgeErrorHandler");
+        props.add("accessKey");
+        props.add("serviceClient");
+        props.add("createQueue");
+        props.add("exceptionHandler");
+        props.add("operation");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        Set<String> secretProps = new HashSet<>(1);
+        secretProps.add("accessKey");
+        SECRET_PROPERTY_NAMES = Collections.unmodifiableSet(secretProps);
     }
 
     @Override
@@ -48,7 +52,7 @@ public class QueueEndpointUriFactory extends org.apache.camel.support.component.
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
@@ -56,13 +60,18 @@ public class QueueEndpointUriFactory extends org.apache.camel.support.component.
 
         uri = buildPathParameter(syntax, uri, "accountName", null, false, copy);
         uri = buildPathParameter(syntax, uri, "queueName", null, false, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

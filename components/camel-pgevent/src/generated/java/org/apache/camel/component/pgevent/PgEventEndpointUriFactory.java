@@ -2,6 +2,7 @@
 package org.apache.camel.component.pgevent;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,22 +18,26 @@ public class PgEventEndpointUriFactory extends org.apache.camel.support.componen
     private static final String BASE = ":host:port/database/channel";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(13);
-        set.add("host");
-        set.add("port");
-        set.add("database");
-        set.add("channel");
-        set.add("datasource");
-        set.add("bridgeErrorHandler");
-        set.add("exceptionHandler");
-        set.add("exchangePattern");
-        set.add("lazyStartProducer");
-        set.add("basicPropertyBinding");
-        set.add("synchronous");
-        set.add("pass");
-        set.add("user");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(12);
+        props.add("database");
+        props.add("lazyStartProducer");
+        props.add("bridgeErrorHandler");
+        props.add("port");
+        props.add("pass");
+        props.add("datasource");
+        props.add("synchronous");
+        props.add("host");
+        props.add("channel");
+        props.add("exchangePattern");
+        props.add("exceptionHandler");
+        props.add("user");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        Set<String> secretProps = new HashSet<>(2);
+        secretProps.add("pass");
+        secretProps.add("user");
+        SECRET_PROPERTY_NAMES = Collections.unmodifiableSet(secretProps);
     }
 
     @Override
@@ -41,7 +46,7 @@ public class PgEventEndpointUriFactory extends org.apache.camel.support.componen
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
@@ -51,13 +56,18 @@ public class PgEventEndpointUriFactory extends org.apache.camel.support.componen
         uri = buildPathParameter(syntax, uri, "port", "5432", false, copy);
         uri = buildPathParameter(syntax, uri, "database", null, true, copy);
         uri = buildPathParameter(syntax, uri, "channel", null, true, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

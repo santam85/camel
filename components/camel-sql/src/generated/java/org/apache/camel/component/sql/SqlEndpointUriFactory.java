@@ -2,6 +2,7 @@
 package org.apache.camel.component.sql;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,58 +18,59 @@ public class SqlEndpointUriFactory extends org.apache.camel.support.component.En
     private static final String BASE = ":query";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(49);
-        set.add("query");
-        set.add("allowNamedParameters");
-        set.add("dataSource");
-        set.add("dataSourceRef");
-        set.add("outputClass");
-        set.add("outputHeader");
-        set.add("outputType");
-        set.add("separator");
-        set.add("breakBatchOnConsumeFail");
-        set.add("bridgeErrorHandler");
-        set.add("expectedUpdateCount");
-        set.add("maxMessagesPerPoll");
-        set.add("onConsume");
-        set.add("onConsumeBatchComplete");
-        set.add("onConsumeFailed");
-        set.add("routeEmptyResultSet");
-        set.add("sendEmptyMessageWhenIdle");
-        set.add("transacted");
-        set.add("useIterator");
-        set.add("exceptionHandler");
-        set.add("exchangePattern");
-        set.add("pollStrategy");
-        set.add("processingStrategy");
-        set.add("batch");
-        set.add("lazyStartProducer");
-        set.add("noop");
-        set.add("useMessageBodyForSql");
-        set.add("alwaysPopulateStatement");
-        set.add("basicPropertyBinding");
-        set.add("parametersCount");
-        set.add("placeholder");
-        set.add("prepareStatementStrategy");
-        set.add("synchronous");
-        set.add("templateOptions");
-        set.add("usePlaceholder");
-        set.add("backoffErrorThreshold");
-        set.add("backoffIdleThreshold");
-        set.add("backoffMultiplier");
-        set.add("delay");
-        set.add("greedy");
-        set.add("initialDelay");
-        set.add("repeatCount");
-        set.add("runLoggingLevel");
-        set.add("scheduledExecutorService");
-        set.add("scheduler");
-        set.add("schedulerProperties");
-        set.add("startScheduler");
-        set.add("timeUnit");
-        set.add("useFixedDelay");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(48);
+        props.add("backoffMultiplier");
+        props.add("breakBatchOnConsumeFail");
+        props.add("onConsume");
+        props.add("onConsumeFailed");
+        props.add("useMessageBodyForSql");
+        props.add("synchronous");
+        props.add("dataSourceRef");
+        props.add("outputType");
+        props.add("transacted");
+        props.add("initialDelay");
+        props.add("useIterator");
+        props.add("allowNamedParameters");
+        props.add("usePlaceholder");
+        props.add("parametersCount");
+        props.add("scheduler");
+        props.add("noop");
+        props.add("templateOptions");
+        props.add("bridgeErrorHandler");
+        props.add("useFixedDelay");
+        props.add("runLoggingLevel");
+        props.add("backoffErrorThreshold");
+        props.add("greedy");
+        props.add("maxMessagesPerPoll");
+        props.add("placeholder");
+        props.add("scheduledExecutorService");
+        props.add("repeatCount");
+        props.add("timeUnit");
+        props.add("query");
+        props.add("onConsumeBatchComplete");
+        props.add("sendEmptyMessageWhenIdle");
+        props.add("schedulerProperties");
+        props.add("exchangePattern");
+        props.add("batch");
+        props.add("routeEmptyResultSet");
+        props.add("alwaysPopulateStatement");
+        props.add("separator");
+        props.add("backoffIdleThreshold");
+        props.add("processingStrategy");
+        props.add("prepareStatementStrategy");
+        props.add("lazyStartProducer");
+        props.add("delay");
+        props.add("outputHeader");
+        props.add("pollStrategy");
+        props.add("startScheduler");
+        props.add("expectedUpdateCount");
+        props.add("outputClass");
+        props.add("dataSource");
+        props.add("exceptionHandler");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        SECRET_PROPERTY_NAMES = Collections.emptySet();
     }
 
     @Override
@@ -77,20 +79,25 @@ public class SqlEndpointUriFactory extends org.apache.camel.support.component.En
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
         Map<String, Object> copy = new HashMap<>(properties);
 
         uri = buildPathParameter(syntax, uri, "query", null, true, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

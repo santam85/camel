@@ -25,10 +25,10 @@ import org.apache.camel.LoggingLevel;
 import org.apache.camel.Predicate;
 import org.apache.camel.Processor;
 import org.apache.camel.RuntimeCamelException;
-import org.apache.camel.processor.errorhandler.ExceptionPolicyStrategy;
 import org.apache.camel.processor.errorhandler.RedeliveryErrorHandler;
 import org.apache.camel.processor.errorhandler.RedeliveryPolicy;
 import org.apache.camel.spi.CamelLogger;
+import org.apache.camel.spi.ErrorHandler;
 import org.apache.camel.support.AsyncProcessorSupport;
 import org.apache.camel.support.ExchangeHelper;
 import org.apache.camel.util.ObjectHelper;
@@ -58,7 +58,6 @@ public class TransactionErrorHandler extends RedeliveryErrorHandler {
      * @param logger                       logger to use for logging failures and redelivery attempts
      * @param redeliveryProcessor          an optional processor to run before redelivery attempt
      * @param redeliveryPolicy             policy for redelivery
-     * @param exceptionPolicyStrategy      strategy for onException handling
      * @param transactionTemplate          the transaction template
      * @param retryWhile                   retry while
      * @param executorService              the {@link java.util.concurrent.ScheduledExecutorService} to be used for
@@ -69,17 +68,27 @@ public class TransactionErrorHandler extends RedeliveryErrorHandler {
      */
     public TransactionErrorHandler(CamelContext camelContext, Processor output, CamelLogger logger,
                                    Processor redeliveryProcessor, RedeliveryPolicy redeliveryPolicy,
-                                   ExceptionPolicyStrategy exceptionPolicyStrategy,
                                    TransactionTemplate transactionTemplate, Predicate retryWhile,
                                    ScheduledExecutorService executorService,
                                    LoggingLevel rollbackLoggingLevel, Processor onExceptionOccurredProcessor) {
 
         super(camelContext, output, logger, redeliveryProcessor, redeliveryPolicy, null, null, false, false, false, retryWhile,
               executorService, null, onExceptionOccurredProcessor);
-        setExceptionPolicy(exceptionPolicyStrategy);
         this.transactionTemplate = transactionTemplate;
         this.rollbackLoggingLevel = rollbackLoggingLevel;
         this.transactionKey = ObjectHelper.getIdentityHashCode(transactionTemplate);
+    }
+
+    @Override
+    public ErrorHandler clone(Processor output) {
+        TransactionErrorHandler answer = new TransactionErrorHandler(
+                camelContext, output, logger, redeliveryProcessor, redeliveryPolicy, transactionTemplate, retryWhilePolicy,
+                executorService, rollbackLoggingLevel, onExceptionProcessor);
+        // shallow clone is okay as we do not mutate these
+        if (exceptionPolicies != null) {
+            answer.exceptionPolicies = exceptionPolicies;
+        }
+        return answer;
     }
 
     @Override
@@ -168,9 +177,9 @@ public class TransactionErrorHandler extends RedeliveryErrorHandler {
                 // log exception if there was a cause exception so we have the stack trace
                 Exception cause = exchange.getException();
                 if (cause != null) {
-                    LOG.debug("Transaction rollback (" + transactionKey + ") redelivered(" + redelivered + ") for "
-                              + ids + " due exchange was marked for rollbackOnlyLast and caught: ",
-                            cause);
+                    LOG.debug("Transaction rollback ({}) redelivered({}) for {} due exchange was marked for "
+                              + "rollbackOnlyLast and caught: {}",
+                            transactionKey, redelivered, ids, cause.getMessage(), cause);
                 } else {
                     LOG.debug("Transaction rollback ({}) redelivered({}) for {} "
                               + "due exchange was marked for rollbackOnlyLast",

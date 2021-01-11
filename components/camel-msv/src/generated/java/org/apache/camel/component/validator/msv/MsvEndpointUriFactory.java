@@ -2,6 +2,7 @@
 package org.apache.camel.component.validator.msv;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,22 +18,23 @@ public class MsvEndpointUriFactory extends org.apache.camel.support.component.En
     private static final String BASE = ":resourceUri";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(13);
-        set.add("resourceUri");
-        set.add("failOnNullBody");
-        set.add("failOnNullHeader");
-        set.add("headerName");
-        set.add("lazyStartProducer");
-        set.add("basicPropertyBinding");
-        set.add("errorHandler");
-        set.add("resourceResolver");
-        set.add("resourceResolverFactory");
-        set.add("schemaFactory");
-        set.add("schemaLanguage");
-        set.add("synchronous");
-        set.add("useSharedSchema");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(12);
+        props.add("lazyStartProducer");
+        props.add("headerName");
+        props.add("resourceResolver");
+        props.add("schemaFactory");
+        props.add("failOnNullHeader");
+        props.add("synchronous");
+        props.add("useSharedSchema");
+        props.add("failOnNullBody");
+        props.add("errorHandler");
+        props.add("resourceUri");
+        props.add("schemaLanguage");
+        props.add("resourceResolverFactory");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        SECRET_PROPERTY_NAMES = Collections.emptySet();
     }
 
     @Override
@@ -41,20 +43,25 @@ public class MsvEndpointUriFactory extends org.apache.camel.support.component.En
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
         Map<String, Object> copy = new HashMap<>(properties);
 
         uri = buildPathParameter(syntax, uri, "resourceUri", null, true, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

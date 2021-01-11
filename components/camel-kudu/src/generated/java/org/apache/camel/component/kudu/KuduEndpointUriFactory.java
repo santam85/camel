@@ -2,6 +2,7 @@
 package org.apache.camel.component.kudu;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,16 +18,17 @@ public class KuduEndpointUriFactory extends org.apache.camel.support.component.E
     private static final String BASE = ":host:port/tableName";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(7);
-        set.add("host");
-        set.add("port");
-        set.add("tableName");
-        set.add("lazyStartProducer");
-        set.add("operation");
-        set.add("basicPropertyBinding");
-        set.add("synchronous");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(6);
+        props.add("lazyStartProducer");
+        props.add("port");
+        props.add("synchronous");
+        props.add("host");
+        props.add("operation");
+        props.add("tableName");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        SECRET_PROPERTY_NAMES = Collections.emptySet();
     }
 
     @Override
@@ -35,7 +37,7 @@ public class KuduEndpointUriFactory extends org.apache.camel.support.component.E
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
@@ -44,13 +46,18 @@ public class KuduEndpointUriFactory extends org.apache.camel.support.component.E
         uri = buildPathParameter(syntax, uri, "host", null, false, copy);
         uri = buildPathParameter(syntax, uri, "port", null, false, copy);
         uri = buildPathParameter(syntax, uri, "tableName", null, false, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

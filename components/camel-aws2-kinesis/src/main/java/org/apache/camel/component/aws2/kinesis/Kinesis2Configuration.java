@@ -39,6 +39,7 @@ public class Kinesis2Configuration implements Cloneable {
                             + "region (for example ap-east-1) You'll need to use the name Region.EU_WEST_1.id()")
     private String region;
     @UriParam(description = "Amazon Kinesis client to use for all requests for this endpoint")
+    @Metadata(autowired = true)
     private KinesisClient amazonKinesisClient;
     @UriParam(label = "consumer", description = "Maximum number of records that will be fetched in each poll",
               defaultValue = "1")
@@ -67,9 +68,8 @@ public class Kinesis2Configuration implements Cloneable {
     @UriParam(defaultValue = "false", description = "If we want to trust all certificates in case of overriding the endpoint")
     private boolean trustAllCertificates;
     @UriParam(label = "common", defaultValue = "true",
-              description = "Setting the autoDiscoverClient mechanism, if true, the component will "
-                            + " look for a client instance in the registry automatically otherwise it will skip that checking")
-    private boolean autoDiscoverClient = true;
+              description = "This option will set the CBOR_ENABLED property during the execution")
+    private boolean cborEnabled = true;
 
     public KinesisClient getAmazonKinesisClient() {
         return amazonKinesisClient;
@@ -183,18 +183,17 @@ public class Kinesis2Configuration implements Cloneable {
         this.trustAllCertificates = trustAllCertificates;
     }
 
-    public boolean isAutoDiscoverClient() {
-        return autoDiscoverClient;
+    public boolean isCborEnabled() {
+        return cborEnabled;
     }
 
-    public void setAutoDiscoverClient(boolean autoDiscoverClient) {
-        this.autoDiscoverClient = autoDiscoverClient;
+    public void setCborEnabled(boolean cborEnabled) {
+        this.cborEnabled = cborEnabled;
     }
 
     // *************************************************
     //
     // *************************************************
-
     public Kinesis2Configuration copy() {
         try {
             return (Kinesis2Configuration) super.clone();

@@ -2,6 +2,7 @@
 package org.apache.camel.component.couchbase;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,57 +18,63 @@ public class CouchbaseEndpointUriFactory extends org.apache.camel.support.compon
     private static final String BASE = ":protocol:hostname:port";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(48);
-        set.add("protocol");
-        set.add("hostname");
-        set.add("port");
-        set.add("bucket");
-        set.add("collection");
-        set.add("key");
-        set.add("scope");
-        set.add("bridgeErrorHandler");
-        set.add("consumerProcessedStrategy");
-        set.add("descending");
-        set.add("designDocumentName");
-        set.add("limit");
-        set.add("rangeEndKey");
-        set.add("rangeStartKey");
-        set.add("sendEmptyMessageWhenIdle");
-        set.add("skip");
-        set.add("viewName");
-        set.add("exceptionHandler");
-        set.add("exchangePattern");
-        set.add("pollStrategy");
-        set.add("autoStartIdForInserts");
-        set.add("lazyStartProducer");
-        set.add("operation");
-        set.add("persistTo");
-        set.add("producerRetryAttempts");
-        set.add("producerRetryPause");
-        set.add("replicateTo");
-        set.add("startingIdForInsertsFrom");
-        set.add("additionalHosts");
-        set.add("basicPropertyBinding");
-        set.add("queryTimeout");
-        set.add("synchronous");
-        set.add("backoffErrorThreshold");
-        set.add("backoffIdleThreshold");
-        set.add("backoffMultiplier");
-        set.add("delay");
-        set.add("greedy");
-        set.add("initialDelay");
-        set.add("repeatCount");
-        set.add("runLoggingLevel");
-        set.add("scheduledExecutorService");
-        set.add("scheduler");
-        set.add("schedulerProperties");
-        set.add("startScheduler");
-        set.add("timeUnit");
-        set.add("useFixedDelay");
-        set.add("password");
-        set.add("username");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(49);
+        props.add("consumerProcessedStrategy");
+        props.add("synchronous");
+        props.add("initialDelay");
+        props.add("descending");
+        props.add("protocol");
+        props.add("hostname");
+        props.add("password");
+        props.add("bridgeErrorHandler");
+        props.add("viewName");
+        props.add("fullDocument");
+        props.add("limit");
+        props.add("connectTimeout");
+        props.add("greedy");
+        props.add("scheduledExecutorService");
+        props.add("repeatCount");
+        props.add("sendEmptyMessageWhenIdle");
+        props.add("schedulerProperties");
+        props.add("rangeStartKey");
+        props.add("collection");
+        props.add("designDocumentName");
+        props.add("startingIdForInsertsFrom");
+        props.add("backoffIdleThreshold");
+        props.add("replicateTo");
+        props.add("bucket");
+        props.add("lazyStartProducer");
+        props.add("delay");
+        props.add("port");
+        props.add("producerRetryAttempts");
+        props.add("startScheduler");
+        props.add("exceptionHandler");
+        props.add("backoffMultiplier");
+        props.add("queryTimeout");
+        props.add("skip");
+        props.add("scheduler");
+        props.add("useFixedDelay");
+        props.add("additionalHosts");
+        props.add("runLoggingLevel");
+        props.add("backoffErrorThreshold");
+        props.add("scope");
+        props.add("rangeEndKey");
+        props.add("key");
+        props.add("timeUnit");
+        props.add("autoStartIdForInserts");
+        props.add("persistTo");
+        props.add("producerRetryPause");
+        props.add("exchangePattern");
+        props.add("pollStrategy");
+        props.add("operation");
+        props.add("username");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        Set<String> secretProps = new HashSet<>(2);
+        secretProps.add("password");
+        secretProps.add("username");
+        SECRET_PROPERTY_NAMES = Collections.unmodifiableSet(secretProps);
     }
 
     @Override
@@ -76,7 +83,7 @@ public class CouchbaseEndpointUriFactory extends org.apache.camel.support.compon
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
@@ -84,14 +91,19 @@ public class CouchbaseEndpointUriFactory extends org.apache.camel.support.compon
 
         uri = buildPathParameter(syntax, uri, "protocol", null, true, copy);
         uri = buildPathParameter(syntax, uri, "hostname", null, true, copy);
-        uri = buildPathParameter(syntax, uri, "port", "8091", false, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildPathParameter(syntax, uri, "port", 8091, false, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

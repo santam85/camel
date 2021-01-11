@@ -2,6 +2,7 @@
 package org.apache.camel.component.spring.ws;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,36 +18,37 @@ public class SpringWebserviceEndpointUriFactory extends org.apache.camel.support
     private static final String BASE = ":type:lookupKey:webServiceEndpointUri";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(27);
-        set.add("type");
-        set.add("lookupKey");
-        set.add("webServiceEndpointUri");
-        set.add("expression");
-        set.add("messageFilter");
-        set.add("bridgeErrorHandler");
-        set.add("endpointDispatcher");
-        set.add("endpointMapping");
-        set.add("messageIdStrategy");
-        set.add("exceptionHandler");
-        set.add("exchangePattern");
-        set.add("allowResponseAttachmentOverride");
-        set.add("allowResponseHeaderOverride");
-        set.add("faultAction");
-        set.add("faultTo");
-        set.add("lazyStartProducer");
-        set.add("messageFactory");
-        set.add("messageSender");
-        set.add("outputAction");
-        set.add("replyTo");
-        set.add("soapAction");
-        set.add("timeout");
-        set.add("webServiceTemplate");
-        set.add("wsAddressingAction");
-        set.add("basicPropertyBinding");
-        set.add("synchronous");
-        set.add("sslContextParameters");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(26);
+        props.add("messageFactory");
+        props.add("outputAction");
+        props.add("synchronous");
+        props.add("messageSender");
+        props.add("webServiceTemplate");
+        props.add("sslContextParameters");
+        props.add("type");
+        props.add("timeout");
+        props.add("webServiceEndpointUri");
+        props.add("bridgeErrorHandler");
+        props.add("lookupKey");
+        props.add("messageIdStrategy");
+        props.add("faultAction");
+        props.add("faultTo");
+        props.add("endpointMapping");
+        props.add("allowResponseHeaderOverride");
+        props.add("expression");
+        props.add("exchangePattern");
+        props.add("soapAction");
+        props.add("endpointDispatcher");
+        props.add("lazyStartProducer");
+        props.add("wsAddressingAction");
+        props.add("replyTo");
+        props.add("messageFilter");
+        props.add("allowResponseAttachmentOverride");
+        props.add("exceptionHandler");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        SECRET_PROPERTY_NAMES = Collections.emptySet();
     }
 
     @Override
@@ -55,7 +57,7 @@ public class SpringWebserviceEndpointUriFactory extends org.apache.camel.support
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
@@ -65,13 +67,18 @@ public class SpringWebserviceEndpointUriFactory extends org.apache.camel.support
         uri = buildPathParameter(syntax, uri, "lookupKey", null, false, copy);
         uri = buildPathParameter(syntax, uri, "webServiceEndpointUri", null, false, copy);
         uri = buildPathParameter(syntax, uri, "expression", null, false, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

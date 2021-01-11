@@ -72,7 +72,7 @@ public class DefaultMainShutdownStrategy extends SimpleMainShutdownStrategy {
     }
 
     private void handleHangup() {
-        LOG.info("Received hang up - stopping the main instance.");
+        LOG.info("Received hangup signal, stopping the main instance.");
         // and shutdown listener to allow camel context to graceful shutdown if JVM shutdown hook is triggered
         // as otherwise the JVM terminates before Camel is graceful shutdown
         addShutdownListener(() -> {
@@ -98,7 +98,7 @@ public class DefaultMainShutdownStrategy extends SimpleMainShutdownStrategy {
                 while (!main.getCamelContext().isStopped() && !done && watch.taken() < max) {
                     String msg = "Waiting for CamelContext to graceful shutdown, elapsed: "
                                  + TimeUtils.printDuration(watch.taken());
-                    if (waits % 5 == 0) {
+                    if (waits > 0 && waits % 5 == 0) {
                         // do some info logging every 5th time
                         LOG.info(msg);
                     } else {

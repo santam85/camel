@@ -16,11 +16,9 @@
  */
 package org.apache.camel;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
 
 import org.apache.camel.catalog.RuntimeCamelCatalog;
@@ -29,6 +27,7 @@ import org.apache.camel.spi.AsyncProcessorAwaitManager;
 import org.apache.camel.spi.BeanIntrospection;
 import org.apache.camel.spi.BeanProcessorFactory;
 import org.apache.camel.spi.BeanProxyFactory;
+import org.apache.camel.spi.BootstrapCloseable;
 import org.apache.camel.spi.CamelBeanPostProcessor;
 import org.apache.camel.spi.ComponentNameResolver;
 import org.apache.camel.spi.ComponentResolver;
@@ -40,7 +39,9 @@ import org.apache.camel.spi.EndpointUriFactory;
 import org.apache.camel.spi.FactoryFinder;
 import org.apache.camel.spi.FactoryFinderResolver;
 import org.apache.camel.spi.HeadersMapFactory;
+import org.apache.camel.spi.InterceptEndpointFactory;
 import org.apache.camel.spi.InterceptStrategy;
+import org.apache.camel.spi.InternalProcessorFactory;
 import org.apache.camel.spi.LanguageResolver;
 import org.apache.camel.spi.LifecycleStrategy;
 import org.apache.camel.spi.LogListener;
@@ -56,6 +57,7 @@ import org.apache.camel.spi.ReactiveExecutor;
 import org.apache.camel.spi.Registry;
 import org.apache.camel.spi.RestBindingJaxbDataFormatFactory;
 import org.apache.camel.spi.RouteController;
+import org.apache.camel.spi.RouteFactory;
 import org.apache.camel.spi.RouteStartupOrder;
 import org.apache.camel.spi.UnitOfWorkFactory;
 import org.apache.camel.spi.UriFactoryResolver;
@@ -200,6 +202,16 @@ public interface ExtendedCamelContext extends CamelContext {
     List<RouteStartupOrder> getRouteStartupOrder();
 
     /**
+     * Adds a {@link BootstrapCloseable} task.
+     */
+    void addBootstrap(BootstrapCloseable bootstrap);
+
+    /**
+     * Returns an unmodifiable list of the services registered currently in this {@link CamelContext}.
+     */
+    List<Service> getServices();
+
+    /**
      * Returns the bean post processor used to do any bean customization.
      *
      * @return the bean post processor.
@@ -212,17 +224,6 @@ public interface ExtendedCamelContext extends CamelContext {
      * @return the mbean assembler
      */
     ManagementMBeanAssembler getManagementMBeanAssembler();
-
-    /**
-     * Creates a new multicast processor which sends an exchange to all the processors.
-     *
-     * @param  processors the list of processors to send to
-     * @param  executor   the executor to use
-     * @return            a multicasting processor
-     */
-    AsyncProcessor createMulticast(
-            Collection<Processor> processors,
-            ExecutorService executor, boolean shutdownExecutorService);
 
     /**
      * Gets the default error handler builder which is inherited by the routes
@@ -328,8 +329,38 @@ public interface ExtendedCamelContext extends CamelContext {
      * Gets the default FactoryFinder which will be used for the loading the factory class from META-INF
      *
      * @return the default factory finder
+     * @see    #getBootstrapFactoryFinder()
      */
     FactoryFinder getDefaultFactoryFinder();
+
+    /**
+     * Gets the bootstrap FactoryFinder which will be used for the loading the factory class from META-INF. This
+     * bootstrap factory finder is only intended to be used during bootstrap (starting) CamelContext.
+     *
+     * @return the bootstrap factory finder
+     * @see    #getDefaultFactoryFinder()
+     */
+    FactoryFinder getBootstrapFactoryFinder();
+
+    /**
+     * Sets the bootstrap FactoryFinder which will be used for the loading the factory class from META-INF. This
+     * bootstrap factory finder is only intended to be used during bootstrap (starting) CamelContext.
+     *
+     * @see #getDefaultFactoryFinder()
+     */
+    void setBootstrapFactoryFinder(FactoryFinder factoryFinder);
+
+    /**
+     * Gets the bootstrap {@link ConfigurerResolver} to use. This bootstrap resolver is only intended to be used during
+     * bootstrap (starting) CamelContext.
+     */
+    ConfigurerResolver getBootstrapConfigurerResolver();
+
+    /**
+     * sets the bootstrap {@link ConfigurerResolver} to use. This bootstrap resolver is only intended to be used during
+     * bootstrap (starting) CamelContext.
+     */
+    void setBootstrapConfigurerResolver(ConfigurerResolver configurerResolver);
 
     /**
      * Gets the FactoryFinder which will be used for the loading the factory class from META-INF in the given path
@@ -368,6 +399,48 @@ public interface ExtendedCamelContext extends CamelContext {
     void setProcessorFactory(ProcessorFactory processorFactory);
 
     /**
+     * Gets the current {@link org.apache.camel.spi.InternalProcessorFactory}
+     *
+     * @return the factory
+     */
+    InternalProcessorFactory getInternalProcessorFactory();
+
+    /**
+     * Sets a custom {@link org.apache.camel.spi.InternalProcessorFactory}
+     *
+     * @param internalProcessorFactory the custom factory
+     */
+    void setInternalProcessorFactory(InternalProcessorFactory internalProcessorFactory);
+
+    /**
+     * Gets the current {@link org.apache.camel.spi.InterceptEndpointFactory}
+     *
+     * @return the factory
+     */
+    InterceptEndpointFactory getInterceptEndpointFactory();
+
+    /**
+     * Sets a custom {@link org.apache.camel.spi.InterceptEndpointFactory}
+     *
+     * @param interceptEndpointFactory the custom factory
+     */
+    void setInterceptEndpointFactory(InterceptEndpointFactory interceptEndpointFactory);
+
+    /**
+     * Gets the current {@link org.apache.camel.spi.RouteFactory}
+     *
+     * @return the factory
+     */
+    RouteFactory getRouteFactory();
+
+    /**
+     * Sets a custom {@link org.apache.camel.spi.RouteFactory}
+     *
+     * @param routeFactory the custom factory
+     */
+    void setRouteFactory(RouteFactory routeFactory);
+
+    /**
      * Returns the JAXB Context factory used to create Models.
      *
      * @return the JAXB Context factory used to create Models.
@@ -387,6 +460,11 @@ public interface ExtendedCamelContext extends CamelContext {
     DeferServiceFactory getDeferServiceFactory();
 
     /**
+     * Sets a custom {@link DeferServiceFactory} to use.
+     */
+    void setDeferServiceFactory(DeferServiceFactory deferServiceFactory);
+
+    /**
      * Gets the {@link UnitOfWorkFactory} to use.
      */
     UnitOfWorkFactory getUnitOfWorkFactory();
@@ -400,6 +478,11 @@ public interface ExtendedCamelContext extends CamelContext {
      * Gets the {@link AnnotationBasedProcessorFactory} to use.
      */
     AnnotationBasedProcessorFactory getAnnotationBasedProcessorFactory();
+
+    /**
+     * Sets a custom {@link AnnotationBasedProcessorFactory} to use.
+     */
+    void setAnnotationBasedProcessorFactory(AnnotationBasedProcessorFactory annotationBasedProcessorFactory);
 
     /**
      * Gets the {@link BeanProxyFactory} to use.
@@ -438,7 +521,7 @@ public interface ExtendedCamelContext extends CamelContext {
     void setupManagement(Map<String, Object> options);
 
     /**
-     * Gets a list of {@link LogListener}.
+     * Gets a list of {@link LogListener} (can be null if empty).
      */
     Set<LogListener> getLogListeners();
 
@@ -492,12 +575,19 @@ public interface ExtendedCamelContext extends CamelContext {
     void setReactiveExecutor(ReactiveExecutor reactiveExecutor);
 
     /**
-     * Whether event notification is applicable (possible). This API is used internally in Camel as optimization.
+     * Whether exchange event notification is applicable (possible). This API is used internally in Camel as
+     * optimization.
+     *
+     * This is <b>only</b> for exchange events as this allows Camel to optimize to avoid preparing exchange events if
+     * there are no event listeners that are listening for exchange events.
      */
     boolean isEventNotificationApplicable();
 
     /**
-     * Used as internal optimization in Camel to flag whether event notification is applicable or not.
+     * Used as internal optimization in Camel to flag whether exchange event notification is applicable or not.
+     *
+     * This is <b>only</b> for exchange events as this allows Camel to optimize to avoid preparing exchange events if
+     * there are no event listeners that are listening for exchange events.
      */
     void setEventNotificationApplicable(boolean eventNotificationApplicable);
 
@@ -586,5 +676,24 @@ public interface ExtendedCamelContext extends CamelContext {
      * Internal API for creating error handler. Do not use this as end user.
      */
     Processor createErrorHandler(Route route, Processor processor) throws Exception;
+
+    /**
+     * Whether to run in lightweight mode which triggers some optimizations and memory reduction. Danger this causes
+     * Camel to be less dynamic such as adding new route after Camel is started would not be possible.
+     */
+    void setLightweight(boolean lightweight);
+
+    /**
+     * Whether to run in lightweight mode which triggers some optimizations and memory reduction. Danger this causes
+     * Camel to be less dynamic such as adding new route after Camel is started would not be possible.
+     */
+    boolean isLightweight();
+
+    /**
+     * Danger!!! This will dispose the route model from the {@link CamelContext} which is used for lightweight mode.
+     * This means afterwards no new routes can be dynamically added. Any operations on the
+     * org.apache.camel.model.ModelCamelContext will return null or be a noop operation.
+     */
+    void disposeModel();
 
 }

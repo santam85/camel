@@ -50,7 +50,7 @@ public class RabbitMQProducer extends DefaultAsyncProducer {
     private ObjectPool<Channel> channelPool;
     private ExecutorService executorService;
     private int closeTimeout = 30 * 1000;
-    private final AtomicBoolean started = new AtomicBoolean(false);
+    private final AtomicBoolean started = new AtomicBoolean();
 
     private ReplyManager replyManager;
 
@@ -224,7 +224,8 @@ public class RabbitMQProducer extends DefaultAsyncProducer {
         // the request timeout can be overruled by a header otherwise the
         // endpoint configured value is used
         final long timeout
-                = exchange.getIn().getHeader(RabbitMQConstants.REQUEST_TIMEOUT, getEndpoint().getRequestTimeout(), long.class);
+                = exchange.getIn().getHeader(RabbitMQConstants.REQUEST_TIMEOUT, getEndpoint().getRequestTimeout(),
+                        long.class);
 
         final String originalCorrelationId = in.getHeader(RabbitMQConstants.CORRELATIONID, String.class);
 

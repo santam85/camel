@@ -45,6 +45,7 @@ import com.azure.storage.blob.models.PageRange;
 import com.azure.storage.blob.models.ParallelTransferOptions;
 import com.azure.storage.blob.models.PublicAccessType;
 import org.apache.camel.Exchange;
+import org.apache.camel.util.ObjectHelper;
 
 public class BlobExchangeHeaders {
 
@@ -167,6 +168,10 @@ public class BlobExchangeHeaders {
         return getObjectFromHeaders(exchange, BlobConstants.PREFIX, String.class);
     }
 
+    public static String getRegexFromHeaders(final Exchange exchange) {
+        return getObjectFromHeaders(exchange, BlobConstants.REGEX, String.class);
+    }
+
     public static Integer getMaxResultsPerPageFromHeaders(final Exchange exchange) {
         return getObjectFromHeaders(exchange, BlobConstants.MAX_RESULTS_PER_PAGE, Integer.class);
     }
@@ -244,7 +249,7 @@ public class BlobExchangeHeaders {
     }
 
     private static <T> T getObjectFromHeaders(final Exchange exchange, final String headerName, final Class<T> classType) {
-        return exchange.getIn().getHeader(headerName, classType);
+        return ObjectHelper.isEmpty(exchange) ? null : exchange.getIn().getHeader(headerName, classType);
     }
 
     public Map<String, Object> toMap() {

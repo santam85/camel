@@ -181,7 +181,17 @@ public final class ObjectHelper {
      * @return       true if empty
      */
     public static boolean isEmpty(Object value) {
-        return !isNotEmpty(value);
+        if (value == null) {
+            return true;
+        } else if (value instanceof String) {
+            return ((String) value).trim().isEmpty();
+        } else if (value instanceof Collection) {
+            return ((Collection<?>) value).isEmpty();
+        } else if (value instanceof Map) {
+            return ((Map<?, ?>) value).isEmpty();
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -279,11 +289,9 @@ public final class ObjectHelper {
         try {
             return System.getProperty(name, defaultValue);
         } catch (Exception e) {
-            if (LOG.isDebugEnabled()) {
-                LOG.debug("Caught security exception accessing system property: " + name + ". Will use default value: "
-                          + defaultValue,
-                        e);
-            }
+            LOG.debug("Caught security exception accessing system property: {}. Will use default value: {}",
+                    name, defaultValue, e);
+
             return defaultValue;
         }
     }
@@ -466,7 +474,7 @@ public final class ObjectHelper {
             return loader.loadClass(name);
         } catch (ClassNotFoundException e) {
             if (LOG.isTraceEnabled()) {
-                LOG.trace("Cannot load class: " + name + " using classloader: " + loader, e);
+                LOG.trace("Cannot load class: {} using classloader: {}", name, loader, e);
             }
         }
 
@@ -991,9 +999,12 @@ public final class ObjectHelper {
         if (value instanceof Boolean) {
             return (Boolean) value;
         } else if (value instanceof String) {
-            if ("true".equalsIgnoreCase((String) value)) {
+            String str = ((String) value).trim();
+            if (str.isEmpty()) {
+                return false;
+            } else if ("true".equalsIgnoreCase(str)) {
                 return true;
-            } else if ("false".equalsIgnoreCase((String) value)) {
+            } else if ("false".equalsIgnoreCase(str)) {
                 return false;
             }
         } else if (value instanceof NodeList) {
@@ -1096,7 +1107,7 @@ public final class ObjectHelper {
         }
 
         // remove leading dots
-        if (name.startsWith(",")) {
+        if (name.startsWith(".")) {
             name = name.substring(1);
         }
 

@@ -146,9 +146,14 @@ public class CamelContextFactoryBean extends AbstractCamelContextFactoryBean<Spr
     @XmlAttribute
     private String useBreadcrumb;
     @XmlAttribute
+    @Metadata(defaultValue = "true")
+    private String beanPostProcessorEnabled;
+    @XmlAttribute
     private String allowUseOriginalMessage;
     @XmlAttribute
     private String caseInsensitiveHeaders;
+    @XmlAttribute
+    private String autowiredEnabled;
     @XmlAttribute
     private String runtimeEndpointRegistryEnabled;
     @XmlAttribute
@@ -948,6 +953,28 @@ public class CamelContextFactoryBean extends AbstractCamelContextFactoryBean<Spr
     }
 
     @Override
+    public String getBeanPostProcessorEnabled() {
+        return beanPostProcessorEnabled;
+    }
+
+    /**
+     * Can be used to turn off bean post processing.
+     *
+     * Be careful to turn this off, as this means that beans that use Camel annotations such as
+     * {@link org.apache.camel.EndpointInject}, {@link org.apache.camel.ProducerTemplate},
+     * {@link org.apache.camel.Produce}, {@link org.apache.camel.Consume} etc will not be injected and in use.
+     *
+     * Turning this off should only be done if you are sure you do not use any of these Camel features.
+     *
+     * Not all runtimes allow turning this off (such as camel-blueprint or camel-cdi with XML).
+     *
+     * The default value is true (enabled).
+     */
+    public void setBeanPostProcessorEnabled(String beanPostProcessorEnabled) {
+        this.beanPostProcessorEnabled = beanPostProcessorEnabled;
+    }
+
+    @Override
     public String getAllowUseOriginalMessage() {
         return allowUseOriginalMessage;
     }
@@ -979,6 +1006,23 @@ public class CamelContextFactoryBean extends AbstractCamelContextFactoryBean<Spr
      */
     public void setCaseInsensitiveHeaders(String caseInsensitiveHeaders) {
         this.caseInsensitiveHeaders = caseInsensitiveHeaders;
+    }
+
+    @Override
+    public String getAutowiredEnabled() {
+        return autowiredEnabled;
+    }
+
+    /**
+     * Whether autowiring is enabled. This is used for automatic autowiring options (the option must be marked as
+     * autowired) by looking up in the registry to find if there is a single instance of matching type, which then gets
+     * configured on the component. This can be used for automatic configuring JDBC data sources, JMS connection
+     * factories, AWS Clients, etc.
+     *
+     * Default is true.
+     */
+    public void setAutowiredEnabled(String autowiredEnabled) {
+        this.autowiredEnabled = autowiredEnabled;
     }
 
     @Override

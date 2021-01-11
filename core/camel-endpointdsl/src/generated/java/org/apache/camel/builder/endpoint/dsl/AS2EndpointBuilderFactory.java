@@ -46,9 +46,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The value of the AS2From header of AS2 message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param as2From the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder as2From(String as2From) {
             doSetProperty("as2From", as2From);
@@ -60,10 +63,12 @@ public interface AS2EndpointBuilderFactory {
          * no signature, ENCRYPTED_SIGNED - Encryption, signature.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.as2.api.AS2MessageStructure</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2MessageStructure&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param as2MessageStructure the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder as2MessageStructure(
                 AS2MessageStructure as2MessageStructure) {
@@ -76,10 +81,12 @@ public interface AS2EndpointBuilderFactory {
          * no signature, ENCRYPTED_SIGNED - Encryption, signature.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.as2.api.AS2MessageStructure</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2MessageStructure&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param as2MessageStructure the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder as2MessageStructure(
                 String as2MessageStructure) {
@@ -89,9 +96,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The value of the AS2To header of AS2 message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param as2To the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder as2To(String as2To) {
             doSetProperty("as2To", as2To);
@@ -100,10 +110,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The version of the AS2 protocol.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: 1.1
          * Group: common
+         * 
+         * @param as2Version the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder as2Version(String as2Version) {
             doSetProperty("as2Version", as2Version);
@@ -113,10 +126,13 @@ public interface AS2EndpointBuilderFactory {
          * The Client Fully Qualified Domain Name (FQDN). Used in message ids
          * sent by endpoint.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: camel.apache.org
          * Group: common
+         * 
+         * @param clientFqdn the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder clientFqdn(String clientFqdn) {
             doSetProperty("clientFqdn", clientFqdn);
@@ -126,9 +142,12 @@ public interface AS2EndpointBuilderFactory {
          * The algorithm used to compress EDI message.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.as2.api.AS2CompressionAlgorithm</code> type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2CompressionAlgorithm&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param compressionAlgorithm the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder compressionAlgorithm(
                 AS2CompressionAlgorithm compressionAlgorithm) {
@@ -139,9 +158,12 @@ public interface AS2EndpointBuilderFactory {
          * The algorithm used to compress EDI message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.as2.api.AS2CompressionAlgorithm</code> type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2CompressionAlgorithm&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param compressionAlgorithm the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder compressionAlgorithm(
                 String compressionAlgorithm) {
@@ -151,9 +173,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The key used to encrypt the EDI message.
          * 
-         * The option is a: <code>java.security.PrivateKey</code> type.
+         * The option is a: &lt;code&gt;java.security.PrivateKey&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param decryptingPrivateKey the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder decryptingPrivateKey(
                 PrivateKey decryptingPrivateKey) {
@@ -164,9 +190,12 @@ public interface AS2EndpointBuilderFactory {
          * The key used to encrypt the EDI message.
          * 
          * The option will be converted to a
-         * <code>java.security.PrivateKey</code> type.
+         * &lt;code&gt;java.security.PrivateKey&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param decryptingPrivateKey the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder decryptingPrivateKey(
                 String decryptingPrivateKey) {
@@ -178,9 +207,12 @@ public interface AS2EndpointBuilderFactory {
          * value to this parameter requests a message disposition notification
          * (MDN) for the AS2 message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param dispositionNotificationTo the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder dispositionNotificationTo(
                 String dispositionNotificationTo) {
@@ -190,9 +222,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The transfer encoding of EDI message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param ediMessageTransferEncoding the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder ediMessageTransferEncoding(
                 String ediMessageTransferEncoding) {
@@ -203,10 +238,13 @@ public interface AS2EndpointBuilderFactory {
          * The content type of EDI message. One of application/edifact,
          * application/edi-x12, application/edi-consent.
          * 
-         * The option is a: <code>org.apache.http.entity.ContentType</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;org.apache.http.entity.ContentType&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param ediMessageType the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder ediMessageType(Object ediMessageType) {
             doSetProperty("ediMessageType", ediMessageType);
@@ -217,9 +255,12 @@ public interface AS2EndpointBuilderFactory {
          * application/edi-x12, application/edi-consent.
          * 
          * The option will be converted to a
-         * <code>org.apache.http.entity.ContentType</code> type.
+         * &lt;code&gt;org.apache.http.entity.ContentType&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param ediMessageType the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder ediMessageType(String ediMessageType) {
             doSetProperty("ediMessageType", ediMessageType);
@@ -229,9 +270,12 @@ public interface AS2EndpointBuilderFactory {
          * The algorithm used to encrypt EDI message.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.as2.api.AS2EncryptionAlgorithm</code> type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2EncryptionAlgorithm&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param encryptingAlgorithm the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder encryptingAlgorithm(
                 AS2EncryptionAlgorithm encryptingAlgorithm) {
@@ -242,9 +286,12 @@ public interface AS2EndpointBuilderFactory {
          * The algorithm used to encrypt EDI message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.as2.api.AS2EncryptionAlgorithm</code> type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2EncryptionAlgorithm&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param encryptingAlgorithm the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder encryptingAlgorithm(
                 String encryptingAlgorithm) {
@@ -254,9 +301,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The chain of certificates used to encrypt EDI message.
          * 
-         * The option is a: <code>java.security.cert.Certificate[]</code> type.
+         * The option is a:
+         * &lt;code&gt;java.security.cert.Certificate[]&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param encryptingCertificateChain the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder encryptingCertificateChain(
                 Certificate[] encryptingCertificateChain) {
@@ -267,9 +318,12 @@ public interface AS2EndpointBuilderFactory {
          * The chain of certificates used to encrypt EDI message.
          * 
          * The option will be converted to a
-         * <code>java.security.cert.Certificate[]</code> type.
+         * &lt;code&gt;java.security.cert.Certificate[]&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param encryptingCertificateChain the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder encryptingCertificateChain(
                 String encryptingCertificateChain) {
@@ -279,9 +333,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The value of the From header of AS2 message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param from the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder from(String from) {
             doSetProperty("from", from);
@@ -290,9 +347,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * Sets the name of a parameter to be passed in the exchange In Body.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param inBody the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder inBody(String inBody) {
             doSetProperty("inBody", inBody);
@@ -301,9 +361,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The template used to format MDN message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param mdnMessageTemplate the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder mdnMessageTemplate(
                 String mdnMessageTemplate) {
@@ -313,10 +376,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The request URI of EDI message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: /
          * Group: common
+         * 
+         * @param requestUri the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder requestUri(String requestUri) {
             doSetProperty("requestUri", requestUri);
@@ -326,10 +392,13 @@ public interface AS2EndpointBuilderFactory {
          * The value included in the Server message header identifying the AS2
          * Server.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: Camel AS2 Server Endpoint
          * Group: common
+         * 
+         * @param server the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder server(String server) {
             doSetProperty("server", server);
@@ -339,10 +408,13 @@ public interface AS2EndpointBuilderFactory {
          * The Server Fully Qualified Domain Name (FQDN). Used in message ids
          * sent by endpoint.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: camel.apache.org
          * Group: common
+         * 
+         * @param serverFqdn the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder serverFqdn(String serverFqdn) {
             doSetProperty("serverFqdn", serverFqdn);
@@ -351,9 +423,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The port number of server.
          * 
-         * The option is a: <code>java.lang.Integer</code> type.
+         * The option is a: &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param serverPortNumber the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder serverPortNumber(
                 Integer serverPortNumber) {
@@ -363,10 +438,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The port number of server.
          * 
-         * The option will be converted to a <code>java.lang.Integer</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param serverPortNumber the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder serverPortNumber(
                 String serverPortNumber) {
@@ -378,9 +456,12 @@ public interface AS2EndpointBuilderFactory {
          * a message integrity check (MIC) returned in message dispostion
          * notification (MDN).
          * 
-         * The option is a: <code>java.lang.String[]</code> type.
+         * The option is a: &lt;code&gt;java.lang.String[]&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param signedReceiptMicAlgorithms the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder signedReceiptMicAlgorithms(
                 String[] signedReceiptMicAlgorithms) {
@@ -392,10 +473,13 @@ public interface AS2EndpointBuilderFactory {
          * a message integrity check (MIC) returned in message dispostion
          * notification (MDN).
          * 
-         * The option will be converted to a <code>java.lang.String[]</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.String[]&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param signedReceiptMicAlgorithms the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder signedReceiptMicAlgorithms(
                 String signedReceiptMicAlgorithms) {
@@ -406,10 +490,12 @@ public interface AS2EndpointBuilderFactory {
          * The algorithm used to sign EDI message.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.as2.api.AS2SignatureAlgorithm</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2SignatureAlgorithm&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param signingAlgorithm the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder signingAlgorithm(
                 AS2SignatureAlgorithm signingAlgorithm) {
@@ -420,10 +506,12 @@ public interface AS2EndpointBuilderFactory {
          * The algorithm used to sign EDI message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.as2.api.AS2SignatureAlgorithm</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2SignatureAlgorithm&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param signingAlgorithm the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder signingAlgorithm(
                 String signingAlgorithm) {
@@ -433,9 +521,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The chain of certificates used to sign EDI message.
          * 
-         * The option is a: <code>java.security.cert.Certificate[]</code> type.
+         * The option is a:
+         * &lt;code&gt;java.security.cert.Certificate[]&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param signingCertificateChain the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder signingCertificateChain(
                 Certificate[] signingCertificateChain) {
@@ -446,9 +538,12 @@ public interface AS2EndpointBuilderFactory {
          * The chain of certificates used to sign EDI message.
          * 
          * The option will be converted to a
-         * <code>java.security.cert.Certificate[]</code> type.
+         * &lt;code&gt;java.security.cert.Certificate[]&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param signingCertificateChain the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder signingCertificateChain(
                 String signingCertificateChain) {
@@ -458,9 +553,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The key used to sign the EDI message.
          * 
-         * The option is a: <code>java.security.PrivateKey</code> type.
+         * The option is a: &lt;code&gt;java.security.PrivateKey&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param signingPrivateKey the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder signingPrivateKey(
                 PrivateKey signingPrivateKey) {
@@ -471,9 +570,12 @@ public interface AS2EndpointBuilderFactory {
          * The key used to sign the EDI message.
          * 
          * The option will be converted to a
-         * <code>java.security.PrivateKey</code> type.
+         * &lt;code&gt;java.security.PrivateKey&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param signingPrivateKey the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder signingPrivateKey(
                 String signingPrivateKey) {
@@ -483,9 +585,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The value of Subject header of AS2 message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param subject the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder subject(String subject) {
             doSetProperty("subject", subject);
@@ -494,9 +599,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The host name (IP or DNS name) of target host.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param targetHostname the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder targetHostname(String targetHostname) {
             doSetProperty("targetHostname", targetHostname);
@@ -505,9 +613,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The port number of target host. -1 indicates the scheme default port.
          * 
-         * The option is a: <code>java.lang.Integer</code> type.
+         * The option is a: &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param targetPortNumber the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder targetPortNumber(
                 Integer targetPortNumber) {
@@ -517,10 +628,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The port number of target host. -1 indicates the scheme default port.
          * 
-         * The option will be converted to a <code>java.lang.Integer</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param targetPortNumber the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder targetPortNumber(
                 String targetPortNumber) {
@@ -531,10 +645,13 @@ public interface AS2EndpointBuilderFactory {
          * The value included in the User-Agent message header identifying the
          * AS2 user agent.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: Camel AS2 Client Endpoint
          * Group: common
+         * 
+         * @param userAgent the value to set
+         * @return the dsl builder
          */
         default AS2EndpointConsumerBuilder userAgent(String userAgent) {
             doSetProperty("userAgent", userAgent);
@@ -557,10 +674,13 @@ public interface AS2EndpointBuilderFactory {
          * By default the consumer will deal with exceptions, that will be
          * logged at WARN or ERROR level and ignored.
          * 
-         * The option is a: <code>org.apache.camel.spi.ExceptionHandler</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;org.apache.camel.spi.ExceptionHandler&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exceptionHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedAS2EndpointConsumerBuilder exceptionHandler(
                 ExceptionHandler exceptionHandler) {
@@ -574,9 +694,12 @@ public interface AS2EndpointBuilderFactory {
          * logged at WARN or ERROR level and ignored.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.spi.ExceptionHandler</code> type.
+         * &lt;code&gt;org.apache.camel.spi.ExceptionHandler&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exceptionHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedAS2EndpointConsumerBuilder exceptionHandler(
                 String exceptionHandler) {
@@ -586,9 +709,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * Sets the exchange pattern when the consumer creates an exchange.
          * 
-         * The option is a: <code>org.apache.camel.ExchangePattern</code> type.
+         * The option is a:
+         * &lt;code&gt;org.apache.camel.ExchangePattern&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exchangePattern the value to set
+         * @return the dsl builder
          */
         default AdvancedAS2EndpointConsumerBuilder exchangePattern(
                 ExchangePattern exchangePattern) {
@@ -599,9 +726,12 @@ public interface AS2EndpointBuilderFactory {
          * Sets the exchange pattern when the consumer creates an exchange.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.ExchangePattern</code> type.
+         * &lt;code&gt;org.apache.camel.ExchangePattern&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exchangePattern the value to set
+         * @return the dsl builder
          */
         default AdvancedAS2EndpointConsumerBuilder exchangePattern(
                 String exchangePattern) {
@@ -609,41 +739,16 @@ public interface AS2EndpointBuilderFactory {
             return this;
         }
         /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAS2EndpointConsumerBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAS2EndpointConsumerBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAS2EndpointConsumerBuilder synchronous(
                 boolean synchronous) {
@@ -654,10 +759,14 @@ public interface AS2EndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAS2EndpointConsumerBuilder synchronous(
                 String synchronous) {
@@ -678,9 +787,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The value of the AS2From header of AS2 message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param as2From the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder as2From(String as2From) {
             doSetProperty("as2From", as2From);
@@ -692,10 +804,12 @@ public interface AS2EndpointBuilderFactory {
          * no signature, ENCRYPTED_SIGNED - Encryption, signature.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.as2.api.AS2MessageStructure</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2MessageStructure&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param as2MessageStructure the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder as2MessageStructure(
                 AS2MessageStructure as2MessageStructure) {
@@ -708,10 +822,12 @@ public interface AS2EndpointBuilderFactory {
          * no signature, ENCRYPTED_SIGNED - Encryption, signature.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.as2.api.AS2MessageStructure</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2MessageStructure&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param as2MessageStructure the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder as2MessageStructure(
                 String as2MessageStructure) {
@@ -721,9 +837,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The value of the AS2To header of AS2 message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param as2To the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder as2To(String as2To) {
             doSetProperty("as2To", as2To);
@@ -732,10 +851,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The version of the AS2 protocol.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: 1.1
          * Group: common
+         * 
+         * @param as2Version the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder as2Version(String as2Version) {
             doSetProperty("as2Version", as2Version);
@@ -745,10 +867,13 @@ public interface AS2EndpointBuilderFactory {
          * The Client Fully Qualified Domain Name (FQDN). Used in message ids
          * sent by endpoint.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: camel.apache.org
          * Group: common
+         * 
+         * @param clientFqdn the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder clientFqdn(String clientFqdn) {
             doSetProperty("clientFqdn", clientFqdn);
@@ -758,9 +883,12 @@ public interface AS2EndpointBuilderFactory {
          * The algorithm used to compress EDI message.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.as2.api.AS2CompressionAlgorithm</code> type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2CompressionAlgorithm&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param compressionAlgorithm the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder compressionAlgorithm(
                 AS2CompressionAlgorithm compressionAlgorithm) {
@@ -771,9 +899,12 @@ public interface AS2EndpointBuilderFactory {
          * The algorithm used to compress EDI message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.as2.api.AS2CompressionAlgorithm</code> type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2CompressionAlgorithm&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param compressionAlgorithm the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder compressionAlgorithm(
                 String compressionAlgorithm) {
@@ -783,9 +914,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The key used to encrypt the EDI message.
          * 
-         * The option is a: <code>java.security.PrivateKey</code> type.
+         * The option is a: &lt;code&gt;java.security.PrivateKey&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param decryptingPrivateKey the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder decryptingPrivateKey(
                 PrivateKey decryptingPrivateKey) {
@@ -796,9 +931,12 @@ public interface AS2EndpointBuilderFactory {
          * The key used to encrypt the EDI message.
          * 
          * The option will be converted to a
-         * <code>java.security.PrivateKey</code> type.
+         * &lt;code&gt;java.security.PrivateKey&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param decryptingPrivateKey the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder decryptingPrivateKey(
                 String decryptingPrivateKey) {
@@ -810,9 +948,12 @@ public interface AS2EndpointBuilderFactory {
          * value to this parameter requests a message disposition notification
          * (MDN) for the AS2 message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param dispositionNotificationTo the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder dispositionNotificationTo(
                 String dispositionNotificationTo) {
@@ -822,9 +963,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The transfer encoding of EDI message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param ediMessageTransferEncoding the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder ediMessageTransferEncoding(
                 String ediMessageTransferEncoding) {
@@ -835,10 +979,13 @@ public interface AS2EndpointBuilderFactory {
          * The content type of EDI message. One of application/edifact,
          * application/edi-x12, application/edi-consent.
          * 
-         * The option is a: <code>org.apache.http.entity.ContentType</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;org.apache.http.entity.ContentType&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param ediMessageType the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder ediMessageType(Object ediMessageType) {
             doSetProperty("ediMessageType", ediMessageType);
@@ -849,9 +996,12 @@ public interface AS2EndpointBuilderFactory {
          * application/edi-x12, application/edi-consent.
          * 
          * The option will be converted to a
-         * <code>org.apache.http.entity.ContentType</code> type.
+         * &lt;code&gt;org.apache.http.entity.ContentType&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param ediMessageType the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder ediMessageType(String ediMessageType) {
             doSetProperty("ediMessageType", ediMessageType);
@@ -861,9 +1011,12 @@ public interface AS2EndpointBuilderFactory {
          * The algorithm used to encrypt EDI message.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.as2.api.AS2EncryptionAlgorithm</code> type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2EncryptionAlgorithm&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param encryptingAlgorithm the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder encryptingAlgorithm(
                 AS2EncryptionAlgorithm encryptingAlgorithm) {
@@ -874,9 +1027,12 @@ public interface AS2EndpointBuilderFactory {
          * The algorithm used to encrypt EDI message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.as2.api.AS2EncryptionAlgorithm</code> type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2EncryptionAlgorithm&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param encryptingAlgorithm the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder encryptingAlgorithm(
                 String encryptingAlgorithm) {
@@ -886,9 +1042,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The chain of certificates used to encrypt EDI message.
          * 
-         * The option is a: <code>java.security.cert.Certificate[]</code> type.
+         * The option is a:
+         * &lt;code&gt;java.security.cert.Certificate[]&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param encryptingCertificateChain the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder encryptingCertificateChain(
                 Certificate[] encryptingCertificateChain) {
@@ -899,9 +1059,12 @@ public interface AS2EndpointBuilderFactory {
          * The chain of certificates used to encrypt EDI message.
          * 
          * The option will be converted to a
-         * <code>java.security.cert.Certificate[]</code> type.
+         * &lt;code&gt;java.security.cert.Certificate[]&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param encryptingCertificateChain the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder encryptingCertificateChain(
                 String encryptingCertificateChain) {
@@ -911,9 +1074,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The value of the From header of AS2 message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param from the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder from(String from) {
             doSetProperty("from", from);
@@ -922,9 +1088,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * Sets the name of a parameter to be passed in the exchange In Body.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param inBody the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder inBody(String inBody) {
             doSetProperty("inBody", inBody);
@@ -933,9 +1102,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The template used to format MDN message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param mdnMessageTemplate the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder mdnMessageTemplate(
                 String mdnMessageTemplate) {
@@ -945,10 +1117,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The request URI of EDI message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: /
          * Group: common
+         * 
+         * @param requestUri the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder requestUri(String requestUri) {
             doSetProperty("requestUri", requestUri);
@@ -958,10 +1133,13 @@ public interface AS2EndpointBuilderFactory {
          * The value included in the Server message header identifying the AS2
          * Server.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: Camel AS2 Server Endpoint
          * Group: common
+         * 
+         * @param server the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder server(String server) {
             doSetProperty("server", server);
@@ -971,10 +1149,13 @@ public interface AS2EndpointBuilderFactory {
          * The Server Fully Qualified Domain Name (FQDN). Used in message ids
          * sent by endpoint.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: camel.apache.org
          * Group: common
+         * 
+         * @param serverFqdn the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder serverFqdn(String serverFqdn) {
             doSetProperty("serverFqdn", serverFqdn);
@@ -983,9 +1164,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The port number of server.
          * 
-         * The option is a: <code>java.lang.Integer</code> type.
+         * The option is a: &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param serverPortNumber the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder serverPortNumber(
                 Integer serverPortNumber) {
@@ -995,10 +1179,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The port number of server.
          * 
-         * The option will be converted to a <code>java.lang.Integer</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param serverPortNumber the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder serverPortNumber(
                 String serverPortNumber) {
@@ -1010,9 +1197,12 @@ public interface AS2EndpointBuilderFactory {
          * a message integrity check (MIC) returned in message dispostion
          * notification (MDN).
          * 
-         * The option is a: <code>java.lang.String[]</code> type.
+         * The option is a: &lt;code&gt;java.lang.String[]&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param signedReceiptMicAlgorithms the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder signedReceiptMicAlgorithms(
                 String[] signedReceiptMicAlgorithms) {
@@ -1024,10 +1214,13 @@ public interface AS2EndpointBuilderFactory {
          * a message integrity check (MIC) returned in message dispostion
          * notification (MDN).
          * 
-         * The option will be converted to a <code>java.lang.String[]</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.String[]&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param signedReceiptMicAlgorithms the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder signedReceiptMicAlgorithms(
                 String signedReceiptMicAlgorithms) {
@@ -1038,10 +1231,12 @@ public interface AS2EndpointBuilderFactory {
          * The algorithm used to sign EDI message.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.as2.api.AS2SignatureAlgorithm</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2SignatureAlgorithm&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param signingAlgorithm the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder signingAlgorithm(
                 AS2SignatureAlgorithm signingAlgorithm) {
@@ -1052,10 +1247,12 @@ public interface AS2EndpointBuilderFactory {
          * The algorithm used to sign EDI message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.as2.api.AS2SignatureAlgorithm</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2SignatureAlgorithm&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param signingAlgorithm the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder signingAlgorithm(
                 String signingAlgorithm) {
@@ -1065,9 +1262,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The chain of certificates used to sign EDI message.
          * 
-         * The option is a: <code>java.security.cert.Certificate[]</code> type.
+         * The option is a:
+         * &lt;code&gt;java.security.cert.Certificate[]&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param signingCertificateChain the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder signingCertificateChain(
                 Certificate[] signingCertificateChain) {
@@ -1078,9 +1279,12 @@ public interface AS2EndpointBuilderFactory {
          * The chain of certificates used to sign EDI message.
          * 
          * The option will be converted to a
-         * <code>java.security.cert.Certificate[]</code> type.
+         * &lt;code&gt;java.security.cert.Certificate[]&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param signingCertificateChain the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder signingCertificateChain(
                 String signingCertificateChain) {
@@ -1090,9 +1294,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The key used to sign the EDI message.
          * 
-         * The option is a: <code>java.security.PrivateKey</code> type.
+         * The option is a: &lt;code&gt;java.security.PrivateKey&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param signingPrivateKey the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder signingPrivateKey(
                 PrivateKey signingPrivateKey) {
@@ -1103,9 +1311,12 @@ public interface AS2EndpointBuilderFactory {
          * The key used to sign the EDI message.
          * 
          * The option will be converted to a
-         * <code>java.security.PrivateKey</code> type.
+         * &lt;code&gt;java.security.PrivateKey&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param signingPrivateKey the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder signingPrivateKey(
                 String signingPrivateKey) {
@@ -1115,9 +1326,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The value of Subject header of AS2 message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param subject the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder subject(String subject) {
             doSetProperty("subject", subject);
@@ -1126,9 +1340,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The host name (IP or DNS name) of target host.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param targetHostname the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder targetHostname(String targetHostname) {
             doSetProperty("targetHostname", targetHostname);
@@ -1137,9 +1354,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The port number of target host. -1 indicates the scheme default port.
          * 
-         * The option is a: <code>java.lang.Integer</code> type.
+         * The option is a: &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param targetPortNumber the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder targetPortNumber(
                 Integer targetPortNumber) {
@@ -1149,10 +1369,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The port number of target host. -1 indicates the scheme default port.
          * 
-         * The option will be converted to a <code>java.lang.Integer</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param targetPortNumber the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder targetPortNumber(
                 String targetPortNumber) {
@@ -1163,10 +1386,13 @@ public interface AS2EndpointBuilderFactory {
          * The value included in the User-Agent message header identifying the
          * AS2 user agent.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: Camel AS2 Client Endpoint
          * Group: common
+         * 
+         * @param userAgent the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder userAgent(String userAgent) {
             doSetProperty("userAgent", userAgent);
@@ -1183,10 +1409,13 @@ public interface AS2EndpointBuilderFactory {
          * producer may take a little time and prolong the total processing time
          * of the processing.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param lazyStartProducer the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder lazyStartProducer(
                 boolean lazyStartProducer) {
@@ -1204,10 +1433,14 @@ public interface AS2EndpointBuilderFactory {
          * producer may take a little time and prolong the total processing time
          * of the processing.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param lazyStartProducer the value to set
+         * @return the dsl builder
          */
         default AS2EndpointProducerBuilder lazyStartProducer(
                 String lazyStartProducer) {
@@ -1226,41 +1459,16 @@ public interface AS2EndpointBuilderFactory {
             return (AS2EndpointProducerBuilder) this;
         }
         /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAS2EndpointProducerBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAS2EndpointProducerBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAS2EndpointProducerBuilder synchronous(
                 boolean synchronous) {
@@ -1271,10 +1479,14 @@ public interface AS2EndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAS2EndpointProducerBuilder synchronous(
                 String synchronous) {
@@ -1296,9 +1508,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The value of the AS2From header of AS2 message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param as2From the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder as2From(String as2From) {
             doSetProperty("as2From", as2From);
@@ -1310,10 +1525,12 @@ public interface AS2EndpointBuilderFactory {
          * no signature, ENCRYPTED_SIGNED - Encryption, signature.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.as2.api.AS2MessageStructure</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2MessageStructure&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param as2MessageStructure the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder as2MessageStructure(
                 AS2MessageStructure as2MessageStructure) {
@@ -1326,10 +1543,12 @@ public interface AS2EndpointBuilderFactory {
          * no signature, ENCRYPTED_SIGNED - Encryption, signature.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.as2.api.AS2MessageStructure</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2MessageStructure&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param as2MessageStructure the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder as2MessageStructure(
                 String as2MessageStructure) {
@@ -1339,9 +1558,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The value of the AS2To header of AS2 message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param as2To the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder as2To(String as2To) {
             doSetProperty("as2To", as2To);
@@ -1350,10 +1572,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The version of the AS2 protocol.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: 1.1
          * Group: common
+         * 
+         * @param as2Version the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder as2Version(String as2Version) {
             doSetProperty("as2Version", as2Version);
@@ -1363,10 +1588,13 @@ public interface AS2EndpointBuilderFactory {
          * The Client Fully Qualified Domain Name (FQDN). Used in message ids
          * sent by endpoint.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: camel.apache.org
          * Group: common
+         * 
+         * @param clientFqdn the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder clientFqdn(String clientFqdn) {
             doSetProperty("clientFqdn", clientFqdn);
@@ -1376,9 +1604,12 @@ public interface AS2EndpointBuilderFactory {
          * The algorithm used to compress EDI message.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.as2.api.AS2CompressionAlgorithm</code> type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2CompressionAlgorithm&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param compressionAlgorithm the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder compressionAlgorithm(
                 AS2CompressionAlgorithm compressionAlgorithm) {
@@ -1389,9 +1620,12 @@ public interface AS2EndpointBuilderFactory {
          * The algorithm used to compress EDI message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.as2.api.AS2CompressionAlgorithm</code> type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2CompressionAlgorithm&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param compressionAlgorithm the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder compressionAlgorithm(
                 String compressionAlgorithm) {
@@ -1401,9 +1635,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The key used to encrypt the EDI message.
          * 
-         * The option is a: <code>java.security.PrivateKey</code> type.
+         * The option is a: &lt;code&gt;java.security.PrivateKey&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param decryptingPrivateKey the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder decryptingPrivateKey(
                 PrivateKey decryptingPrivateKey) {
@@ -1414,9 +1652,12 @@ public interface AS2EndpointBuilderFactory {
          * The key used to encrypt the EDI message.
          * 
          * The option will be converted to a
-         * <code>java.security.PrivateKey</code> type.
+         * &lt;code&gt;java.security.PrivateKey&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param decryptingPrivateKey the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder decryptingPrivateKey(
                 String decryptingPrivateKey) {
@@ -1428,9 +1669,12 @@ public interface AS2EndpointBuilderFactory {
          * value to this parameter requests a message disposition notification
          * (MDN) for the AS2 message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param dispositionNotificationTo the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder dispositionNotificationTo(
                 String dispositionNotificationTo) {
@@ -1440,9 +1684,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The transfer encoding of EDI message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param ediMessageTransferEncoding the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder ediMessageTransferEncoding(
                 String ediMessageTransferEncoding) {
@@ -1453,10 +1700,13 @@ public interface AS2EndpointBuilderFactory {
          * The content type of EDI message. One of application/edifact,
          * application/edi-x12, application/edi-consent.
          * 
-         * The option is a: <code>org.apache.http.entity.ContentType</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;org.apache.http.entity.ContentType&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param ediMessageType the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder ediMessageType(Object ediMessageType) {
             doSetProperty("ediMessageType", ediMessageType);
@@ -1467,9 +1717,12 @@ public interface AS2EndpointBuilderFactory {
          * application/edi-x12, application/edi-consent.
          * 
          * The option will be converted to a
-         * <code>org.apache.http.entity.ContentType</code> type.
+         * &lt;code&gt;org.apache.http.entity.ContentType&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param ediMessageType the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder ediMessageType(String ediMessageType) {
             doSetProperty("ediMessageType", ediMessageType);
@@ -1479,9 +1732,12 @@ public interface AS2EndpointBuilderFactory {
          * The algorithm used to encrypt EDI message.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.as2.api.AS2EncryptionAlgorithm</code> type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2EncryptionAlgorithm&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param encryptingAlgorithm the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder encryptingAlgorithm(
                 AS2EncryptionAlgorithm encryptingAlgorithm) {
@@ -1492,9 +1748,12 @@ public interface AS2EndpointBuilderFactory {
          * The algorithm used to encrypt EDI message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.as2.api.AS2EncryptionAlgorithm</code> type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2EncryptionAlgorithm&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param encryptingAlgorithm the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder encryptingAlgorithm(
                 String encryptingAlgorithm) {
@@ -1504,9 +1763,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The chain of certificates used to encrypt EDI message.
          * 
-         * The option is a: <code>java.security.cert.Certificate[]</code> type.
+         * The option is a:
+         * &lt;code&gt;java.security.cert.Certificate[]&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param encryptingCertificateChain the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder encryptingCertificateChain(
                 Certificate[] encryptingCertificateChain) {
@@ -1517,9 +1780,12 @@ public interface AS2EndpointBuilderFactory {
          * The chain of certificates used to encrypt EDI message.
          * 
          * The option will be converted to a
-         * <code>java.security.cert.Certificate[]</code> type.
+         * &lt;code&gt;java.security.cert.Certificate[]&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param encryptingCertificateChain the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder encryptingCertificateChain(
                 String encryptingCertificateChain) {
@@ -1529,9 +1795,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The value of the From header of AS2 message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param from the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder from(String from) {
             doSetProperty("from", from);
@@ -1540,9 +1809,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * Sets the name of a parameter to be passed in the exchange In Body.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param inBody the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder inBody(String inBody) {
             doSetProperty("inBody", inBody);
@@ -1551,9 +1823,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The template used to format MDN message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param mdnMessageTemplate the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder mdnMessageTemplate(String mdnMessageTemplate) {
             doSetProperty("mdnMessageTemplate", mdnMessageTemplate);
@@ -1562,10 +1837,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The request URI of EDI message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: /
          * Group: common
+         * 
+         * @param requestUri the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder requestUri(String requestUri) {
             doSetProperty("requestUri", requestUri);
@@ -1575,10 +1853,13 @@ public interface AS2EndpointBuilderFactory {
          * The value included in the Server message header identifying the AS2
          * Server.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: Camel AS2 Server Endpoint
          * Group: common
+         * 
+         * @param server the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder server(String server) {
             doSetProperty("server", server);
@@ -1588,10 +1869,13 @@ public interface AS2EndpointBuilderFactory {
          * The Server Fully Qualified Domain Name (FQDN). Used in message ids
          * sent by endpoint.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: camel.apache.org
          * Group: common
+         * 
+         * @param serverFqdn the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder serverFqdn(String serverFqdn) {
             doSetProperty("serverFqdn", serverFqdn);
@@ -1600,9 +1884,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The port number of server.
          * 
-         * The option is a: <code>java.lang.Integer</code> type.
+         * The option is a: &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param serverPortNumber the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder serverPortNumber(Integer serverPortNumber) {
             doSetProperty("serverPortNumber", serverPortNumber);
@@ -1611,10 +1898,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The port number of server.
          * 
-         * The option will be converted to a <code>java.lang.Integer</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param serverPortNumber the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder serverPortNumber(String serverPortNumber) {
             doSetProperty("serverPortNumber", serverPortNumber);
@@ -1625,9 +1915,12 @@ public interface AS2EndpointBuilderFactory {
          * a message integrity check (MIC) returned in message dispostion
          * notification (MDN).
          * 
-         * The option is a: <code>java.lang.String[]</code> type.
+         * The option is a: &lt;code&gt;java.lang.String[]&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param signedReceiptMicAlgorithms the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder signedReceiptMicAlgorithms(
                 String[] signedReceiptMicAlgorithms) {
@@ -1639,10 +1932,13 @@ public interface AS2EndpointBuilderFactory {
          * a message integrity check (MIC) returned in message dispostion
          * notification (MDN).
          * 
-         * The option will be converted to a <code>java.lang.String[]</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.String[]&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param signedReceiptMicAlgorithms the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder signedReceiptMicAlgorithms(
                 String signedReceiptMicAlgorithms) {
@@ -1653,10 +1949,12 @@ public interface AS2EndpointBuilderFactory {
          * The algorithm used to sign EDI message.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.as2.api.AS2SignatureAlgorithm</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2SignatureAlgorithm&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param signingAlgorithm the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder signingAlgorithm(
                 AS2SignatureAlgorithm signingAlgorithm) {
@@ -1667,10 +1965,12 @@ public interface AS2EndpointBuilderFactory {
          * The algorithm used to sign EDI message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.as2.api.AS2SignatureAlgorithm</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.as2.api.AS2SignatureAlgorithm&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param signingAlgorithm the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder signingAlgorithm(String signingAlgorithm) {
             doSetProperty("signingAlgorithm", signingAlgorithm);
@@ -1679,9 +1979,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The chain of certificates used to sign EDI message.
          * 
-         * The option is a: <code>java.security.cert.Certificate[]</code> type.
+         * The option is a:
+         * &lt;code&gt;java.security.cert.Certificate[]&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param signingCertificateChain the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder signingCertificateChain(
                 Certificate[] signingCertificateChain) {
@@ -1692,9 +1996,12 @@ public interface AS2EndpointBuilderFactory {
          * The chain of certificates used to sign EDI message.
          * 
          * The option will be converted to a
-         * <code>java.security.cert.Certificate[]</code> type.
+         * &lt;code&gt;java.security.cert.Certificate[]&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param signingCertificateChain the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder signingCertificateChain(
                 String signingCertificateChain) {
@@ -1704,9 +2011,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The key used to sign the EDI message.
          * 
-         * The option is a: <code>java.security.PrivateKey</code> type.
+         * The option is a: &lt;code&gt;java.security.PrivateKey&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param signingPrivateKey the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder signingPrivateKey(
                 PrivateKey signingPrivateKey) {
@@ -1717,9 +2028,12 @@ public interface AS2EndpointBuilderFactory {
          * The key used to sign the EDI message.
          * 
          * The option will be converted to a
-         * <code>java.security.PrivateKey</code> type.
+         * &lt;code&gt;java.security.PrivateKey&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param signingPrivateKey the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder signingPrivateKey(String signingPrivateKey) {
             doSetProperty("signingPrivateKey", signingPrivateKey);
@@ -1728,9 +2042,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The value of Subject header of AS2 message.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param subject the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder subject(String subject) {
             doSetProperty("subject", subject);
@@ -1739,9 +2056,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The host name (IP or DNS name) of target host.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param targetHostname the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder targetHostname(String targetHostname) {
             doSetProperty("targetHostname", targetHostname);
@@ -1750,9 +2070,12 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The port number of target host. -1 indicates the scheme default port.
          * 
-         * The option is a: <code>java.lang.Integer</code> type.
+         * The option is a: &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param targetPortNumber the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder targetPortNumber(Integer targetPortNumber) {
             doSetProperty("targetPortNumber", targetPortNumber);
@@ -1761,10 +2084,13 @@ public interface AS2EndpointBuilderFactory {
         /**
          * The port number of target host. -1 indicates the scheme default port.
          * 
-         * The option will be converted to a <code>java.lang.Integer</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param targetPortNumber the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder targetPortNumber(String targetPortNumber) {
             doSetProperty("targetPortNumber", targetPortNumber);
@@ -1774,10 +2100,13 @@ public interface AS2EndpointBuilderFactory {
          * The value included in the User-Agent message header identifying the
          * AS2 user agent.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: Camel AS2 Client Endpoint
          * Group: common
+         * 
+         * @param userAgent the value to set
+         * @return the dsl builder
          */
         default AS2EndpointBuilder userAgent(String userAgent) {
             doSetProperty("userAgent", userAgent);
@@ -1796,41 +2125,16 @@ public interface AS2EndpointBuilderFactory {
             return (AS2EndpointBuilder) this;
         }
         /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAS2EndpointBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAS2EndpointBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAS2EndpointBuilder synchronous(boolean synchronous) {
             doSetProperty("synchronous", synchronous);
@@ -1840,10 +2144,14 @@ public interface AS2EndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAS2EndpointBuilder synchronous(String synchronous) {
             doSetProperty("synchronous", synchronous);
@@ -1977,6 +2285,7 @@ public interface AS2EndpointBuilderFactory {
          * What sub operation to use for the selected operation
          * 
          * @param path apiName/methodName
+         * @return the dsl builder
          */
         default AS2EndpointBuilder as2(String path) {
             return AS2EndpointBuilderFactory.endpointBuilder("as2", path);
@@ -2001,6 +2310,7 @@ public interface AS2EndpointBuilderFactory {
          * @param componentName to use a custom component name for the endpoint
          * instead of the default name
          * @param path apiName/methodName
+         * @return the dsl builder
          */
         default AS2EndpointBuilder as2(String componentName, String path) {
             return AS2EndpointBuilderFactory.endpointBuilder(componentName, path);

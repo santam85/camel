@@ -400,8 +400,7 @@ public class DefaultXmlSignature2Message implements XmlSignature2Message {
 
         if (referencedObjects.isEmpty()) {
             throw new XmlSignatureException(
-                    String.format(
-                            "Unsupported XML signature document: Content object not found in the enveloping XML signature."));
+                    "Unsupported XML signature document: Content object not found in the enveloping XML signature.");
         }
 
         if (referencedObjects.size() > 1) {
@@ -421,7 +420,7 @@ public class DefaultXmlSignature2Message implements XmlSignature2Message {
 
         @SuppressWarnings("unchecked")
         List<XMLStructure> structures = referencedObjects.get(0).getContent();
-        if (structures.size() == 0) {
+        if (structures.isEmpty()) {
             throw new XmlSignatureException(
                     "Unsupported XML signature: XML signature is not enveloping; content not found in XML signature: structure list is empty.");
         }

@@ -254,8 +254,10 @@ public class SedaEndpoint extends DefaultEndpoint implements AsyncEndpoint, Brow
             }
             // create multicast processor
             multicastStarted = false;
-            consumerMulticastProcessor
-                    = getCamelContext().adapt(ExtendedCamelContext.class).createMulticast(processors, multicastExecutor, false);
+
+            consumerMulticastProcessor = (AsyncProcessor) getCamelContext().adapt(ExtendedCamelContext.class)
+                    .getProcessorFactory().createProcessor(getCamelContext(), "MulticastProcessor",
+                            new Object[] { processors, multicastExecutor, false });
         }
     }
 
@@ -511,7 +513,7 @@ public class SedaEndpoint extends DefaultEndpoint implements AsyncEndpoint, Brow
     }
 
     public boolean hasConsumers() {
-        return this.consumers.size() > 0;
+        return !this.consumers.isEmpty();
     }
 
     @Override

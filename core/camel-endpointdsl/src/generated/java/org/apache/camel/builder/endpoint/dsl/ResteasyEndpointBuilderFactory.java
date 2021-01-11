@@ -46,10 +46,13 @@ public interface ResteasyEndpointBuilderFactory {
          * If this option is false the Servlet will disable the HTTP streaming
          * and set the content-length header on the response.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param chunked the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointConsumerBuilder chunked(boolean chunked) {
             doSetProperty("chunked", chunked);
@@ -59,10 +62,14 @@ public interface ResteasyEndpointBuilderFactory {
          * If this option is false the Servlet will disable the HTTP streaming
          * and set the content-length header on the response.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param chunked the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointConsumerBuilder chunked(String chunked) {
             doSetProperty("chunked", chunked);
@@ -86,10 +93,13 @@ public interface ResteasyEndpointBuilderFactory {
          * not cache the response body stream but use the response stream as-is
          * as the message body.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableStreamCache the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointConsumerBuilder disableStreamCache(
                 boolean disableStreamCache) {
@@ -114,10 +124,14 @@ public interface ResteasyEndpointBuilderFactory {
          * not cache the response body stream but use the response stream as-is
          * as the message body.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableStreamCache the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointConsumerBuilder disableStreamCache(
                 String disableStreamCache) {
@@ -127,10 +141,13 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * Sets the resteasy method to process the request.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: GET
          * Group: common
+         * 
+         * @param resteasyMethod the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointConsumerBuilder resteasyMethod(
                 String resteasyMethod) {
@@ -140,9 +157,12 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * Sets the servlet name.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param servletName the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointConsumerBuilder servletName(String servletName) {
             doSetProperty("servletName", servletName);
@@ -159,10 +179,13 @@ public interface ResteasyEndpointBuilderFactory {
          * data from the request to Java and that can be a potential security
          * risk.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointConsumerBuilder transferException(
                 boolean transferException) {
@@ -180,10 +203,14 @@ public interface ResteasyEndpointBuilderFactory {
          * data from the request to Java and that can be a potential security
          * risk.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointConsumerBuilder transferException(
                 String transferException) {
@@ -193,10 +220,13 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * Configure the consumer to work in async mode.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param async the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointConsumerBuilder async(boolean async) {
             doSetProperty("async", async);
@@ -205,10 +235,14 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * Configure the consumer to work in async mode.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param async the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointConsumerBuilder async(String async) {
             doSetProperty("async", async);
@@ -223,10 +257,13 @@ public interface ResteasyEndpointBuilderFactory {
          * with exceptions, that will be logged at WARN or ERROR level and
          * ignored.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param bridgeErrorHandler the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointConsumerBuilder bridgeErrorHandler(
                 boolean bridgeErrorHandler) {
@@ -242,10 +279,14 @@ public interface ResteasyEndpointBuilderFactory {
          * with exceptions, that will be logged at WARN or ERROR level and
          * ignored.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param bridgeErrorHandler the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointConsumerBuilder bridgeErrorHandler(
                 String bridgeErrorHandler) {
@@ -257,9 +298,12 @@ public interface ResteasyEndpointBuilderFactory {
          * GET/POST/PUT etc. Multiple methods can be specified separated by
          * comma.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param httpMethodRestrict the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointConsumerBuilder httpMethodRestrict(
                 String httpMethodRestrict) {
@@ -270,10 +314,13 @@ public interface ResteasyEndpointBuilderFactory {
          * Whether or not the consumer should try to find a target consumer by
          * matching the URI prefix if no exact match is found.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param matchOnUriPrefix the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointConsumerBuilder matchOnUriPrefix(
                 boolean matchOnUriPrefix) {
@@ -284,10 +331,14 @@ public interface ResteasyEndpointBuilderFactory {
          * Whether or not the consumer should try to find a target consumer by
          * matching the URI prefix if no exact match is found.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param matchOnUriPrefix the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointConsumerBuilder matchOnUriPrefix(
                 String matchOnUriPrefix) {
@@ -298,10 +349,13 @@ public interface ResteasyEndpointBuilderFactory {
          * If enabled and an Exchange failed processing on the consumer side the
          * response's body won't contain the exception's stack trace.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param muteException the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointConsumerBuilder muteException(
                 boolean muteException) {
@@ -312,10 +366,14 @@ public interface ResteasyEndpointBuilderFactory {
          * If enabled and an Exchange failed processing on the consumer side the
          * response's body won't contain the exception's stack trace.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param muteException the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointConsumerBuilder muteException(
                 String muteException) {
@@ -325,9 +383,12 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * To use a custom buffer size on the javax.servlet.ServletResponse.
          * 
-         * The option is a: <code>java.lang.Integer</code> type.
+         * The option is a: &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param responseBufferSize the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointConsumerBuilder responseBufferSize(
                 Integer responseBufferSize) {
@@ -337,10 +398,13 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * To use a custom buffer size on the javax.servlet.ServletResponse.
          * 
-         * The option will be converted to a <code>java.lang.Integer</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param responseBufferSize the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointConsumerBuilder responseBufferSize(
                 String responseBufferSize) {
@@ -350,9 +414,12 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * Sets the resteasy proxyClientClass.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: proxy
+         * 
+         * @param proxyClientClass the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointConsumerBuilder proxyClientClass(
                 String proxyClientClass) {
@@ -362,9 +429,12 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * Sets the password.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param password the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointConsumerBuilder password(String password) {
             doSetProperty("password", password);
@@ -373,9 +443,12 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * Sets the username.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param username the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointConsumerBuilder username(String username) {
             doSetProperty("username", username);
@@ -397,10 +470,13 @@ public interface ResteasyEndpointBuilderFactory {
          * content-length header is 0 or not present. This can be turned on in
          * case HTTP clients do not send streamed data.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param eagerCheckContentAvailable the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder eagerCheckContentAvailable(
                 boolean eagerCheckContentAvailable) {
@@ -412,10 +488,14 @@ public interface ResteasyEndpointBuilderFactory {
          * content-length header is 0 or not present. This can be turned on in
          * case HTTP clients do not send streamed data.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param eagerCheckContentAvailable the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder eagerCheckContentAvailable(
                 String eagerCheckContentAvailable) {
@@ -428,10 +508,13 @@ public interface ResteasyEndpointBuilderFactory {
          * By default the consumer will deal with exceptions, that will be
          * logged at WARN or ERROR level and ignored.
          * 
-         * The option is a: <code>org.apache.camel.spi.ExceptionHandler</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;org.apache.camel.spi.ExceptionHandler&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exceptionHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder exceptionHandler(
                 ExceptionHandler exceptionHandler) {
@@ -445,9 +528,12 @@ public interface ResteasyEndpointBuilderFactory {
          * logged at WARN or ERROR level and ignored.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.spi.ExceptionHandler</code> type.
+         * &lt;code&gt;org.apache.camel.spi.ExceptionHandler&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exceptionHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder exceptionHandler(
                 String exceptionHandler) {
@@ -457,9 +543,13 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * Sets the exchange pattern when the consumer creates an exchange.
          * 
-         * The option is a: <code>org.apache.camel.ExchangePattern</code> type.
+         * The option is a:
+         * &lt;code&gt;org.apache.camel.ExchangePattern&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exchangePattern the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder exchangePattern(
                 ExchangePattern exchangePattern) {
@@ -470,9 +560,12 @@ public interface ResteasyEndpointBuilderFactory {
          * Sets the exchange pattern when the consumer creates an exchange.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.ExchangePattern</code> type.
+         * &lt;code&gt;org.apache.camel.ExchangePattern&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exchangePattern the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder exchangePattern(
                 String exchangePattern) {
@@ -483,10 +576,13 @@ public interface ResteasyEndpointBuilderFactory {
          * Specifies whether to enable HTTP OPTIONS for this Servlet consumer.
          * By default OPTIONS is turned off.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param optionsEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder optionsEnabled(
                 boolean optionsEnabled) {
@@ -497,10 +593,14 @@ public interface ResteasyEndpointBuilderFactory {
          * Specifies whether to enable HTTP OPTIONS for this Servlet consumer.
          * By default OPTIONS is turned off.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param optionsEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder optionsEnabled(
                 String optionsEnabled) {
@@ -511,10 +611,13 @@ public interface ResteasyEndpointBuilderFactory {
          * Specifies whether to enable HTTP TRACE for this Servlet consumer. By
          * default TRACE is turned off.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param traceEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder traceEnabled(
                 boolean traceEnabled) {
@@ -525,10 +628,14 @@ public interface ResteasyEndpointBuilderFactory {
          * Specifies whether to enable HTTP TRACE for this Servlet consumer. By
          * default TRACE is turned off.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param traceEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder traceEnabled(
                 String traceEnabled) {
@@ -536,41 +643,17 @@ public interface ResteasyEndpointBuilderFactory {
             return this;
         }
         /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedResteasyEndpointConsumerBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedResteasyEndpointConsumerBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
          * To use a custom HeaderFilterStrategy to filter header to and from
          * Camel message.
          * 
          * The option is a:
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder headerFilterStrategy(
                 HeaderFilterStrategy headerFilterStrategy) {
@@ -582,9 +665,13 @@ public interface ResteasyEndpointBuilderFactory {
          * Camel message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder headerFilterStrategy(
                 String headerFilterStrategy) {
@@ -596,10 +683,13 @@ public interface ResteasyEndpointBuilderFactory {
          * mapped to HTTP body. Setting this to false will avoid the HTTP
          * mapping.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageBody the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder mapHttpMessageBody(
                 boolean mapHttpMessageBody) {
@@ -611,10 +701,14 @@ public interface ResteasyEndpointBuilderFactory {
          * mapped to HTTP body. Setting this to false will avoid the HTTP
          * mapping.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageBody the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder mapHttpMessageBody(
                 String mapHttpMessageBody) {
@@ -626,10 +720,13 @@ public interface ResteasyEndpointBuilderFactory {
          * exchange will be mapped to HTTP. Setting this to false will avoid the
          * HTTP Form Encoded body mapping.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageFormUrlEncodedBody the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder mapHttpMessageFormUrlEncodedBody(
                 boolean mapHttpMessageFormUrlEncodedBody) {
@@ -641,10 +738,14 @@ public interface ResteasyEndpointBuilderFactory {
          * exchange will be mapped to HTTP. Setting this to false will avoid the
          * HTTP Form Encoded body mapping.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageFormUrlEncodedBody the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder mapHttpMessageFormUrlEncodedBody(
                 String mapHttpMessageFormUrlEncodedBody) {
@@ -656,10 +757,13 @@ public interface ResteasyEndpointBuilderFactory {
          * be mapped to HTTP headers. Setting this to false will avoid the HTTP
          * Headers mapping.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder mapHttpMessageHeaders(
                 boolean mapHttpMessageHeaders) {
@@ -671,10 +775,14 @@ public interface ResteasyEndpointBuilderFactory {
          * be mapped to HTTP headers. Setting this to false will avoid the HTTP
          * Headers mapping.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder mapHttpMessageHeaders(
                 String mapHttpMessageHeaders) {
@@ -686,9 +794,12 @@ public interface ResteasyEndpointBuilderFactory {
          * exchange from servlet response or use request itself which may be
          * thought as if it is a proxy.
          * 
-         * The option is a: <code>java.lang.Boolean</code> type.
+         * The option is a: &lt;code&gt;java.lang.Boolean&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param setHttpResponseDuringProcessing the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder setHttpResponseDuringProcessing(
                 Boolean setHttpResponseDuringProcessing) {
@@ -700,10 +811,13 @@ public interface ResteasyEndpointBuilderFactory {
          * exchange from servlet response or use request itself which may be
          * thought as if it is a proxy.
          * 
-         * The option will be converted to a <code>java.lang.Boolean</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Boolean&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param setHttpResponseDuringProcessing the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder setHttpResponseDuringProcessing(
                 String setHttpResponseDuringProcessing) {
@@ -714,9 +828,12 @@ public interface ResteasyEndpointBuilderFactory {
          * Sets the flag to use skip servlet processing and let camel take over
          * processing.
          * 
-         * The option is a: <code>java.lang.Boolean</code> type.
+         * The option is a: &lt;code&gt;java.lang.Boolean&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param skipServletProcessing the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder skipServletProcessing(
                 Boolean skipServletProcessing) {
@@ -727,10 +844,13 @@ public interface ResteasyEndpointBuilderFactory {
          * Sets the flag to use skip servlet processing and let camel take over
          * processing.
          * 
-         * The option will be converted to a <code>java.lang.Boolean</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Boolean&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param skipServletProcessing the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder skipServletProcessing(
                 String skipServletProcessing) {
@@ -741,10 +861,13 @@ public interface ResteasyEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder synchronous(
                 boolean synchronous) {
@@ -755,10 +878,14 @@ public interface ResteasyEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder synchronous(
                 String synchronous) {
@@ -768,10 +895,13 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * To use System Properties as fallback for configuration.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param useSystemProperties the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder useSystemProperties(
                 boolean useSystemProperties) {
@@ -781,10 +911,14 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * To use System Properties as fallback for configuration.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param useSystemProperties the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointConsumerBuilder useSystemProperties(
                 String useSystemProperties) {
@@ -806,10 +940,13 @@ public interface ResteasyEndpointBuilderFactory {
          * If this option is false the Servlet will disable the HTTP streaming
          * and set the content-length header on the response.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param chunked the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder chunked(boolean chunked) {
             doSetProperty("chunked", chunked);
@@ -819,10 +956,14 @@ public interface ResteasyEndpointBuilderFactory {
          * If this option is false the Servlet will disable the HTTP streaming
          * and set the content-length header on the response.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param chunked the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder chunked(String chunked) {
             doSetProperty("chunked", chunked);
@@ -846,10 +987,13 @@ public interface ResteasyEndpointBuilderFactory {
          * not cache the response body stream but use the response stream as-is
          * as the message body.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableStreamCache the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder disableStreamCache(
                 boolean disableStreamCache) {
@@ -874,10 +1018,14 @@ public interface ResteasyEndpointBuilderFactory {
          * not cache the response body stream but use the response stream as-is
          * as the message body.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableStreamCache the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder disableStreamCache(
                 String disableStreamCache) {
@@ -887,10 +1035,13 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * Sets the resteasy method to process the request.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: GET
          * Group: common
+         * 
+         * @param resteasyMethod the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder resteasyMethod(
                 String resteasyMethod) {
@@ -900,9 +1051,12 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * Sets the servlet name.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param servletName the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder servletName(String servletName) {
             doSetProperty("servletName", servletName);
@@ -919,10 +1073,13 @@ public interface ResteasyEndpointBuilderFactory {
          * data from the request to Java and that can be a potential security
          * risk.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder transferException(
                 boolean transferException) {
@@ -940,10 +1097,14 @@ public interface ResteasyEndpointBuilderFactory {
          * data from the request to Java and that can be a potential security
          * risk.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder transferException(
                 String transferException) {
@@ -956,10 +1117,13 @@ public interface ResteasyEndpointBuilderFactory {
          * option throwExceptionOnFailure to be false to let the HttpProducer
          * send all the fault response back.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param bridgeEndpoint the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder bridgeEndpoint(
                 boolean bridgeEndpoint) {
@@ -972,10 +1136,14 @@ public interface ResteasyEndpointBuilderFactory {
          * option throwExceptionOnFailure to be false to let the HttpProducer
          * send all the fault response back.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param bridgeEndpoint the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder bridgeEndpoint(
                 String bridgeEndpoint) {
@@ -987,10 +1155,13 @@ public interface ResteasyEndpointBuilderFactory {
          * This ensures the cookies store does not keep growing by adding new
          * cookies which is newer removed when they are expired.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: producer
+         * 
+         * @param clearExpiredCookies the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder clearExpiredCookies(
                 boolean clearExpiredCookies) {
@@ -1002,10 +1173,14 @@ public interface ResteasyEndpointBuilderFactory {
          * This ensures the cookies store does not keep growing by adding new
          * cookies which is newer removed when they are expired.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: producer
+         * 
+         * @param clearExpiredCookies the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder clearExpiredCookies(
                 String clearExpiredCookies) {
@@ -1016,10 +1191,13 @@ public interface ResteasyEndpointBuilderFactory {
          * Specifies whether a Connection Close header must be added to HTTP
          * Request. By default connectionClose is false.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param connectionClose the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder connectionClose(
                 boolean connectionClose) {
@@ -1030,10 +1208,14 @@ public interface ResteasyEndpointBuilderFactory {
          * Specifies whether a Connection Close header must be added to HTTP
          * Request. By default connectionClose is false.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param connectionClose the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder connectionClose(
                 String connectionClose) {
@@ -1046,10 +1228,13 @@ public interface ResteasyEndpointBuilderFactory {
          * allows to only include the headers from the HTTP response (not
          * propagating IN headers).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: producer
+         * 
+         * @param copyHeaders the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder copyHeaders(boolean copyHeaders) {
             doSetProperty("copyHeaders", copyHeaders);
@@ -1061,10 +1246,14 @@ public interface ResteasyEndpointBuilderFactory {
          * allows to only include the headers from the HTTP response (not
          * propagating IN headers).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: producer
+         * 
+         * @param copyHeaders the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder copyHeaders(String copyHeaders) {
             doSetProperty("copyHeaders", copyHeaders);
@@ -1074,9 +1263,12 @@ public interface ResteasyEndpointBuilderFactory {
          * To use custom host header for producer. When not set in query will be
          * ignored. When set will override host header derived from url.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param customHostHeader the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder customHostHeader(
                 String customHostHeader) {
@@ -1088,9 +1280,13 @@ public interface ResteasyEndpointBuilderFactory {
          * override this option if set.
          * 
          * The option is a:
-         * <code>org.apache.camel.http.common.HttpMethods</code> type.
+         * &lt;code&gt;org.apache.camel.http.common.HttpMethods&lt;/code&gt;
+         * type.
          * 
          * Group: producer
+         * 
+         * @param httpMethod the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder httpMethod(
                 HttpMethods httpMethod) {
@@ -1102,9 +1298,13 @@ public interface ResteasyEndpointBuilderFactory {
          * override this option if set.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.http.common.HttpMethods</code> type.
+         * &lt;code&gt;org.apache.camel.http.common.HttpMethods&lt;/code&gt;
+         * type.
          * 
          * Group: producer
+         * 
+         * @param httpMethod the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder httpMethod(String httpMethod) {
             doSetProperty("httpMethod", httpMethod);
@@ -1114,10 +1314,13 @@ public interface ResteasyEndpointBuilderFactory {
          * If this option is true, The http producer won't read response body
          * and cache the input stream.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param ignoreResponseBody the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder ignoreResponseBody(
                 boolean ignoreResponseBody) {
@@ -1128,10 +1331,14 @@ public interface ResteasyEndpointBuilderFactory {
          * If this option is true, The http producer won't read response body
          * and cache the input stream.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param ignoreResponseBody the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder ignoreResponseBody(
                 String ignoreResponseBody) {
@@ -1149,10 +1356,13 @@ public interface ResteasyEndpointBuilderFactory {
          * producer may take a little time and prolong the total processing time
          * of the processing.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param lazyStartProducer the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder lazyStartProducer(
                 boolean lazyStartProducer) {
@@ -1170,10 +1380,14 @@ public interface ResteasyEndpointBuilderFactory {
          * producer may take a little time and prolong the total processing time
          * of the processing.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param lazyStartProducer the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder lazyStartProducer(
                 String lazyStartProducer) {
@@ -1188,10 +1402,13 @@ public interface ResteasyEndpointBuilderFactory {
          * client, this allows applications which use the Host header to
          * generate accurate URL's for a proxied service.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param preserveHostHeader the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder preserveHostHeader(
                 boolean preserveHostHeader) {
@@ -1206,10 +1423,14 @@ public interface ResteasyEndpointBuilderFactory {
          * client, this allows applications which use the Host header to
          * generate accurate URL's for a proxied service.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param preserveHostHeader the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder preserveHostHeader(
                 String preserveHostHeader) {
@@ -1221,10 +1442,13 @@ public interface ResteasyEndpointBuilderFactory {
          * of failed responses from the remote server. This allows you to get
          * all responses regardless of the HTTP status code.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: producer
+         * 
+         * @param throwExceptionOnFailure the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder throwExceptionOnFailure(
                 boolean throwExceptionOnFailure) {
@@ -1236,10 +1460,14 @@ public interface ResteasyEndpointBuilderFactory {
          * of failed responses from the remote server. This allows you to get
          * all responses regardless of the HTTP status code.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: producer
+         * 
+         * @param throwExceptionOnFailure the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder throwExceptionOnFailure(
                 String throwExceptionOnFailure) {
@@ -1249,9 +1477,12 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * Sets the resteasy proxyClientClass.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: proxy
+         * 
+         * @param proxyClientClass the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder proxyClientClass(
                 String proxyClientClass) {
@@ -1261,9 +1492,12 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * Sets the password.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param password the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder password(String password) {
             doSetProperty("password", password);
@@ -1272,9 +1506,12 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * Sets the username.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param username the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointProducerBuilder username(String username) {
             doSetProperty("username", username);
@@ -1295,9 +1532,12 @@ public interface ResteasyEndpointBuilderFactory {
          * Configure a cookie handler to maintain a HTTP session.
          * 
          * The option is a:
-         * <code>org.apache.camel.http.base.cookie.CookieHandler</code> type.
+         * &lt;code&gt;org.apache.camel.http.base.cookie.CookieHandler&lt;/code&gt; type.
          * 
          * Group: producer (advanced)
+         * 
+         * @param cookieHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder cookieHandler(
                 Object cookieHandler) {
@@ -1308,9 +1548,12 @@ public interface ResteasyEndpointBuilderFactory {
          * Configure a cookie handler to maintain a HTTP session.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.http.base.cookie.CookieHandler</code> type.
+         * &lt;code&gt;org.apache.camel.http.base.cookie.CookieHandler&lt;/code&gt; type.
          * 
          * Group: producer (advanced)
+         * 
+         * @param cookieHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder cookieHandler(
                 String cookieHandler) {
@@ -1322,10 +1565,13 @@ public interface ResteasyEndpointBuilderFactory {
          * default HTTP DELETE do not include any HTTP body. However in some
          * rare cases users may need to be able to include the message body.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param deleteWithBody the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder deleteWithBody(
                 boolean deleteWithBody) {
@@ -1337,10 +1583,14 @@ public interface ResteasyEndpointBuilderFactory {
          * default HTTP DELETE do not include any HTTP body. However in some
          * rare cases users may need to be able to include the message body.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param deleteWithBody the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder deleteWithBody(
                 String deleteWithBody) {
@@ -1352,10 +1602,13 @@ public interface ResteasyEndpointBuilderFactory {
          * default HTTP GET do not include any HTTP body. However in some rare
          * cases users may need to be able to include the message body.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param getWithBody the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder getWithBody(
                 boolean getWithBody) {
@@ -1367,10 +1620,14 @@ public interface ResteasyEndpointBuilderFactory {
          * default HTTP GET do not include any HTTP body. However in some rare
          * cases users may need to be able to include the message body.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param getWithBody the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder getWithBody(
                 String getWithBody) {
@@ -1383,10 +1640,13 @@ public interface ResteasyEndpointBuilderFactory {
          * e.g. 200-204,209,301-304. Each range must be a single number or
          * from-to with the dash included.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: 200-299
          * Group: producer (advanced)
+         * 
+         * @param okStatusCodeRange the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder okStatusCodeRange(
                 String okStatusCodeRange) {
@@ -1394,41 +1654,17 @@ public interface ResteasyEndpointBuilderFactory {
             return this;
         }
         /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedResteasyEndpointProducerBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedResteasyEndpointProducerBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
          * To use a custom HeaderFilterStrategy to filter header to and from
          * Camel message.
          * 
          * The option is a:
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder headerFilterStrategy(
                 HeaderFilterStrategy headerFilterStrategy) {
@@ -1440,9 +1676,13 @@ public interface ResteasyEndpointBuilderFactory {
          * Camel message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder headerFilterStrategy(
                 String headerFilterStrategy) {
@@ -1454,10 +1694,13 @@ public interface ResteasyEndpointBuilderFactory {
          * mapped to HTTP body. Setting this to false will avoid the HTTP
          * mapping.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageBody the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder mapHttpMessageBody(
                 boolean mapHttpMessageBody) {
@@ -1469,10 +1712,14 @@ public interface ResteasyEndpointBuilderFactory {
          * mapped to HTTP body. Setting this to false will avoid the HTTP
          * mapping.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageBody the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder mapHttpMessageBody(
                 String mapHttpMessageBody) {
@@ -1484,10 +1731,13 @@ public interface ResteasyEndpointBuilderFactory {
          * exchange will be mapped to HTTP. Setting this to false will avoid the
          * HTTP Form Encoded body mapping.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageFormUrlEncodedBody the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder mapHttpMessageFormUrlEncodedBody(
                 boolean mapHttpMessageFormUrlEncodedBody) {
@@ -1499,10 +1749,14 @@ public interface ResteasyEndpointBuilderFactory {
          * exchange will be mapped to HTTP. Setting this to false will avoid the
          * HTTP Form Encoded body mapping.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageFormUrlEncodedBody the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder mapHttpMessageFormUrlEncodedBody(
                 String mapHttpMessageFormUrlEncodedBody) {
@@ -1514,10 +1768,13 @@ public interface ResteasyEndpointBuilderFactory {
          * be mapped to HTTP headers. Setting this to false will avoid the HTTP
          * Headers mapping.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder mapHttpMessageHeaders(
                 boolean mapHttpMessageHeaders) {
@@ -1529,10 +1786,14 @@ public interface ResteasyEndpointBuilderFactory {
          * be mapped to HTTP headers. Setting this to false will avoid the HTTP
          * Headers mapping.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder mapHttpMessageHeaders(
                 String mapHttpMessageHeaders) {
@@ -1544,9 +1805,12 @@ public interface ResteasyEndpointBuilderFactory {
          * exchange from servlet response or use request itself which may be
          * thought as if it is a proxy.
          * 
-         * The option is a: <code>java.lang.Boolean</code> type.
+         * The option is a: &lt;code&gt;java.lang.Boolean&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param setHttpResponseDuringProcessing the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder setHttpResponseDuringProcessing(
                 Boolean setHttpResponseDuringProcessing) {
@@ -1558,10 +1822,13 @@ public interface ResteasyEndpointBuilderFactory {
          * exchange from servlet response or use request itself which may be
          * thought as if it is a proxy.
          * 
-         * The option will be converted to a <code>java.lang.Boolean</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Boolean&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param setHttpResponseDuringProcessing the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder setHttpResponseDuringProcessing(
                 String setHttpResponseDuringProcessing) {
@@ -1572,9 +1839,12 @@ public interface ResteasyEndpointBuilderFactory {
          * Sets the flag to use skip servlet processing and let camel take over
          * processing.
          * 
-         * The option is a: <code>java.lang.Boolean</code> type.
+         * The option is a: &lt;code&gt;java.lang.Boolean&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param skipServletProcessing the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder skipServletProcessing(
                 Boolean skipServletProcessing) {
@@ -1585,10 +1855,13 @@ public interface ResteasyEndpointBuilderFactory {
          * Sets the flag to use skip servlet processing and let camel take over
          * processing.
          * 
-         * The option will be converted to a <code>java.lang.Boolean</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Boolean&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param skipServletProcessing the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder skipServletProcessing(
                 String skipServletProcessing) {
@@ -1599,10 +1872,13 @@ public interface ResteasyEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder synchronous(
                 boolean synchronous) {
@@ -1613,10 +1889,14 @@ public interface ResteasyEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder synchronous(
                 String synchronous) {
@@ -1626,10 +1906,13 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * To use System Properties as fallback for configuration.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param useSystemProperties the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder useSystemProperties(
                 boolean useSystemProperties) {
@@ -1639,10 +1922,14 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * To use System Properties as fallback for configuration.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param useSystemProperties the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointProducerBuilder useSystemProperties(
                 String useSystemProperties) {
@@ -1665,10 +1952,13 @@ public interface ResteasyEndpointBuilderFactory {
          * If this option is false the Servlet will disable the HTTP streaming
          * and set the content-length header on the response.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param chunked the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointBuilder chunked(boolean chunked) {
             doSetProperty("chunked", chunked);
@@ -1678,10 +1968,14 @@ public interface ResteasyEndpointBuilderFactory {
          * If this option is false the Servlet will disable the HTTP streaming
          * and set the content-length header on the response.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param chunked the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointBuilder chunked(String chunked) {
             doSetProperty("chunked", chunked);
@@ -1705,10 +1999,13 @@ public interface ResteasyEndpointBuilderFactory {
          * not cache the response body stream but use the response stream as-is
          * as the message body.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableStreamCache the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointBuilder disableStreamCache(
                 boolean disableStreamCache) {
@@ -1733,10 +2030,14 @@ public interface ResteasyEndpointBuilderFactory {
          * not cache the response body stream but use the response stream as-is
          * as the message body.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableStreamCache the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointBuilder disableStreamCache(
                 String disableStreamCache) {
@@ -1746,10 +2047,13 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * Sets the resteasy method to process the request.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: GET
          * Group: common
+         * 
+         * @param resteasyMethod the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointBuilder resteasyMethod(String resteasyMethod) {
             doSetProperty("resteasyMethod", resteasyMethod);
@@ -1758,9 +2062,12 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * Sets the servlet name.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param servletName the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointBuilder servletName(String servletName) {
             doSetProperty("servletName", servletName);
@@ -1777,10 +2084,13 @@ public interface ResteasyEndpointBuilderFactory {
          * data from the request to Java and that can be a potential security
          * risk.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointBuilder transferException(
                 boolean transferException) {
@@ -1798,10 +2108,14 @@ public interface ResteasyEndpointBuilderFactory {
          * data from the request to Java and that can be a potential security
          * risk.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointBuilder transferException(
                 String transferException) {
@@ -1811,9 +2125,12 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * Sets the resteasy proxyClientClass.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: proxy
+         * 
+         * @param proxyClientClass the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointBuilder proxyClientClass(String proxyClientClass) {
             doSetProperty("proxyClientClass", proxyClientClass);
@@ -1822,9 +2139,12 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * Sets the password.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param password the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointBuilder password(String password) {
             doSetProperty("password", password);
@@ -1833,9 +2153,12 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * Sets the username.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param username the value to set
+         * @return the dsl builder
          */
         default ResteasyEndpointBuilder username(String username) {
             doSetProperty("username", username);
@@ -1854,41 +2177,17 @@ public interface ResteasyEndpointBuilderFactory {
             return (ResteasyEndpointBuilder) this;
         }
         /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedResteasyEndpointBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedResteasyEndpointBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
          * To use a custom HeaderFilterStrategy to filter header to and from
          * Camel message.
          * 
          * The option is a:
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointBuilder headerFilterStrategy(
                 HeaderFilterStrategy headerFilterStrategy) {
@@ -1900,9 +2199,13 @@ public interface ResteasyEndpointBuilderFactory {
          * Camel message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: advanced
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointBuilder headerFilterStrategy(
                 String headerFilterStrategy) {
@@ -1914,10 +2217,13 @@ public interface ResteasyEndpointBuilderFactory {
          * mapped to HTTP body. Setting this to false will avoid the HTTP
          * mapping.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageBody the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointBuilder mapHttpMessageBody(
                 boolean mapHttpMessageBody) {
@@ -1929,10 +2235,14 @@ public interface ResteasyEndpointBuilderFactory {
          * mapped to HTTP body. Setting this to false will avoid the HTTP
          * mapping.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageBody the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointBuilder mapHttpMessageBody(
                 String mapHttpMessageBody) {
@@ -1944,10 +2254,13 @@ public interface ResteasyEndpointBuilderFactory {
          * exchange will be mapped to HTTP. Setting this to false will avoid the
          * HTTP Form Encoded body mapping.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageFormUrlEncodedBody the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointBuilder mapHttpMessageFormUrlEncodedBody(
                 boolean mapHttpMessageFormUrlEncodedBody) {
@@ -1959,10 +2272,14 @@ public interface ResteasyEndpointBuilderFactory {
          * exchange will be mapped to HTTP. Setting this to false will avoid the
          * HTTP Form Encoded body mapping.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageFormUrlEncodedBody the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointBuilder mapHttpMessageFormUrlEncodedBody(
                 String mapHttpMessageFormUrlEncodedBody) {
@@ -1974,10 +2291,13 @@ public interface ResteasyEndpointBuilderFactory {
          * be mapped to HTTP headers. Setting this to false will avoid the HTTP
          * Headers mapping.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointBuilder mapHttpMessageHeaders(
                 boolean mapHttpMessageHeaders) {
@@ -1989,10 +2309,14 @@ public interface ResteasyEndpointBuilderFactory {
          * be mapped to HTTP headers. Setting this to false will avoid the HTTP
          * Headers mapping.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointBuilder mapHttpMessageHeaders(
                 String mapHttpMessageHeaders) {
@@ -2004,9 +2328,12 @@ public interface ResteasyEndpointBuilderFactory {
          * exchange from servlet response or use request itself which may be
          * thought as if it is a proxy.
          * 
-         * The option is a: <code>java.lang.Boolean</code> type.
+         * The option is a: &lt;code&gt;java.lang.Boolean&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param setHttpResponseDuringProcessing the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointBuilder setHttpResponseDuringProcessing(
                 Boolean setHttpResponseDuringProcessing) {
@@ -2018,10 +2345,13 @@ public interface ResteasyEndpointBuilderFactory {
          * exchange from servlet response or use request itself which may be
          * thought as if it is a proxy.
          * 
-         * The option will be converted to a <code>java.lang.Boolean</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Boolean&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param setHttpResponseDuringProcessing the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointBuilder setHttpResponseDuringProcessing(
                 String setHttpResponseDuringProcessing) {
@@ -2032,9 +2362,12 @@ public interface ResteasyEndpointBuilderFactory {
          * Sets the flag to use skip servlet processing and let camel take over
          * processing.
          * 
-         * The option is a: <code>java.lang.Boolean</code> type.
+         * The option is a: &lt;code&gt;java.lang.Boolean&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param skipServletProcessing the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointBuilder skipServletProcessing(
                 Boolean skipServletProcessing) {
@@ -2045,10 +2378,13 @@ public interface ResteasyEndpointBuilderFactory {
          * Sets the flag to use skip servlet processing and let camel take over
          * processing.
          * 
-         * The option will be converted to a <code>java.lang.Boolean</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Boolean&lt;/code&gt; type.
          * 
          * Group: advanced
+         * 
+         * @param skipServletProcessing the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointBuilder skipServletProcessing(
                 String skipServletProcessing) {
@@ -2059,10 +2395,13 @@ public interface ResteasyEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointBuilder synchronous(boolean synchronous) {
             doSetProperty("synchronous", synchronous);
@@ -2072,10 +2411,14 @@ public interface ResteasyEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointBuilder synchronous(String synchronous) {
             doSetProperty("synchronous", synchronous);
@@ -2084,10 +2427,13 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * To use System Properties as fallback for configuration.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param useSystemProperties the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointBuilder useSystemProperties(
                 boolean useSystemProperties) {
@@ -2097,10 +2443,14 @@ public interface ResteasyEndpointBuilderFactory {
         /**
          * To use System Properties as fallback for configuration.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param useSystemProperties the value to set
+         * @return the dsl builder
          */
         default AdvancedResteasyEndpointBuilder useSystemProperties(
                 String useSystemProperties) {
@@ -2139,6 +2489,7 @@ public interface ResteasyEndpointBuilderFactory {
          * The url of the HTTP endpoint to call.
          * 
          * @param path httpUri
+         * @return the dsl builder
          */
         default ResteasyEndpointBuilder resteasy(String path) {
             return ResteasyEndpointBuilderFactory.endpointBuilder("resteasy", path);
@@ -2159,6 +2510,7 @@ public interface ResteasyEndpointBuilderFactory {
          * @param componentName to use a custom component name for the endpoint
          * instead of the default name
          * @param path httpUri
+         * @return the dsl builder
          */
         default ResteasyEndpointBuilder resteasy(
                 String componentName,

@@ -49,10 +49,13 @@ public interface EventHubsEndpointBuilderFactory {
          * Sets the retry policy for EventHubAsyncClient. If not specified, the
          * default retry options are used.
          * 
-         * The option is a: <code>com.azure.core.amqp.AmqpRetryOptions</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;com.azure.core.amqp.AmqpRetryOptions&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param amqpRetryOptions the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder amqpRetryOptions(
                 Object amqpRetryOptions) {
@@ -64,9 +67,12 @@ public interface EventHubsEndpointBuilderFactory {
          * default retry options are used.
          * 
          * The option will be converted to a
-         * <code>com.azure.core.amqp.AmqpRetryOptions</code> type.
+         * &lt;code&gt;com.azure.core.amqp.AmqpRetryOptions&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param amqpRetryOptions the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder amqpRetryOptions(
                 String amqpRetryOptions) {
@@ -77,11 +83,14 @@ public interface EventHubsEndpointBuilderFactory {
          * Sets the transport type by which all the communication with Azure
          * Event Hubs occurs. Default value is AmqpTransportType#AMQP.
          * 
-         * The option is a: <code>com.azure.core.amqp.AmqpTransportType</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;com.azure.core.amqp.AmqpTransportType&lt;/code&gt; type.
          * 
          * Default: AMQP
          * Group: common
+         * 
+         * @param amqpTransportType the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder amqpTransportType(
                 AmqpTransportType amqpTransportType) {
@@ -93,10 +102,13 @@ public interface EventHubsEndpointBuilderFactory {
          * Event Hubs occurs. Default value is AmqpTransportType#AMQP.
          * 
          * The option will be converted to a
-         * <code>com.azure.core.amqp.AmqpTransportType</code> type.
+         * &lt;code&gt;com.azure.core.amqp.AmqpTransportType&lt;/code&gt; type.
          * 
          * Default: AMQP
          * Group: common
+         * 
+         * @param amqpTransportType the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder amqpTransportType(
                 String amqpTransportType) {
@@ -108,10 +120,13 @@ public interface EventHubsEndpointBuilderFactory {
          * look for a client instance in the registry automatically otherwise it
          * will skip that checking.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param autoDiscoverClient the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder autoDiscoverClient(
                 boolean autoDiscoverClient) {
@@ -123,10 +138,14 @@ public interface EventHubsEndpointBuilderFactory {
          * look for a client instance in the registry automatically otherwise it
          * will skip that checking.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param autoDiscoverClient the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder autoDiscoverClient(
                 String autoDiscoverClient) {
@@ -138,9 +157,12 @@ public interface EventHubsEndpointBuilderFactory {
          * key for the associated azure account name to be used for
          * authentication with azure blob services.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param blobAccessKey the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder blobAccessKey(
                 String blobAccessKey) {
@@ -151,9 +173,12 @@ public interface EventHubsEndpointBuilderFactory {
          * In case you chose the default BlobCheckpointStore, this sets Azure
          * account name to be used for authentication with azure blob services.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param blobAccountName the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder blobAccountName(
                 String blobAccountName) {
@@ -165,9 +190,12 @@ public interface EventHubsEndpointBuilderFactory {
          * container that shall be used by the BlobCheckpointStore to store the
          * checkpoint offsets.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param blobContainerName the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder blobContainerName(
                 String blobContainerName) {
@@ -180,10 +208,12 @@ public interface EventHubsEndpointBuilderFactory {
          * client, this holds the important authentication information.
          * 
          * The option is a:
-         * <code>com.azure.storage.common.StorageSharedKeyCredential</code>
-         * type.
+         * &lt;code&gt;com.azure.storage.common.StorageSharedKeyCredential&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param blobStorageSharedKeyCredential the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder blobStorageSharedKeyCredential(
                 Object blobStorageSharedKeyCredential) {
@@ -196,10 +226,12 @@ public interface EventHubsEndpointBuilderFactory {
          * client, this holds the important authentication information.
          * 
          * The option will be converted to a
-         * <code>com.azure.storage.common.StorageSharedKeyCredential</code>
-         * type.
+         * &lt;code&gt;com.azure.storage.common.StorageSharedKeyCredential&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param blobStorageSharedKeyCredential the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder blobStorageSharedKeyCredential(
                 String blobStorageSharedKeyCredential) {
@@ -215,10 +247,13 @@ public interface EventHubsEndpointBuilderFactory {
          * with exceptions, that will be logged at WARN or ERROR level and
          * ignored.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param bridgeErrorHandler the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder bridgeErrorHandler(
                 boolean bridgeErrorHandler) {
@@ -234,10 +269,14 @@ public interface EventHubsEndpointBuilderFactory {
          * with exceptions, that will be logged at WARN or ERROR level and
          * ignored.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param bridgeErrorHandler the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder bridgeErrorHandler(
                 String bridgeErrorHandler) {
@@ -253,10 +292,13 @@ public interface EventHubsEndpointBuilderFactory {
          * com.azure.messaging.eventhubs.checkpointstore.blob.BlobCheckpointStore which stores all checkpoint offsets into Azure Blob Storage.
          * 
          * The option is a:
-         * <code>com.azure.messaging.eventhubs.CheckpointStore</code> type.
+         * &lt;code&gt;com.azure.messaging.eventhubs.CheckpointStore&lt;/code&gt; type.
          * 
          * Default: BlobCheckpointStore
          * Group: consumer
+         * 
+         * @param checkpointStore the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder checkpointStore(
                 Object checkpointStore) {
@@ -272,10 +314,13 @@ public interface EventHubsEndpointBuilderFactory {
          * com.azure.messaging.eventhubs.checkpointstore.blob.BlobCheckpointStore which stores all checkpoint offsets into Azure Blob Storage.
          * 
          * The option will be converted to a
-         * <code>com.azure.messaging.eventhubs.CheckpointStore</code> type.
+         * &lt;code&gt;com.azure.messaging.eventhubs.CheckpointStore&lt;/code&gt; type.
          * 
          * Default: BlobCheckpointStore
          * Group: consumer
+         * 
+         * @param checkpointStore the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder checkpointStore(
                 String checkpointStore) {
@@ -288,10 +333,13 @@ public interface EventHubsEndpointBuilderFactory {
          * consumer group that is created by default is {link
          * #DEFAULT_CONSUMER_GROUP_NAME $Default}.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: $Default
          * Group: consumer
+         * 
+         * @param consumerGroupName the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder consumerGroupName(
                 String consumerGroupName) {
@@ -306,10 +354,13 @@ public interface EventHubsEndpointBuilderFactory {
          * of the partition will start from {link EventPosition#latest() latest}
          * position.
          * 
-         * The option is a: <code>java.util.Map&lt;java.lang.String,
-         * com.azure.messaging.eventhubs.models.EventPosition&gt;</code> type.
+         * The option is a: &lt;code&gt;java.util.Map&amp;lt;java.lang.String,
+         * com.azure.messaging.eventhubs.models.EventPosition&amp;gt;&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param eventPosition the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder eventPosition(
                 Map<String, Object> eventPosition) {
@@ -325,10 +376,13 @@ public interface EventHubsEndpointBuilderFactory {
          * position.
          * 
          * The option will be converted to a
-         * <code>java.util.Map&lt;java.lang.String,
-         * com.azure.messaging.eventhubs.models.EventPosition&gt;</code> type.
+         * &lt;code&gt;java.util.Map&amp;lt;java.lang.String,
+         * com.azure.messaging.eventhubs.models.EventPosition&amp;gt;&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param eventPosition the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder eventPosition(
                 String eventPosition) {
@@ -340,10 +394,13 @@ public interface EventHubsEndpointBuilderFactory {
          * the Event Hub consumer will actively receive and queue locally
          * without regard to whether a receive operation is currently active.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 500
          * Group: consumer
+         * 
+         * @param prefetchCount the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder prefetchCount(int prefetchCount) {
             doSetProperty("prefetchCount", prefetchCount);
@@ -354,10 +411,13 @@ public interface EventHubsEndpointBuilderFactory {
          * the Event Hub consumer will actively receive and queue locally
          * without regard to whether a receive operation is currently active.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 500
          * Group: consumer
+         * 
+         * @param prefetchCount the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder prefetchCount(
                 String prefetchCount) {
@@ -372,9 +432,12 @@ public interface EventHubsEndpointBuilderFactory {
          * generate the connection string, take a look at this documentation:
          * https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-get-connection-string.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param connectionString the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder connectionString(
                 String connectionString) {
@@ -384,9 +447,12 @@ public interface EventHubsEndpointBuilderFactory {
         /**
          * The generated value for the SharedAccessName.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param sharedAccessKey the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder sharedAccessKey(
                 String sharedAccessKey) {
@@ -396,9 +462,12 @@ public interface EventHubsEndpointBuilderFactory {
         /**
          * The name you chose for your EventHubs SAS keys.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param sharedAccessName the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointConsumerBuilder sharedAccessName(
                 String sharedAccessName) {
@@ -423,10 +492,13 @@ public interface EventHubsEndpointBuilderFactory {
          * By default the consumer will deal with exceptions, that will be
          * logged at WARN or ERROR level and ignored.
          * 
-         * The option is a: <code>org.apache.camel.spi.ExceptionHandler</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;org.apache.camel.spi.ExceptionHandler&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exceptionHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedEventHubsEndpointConsumerBuilder exceptionHandler(
                 ExceptionHandler exceptionHandler) {
@@ -440,9 +512,12 @@ public interface EventHubsEndpointBuilderFactory {
          * logged at WARN or ERROR level and ignored.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.spi.ExceptionHandler</code> type.
+         * &lt;code&gt;org.apache.camel.spi.ExceptionHandler&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exceptionHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedEventHubsEndpointConsumerBuilder exceptionHandler(
                 String exceptionHandler) {
@@ -452,9 +527,13 @@ public interface EventHubsEndpointBuilderFactory {
         /**
          * Sets the exchange pattern when the consumer creates an exchange.
          * 
-         * The option is a: <code>org.apache.camel.ExchangePattern</code> type.
+         * The option is a:
+         * &lt;code&gt;org.apache.camel.ExchangePattern&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exchangePattern the value to set
+         * @return the dsl builder
          */
         default AdvancedEventHubsEndpointConsumerBuilder exchangePattern(
                 ExchangePattern exchangePattern) {
@@ -465,9 +544,12 @@ public interface EventHubsEndpointBuilderFactory {
          * Sets the exchange pattern when the consumer creates an exchange.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.ExchangePattern</code> type.
+         * &lt;code&gt;org.apache.camel.ExchangePattern&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exchangePattern the value to set
+         * @return the dsl builder
          */
         default AdvancedEventHubsEndpointConsumerBuilder exchangePattern(
                 String exchangePattern) {
@@ -475,41 +557,16 @@ public interface EventHubsEndpointBuilderFactory {
             return this;
         }
         /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedEventHubsEndpointConsumerBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedEventHubsEndpointConsumerBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedEventHubsEndpointConsumerBuilder synchronous(
                 boolean synchronous) {
@@ -520,10 +577,14 @@ public interface EventHubsEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedEventHubsEndpointConsumerBuilder synchronous(
                 String synchronous) {
@@ -545,10 +606,13 @@ public interface EventHubsEndpointBuilderFactory {
          * Sets the retry policy for EventHubAsyncClient. If not specified, the
          * default retry options are used.
          * 
-         * The option is a: <code>com.azure.core.amqp.AmqpRetryOptions</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;com.azure.core.amqp.AmqpRetryOptions&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param amqpRetryOptions the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointProducerBuilder amqpRetryOptions(
                 Object amqpRetryOptions) {
@@ -560,9 +624,12 @@ public interface EventHubsEndpointBuilderFactory {
          * default retry options are used.
          * 
          * The option will be converted to a
-         * <code>com.azure.core.amqp.AmqpRetryOptions</code> type.
+         * &lt;code&gt;com.azure.core.amqp.AmqpRetryOptions&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param amqpRetryOptions the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointProducerBuilder amqpRetryOptions(
                 String amqpRetryOptions) {
@@ -573,11 +640,14 @@ public interface EventHubsEndpointBuilderFactory {
          * Sets the transport type by which all the communication with Azure
          * Event Hubs occurs. Default value is AmqpTransportType#AMQP.
          * 
-         * The option is a: <code>com.azure.core.amqp.AmqpTransportType</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;com.azure.core.amqp.AmqpTransportType&lt;/code&gt; type.
          * 
          * Default: AMQP
          * Group: common
+         * 
+         * @param amqpTransportType the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointProducerBuilder amqpTransportType(
                 AmqpTransportType amqpTransportType) {
@@ -589,10 +659,13 @@ public interface EventHubsEndpointBuilderFactory {
          * Event Hubs occurs. Default value is AmqpTransportType#AMQP.
          * 
          * The option will be converted to a
-         * <code>com.azure.core.amqp.AmqpTransportType</code> type.
+         * &lt;code&gt;com.azure.core.amqp.AmqpTransportType&lt;/code&gt; type.
          * 
          * Default: AMQP
          * Group: common
+         * 
+         * @param amqpTransportType the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointProducerBuilder amqpTransportType(
                 String amqpTransportType) {
@@ -604,10 +677,13 @@ public interface EventHubsEndpointBuilderFactory {
          * look for a client instance in the registry automatically otherwise it
          * will skip that checking.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param autoDiscoverClient the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointProducerBuilder autoDiscoverClient(
                 boolean autoDiscoverClient) {
@@ -619,10 +695,14 @@ public interface EventHubsEndpointBuilderFactory {
          * look for a client instance in the registry automatically otherwise it
          * will skip that checking.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param autoDiscoverClient the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointProducerBuilder autoDiscoverClient(
                 String autoDiscoverClient) {
@@ -640,10 +720,13 @@ public interface EventHubsEndpointBuilderFactory {
          * producer may take a little time and prolong the total processing time
          * of the processing.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param lazyStartProducer the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointProducerBuilder lazyStartProducer(
                 boolean lazyStartProducer) {
@@ -661,10 +744,14 @@ public interface EventHubsEndpointBuilderFactory {
          * producer may take a little time and prolong the total processing time
          * of the processing.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param lazyStartProducer the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointProducerBuilder lazyStartProducer(
                 String lazyStartProducer) {
@@ -677,9 +764,12 @@ public interface EventHubsEndpointBuilderFactory {
          * service will be responsible for routing events that are sent to an
          * available partition.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param partitionId the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointProducerBuilder partitionId(String partitionId) {
             doSetProperty("partitionId", partitionId);
@@ -698,9 +788,12 @@ public interface EventHubsEndpointBuilderFactory {
          * recommended that the {link #setPartitionId(String) identifier of the
          * position be specified directly} when sending the batch.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param partitionKey the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointProducerBuilder partitionKey(
                 String partitionKey) {
@@ -716,9 +809,12 @@ public interface EventHubsEndpointBuilderFactory {
          * this component to produce the data in camel producer.
          * 
          * The option is a:
-         * <code>com.azure.messaging.eventhubs.EventHubProducerAsyncClient</code> type.
+         * &lt;code&gt;com.azure.messaging.eventhubs.EventHubProducerAsyncClient&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param producerAsyncClient the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointProducerBuilder producerAsyncClient(
                 Object producerAsyncClient) {
@@ -734,9 +830,12 @@ public interface EventHubsEndpointBuilderFactory {
          * this component to produce the data in camel producer.
          * 
          * The option will be converted to a
-         * <code>com.azure.messaging.eventhubs.EventHubProducerAsyncClient</code> type.
+         * &lt;code&gt;com.azure.messaging.eventhubs.EventHubProducerAsyncClient&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param producerAsyncClient the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointProducerBuilder producerAsyncClient(
                 String producerAsyncClient) {
@@ -751,9 +850,12 @@ public interface EventHubsEndpointBuilderFactory {
          * generate the connection string, take a look at this documentation:
          * https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-get-connection-string.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param connectionString the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointProducerBuilder connectionString(
                 String connectionString) {
@@ -763,9 +865,12 @@ public interface EventHubsEndpointBuilderFactory {
         /**
          * The generated value for the SharedAccessName.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param sharedAccessKey the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointProducerBuilder sharedAccessKey(
                 String sharedAccessKey) {
@@ -775,9 +880,12 @@ public interface EventHubsEndpointBuilderFactory {
         /**
          * The name you chose for your EventHubs SAS keys.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param sharedAccessName the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointProducerBuilder sharedAccessName(
                 String sharedAccessName) {
@@ -797,41 +905,16 @@ public interface EventHubsEndpointBuilderFactory {
             return (EventHubsEndpointProducerBuilder) this;
         }
         /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedEventHubsEndpointProducerBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedEventHubsEndpointProducerBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedEventHubsEndpointProducerBuilder synchronous(
                 boolean synchronous) {
@@ -842,10 +925,14 @@ public interface EventHubsEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedEventHubsEndpointProducerBuilder synchronous(
                 String synchronous) {
@@ -868,10 +955,13 @@ public interface EventHubsEndpointBuilderFactory {
          * Sets the retry policy for EventHubAsyncClient. If not specified, the
          * default retry options are used.
          * 
-         * The option is a: <code>com.azure.core.amqp.AmqpRetryOptions</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;com.azure.core.amqp.AmqpRetryOptions&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param amqpRetryOptions the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointBuilder amqpRetryOptions(
                 Object amqpRetryOptions) {
@@ -883,9 +973,12 @@ public interface EventHubsEndpointBuilderFactory {
          * default retry options are used.
          * 
          * The option will be converted to a
-         * <code>com.azure.core.amqp.AmqpRetryOptions</code> type.
+         * &lt;code&gt;com.azure.core.amqp.AmqpRetryOptions&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param amqpRetryOptions the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointBuilder amqpRetryOptions(
                 String amqpRetryOptions) {
@@ -896,11 +989,14 @@ public interface EventHubsEndpointBuilderFactory {
          * Sets the transport type by which all the communication with Azure
          * Event Hubs occurs. Default value is AmqpTransportType#AMQP.
          * 
-         * The option is a: <code>com.azure.core.amqp.AmqpTransportType</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;com.azure.core.amqp.AmqpTransportType&lt;/code&gt; type.
          * 
          * Default: AMQP
          * Group: common
+         * 
+         * @param amqpTransportType the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointBuilder amqpTransportType(
                 AmqpTransportType amqpTransportType) {
@@ -912,10 +1008,13 @@ public interface EventHubsEndpointBuilderFactory {
          * Event Hubs occurs. Default value is AmqpTransportType#AMQP.
          * 
          * The option will be converted to a
-         * <code>com.azure.core.amqp.AmqpTransportType</code> type.
+         * &lt;code&gt;com.azure.core.amqp.AmqpTransportType&lt;/code&gt; type.
          * 
          * Default: AMQP
          * Group: common
+         * 
+         * @param amqpTransportType the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointBuilder amqpTransportType(
                 String amqpTransportType) {
@@ -927,10 +1026,13 @@ public interface EventHubsEndpointBuilderFactory {
          * look for a client instance in the registry automatically otherwise it
          * will skip that checking.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param autoDiscoverClient the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointBuilder autoDiscoverClient(
                 boolean autoDiscoverClient) {
@@ -942,10 +1044,14 @@ public interface EventHubsEndpointBuilderFactory {
          * look for a client instance in the registry automatically otherwise it
          * will skip that checking.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param autoDiscoverClient the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointBuilder autoDiscoverClient(
                 String autoDiscoverClient) {
@@ -960,9 +1066,12 @@ public interface EventHubsEndpointBuilderFactory {
          * generate the connection string, take a look at this documentation:
          * https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-get-connection-string.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param connectionString the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointBuilder connectionString(
                 String connectionString) {
@@ -972,9 +1081,12 @@ public interface EventHubsEndpointBuilderFactory {
         /**
          * The generated value for the SharedAccessName.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param sharedAccessKey the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointBuilder sharedAccessKey(String sharedAccessKey) {
             doSetProperty("sharedAccessKey", sharedAccessKey);
@@ -983,9 +1095,12 @@ public interface EventHubsEndpointBuilderFactory {
         /**
          * The name you chose for your EventHubs SAS keys.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param sharedAccessName the value to set
+         * @return the dsl builder
          */
         default EventHubsEndpointBuilder sharedAccessName(
                 String sharedAccessName) {
@@ -1005,41 +1120,16 @@ public interface EventHubsEndpointBuilderFactory {
             return (EventHubsEndpointBuilder) this;
         }
         /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedEventHubsEndpointBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedEventHubsEndpointBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedEventHubsEndpointBuilder synchronous(boolean synchronous) {
             doSetProperty("synchronous", synchronous);
@@ -1049,10 +1139,14 @@ public interface EventHubsEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedEventHubsEndpointBuilder synchronous(String synchronous) {
             doSetProperty("synchronous", synchronous);
@@ -1089,6 +1183,7 @@ public interface EventHubsEndpointBuilderFactory {
          * EventHubs name under a specific namcespace
          * 
          * @param path namespace/eventHubName
+         * @return the dsl builder
          */
         default EventHubsEndpointBuilder azureEventhubs(String path) {
             return EventHubsEndpointBuilderFactory.endpointBuilder("azure-eventhubs", path);
@@ -1115,6 +1210,7 @@ public interface EventHubsEndpointBuilderFactory {
          * @param componentName to use a custom component name for the endpoint
          * instead of the default name
          * @param path namespace/eventHubName
+         * @return the dsl builder
          */
         default EventHubsEndpointBuilder azureEventhubs(
                 String componentName,

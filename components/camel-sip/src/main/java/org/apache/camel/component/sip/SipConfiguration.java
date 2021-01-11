@@ -244,8 +244,8 @@ public class SipConfiguration {
                 = component.getAndRemoveParameter(parameters, "implementationServerLogFile", String.class, null);
         implementationTraceLevel = component.getAndRemoveParameter(parameters, "implementationTraceLevel", String.class, "0");
 
-        LOG.trace("Consumer:" + consumer + " StackName:" + stackName);
-        LOG.trace("From User: " + getFromUser() + " From host: " + getFromHost() + " From Port: " + getFromPort());
+        LOG.trace("Consumer: {} StackName: {}", consumer, stackName);
+        LOG.trace("From User: {} From host: {} From Port: {}", getFromUser(), getFromHost(), getFromPort());
 
         createFactoriesAndHeaders(parameters, component);
 
@@ -889,7 +889,7 @@ public class SipConfiguration {
     }
 
     /**
-     * This setting is used to distinguish between a Presence Agent & a consumer. This is due to the fact that the SIP
+     * This setting is used to distinguish between a Presence Agent and a consumer. This is due to the fact that the SIP
      * Camel component ships with a basic Presence Agent (for testing purposes only). Consumers have to set this flag to
      * true.
      */

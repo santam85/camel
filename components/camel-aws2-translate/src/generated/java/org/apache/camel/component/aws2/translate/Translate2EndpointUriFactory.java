@@ -2,6 +2,7 @@
 package org.apache.camel.component.aws2.translate;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,27 +18,30 @@ public class Translate2EndpointUriFactory extends org.apache.camel.support.compo
     private static final String BASE = ":label";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(18);
-        set.add("label");
-        set.add("autodetectSourceLanguage");
-        set.add("autoDiscoverClient");
-        set.add("lazyStartProducer");
-        set.add("operation");
-        set.add("pojoRequest");
-        set.add("proxyHost");
-        set.add("proxyPort");
-        set.add("proxyProtocol");
-        set.add("region");
-        set.add("sourceLanguage");
-        set.add("targetLanguage");
-        set.add("translateClient");
-        set.add("trustAllCertificates");
-        set.add("basicPropertyBinding");
-        set.add("synchronous");
-        set.add("accessKey");
-        set.add("secretKey");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(16);
+        props.add("autodetectSourceLanguage");
+        props.add("proxyProtocol");
+        props.add("targetLanguage");
+        props.add("secretKey");
+        props.add("synchronous");
+        props.add("label");
+        props.add("pojoRequest");
+        props.add("proxyHost");
+        props.add("trustAllCertificates");
+        props.add("proxyPort");
+        props.add("lazyStartProducer");
+        props.add("accessKey");
+        props.add("region");
+        props.add("operation");
+        props.add("sourceLanguage");
+        props.add("translateClient");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        Set<String> secretProps = new HashSet<>(2);
+        secretProps.add("secretKey");
+        secretProps.add("accessKey");
+        SECRET_PROPERTY_NAMES = Collections.unmodifiableSet(secretProps);
     }
 
     @Override
@@ -46,20 +50,25 @@ public class Translate2EndpointUriFactory extends org.apache.camel.support.compo
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
         Map<String, Object> copy = new HashMap<>(properties);
 
         uri = buildPathParameter(syntax, uri, "label", null, true, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

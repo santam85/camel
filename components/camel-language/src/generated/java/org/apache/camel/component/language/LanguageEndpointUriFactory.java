@@ -2,6 +2,7 @@
 package org.apache.camel.component.language;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,20 +18,21 @@ public class LanguageEndpointUriFactory extends org.apache.camel.support.compone
     private static final String BASE = ":languageName:resourceUri";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(11);
-        set.add("languageName");
-        set.add("resourceUri");
-        set.add("allowContextMapAll");
-        set.add("binary");
-        set.add("cacheScript");
-        set.add("contentCache");
-        set.add("lazyStartProducer");
-        set.add("script");
-        set.add("transform");
-        set.add("basicPropertyBinding");
-        set.add("synchronous");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(10);
+        props.add("lazyStartProducer");
+        props.add("transform");
+        props.add("synchronous");
+        props.add("binary");
+        props.add("contentCache");
+        props.add("allowContextMapAll");
+        props.add("resourceUri");
+        props.add("cacheScript");
+        props.add("languageName");
+        props.add("script");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        SECRET_PROPERTY_NAMES = Collections.emptySet();
     }
 
     @Override
@@ -39,7 +41,7 @@ public class LanguageEndpointUriFactory extends org.apache.camel.support.compone
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
@@ -47,13 +49,18 @@ public class LanguageEndpointUriFactory extends org.apache.camel.support.compone
 
         uri = buildPathParameter(syntax, uri, "languageName", null, true, copy);
         uri = buildPathParameter(syntax, uri, "resourceUri", null, false, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

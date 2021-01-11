@@ -2,6 +2,7 @@
 package org.apache.camel.component.printer;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,25 +18,26 @@ public class PrinterEndpointUriFactory extends org.apache.camel.support.componen
     private static final String BASE = ":hostname:port/printername";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(16);
-        set.add("hostname");
-        set.add("port");
-        set.add("printername");
-        set.add("copies");
-        set.add("docFlavor");
-        set.add("flavor");
-        set.add("lazyStartProducer");
-        set.add("mediaSize");
-        set.add("mediaTray");
-        set.add("mimeType");
-        set.add("orientation");
-        set.add("printerPrefix");
-        set.add("sendToPrinter");
-        set.add("sides");
-        set.add("basicPropertyBinding");
-        set.add("synchronous");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(15);
+        props.add("orientation");
+        props.add("sendToPrinter");
+        props.add("synchronous");
+        props.add("mimeType");
+        props.add("mediaTray");
+        props.add("docFlavor");
+        props.add("printerPrefix");
+        props.add("flavor");
+        props.add("mediaSize");
+        props.add("hostname");
+        props.add("lazyStartProducer");
+        props.add("copies");
+        props.add("port");
+        props.add("sides");
+        props.add("printername");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        SECRET_PROPERTY_NAMES = Collections.emptySet();
     }
 
     @Override
@@ -44,7 +46,7 @@ public class PrinterEndpointUriFactory extends org.apache.camel.support.componen
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
@@ -53,13 +55,18 @@ public class PrinterEndpointUriFactory extends org.apache.camel.support.componen
         uri = buildPathParameter(syntax, uri, "hostname", null, true, copy);
         uri = buildPathParameter(syntax, uri, "port", null, false, copy);
         uri = buildPathParameter(syntax, uri, "printername", null, false, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

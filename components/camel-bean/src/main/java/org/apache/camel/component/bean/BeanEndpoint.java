@@ -97,7 +97,11 @@ public class BeanEndpoint extends DefaultEndpoint {
         if (processor == null) {
             BeanHolder holder = getBeanHolder();
             if (holder == null) {
-                RegistryBean registryBean = new RegistryBean(getCamelContext(), beanName);
+                ParameterMappingStrategy strategy
+                        = ParameterMappingStrategyHelper.createParameterMappingStrategy(getCamelContext());
+                BeanComponent bean = getCamelContext().getComponent("bean", BeanComponent.class);
+                RegistryBean registryBean
+                        = new RegistryBean(getCamelContext(), beanName, strategy, bean);
                 if (scope == BeanScope.Singleton) {
                     // if singleton then create a cached holder that use the same singleton instance
                     holder = registryBean.createCacheHolder();
@@ -144,7 +148,7 @@ public class BeanEndpoint extends DefaultEndpoint {
 
     @Deprecated
     public void setCache(Boolean cache) {
-        if (cache) {
+        if (Boolean.TRUE.equals(cache)) {
             scope = BeanScope.Singleton;
         } else {
             scope = BeanScope.Prototype;

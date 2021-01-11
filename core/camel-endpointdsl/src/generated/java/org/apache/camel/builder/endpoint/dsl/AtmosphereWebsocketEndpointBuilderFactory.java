@@ -46,10 +46,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * If this option is false the Servlet will disable the HTTP streaming
          * and set the content-length header on the response.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param chunked the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder chunked(
                 boolean chunked) {
@@ -60,10 +63,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * If this option is false the Servlet will disable the HTTP streaming
          * and set the content-length header on the response.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param chunked the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder chunked(
                 String chunked) {
@@ -88,10 +95,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * not cache the response body stream but use the response stream as-is
          * as the message body.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableStreamCache the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder disableStreamCache(
                 boolean disableStreamCache) {
@@ -116,10 +126,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * not cache the response body stream but use the response stream as-is
          * as the message body.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableStreamCache the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder disableStreamCache(
                 String disableStreamCache) {
@@ -131,9 +145,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * Camel message.
          * 
          * The option is a:
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder headerFilterStrategy(
                 HeaderFilterStrategy headerFilterStrategy) {
@@ -145,9 +163,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * Camel message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder headerFilterStrategy(
                 String headerFilterStrategy) {
@@ -157,10 +179,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
         /**
          * Whether to send to all (broadcast) or send to a single receiver.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param sendToAll the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder sendToAll(
                 boolean sendToAll) {
@@ -170,10 +195,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
         /**
          * Whether to send to all (broadcast) or send to a single receiver.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param sendToAll the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder sendToAll(
                 String sendToAll) {
@@ -191,10 +220,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * data from the request to Java and that can be a potential security
          * risk.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder transferException(
                 boolean transferException) {
@@ -212,10 +244,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * data from the request to Java and that can be a potential security
          * risk.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder transferException(
                 String transferException) {
@@ -225,10 +261,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
         /**
          * To enable streaming to send data as multiple text fragments.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param useStreaming the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder useStreaming(
                 boolean useStreaming) {
@@ -238,10 +277,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
         /**
          * To enable streaming to send data as multiple text fragments.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param useStreaming the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder useStreaming(
                 String useStreaming) {
@@ -251,10 +294,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
         /**
          * Configure the consumer to work in async mode.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param async the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder async(boolean async) {
             doSetProperty("async", async);
@@ -263,10 +309,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
         /**
          * Configure the consumer to work in async mode.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param async the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder async(String async) {
             doSetProperty("async", async);
@@ -281,10 +331,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * with exceptions, that will be logged at WARN or ERROR level and
          * ignored.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param bridgeErrorHandler the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder bridgeErrorHandler(
                 boolean bridgeErrorHandler) {
@@ -300,10 +353,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * with exceptions, that will be logged at WARN or ERROR level and
          * ignored.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param bridgeErrorHandler the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder bridgeErrorHandler(
                 String bridgeErrorHandler) {
@@ -315,9 +372,12 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * GET/POST/PUT etc. Multiple methods can be specified separated by
          * comma.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param httpMethodRestrict the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder httpMethodRestrict(
                 String httpMethodRestrict) {
@@ -328,10 +388,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * Whether or not the consumer should try to find a target consumer by
          * matching the URI prefix if no exact match is found.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param matchOnUriPrefix the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder matchOnUriPrefix(
                 boolean matchOnUriPrefix) {
@@ -342,10 +405,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * Whether or not the consumer should try to find a target consumer by
          * matching the URI prefix if no exact match is found.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param matchOnUriPrefix the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder matchOnUriPrefix(
                 String matchOnUriPrefix) {
@@ -356,10 +423,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * If enabled and an Exchange failed processing on the consumer side the
          * response's body won't contain the exception's stack trace.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param muteException the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder muteException(
                 boolean muteException) {
@@ -370,10 +440,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * If enabled and an Exchange failed processing on the consumer side the
          * response's body won't contain the exception's stack trace.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param muteException the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder muteException(
                 String muteException) {
@@ -383,9 +457,12 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
         /**
          * To use a custom buffer size on the javax.servlet.ServletResponse.
          * 
-         * The option is a: <code>java.lang.Integer</code> type.
+         * The option is a: &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param responseBufferSize the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder responseBufferSize(
                 Integer responseBufferSize) {
@@ -395,10 +472,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
         /**
          * To use a custom buffer size on the javax.servlet.ServletResponse.
          * 
-         * The option will be converted to a <code>java.lang.Integer</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param responseBufferSize the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder responseBufferSize(
                 String responseBufferSize) {
@@ -408,10 +488,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
         /**
          * Name of the servlet to use.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Default: CamelServlet
          * Group: consumer
+         * 
+         * @param servletName the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointConsumerBuilder servletName(
                 String servletName) {
@@ -435,9 +518,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * message and HttpClient.
          * 
          * The option is a:
-         * <code>org.apache.camel.http.common.HttpBinding</code> type.
+         * &lt;code&gt;org.apache.camel.http.common.HttpBinding&lt;/code&gt;
+         * type.
          * 
          * Group: common (advanced)
+         * 
+         * @param httpBinding the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder httpBinding(
                 Object httpBinding) {
@@ -449,9 +536,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * message and HttpClient.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.http.common.HttpBinding</code> type.
+         * &lt;code&gt;org.apache.camel.http.common.HttpBinding&lt;/code&gt;
+         * type.
          * 
          * Group: common (advanced)
+         * 
+         * @param httpBinding the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder httpBinding(
                 String httpBinding) {
@@ -466,10 +557,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * off by default as this may require servlet specific configuration to
          * enable this when using Servlet's.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param attachmentMultipartBinding the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder attachmentMultipartBinding(
                 boolean attachmentMultipartBinding) {
@@ -484,10 +578,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * off by default as this may require servlet specific configuration to
          * enable this when using Servlet's.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param attachmentMultipartBinding the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder attachmentMultipartBinding(
                 String attachmentMultipartBinding) {
@@ -499,10 +597,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * content-length header is 0 or not present. This can be turned on in
          * case HTTP clients do not send streamed data.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param eagerCheckContentAvailable the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder eagerCheckContentAvailable(
                 boolean eagerCheckContentAvailable) {
@@ -514,10 +615,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * content-length header is 0 or not present. This can be turned on in
          * case HTTP clients do not send streamed data.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param eagerCheckContentAvailable the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder eagerCheckContentAvailable(
                 String eagerCheckContentAvailable) {
@@ -530,10 +635,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * By default the consumer will deal with exceptions, that will be
          * logged at WARN or ERROR level and ignored.
          * 
-         * The option is a: <code>org.apache.camel.spi.ExceptionHandler</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;org.apache.camel.spi.ExceptionHandler&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exceptionHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder exceptionHandler(
                 ExceptionHandler exceptionHandler) {
@@ -547,9 +655,12 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * logged at WARN or ERROR level and ignored.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.spi.ExceptionHandler</code> type.
+         * &lt;code&gt;org.apache.camel.spi.ExceptionHandler&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exceptionHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder exceptionHandler(
                 String exceptionHandler) {
@@ -559,9 +670,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
         /**
          * Sets the exchange pattern when the consumer creates an exchange.
          * 
-         * The option is a: <code>org.apache.camel.ExchangePattern</code> type.
+         * The option is a:
+         * &lt;code&gt;org.apache.camel.ExchangePattern&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exchangePattern the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder exchangePattern(
                 ExchangePattern exchangePattern) {
@@ -572,9 +687,12 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * Sets the exchange pattern when the consumer creates an exchange.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.ExchangePattern</code> type.
+         * &lt;code&gt;org.apache.camel.ExchangePattern&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exchangePattern the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder exchangePattern(
                 String exchangePattern) {
@@ -586,9 +704,12 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * files. Multiple extensions can be separated by comma, such as
          * txt,xml.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param fileNameExtWhitelist the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder fileNameExtWhitelist(
                 String fileNameExtWhitelist) {
@@ -599,10 +720,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * Specifies whether to enable HTTP OPTIONS for this Servlet consumer.
          * By default OPTIONS is turned off.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param optionsEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder optionsEnabled(
                 boolean optionsEnabled) {
@@ -613,10 +737,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * Specifies whether to enable HTTP OPTIONS for this Servlet consumer.
          * By default OPTIONS is turned off.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param optionsEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder optionsEnabled(
                 String optionsEnabled) {
@@ -627,10 +755,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * Specifies whether to enable HTTP TRACE for this Servlet consumer. By
          * default TRACE is turned off.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param traceEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder traceEnabled(
                 boolean traceEnabled) {
@@ -641,10 +772,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * Specifies whether to enable HTTP TRACE for this Servlet consumer. By
          * default TRACE is turned off.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer (advanced)
+         * 
+         * @param traceEnabled the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder traceEnabled(
                 String traceEnabled) {
@@ -652,42 +787,17 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
             return this;
         }
         /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAtmosphereWebsocketEndpointConsumerBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAtmosphereWebsocketEndpointConsumerBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
          * If this option is true then IN exchange Body of the exchange will be
          * mapped to HTTP body. Setting this to false will avoid the HTTP
          * mapping.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageBody the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder mapHttpMessageBody(
                 boolean mapHttpMessageBody) {
@@ -699,10 +809,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * mapped to HTTP body. Setting this to false will avoid the HTTP
          * mapping.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageBody the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder mapHttpMessageBody(
                 String mapHttpMessageBody) {
@@ -714,10 +828,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * exchange will be mapped to HTTP. Setting this to false will avoid the
          * HTTP Form Encoded body mapping.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageFormUrlEncodedBody the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder mapHttpMessageFormUrlEncodedBody(
                 boolean mapHttpMessageFormUrlEncodedBody) {
@@ -729,10 +846,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * exchange will be mapped to HTTP. Setting this to false will avoid the
          * HTTP Form Encoded body mapping.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageFormUrlEncodedBody the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder mapHttpMessageFormUrlEncodedBody(
                 String mapHttpMessageFormUrlEncodedBody) {
@@ -744,10 +865,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * be mapped to HTTP headers. Setting this to false will avoid the HTTP
          * Headers mapping.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder mapHttpMessageHeaders(
                 boolean mapHttpMessageHeaders) {
@@ -759,10 +883,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * be mapped to HTTP headers. Setting this to false will avoid the HTTP
          * Headers mapping.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder mapHttpMessageHeaders(
                 String mapHttpMessageHeaders) {
@@ -773,10 +901,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder synchronous(
                 boolean synchronous) {
@@ -787,10 +918,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointConsumerBuilder synchronous(
                 String synchronous) {
@@ -812,10 +947,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * If this option is false the Servlet will disable the HTTP streaming
          * and set the content-length header on the response.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param chunked the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointProducerBuilder chunked(
                 boolean chunked) {
@@ -826,10 +964,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * If this option is false the Servlet will disable the HTTP streaming
          * and set the content-length header on the response.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param chunked the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointProducerBuilder chunked(
                 String chunked) {
@@ -854,10 +996,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * not cache the response body stream but use the response stream as-is
          * as the message body.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableStreamCache the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointProducerBuilder disableStreamCache(
                 boolean disableStreamCache) {
@@ -882,10 +1027,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * not cache the response body stream but use the response stream as-is
          * as the message body.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableStreamCache the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointProducerBuilder disableStreamCache(
                 String disableStreamCache) {
@@ -897,9 +1046,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * Camel message.
          * 
          * The option is a:
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointProducerBuilder headerFilterStrategy(
                 HeaderFilterStrategy headerFilterStrategy) {
@@ -911,9 +1064,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * Camel message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointProducerBuilder headerFilterStrategy(
                 String headerFilterStrategy) {
@@ -923,10 +1080,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
         /**
          * Whether to send to all (broadcast) or send to a single receiver.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param sendToAll the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointProducerBuilder sendToAll(
                 boolean sendToAll) {
@@ -936,10 +1096,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
         /**
          * Whether to send to all (broadcast) or send to a single receiver.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param sendToAll the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointProducerBuilder sendToAll(
                 String sendToAll) {
@@ -957,10 +1121,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * data from the request to Java and that can be a potential security
          * risk.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointProducerBuilder transferException(
                 boolean transferException) {
@@ -978,10 +1145,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * data from the request to Java and that can be a potential security
          * risk.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointProducerBuilder transferException(
                 String transferException) {
@@ -991,10 +1162,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
         /**
          * To enable streaming to send data as multiple text fragments.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param useStreaming the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointProducerBuilder useStreaming(
                 boolean useStreaming) {
@@ -1004,10 +1178,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
         /**
          * To enable streaming to send data as multiple text fragments.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param useStreaming the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointProducerBuilder useStreaming(
                 String useStreaming) {
@@ -1020,10 +1198,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * option throwExceptionOnFailure to be false to let the HttpProducer
          * send all the fault response back.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param bridgeEndpoint the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointProducerBuilder bridgeEndpoint(
                 boolean bridgeEndpoint) {
@@ -1036,10 +1217,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * option throwExceptionOnFailure to be false to let the HttpProducer
          * send all the fault response back.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param bridgeEndpoint the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointProducerBuilder bridgeEndpoint(
                 String bridgeEndpoint) {
@@ -1057,10 +1242,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * producer may take a little time and prolong the total processing time
          * of the processing.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param lazyStartProducer the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointProducerBuilder lazyStartProducer(
                 boolean lazyStartProducer) {
@@ -1078,10 +1266,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * producer may take a little time and prolong the total processing time
          * of the processing.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param lazyStartProducer the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointProducerBuilder lazyStartProducer(
                 String lazyStartProducer) {
@@ -1105,9 +1297,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * message and HttpClient.
          * 
          * The option is a:
-         * <code>org.apache.camel.http.common.HttpBinding</code> type.
+         * &lt;code&gt;org.apache.camel.http.common.HttpBinding&lt;/code&gt;
+         * type.
          * 
          * Group: common (advanced)
+         * 
+         * @param httpBinding the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointProducerBuilder httpBinding(
                 Object httpBinding) {
@@ -1119,9 +1315,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * message and HttpClient.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.http.common.HttpBinding</code> type.
+         * &lt;code&gt;org.apache.camel.http.common.HttpBinding&lt;/code&gt;
+         * type.
          * 
          * Group: common (advanced)
+         * 
+         * @param httpBinding the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointProducerBuilder httpBinding(
                 String httpBinding) {
@@ -1129,42 +1329,17 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
             return this;
         }
         /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAtmosphereWebsocketEndpointProducerBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAtmosphereWebsocketEndpointProducerBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
          * If this option is true then IN exchange Body of the exchange will be
          * mapped to HTTP body. Setting this to false will avoid the HTTP
          * mapping.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageBody the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointProducerBuilder mapHttpMessageBody(
                 boolean mapHttpMessageBody) {
@@ -1176,10 +1351,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * mapped to HTTP body. Setting this to false will avoid the HTTP
          * mapping.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageBody the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointProducerBuilder mapHttpMessageBody(
                 String mapHttpMessageBody) {
@@ -1191,10 +1370,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * exchange will be mapped to HTTP. Setting this to false will avoid the
          * HTTP Form Encoded body mapping.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageFormUrlEncodedBody the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointProducerBuilder mapHttpMessageFormUrlEncodedBody(
                 boolean mapHttpMessageFormUrlEncodedBody) {
@@ -1206,10 +1388,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * exchange will be mapped to HTTP. Setting this to false will avoid the
          * HTTP Form Encoded body mapping.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageFormUrlEncodedBody the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointProducerBuilder mapHttpMessageFormUrlEncodedBody(
                 String mapHttpMessageFormUrlEncodedBody) {
@@ -1221,10 +1407,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * be mapped to HTTP headers. Setting this to false will avoid the HTTP
          * Headers mapping.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointProducerBuilder mapHttpMessageHeaders(
                 boolean mapHttpMessageHeaders) {
@@ -1236,10 +1425,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * be mapped to HTTP headers. Setting this to false will avoid the HTTP
          * Headers mapping.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointProducerBuilder mapHttpMessageHeaders(
                 String mapHttpMessageHeaders) {
@@ -1250,10 +1443,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointProducerBuilder synchronous(
                 boolean synchronous) {
@@ -1264,10 +1460,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointProducerBuilder synchronous(
                 String synchronous) {
@@ -1290,10 +1490,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * If this option is false the Servlet will disable the HTTP streaming
          * and set the content-length header on the response.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param chunked the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointBuilder chunked(boolean chunked) {
             doSetProperty("chunked", chunked);
@@ -1303,10 +1506,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * If this option is false the Servlet will disable the HTTP streaming
          * and set the content-length header on the response.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param chunked the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointBuilder chunked(String chunked) {
             doSetProperty("chunked", chunked);
@@ -1330,10 +1537,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * not cache the response body stream but use the response stream as-is
          * as the message body.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableStreamCache the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointBuilder disableStreamCache(
                 boolean disableStreamCache) {
@@ -1358,10 +1568,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * not cache the response body stream but use the response stream as-is
          * as the message body.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param disableStreamCache the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointBuilder disableStreamCache(
                 String disableStreamCache) {
@@ -1373,9 +1587,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * Camel message.
          * 
          * The option is a:
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointBuilder headerFilterStrategy(
                 HeaderFilterStrategy headerFilterStrategy) {
@@ -1387,9 +1605,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * Camel message.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.spi.HeaderFilterStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.HeaderFilterStrategy&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param headerFilterStrategy the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointBuilder headerFilterStrategy(
                 String headerFilterStrategy) {
@@ -1399,10 +1621,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
         /**
          * Whether to send to all (broadcast) or send to a single receiver.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param sendToAll the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointBuilder sendToAll(boolean sendToAll) {
             doSetProperty("sendToAll", sendToAll);
@@ -1411,10 +1636,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
         /**
          * Whether to send to all (broadcast) or send to a single receiver.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param sendToAll the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointBuilder sendToAll(String sendToAll) {
             doSetProperty("sendToAll", sendToAll);
@@ -1431,10 +1660,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * data from the request to Java and that can be a potential security
          * risk.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointBuilder transferException(
                 boolean transferException) {
@@ -1452,10 +1684,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * data from the request to Java and that can be a potential security
          * risk.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param transferException the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointBuilder transferException(
                 String transferException) {
@@ -1465,10 +1701,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
         /**
          * To enable streaming to send data as multiple text fragments.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param useStreaming the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointBuilder useStreaming(
                 boolean useStreaming) {
@@ -1478,10 +1717,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
         /**
          * To enable streaming to send data as multiple text fragments.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param useStreaming the value to set
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointBuilder useStreaming(
                 String useStreaming) {
@@ -1505,9 +1748,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * message and HttpClient.
          * 
          * The option is a:
-         * <code>org.apache.camel.http.common.HttpBinding</code> type.
+         * &lt;code&gt;org.apache.camel.http.common.HttpBinding&lt;/code&gt;
+         * type.
          * 
          * Group: common (advanced)
+         * 
+         * @param httpBinding the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointBuilder httpBinding(
                 Object httpBinding) {
@@ -1519,9 +1766,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * message and HttpClient.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.http.common.HttpBinding</code> type.
+         * &lt;code&gt;org.apache.camel.http.common.HttpBinding&lt;/code&gt;
+         * type.
          * 
          * Group: common (advanced)
+         * 
+         * @param httpBinding the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointBuilder httpBinding(
                 String httpBinding) {
@@ -1529,42 +1780,17 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
             return this;
         }
         /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAtmosphereWebsocketEndpointBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAtmosphereWebsocketEndpointBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
          * If this option is true then IN exchange Body of the exchange will be
          * mapped to HTTP body. Setting this to false will avoid the HTTP
          * mapping.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageBody the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointBuilder mapHttpMessageBody(
                 boolean mapHttpMessageBody) {
@@ -1576,10 +1802,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * mapped to HTTP body. Setting this to false will avoid the HTTP
          * mapping.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageBody the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointBuilder mapHttpMessageBody(
                 String mapHttpMessageBody) {
@@ -1591,10 +1821,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * exchange will be mapped to HTTP. Setting this to false will avoid the
          * HTTP Form Encoded body mapping.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageFormUrlEncodedBody the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointBuilder mapHttpMessageFormUrlEncodedBody(
                 boolean mapHttpMessageFormUrlEncodedBody) {
@@ -1606,10 +1839,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * exchange will be mapped to HTTP. Setting this to false will avoid the
          * HTTP Form Encoded body mapping.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageFormUrlEncodedBody the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointBuilder mapHttpMessageFormUrlEncodedBody(
                 String mapHttpMessageFormUrlEncodedBody) {
@@ -1621,10 +1858,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * be mapped to HTTP headers. Setting this to false will avoid the HTTP
          * Headers mapping.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointBuilder mapHttpMessageHeaders(
                 boolean mapHttpMessageHeaders) {
@@ -1636,10 +1876,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * be mapped to HTTP headers. Setting this to false will avoid the HTTP
          * Headers mapping.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: advanced
+         * 
+         * @param mapHttpMessageHeaders the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointBuilder mapHttpMessageHeaders(
                 String mapHttpMessageHeaders) {
@@ -1650,10 +1894,13 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointBuilder synchronous(
                 boolean synchronous) {
@@ -1664,10 +1911,14 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAtmosphereWebsocketEndpointBuilder synchronous(
                 String synchronous) {
@@ -1691,6 +1942,7 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * Name of websocket endpoint
          * 
          * @param path servicePath
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointBuilder atmosphereWebsocket(
                 String path) {
@@ -1712,6 +1964,7 @@ public interface AtmosphereWebsocketEndpointBuilderFactory {
          * @param componentName to use a custom component name for the endpoint
          * instead of the default name
          * @param path servicePath
+         * @return the dsl builder
          */
         default AtmosphereWebsocketEndpointBuilder atmosphereWebsocket(
                 String componentName,

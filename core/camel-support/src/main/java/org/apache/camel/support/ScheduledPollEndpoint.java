@@ -259,6 +259,13 @@ public abstract class ScheduledPollEndpoint extends DefaultEndpoint {
         this.delay = delay;
     }
 
+    /**
+     * Gets the default delay.
+     */
+    public long getDefaultDelay() {
+        return DEFAULT_DELAY;
+    }
+
     public TimeUnit getTimeUnit() {
         return timeUnit;
     }

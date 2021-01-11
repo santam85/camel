@@ -75,7 +75,7 @@ public class KafkaConfiguration implements Cloneable, HeaderFilterStrategyAware 
     @UriParam(label = "consumer", defaultValue = "1")
     private int consumersCount = 1;
     @UriParam(label = "consumer", description = "To use a custom KafkaHeaderDeserializer to deserialize kafka headers values")
-    private KafkaHeaderDeserializer kafkaHeaderDeserializer = new DefaultKafkaHeaderDeserializer();
+    private KafkaHeaderDeserializer headerDeserializer = new DefaultKafkaHeaderDeserializer();
 
     // interceptor.classes
     @UriParam(label = "common,monitoring")
@@ -158,9 +158,9 @@ public class KafkaConfiguration implements Cloneable, HeaderFilterStrategyAware 
     @UriParam(label = "producer", defaultValue = "10000")
     private Integer queueBufferingMaxMessages = 10000;
     @UriParam(label = "producer", defaultValue = KafkaConstants.KAFKA_DEFAULT_SERIALIZER)
-    private String serializerClass = KafkaConstants.KAFKA_DEFAULT_SERIALIZER;
+    private String valueSerializer = KafkaConstants.KAFKA_DEFAULT_SERIALIZER;
     @UriParam(label = "producer", defaultValue = KafkaConstants.KAFKA_DEFAULT_SERIALIZER)
-    private String keySerializerClass = KafkaConstants.KAFKA_DEFAULT_SERIALIZER;
+    private String keySerializer = KafkaConstants.KAFKA_DEFAULT_SERIALIZER;
 
     @UriParam(label = "producer")
     private String key;
@@ -226,7 +226,7 @@ public class KafkaConfiguration implements Cloneable, HeaderFilterStrategyAware 
     @UriParam(label = "producer", defaultValue = "false")
     private boolean enableIdempotence;
     @UriParam(label = "producer", description = "To use a custom KafkaHeaderSerializer to serialize kafka headers values")
-    private KafkaHeaderSerializer kafkaHeaderSerializer = new DefaultKafkaHeaderSerializer();
+    private KafkaHeaderSerializer headerSerializer = new DefaultKafkaHeaderSerializer();
 
     // reconnect.backoff.max.ms
     @UriParam(label = "common", defaultValue = "1000")
@@ -340,8 +340,8 @@ public class KafkaConfiguration implements Cloneable, HeaderFilterStrategyAware 
 
     public Properties createProducerProperties() {
         Properties props = new Properties();
-        addPropertyIfNotNull(props, ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, getKeySerializerClass());
-        addPropertyIfNotNull(props, ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, getSerializerClass());
+        addPropertyIfNotNull(props, ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, getKeySerializer());
+        addPropertyIfNotNull(props, ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, getValueSerializer());
         addPropertyIfNotNull(props, ProducerConfig.ACKS_CONFIG, getRequestRequiredAcks());
         addPropertyIfNotNull(props, ProducerConfig.BUFFER_MEMORY_CONFIG, getBufferMemorySize());
         addPropertyIfNotNull(props, ProducerConfig.COMPRESSION_TYPE_CONFIG, getCompressionCodec());
@@ -875,26 +875,26 @@ public class KafkaConfiguration implements Cloneable, HeaderFilterStrategyAware 
         this.queueBufferingMaxMessages = queueBufferingMaxMessages;
     }
 
-    public String getSerializerClass() {
-        return serializerClass;
+    public String getValueSerializer() {
+        return valueSerializer;
     }
 
     /**
      * The serializer class for messages.
      */
-    public void setSerializerClass(String serializerClass) {
-        this.serializerClass = serializerClass;
+    public void setValueSerializer(String valueSerializer) {
+        this.valueSerializer = valueSerializer;
     }
 
-    public String getKeySerializerClass() {
-        return keySerializerClass;
+    public String getKeySerializer() {
+        return keySerializer;
     }
 
     /**
      * The serializer class for keys (defaults to the same as for messages if nothing is given).
      */
-    public void setKeySerializerClass(String keySerializerClass) {
-        this.keySerializerClass = keySerializerClass;
+    public void setKeySerializer(String keySerializer) {
+        this.keySerializer = keySerializer;
     }
 
     public String getKerberosInitCmd() {
@@ -1674,30 +1674,30 @@ public class KafkaConfiguration implements Cloneable, HeaderFilterStrategyAware 
         this.headerFilterStrategy = headerFilterStrategy;
     }
 
-    public KafkaHeaderDeserializer getKafkaHeaderDeserializer() {
-        return kafkaHeaderDeserializer;
+    public KafkaHeaderDeserializer getHeaderDeserializer() {
+        return headerDeserializer;
     }
 
     /**
      * Sets custom KafkaHeaderDeserializer for deserialization kafka headers values to camel headers values.
      *
-     * @param kafkaHeaderDeserializer custom kafka header deserializer to be used
+     * @param headerDeserializer custom kafka header deserializer to be used
      */
-    public void setKafkaHeaderDeserializer(final KafkaHeaderDeserializer kafkaHeaderDeserializer) {
-        this.kafkaHeaderDeserializer = kafkaHeaderDeserializer;
+    public void setHeaderDeserializer(final KafkaHeaderDeserializer headerDeserializer) {
+        this.headerDeserializer = headerDeserializer;
     }
 
-    public KafkaHeaderSerializer getKafkaHeaderSerializer() {
-        return kafkaHeaderSerializer;
+    public KafkaHeaderSerializer getHeaderSerializer() {
+        return headerSerializer;
     }
 
     /**
      * Sets custom KafkaHeaderDeserializer for serialization camel headers values to kafka headers values.
      *
-     * @param kafkaHeaderSerializer custom kafka header serializer to be used
+     * @param headerSerializer custom kafka header serializer to be used
      */
-    public void setKafkaHeaderSerializer(final KafkaHeaderSerializer kafkaHeaderSerializer) {
-        this.kafkaHeaderSerializer = kafkaHeaderSerializer;
+    public void setHeaderSerializer(final KafkaHeaderSerializer headerSerializer) {
+        this.headerSerializer = headerSerializer;
     }
 
     /**

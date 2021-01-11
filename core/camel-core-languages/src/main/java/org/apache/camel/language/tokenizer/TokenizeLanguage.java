@@ -18,11 +18,10 @@ package org.apache.camel.language.tokenizer;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.Expression;
-import org.apache.camel.IsSingleton;
 import org.apache.camel.Predicate;
-import org.apache.camel.spi.Language;
 import org.apache.camel.spi.PropertyConfigurer;
 import org.apache.camel.support.ExpressionToPredicateAdapter;
+import org.apache.camel.support.LanguageSupport;
 import org.apache.camel.support.builder.ExpressionBuilder;
 import org.apache.camel.support.component.PropertyConfigurerSupport;
 import org.apache.camel.util.ObjectHelper;
@@ -40,7 +39,7 @@ import org.apache.camel.util.ObjectHelper;
  * <tt>token</tt> and <tt>endToken</tt>. And the <tt>xml</tt> mode supports the <tt>inheritNamespaceTagName</tt> option.
  */
 @org.apache.camel.spi.annotations.Language("tokenize")
-public class TokenizeLanguage implements Language, IsSingleton, PropertyConfigurer {
+public class TokenizeLanguage extends LanguageSupport implements PropertyConfigurer {
 
     private String token;
     private String endToken;
@@ -53,37 +52,43 @@ public class TokenizeLanguage implements Language, IsSingleton, PropertyConfigur
     private String groupDelimiter;
     private boolean skipFirst;
 
+    @Deprecated
     public static Expression tokenize(String token) {
         return tokenize(token, false);
     }
 
+    @Deprecated
     public static Expression tokenize(String token, boolean regex) {
         TokenizeLanguage language = new TokenizeLanguage();
         language.setToken(token);
         language.setRegex(regex);
-        return language.createExpression(null);
+        return language.createExpression((String) null);
     }
 
+    @Deprecated
     public static Expression tokenize(String headerName, String token) {
         return tokenize(headerName, token, false);
     }
 
+    @Deprecated
     public static Expression tokenize(String headerName, String token, boolean regex) {
         TokenizeLanguage language = new TokenizeLanguage();
         language.setHeaderName(headerName);
         language.setToken(token);
         language.setRegex(regex);
-        return language.createExpression(null);
+        return language.createExpression((String) null);
     }
 
+    @Deprecated
     public static Expression tokenizePair(String startToken, String endToken, boolean includeTokens) {
         TokenizeLanguage language = new TokenizeLanguage();
         language.setToken(startToken);
         language.setEndToken(endToken);
         language.setIncludeTokens(includeTokens);
-        return language.createExpression(null);
+        return language.createExpression((String) null);
     }
 
+    @Deprecated
     public static Expression tokenizeXML(String tagName, String inheritNamespaceTagName) {
         TokenizeLanguage language = new TokenizeLanguage();
         language.setToken(tagName);
@@ -190,6 +195,9 @@ public class TokenizeLanguage implements Language, IsSingleton, PropertyConfigur
             }
         }
 
+        if (getCamelContext() != null) {
+            answer.init(getCamelContext());
+        }
         return answer;
     }
 
@@ -199,6 +207,28 @@ public class TokenizeLanguage implements Language, IsSingleton, PropertyConfigur
             this.token = expression;
         }
         return createExpression();
+    }
+
+    @Override
+    public Predicate createPredicate(String expression, Object[] properties) {
+        return ExpressionToPredicateAdapter.toPredicate(createExpression(expression, properties));
+    }
+
+    @Override
+    public Expression createExpression(String expression, Object[] properties) {
+        TokenizeLanguage answer = new TokenizeLanguage();
+        answer.setToken(property(String.class, properties, 0, token));
+        answer.setEndToken(property(String.class, properties, 1, endToken));
+        answer.setInheritNamespaceTagName(
+                property(String.class, properties, 2, inheritNamespaceTagName));
+        answer.setHeaderName(property(String.class, properties, 3, headerName));
+        answer.setGroupDelimiter(property(String.class, properties, 4, groupDelimiter));
+        answer.setRegex(property(boolean.class, properties, 5, regex));
+        answer.setXml(property(boolean.class, properties, 6, xml));
+        answer.setIncludeTokens(property(boolean.class, properties, 7, includeTokens));
+        answer.setGroup(property(String.class, properties, 8, group));
+        answer.setSkipFirst(property(boolean.class, properties, 9, skipFirst));
+        return answer.createExpression(expression);
     }
 
     public String getToken() {
@@ -281,8 +311,4 @@ public class TokenizeLanguage implements Language, IsSingleton, PropertyConfigur
         this.skipFirst = skipFirst;
     }
 
-    @Override
-    public boolean isSingleton() {
-        return false;
-    }
 }

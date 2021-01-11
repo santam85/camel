@@ -2,6 +2,7 @@
 package org.apache.camel.component.scp;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,36 +18,45 @@ public class ScpEndpointUriFactory extends org.apache.camel.support.component.En
     private static final String BASE = ":host:port/directoryName";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(27);
-        set.add("host");
-        set.add("port");
-        set.add("directoryName");
-        set.add("chmod");
-        set.add("disconnect");
-        set.add("fileName");
-        set.add("flatten");
-        set.add("jailStartingDirectory");
-        set.add("lazyStartProducer");
-        set.add("strictHostKeyChecking");
-        set.add("allowNullBody");
-        set.add("disconnectOnBatchComplete");
-        set.add("moveExistingFileStrategy");
-        set.add("basicPropertyBinding");
-        set.add("connectTimeout");
-        set.add("soTimeout");
-        set.add("synchronous");
-        set.add("timeout");
-        set.add("knownHostsFile");
-        set.add("password");
-        set.add("preferredAuthentications");
-        set.add("privateKeyBytes");
-        set.add("privateKeyFile");
-        set.add("privateKeyFilePassphrase");
-        set.add("username");
-        set.add("useUserKnownHostsFile");
-        set.add("ciphers");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(26);
+        props.add("useUserKnownHostsFile");
+        props.add("disconnect");
+        props.add("disconnectOnBatchComplete");
+        props.add("moveExistingFileStrategy");
+        props.add("fileName");
+        props.add("strictHostKeyChecking");
+        props.add("synchronous");
+        props.add("timeout");
+        props.add("flatten");
+        props.add("password");
+        props.add("jailStartingDirectory");
+        props.add("privateKeyFile");
+        props.add("host");
+        props.add("connectTimeout");
+        props.add("ciphers");
+        props.add("chmod");
+        props.add("privateKeyBytes");
+        props.add("directoryName");
+        props.add("allowNullBody");
+        props.add("privateKeyFilePassphrase");
+        props.add("soTimeout");
+        props.add("lazyStartProducer");
+        props.add("port");
+        props.add("preferredAuthentications");
+        props.add("knownHostsFile");
+        props.add("username");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        Set<String> secretProps = new HashSet<>(7);
+        secretProps.add("password");
+        secretProps.add("privateKeyFile");
+        secretProps.add("preferredAuthentications");
+        secretProps.add("privateKeyFilePassphrase");
+        secretProps.add("privateKeyBytes");
+        secretProps.add("knownHostsFile");
+        secretProps.add("username");
+        SECRET_PROPERTY_NAMES = Collections.unmodifiableSet(secretProps);
     }
 
     @Override
@@ -55,7 +65,7 @@ public class ScpEndpointUriFactory extends org.apache.camel.support.component.En
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
@@ -64,13 +74,18 @@ public class ScpEndpointUriFactory extends org.apache.camel.support.component.En
         uri = buildPathParameter(syntax, uri, "host", null, true, copy);
         uri = buildPathParameter(syntax, uri, "port", null, false, copy);
         uri = buildPathParameter(syntax, uri, "directoryName", null, false, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

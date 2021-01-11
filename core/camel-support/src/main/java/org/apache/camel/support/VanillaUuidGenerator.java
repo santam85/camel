@@ -24,7 +24,10 @@ import org.apache.camel.spi.UuidGenerator;
 /**
  * An implementation of the {@link UuidGenerator} that uses a random generated seed and a counter which increments by
  * one. This generator is not unique per host or JVM.
+ *
+ * @deprecated this is now the default uuid generator in Camel 3.6 onwards.
  */
+@Deprecated
 public class VanillaUuidGenerator implements UuidGenerator {
     private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
 

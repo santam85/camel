@@ -69,6 +69,7 @@ import org.apache.camel.model.rest.RestConfigurationDefinition;
 import org.apache.camel.model.rest.RestDefinition;
 import org.apache.camel.model.transformer.TransformersDefinition;
 import org.apache.camel.model.validator.ValidatorsDefinition;
+import org.apache.camel.spi.Metadata;
 import org.apache.camel.spi.PackageScanFilter;
 
 @XmlRootElement(name = "camelContext")
@@ -127,10 +128,17 @@ public class CamelContextFactoryBean extends AbstractCamelContextFactoryBean<Def
     private String useBreadcrumb;
 
     @XmlAttribute
+    @Metadata(defaultValue = "true")
+    private String beanPostProcessorEnabled;
+
+    @XmlAttribute
     private String allowUseOriginalMessage;
 
     @XmlAttribute
     private String caseInsensitiveHeaders;
+
+    @XmlAttribute
+    private String autowiredEnabled;
 
     @XmlAttribute
     private String runtimeEndpointRegistryEnabled;
@@ -769,6 +777,15 @@ public class CamelContextFactoryBean extends AbstractCamelContextFactoryBean<Def
     }
 
     @Override
+    public String getBeanPostProcessorEnabled() {
+        return beanPostProcessorEnabled;
+    }
+
+    public void setBeanPostProcessorEnabled(String beanPostProcessorEnabled) {
+        this.beanPostProcessorEnabled = beanPostProcessorEnabled;
+    }
+
+    @Override
     public String getAllowUseOriginalMessage() {
         return allowUseOriginalMessage;
     }
@@ -784,6 +801,15 @@ public class CamelContextFactoryBean extends AbstractCamelContextFactoryBean<Def
 
     public void setCaseInsensitiveHeaders(String caseInsensitiveHeaders) {
         this.caseInsensitiveHeaders = caseInsensitiveHeaders;
+    }
+
+    @Override
+    public String getAutowiredEnabled() {
+        return autowiredEnabled;
+    }
+
+    public void setAutowiredEnabled(String autowiredEnabled) {
+        this.autowiredEnabled = autowiredEnabled;
     }
 
     @Override

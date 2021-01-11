@@ -182,8 +182,9 @@ public final class CamelJavaTreeParserHelper {
             rootMethodName = ((MethodInvocation) sub).getName().getIdentifier();
         } else if (sub instanceof SimpleName) {
             rootMethodName = ((SimpleName) sub).getIdentifier();
+        } else if (sub == null && exp instanceof MethodInvocation) {
+            rootMethodName = ((MethodInvocation) exp).getName().getIdentifier();
         }
-
         // a route starts either via from or route
         return "from".equals(rootMethodName) || "route".equals(rootMethodName);
     }
@@ -260,7 +261,7 @@ public final class CamelJavaTreeParserHelper {
             if ("routeId".equals(name)) {
                 // grab the route id
                 List args = mi.arguments();
-                if (args != null && args.size() > 0) {
+                if (args != null && !args.isEmpty()) {
                     // the first argument has the route id
                     Expression exp = (Expression) args.get(0);
                     String routeId = getLiteralValue(clazz, block, exp);
@@ -405,7 +406,7 @@ public final class CamelJavaTreeParserHelper {
                     if (expression instanceof MethodInvocation) {
                         MethodInvocation mi = (MethodInvocation) expression;
                         List args = mi.arguments();
-                        if (args != null && args.size() > 0) {
+                        if (args != null && !args.isEmpty()) {
                             // the first argument has the endpoint uri
                             expression = (Expression) args.get(0);
                             return getLiteralValue(clazz, block, expression);

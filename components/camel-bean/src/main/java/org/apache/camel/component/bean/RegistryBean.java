@@ -30,21 +30,23 @@ import org.apache.camel.support.PropertyBindingSupport;
  * metadata
  */
 public class RegistryBean implements BeanHolder {
+    private final Registry registry;
     private final CamelContext context;
     private final String name;
-    private final Registry registry;
+    private final ParameterMappingStrategy parameterMappingStrategy;
+    private final BeanComponent beanComponent;
     private volatile BeanInfo beanInfo;
+    private volatile Processor errorHandler;
     private volatile Class<?> clazz;
-    private ParameterMappingStrategy parameterMappingStrategy;
     private Map<String, Object> options;
 
-    public RegistryBean(CamelContext context, String name) {
-        this(context.getRegistry(), context, name);
-    }
-
-    public RegistryBean(Registry registry, CamelContext context, String name) {
-        this.registry = registry;
+    public RegistryBean(CamelContext context, String name,
+                        ParameterMappingStrategy parameterMappingStrategy, BeanComponent beanComponent) {
+        this.registry = context.getRegistry();
         this.context = context;
+        this.parameterMappingStrategy = parameterMappingStrategy != null
+                ? parameterMappingStrategy : ParameterMappingStrategyHelper.createParameterMappingStrategy(context);
+        this.beanComponent = beanComponent != null ? beanComponent : context.getComponent("bean", BeanComponent.class);
         if (name != null) {
             // for ref it may have "ref:" or "bean:" as prefix by mistake
             if (name.startsWith("ref:")) {
@@ -62,6 +64,18 @@ public class RegistryBean implements BeanHolder {
     @Override
     public String toString() {
         return "bean: " + name;
+    }
+
+    @Override
+    public void setErrorHandler(Processor errorHandler) {
+        if (beanInfo != null) {
+            for (MethodInfo mi : beanInfo.getMethods()) {
+                mi.setErrorHandler(errorHandler);
+            }
+        } else {
+            // need to store it temporary until bean info is created
+            this.errorHandler = errorHandler;
+        }
     }
 
     @Override
@@ -160,25 +174,17 @@ public class RegistryBean implements BeanHolder {
         return context;
     }
 
-    public ParameterMappingStrategy getParameterMappingStrategy() {
-        if (parameterMappingStrategy == null) {
-            parameterMappingStrategy = createParameterMappingStrategy();
-        }
-        return parameterMappingStrategy;
-    }
-
-    public void setParameterMappingStrategy(ParameterMappingStrategy parameterMappingStrategy) {
-        this.parameterMappingStrategy = parameterMappingStrategy;
-    }
-
     // Implementation methods
     //-------------------------------------------------------------------------
     protected BeanInfo createBeanInfo(Object bean) {
-        return new BeanInfo(context, bean.getClass(), getParameterMappingStrategy());
-    }
-
-    protected ParameterMappingStrategy createParameterMappingStrategy() {
-        return BeanInfo.createParameterMappingStrategy(context);
+        BeanInfo bi = new BeanInfo(context, bean.getClass(), parameterMappingStrategy, beanComponent);
+        if (errorHandler != null) {
+            for (MethodInfo mi : bi.getMethods()) {
+                mi.setErrorHandler(errorHandler);
+            }
+            errorHandler = null;
+        }
+        return bi;
     }
 
     protected Object lookupBean() {

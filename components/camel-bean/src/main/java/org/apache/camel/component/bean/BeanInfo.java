@@ -43,8 +43,8 @@ import org.apache.camel.Headers;
 import org.apache.camel.Message;
 import org.apache.camel.PropertyInject;
 import org.apache.camel.RuntimeCamelException;
-import org.apache.camel.spi.Registry;
 import org.apache.camel.support.ObjectHelper;
+import org.apache.camel.support.PlatformHelper;
 import org.apache.camel.support.builder.ExpressionBuilder;
 import org.apache.camel.support.language.AnnotationExpressionFactory;
 import org.apache.camel.support.language.DefaultAnnotationExpressionFactory;
@@ -54,6 +54,8 @@ import org.apache.camel.util.StringHelper;
 import org.apache.camel.util.StringQuoteHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static org.apache.camel.component.bean.ParameterMappingStrategyHelper.createParameterMappingStrategy;
 
 /**
  * Represents the metadata about a bean type created via a combination of introspection and annotations together with
@@ -82,25 +84,33 @@ public class BeanInfo {
     private boolean publicNoArgConstructors;
 
     public BeanInfo(CamelContext camelContext, Class<?> type) {
-        this(camelContext, type, createParameterMappingStrategy(camelContext));
+        this(camelContext, type, createParameterMappingStrategy(camelContext),
+             camelContext.getComponent("bean", BeanComponent.class));
     }
 
-    public BeanInfo(CamelContext camelContext, Method explicitMethod) {
-        this(camelContext, explicitMethod.getDeclaringClass(), explicitMethod, createParameterMappingStrategy(camelContext));
+    public BeanInfo(CamelContext camelContext, Method explicitMethod, ParameterMappingStrategy parameterMappingStrategy,
+                    BeanComponent beanComponent) {
+        this(camelContext, explicitMethod.getDeclaringClass(), explicitMethod, parameterMappingStrategy, beanComponent);
     }
 
-    public BeanInfo(CamelContext camelContext, Class<?> type, ParameterMappingStrategy strategy) {
-        this(camelContext, type, null, strategy);
+    public BeanInfo(CamelContext camelContext, Class<?> type, ParameterMappingStrategy strategy, BeanComponent beanComponent) {
+        this(camelContext, type, null, strategy, beanComponent);
     }
 
-    public BeanInfo(CamelContext camelContext, Class<?> type, Method explicitMethod, ParameterMappingStrategy strategy) {
-        while (type.isSynthetic()) {
-            type = type.getSuperclass();
-            if (explicitMethod != null) {
-                try {
-                    explicitMethod = type.getDeclaredMethod(explicitMethod.getName(), explicitMethod.getParameterTypes());
-                } catch (NoSuchMethodException e) {
-                    throw new RuntimeCamelException("Unable to find a method " + explicitMethod + " on " + type, e);
+    public BeanInfo(CamelContext camelContext, Class<?> type, Method explicitMethod, ParameterMappingStrategy strategy,
+                    BeanComponent beanComponent) {
+
+        boolean osgi = PlatformHelper.isOsgiContext(camelContext);
+        if (!osgi) {
+            // OSGi services wont work for this
+            while (type.isSynthetic()) {
+                type = type.getSuperclass();
+                if (explicitMethod != null) {
+                    try {
+                        explicitMethod = type.getDeclaredMethod(explicitMethod.getName(), explicitMethod.getParameterTypes());
+                    } catch (NoSuchMethodException e) {
+                        throw new RuntimeCamelException("Unable to find a method " + explicitMethod + " on " + type, e);
+                    }
                 }
             }
         }
@@ -108,7 +118,7 @@ public class BeanInfo {
         this.camelContext = camelContext;
         this.type = type;
         this.strategy = strategy;
-        this.component = camelContext.getComponent("bean", BeanComponent.class);
+        this.component = beanComponent;
 
         final BeanInfoCacheKey key = new BeanInfoCacheKey(type, explicitMethod);
 
@@ -168,19 +178,6 @@ public class BeanInfo {
 
     public CamelContext getCamelContext() {
         return camelContext;
-    }
-
-    public static ParameterMappingStrategy createParameterMappingStrategy(CamelContext camelContext) {
-        // lookup in registry first if there is a user define strategy
-        Registry registry = camelContext.getRegistry();
-        ParameterMappingStrategy answer
-                = registry.lookupByNameAndType(BeanConstants.BEAN_PARAMETER_MAPPING_STRATEGY, ParameterMappingStrategy.class);
-        if (answer == null) {
-            // no then use the default one
-            answer = DefaultParameterMappingStrategy.INSTANCE;
-        }
-
-        return answer;
     }
 
     public MethodInvocation createInvocation(Object pojo, Exchange exchange)
@@ -405,7 +402,7 @@ public class BeanInfo {
             if (type != Object.class) {
                 Class<?> superclass = type.getSuperclass();
                 if (superclass != null && superclass != Object.class) {
-                    BeanInfo superBeanInfo = new BeanInfo(camelContext, superclass, strategy);
+                    BeanInfo superBeanInfo = new BeanInfo(camelContext, superclass, strategy, component);
                     return superBeanInfo.getMethodInfo(method);
                 }
             }
@@ -667,7 +664,26 @@ public class BeanInfo {
 
         // okay we still got multiple operations, so need to match the best one
         List<MethodInfo> candidates = new ArrayList<>();
+        // look for best method without any type conversion
+        MethodInfo fallbackCandidate = chooseBestPossibleMethod(exchange, parameters, false, operations, candidates);
+        if (fallbackCandidate == null && candidates.isEmpty()) {
+            // okay then look again for best method with type conversion
+            fallbackCandidate = chooseBestPossibleMethod(exchange, parameters, true, operations, candidates);
+        }
+        if (candidates.size() > 1) {
+            MethodInfo answer = getSingleCovariantMethod(candidates);
+            if (answer != null) {
+                return answer;
+            }
+        }
+        return candidates.size() == 1 ? candidates.get(0) : fallbackCandidate;
+    }
+
+    private MethodInfo chooseBestPossibleMethod(
+            Exchange exchange, String parameters, boolean allowConversion,
+            List<MethodInfo> operations, List<MethodInfo> candidates) {
         MethodInfo fallbackCandidate = null;
+
         for (MethodInfo info : operations) {
             Iterator<?> it = ObjectHelper.createIterator(parameters, ",", false);
             int index = 0;
@@ -705,6 +721,10 @@ public class BeanInfo {
                     }
 
                     boolean matchingTypes = isParameterMatchingType(parameterType, expectedType);
+                    if (!matchingTypes && allowConversion) {
+                        matchingTypes
+                                = getCamelContext().getTypeConverterRegistry().lookup(expectedType, parameterType) != null;
+                    }
                     if (!matchingTypes) {
                         matches = false;
                         break;
@@ -718,14 +738,7 @@ public class BeanInfo {
                 candidates.add(info);
             }
         }
-
-        if (candidates.size() > 1) {
-            MethodInfo answer = getSingleCovariantMethod(candidates);
-            if (answer != null) {
-                return answer;
-            }
-        }
-        return candidates.size() == 1 ? candidates.get(0) : fallbackCandidate;
+        return fallbackCandidate;
     }
 
     private boolean isParameterMatchingType(Class<?> parameterType, Class<?> expectedType) {
@@ -742,7 +755,8 @@ public class BeanInfo {
                 return true;
             }
         }
-        return parameterType.isAssignableFrom(expectedType);
+        return expectedType.isAssignableFrom(parameterType);
+        //        return parameterType.isAssignableFrom(expectedType);
     }
 
     private MethodInfo getSingleCovariantMethod(Collection<MethodInfo> candidates) {

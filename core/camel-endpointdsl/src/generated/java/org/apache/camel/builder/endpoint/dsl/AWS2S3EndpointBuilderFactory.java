@@ -52,9 +52,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * Reference to a com.amazonaws.services.s3.AmazonS3 in the registry.
          * 
          * The option is a:
-         * <code>software.amazon.awssdk.services.s3.S3Client</code> type.
+         * &lt;code&gt;software.amazon.awssdk.services.s3.S3Client&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param amazonS3Client the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder amazonS3Client(
                 Object amazonS3Client) {
@@ -65,9 +69,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * Reference to a com.amazonaws.services.s3.AmazonS3 in the registry.
          * 
          * The option will be converted to a
-         * <code>software.amazon.awssdk.services.s3.S3Client</code> type.
+         * &lt;code&gt;software.amazon.awssdk.services.s3.S3Client&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param amazonS3Client the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder amazonS3Client(
                 String amazonS3Client) {
@@ -75,14 +83,51 @@ public interface AWS2S3EndpointBuilderFactory {
             return this;
         }
         /**
+         * An S3 Presigner for Request, used mainly in createDownloadLink
+         * operation.
+         * 
+         * The option is a:
+         * &lt;code&gt;software.amazon.awssdk.services.s3.presigner.S3Presigner&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param amazonS3Presigner the value to set
+         * @return the dsl builder
+         */
+        default AWS2S3EndpointConsumerBuilder amazonS3Presigner(
+                Object amazonS3Presigner) {
+            doSetProperty("amazonS3Presigner", amazonS3Presigner);
+            return this;
+        }
+        /**
+         * An S3 Presigner for Request, used mainly in createDownloadLink
+         * operation.
+         * 
+         * The option will be converted to a
+         * &lt;code&gt;software.amazon.awssdk.services.s3.presigner.S3Presigner&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param amazonS3Presigner the value to set
+         * @return the dsl builder
+         */
+        default AWS2S3EndpointConsumerBuilder amazonS3Presigner(
+                String amazonS3Presigner) {
+            doSetProperty("amazonS3Presigner", amazonS3Presigner);
+            return this;
+        }
+        /**
          * Setting the autocreation of the S3 bucket bucketName. This will apply
          * also in case of moveAfterRead option enabled and it will create the
          * destinationBucket if it doesn't exist already.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param autoCreateBucket the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder autoCreateBucket(
                 boolean autoCreateBucket) {
@@ -94,10 +139,14 @@ public interface AWS2S3EndpointBuilderFactory {
          * also in case of moveAfterRead option enabled and it will create the
          * destinationBucket if it doesn't exist already.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param autoCreateBucket the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder autoCreateBucket(
                 String autoCreateBucket) {
@@ -105,43 +154,16 @@ public interface AWS2S3EndpointBuilderFactory {
             return this;
         }
         /**
-         * Setting the autoDiscoverClient mechanism, if true, the component will
-         * look for a client instance in the registry automatically otherwise it
-         * will skip that checking.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: true
-         * Group: common
-         */
-        default AWS2S3EndpointConsumerBuilder autoDiscoverClient(
-                boolean autoDiscoverClient) {
-            doSetProperty("autoDiscoverClient", autoDiscoverClient);
-            return this;
-        }
-        /**
-         * Setting the autoDiscoverClient mechanism, if true, the component will
-         * look for a client instance in the registry automatically otherwise it
-         * will skip that checking.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: true
-         * Group: common
-         */
-        default AWS2S3EndpointConsumerBuilder autoDiscoverClient(
-                String autoDiscoverClient) {
-            doSetProperty("autoDiscoverClient", autoDiscoverClient);
-            return this;
-        }
-        /**
          * Set the need for overidding the endpoint. This option needs to be
          * used in combination with uriEndpointOverride option.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param overrideEndpoint the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder overrideEndpoint(
                 boolean overrideEndpoint) {
@@ -152,10 +174,14 @@ public interface AWS2S3EndpointBuilderFactory {
          * Set the need for overidding the endpoint. This option needs to be
          * used in combination with uriEndpointOverride option.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param overrideEndpoint the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder overrideEndpoint(
                 String overrideEndpoint) {
@@ -165,10 +191,13 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * If we want to use a POJO request as body or not.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param pojoRequest the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder pojoRequest(boolean pojoRequest) {
             doSetProperty("pojoRequest", pojoRequest);
@@ -177,10 +206,14 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * If we want to use a POJO request as body or not.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param pojoRequest the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder pojoRequest(String pojoRequest) {
             doSetProperty("pojoRequest", pojoRequest);
@@ -190,9 +223,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * The policy for this queue to set in the
          * com.amazonaws.services.s3.AmazonS3#setBucketPolicy() method.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param policy the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder policy(String policy) {
             doSetProperty("policy", policy);
@@ -201,9 +237,12 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * To define a proxy host when instantiating the SQS client.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param proxyHost the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder proxyHost(String proxyHost) {
             doSetProperty("proxyHost", proxyHost);
@@ -212,9 +251,12 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Specify a proxy port to be used inside the client definition.
          * 
-         * The option is a: <code>java.lang.Integer</code> type.
+         * The option is a: &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param proxyPort the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder proxyPort(Integer proxyPort) {
             doSetProperty("proxyPort", proxyPort);
@@ -223,10 +265,13 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Specify a proxy port to be used inside the client definition.
          * 
-         * The option will be converted to a <code>java.lang.Integer</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param proxyPort the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder proxyPort(String proxyPort) {
             doSetProperty("proxyPort", proxyPort);
@@ -235,11 +280,14 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * To define a proxy protocol when instantiating the S3 client.
          * 
-         * The option is a: <code>software.amazon.awssdk.core.Protocol</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;software.amazon.awssdk.core.Protocol&lt;/code&gt; type.
          * 
          * Default: HTTPS
          * Group: common
+         * 
+         * @param proxyProtocol the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder proxyProtocol(
                 Protocol proxyProtocol) {
@@ -250,10 +298,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * To define a proxy protocol when instantiating the S3 client.
          * 
          * The option will be converted to a
-         * <code>software.amazon.awssdk.core.Protocol</code> type.
+         * &lt;code&gt;software.amazon.awssdk.core.Protocol&lt;/code&gt; type.
          * 
          * Default: HTTPS
          * Group: common
+         * 
+         * @param proxyProtocol the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder proxyProtocol(String proxyProtocol) {
             doSetProperty("proxyProtocol", proxyProtocol);
@@ -265,9 +316,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * region (for example ap-east-1) You'll need to use the name
          * Region.EU_WEST_1.id().
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param region the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder region(String region) {
             doSetProperty("region", region);
@@ -277,10 +331,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * If we want to trust all certificates in case of overriding the
          * endpoint.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param trustAllCertificates the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder trustAllCertificates(
                 boolean trustAllCertificates) {
@@ -291,10 +348,14 @@ public interface AWS2S3EndpointBuilderFactory {
          * If we want to trust all certificates in case of overriding the
          * endpoint.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param trustAllCertificates the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder trustAllCertificates(
                 String trustAllCertificates) {
@@ -305,9 +366,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * Set the overriding uri endpoint. This option needs to be used in
          * combination with overrideEndpoint option.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param uriEndpointOverride the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder uriEndpointOverride(
                 String uriEndpointOverride) {
@@ -315,31 +379,40 @@ public interface AWS2S3EndpointBuilderFactory {
             return this;
         }
         /**
-         * Set whether the S3 client should expect to load credentials on an EC2
-         * instance or to expect static credentials to be passed in.
+         * Set whether the S3 client should expect to load credentials through a
+         * default credentials provider or to expect static credentials to be
+         * passed in.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param useDefaultCredentialsProvider the value to set
+         * @return the dsl builder
          */
-        default AWS2S3EndpointConsumerBuilder useIAMCredentials(
-                boolean useIAMCredentials) {
-            doSetProperty("useIAMCredentials", useIAMCredentials);
+        default AWS2S3EndpointConsumerBuilder useDefaultCredentialsProvider(
+                boolean useDefaultCredentialsProvider) {
+            doSetProperty("useDefaultCredentialsProvider", useDefaultCredentialsProvider);
             return this;
         }
         /**
-         * Set whether the S3 client should expect to load credentials on an EC2
-         * instance or to expect static credentials to be passed in.
+         * Set whether the S3 client should expect to load credentials through a
+         * default credentials provider or to expect static credentials to be
+         * passed in.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param useDefaultCredentialsProvider the value to set
+         * @return the dsl builder
          */
-        default AWS2S3EndpointConsumerBuilder useIAMCredentials(
-                String useIAMCredentials) {
-            doSetProperty("useIAMCredentials", useIAMCredentials);
+        default AWS2S3EndpointConsumerBuilder useDefaultCredentialsProvider(
+                String useDefaultCredentialsProvider) {
+            doSetProperty("useDefaultCredentialsProvider", useDefaultCredentialsProvider);
             return this;
         }
         /**
@@ -351,10 +424,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * with exceptions, that will be logged at WARN or ERROR level and
          * ignored.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param bridgeErrorHandler the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder bridgeErrorHandler(
                 boolean bridgeErrorHandler) {
@@ -370,10 +446,14 @@ public interface AWS2S3EndpointBuilderFactory {
          * with exceptions, that will be logged at WARN or ERROR level and
          * ignored.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param bridgeErrorHandler the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder bridgeErrorHandler(
                 String bridgeErrorHandler) {
@@ -390,10 +470,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * and AWS2S3Constants#KEY headers, or only the AWS2S3Constants#KEY
          * header.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: consumer
+         * 
+         * @param deleteAfterRead the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder deleteAfterRead(
                 boolean deleteAfterRead) {
@@ -410,10 +493,14 @@ public interface AWS2S3EndpointBuilderFactory {
          * and AWS2S3Constants#KEY headers, or only the AWS2S3Constants#KEY
          * header.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: consumer
+         * 
+         * @param deleteAfterRead the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder deleteAfterRead(
                 String deleteAfterRead) {
@@ -425,9 +512,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * com.amazonaws.services.s3.model.ListObjectsRequest to only consume
          * objects we are interested in.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param delimiter the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder delimiter(String delimiter) {
             doSetProperty("delimiter", delimiter);
@@ -437,9 +527,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * Define the destination bucket where an object must be moved when
          * moveAfterRead is set to true.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param destinationBucket the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder destinationBucket(
                 String destinationBucket) {
@@ -450,9 +543,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * Define the destination bucket prefix to use when an object must be
          * moved and moveAfterRead is set to true.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param destinationBucketPrefix the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder destinationBucketPrefix(
                 String destinationBucketPrefix) {
@@ -463,9 +559,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * Define the destination bucket suffix to use when an object must be
          * moved and moveAfterRead is set to true.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param destinationBucketSuffix the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder destinationBucketSuffix(
                 String destinationBucketSuffix) {
@@ -475,45 +574,61 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * To get the object from the bucket with the given file name.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param fileName the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder fileName(String fileName) {
             doSetProperty("fileName", fileName);
             return this;
         }
         /**
-         * If it is true, the exchange body will be set to a stream to the
-         * contents of the file. If false, the headers will be set with the S3
-         * object metadata, but the body will be null. This option is strongly
-         * related to autocloseBody option. In case of setting includeBody to
-         * true and autocloseBody to false, it will be up to the caller to close
-         * the S3Object stream. Setting autocloseBody to true, will close the
-         * S3Object stream automatically.
+         * If it is true, the S3Object exchange will be consumed and put into
+         * the body and closed. If false the S3Object stream will be put raw
+         * into the body and the headers will be set with the S3 object
+         * metadata. This option is strongly related to autocloseBody option. In
+         * case of setting includeBody to true because the S3Object stream will
+         * be consumed then it will also be closed in case of includeBody false
+         * then it will be up to the caller to close the S3Object stream.
+         * However setting autocloseBody to true when includeBody is false it
+         * will schedule to close the S3Object stream automatically on exchange
+         * completion.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: consumer
+         * 
+         * @param includeBody the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder includeBody(boolean includeBody) {
             doSetProperty("includeBody", includeBody);
             return this;
         }
         /**
-         * If it is true, the exchange body will be set to a stream to the
-         * contents of the file. If false, the headers will be set with the S3
-         * object metadata, but the body will be null. This option is strongly
-         * related to autocloseBody option. In case of setting includeBody to
-         * true and autocloseBody to false, it will be up to the caller to close
-         * the S3Object stream. Setting autocloseBody to true, will close the
-         * S3Object stream automatically.
+         * If it is true, the S3Object exchange will be consumed and put into
+         * the body and closed. If false the S3Object stream will be put raw
+         * into the body and the headers will be set with the S3 object
+         * metadata. This option is strongly related to autocloseBody option. In
+         * case of setting includeBody to true because the S3Object stream will
+         * be consumed then it will also be closed in case of includeBody false
+         * then it will be up to the caller to close the S3Object stream.
+         * However setting autocloseBody to true when includeBody is false it
+         * will schedule to close the S3Object stream automatically on exchange
+         * completion.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: consumer
+         * 
+         * @param includeBody the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder includeBody(String includeBody) {
             doSetProperty("includeBody", includeBody);
@@ -524,10 +639,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * false, they will be ignored, and Exchanges will not be created for
          * those.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: consumer
+         * 
+         * @param includeFolders the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder includeFolders(
                 boolean includeFolders) {
@@ -539,10 +657,14 @@ public interface AWS2S3EndpointBuilderFactory {
          * false, they will be ignored, and Exchanges will not be created for
          * those.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: consumer
+         * 
+         * @param includeFolders the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder includeFolders(
                 String includeFolders) {
@@ -552,10 +674,13 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Set the maxConnections parameter in the S3 client configuration.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 60
          * Group: consumer
+         * 
+         * @param maxConnections the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder maxConnections(int maxConnections) {
             doSetProperty("maxConnections", maxConnections);
@@ -564,10 +689,13 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Set the maxConnections parameter in the S3 client configuration.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 60
          * Group: consumer
+         * 
+         * @param maxConnections the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder maxConnections(
                 String maxConnections) {
@@ -580,10 +708,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * each polling. The default value is 10. Use 0 or a negative number to
          * set it as unlimited.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 10
          * Group: consumer
+         * 
+         * @param maxMessagesPerPoll the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder maxMessagesPerPoll(
                 int maxMessagesPerPoll) {
@@ -596,10 +727,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * each polling. The default value is 10. Use 0 or a negative number to
          * set it as unlimited.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Default: 10
          * Group: consumer
+         * 
+         * @param maxMessagesPerPoll the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder maxMessagesPerPoll(
                 String maxMessagesPerPoll) {
@@ -613,10 +747,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * the Exchange is committed. If a rollback occurs, the object is not
          * moved.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param moveAfterRead the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder moveAfterRead(
                 boolean moveAfterRead) {
@@ -630,10 +767,14 @@ public interface AWS2S3EndpointBuilderFactory {
          * the Exchange is committed. If a rollback occurs, the object is not
          * moved.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param moveAfterRead the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder moveAfterRead(String moveAfterRead) {
             doSetProperty("moveAfterRead", moveAfterRead);
@@ -644,9 +785,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * com.amazonaws.services.s3.model.ListObjectsRequest to only consume
          * objects we are interested in.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: consumer
+         * 
+         * @param prefix the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder prefix(String prefix) {
             doSetProperty("prefix", prefix);
@@ -656,10 +800,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * If the polling consumer did not poll any files, you can enable this
          * option to send an empty message (no body) instead.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param sendEmptyMessageWhenIdle the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder sendEmptyMessageWhenIdle(
                 boolean sendEmptyMessageWhenIdle) {
@@ -670,10 +817,14 @@ public interface AWS2S3EndpointBuilderFactory {
          * If the polling consumer did not poll any files, you can enable this
          * option to send an empty message (no body) instead.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: consumer
+         * 
+         * @param sendEmptyMessageWhenIdle the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder sendEmptyMessageWhenIdle(
                 String sendEmptyMessageWhenIdle) {
@@ -684,9 +835,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * The number of subsequent error polls (failed due some error) that
          * should happen before the backoffMultipler should kick-in.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Group: scheduler
+         * 
+         * @param backoffErrorThreshold the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder backoffErrorThreshold(
                 int backoffErrorThreshold) {
@@ -697,9 +851,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * The number of subsequent error polls (failed due some error) that
          * should happen before the backoffMultipler should kick-in.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Group: scheduler
+         * 
+         * @param backoffErrorThreshold the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder backoffErrorThreshold(
                 String backoffErrorThreshold) {
@@ -710,9 +867,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * The number of subsequent idle polls that should happen before the
          * backoffMultipler should kick-in.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Group: scheduler
+         * 
+         * @param backoffIdleThreshold the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder backoffIdleThreshold(
                 int backoffIdleThreshold) {
@@ -723,9 +883,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * The number of subsequent idle polls that should happen before the
          * backoffMultipler should kick-in.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Group: scheduler
+         * 
+         * @param backoffIdleThreshold the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder backoffIdleThreshold(
                 String backoffIdleThreshold) {
@@ -740,9 +903,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * backoffIdleThreshold and/or backoffErrorThreshold must also be
          * configured.
          * 
-         * The option is a: <code>int</code> type.
+         * The option is a: &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Group: scheduler
+         * 
+         * @param backoffMultiplier the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder backoffMultiplier(
                 int backoffMultiplier) {
@@ -757,9 +923,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * backoffIdleThreshold and/or backoffErrorThreshold must also be
          * configured.
          * 
-         * The option will be converted to a <code>int</code> type.
+         * The option will be converted to a &lt;code&gt;int&lt;/code&gt; type.
          * 
          * Group: scheduler
+         * 
+         * @param backoffMultiplier the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder backoffMultiplier(
                 String backoffMultiplier) {
@@ -769,10 +938,13 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Milliseconds before the next poll.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 500
          * Group: scheduler
+         * 
+         * @param delay the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder delay(long delay) {
             doSetProperty("delay", delay);
@@ -781,10 +953,13 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Milliseconds before the next poll.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 500
          * Group: scheduler
+         * 
+         * @param delay the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder delay(String delay) {
             doSetProperty("delay", delay);
@@ -794,10 +969,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * If greedy is enabled, then the ScheduledPollConsumer will run
          * immediately again, if the previous run polled 1 or more messages.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: scheduler
+         * 
+         * @param greedy the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder greedy(boolean greedy) {
             doSetProperty("greedy", greedy);
@@ -807,10 +985,14 @@ public interface AWS2S3EndpointBuilderFactory {
          * If greedy is enabled, then the ScheduledPollConsumer will run
          * immediately again, if the previous run polled 1 or more messages.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: scheduler
+         * 
+         * @param greedy the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder greedy(String greedy) {
             doSetProperty("greedy", greedy);
@@ -819,10 +1001,13 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Milliseconds before the first poll starts.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: scheduler
+         * 
+         * @param initialDelay the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder initialDelay(long initialDelay) {
             doSetProperty("initialDelay", initialDelay);
@@ -831,10 +1016,13 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Milliseconds before the first poll starts.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 1000
          * Group: scheduler
+         * 
+         * @param initialDelay the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder initialDelay(String initialDelay) {
             doSetProperty("initialDelay", initialDelay);
@@ -845,10 +1033,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * the scheduler will only fire once. If you set it to 5, it will only
          * fire five times. A value of zero or negative means fire forever.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 0
          * Group: scheduler
+         * 
+         * @param repeatCount the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder repeatCount(long repeatCount) {
             doSetProperty("repeatCount", repeatCount);
@@ -859,10 +1050,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * the scheduler will only fire once. If you set it to 5, it will only
          * fire five times. A value of zero or negative means fire forever.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 0
          * Group: scheduler
+         * 
+         * @param repeatCount the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder repeatCount(String repeatCount) {
             doSetProperty("repeatCount", repeatCount);
@@ -872,10 +1066,14 @@ public interface AWS2S3EndpointBuilderFactory {
          * The consumer logs a start/complete log line when it polls. This
          * option allows you to configure the logging level for that.
          * 
-         * The option is a: <code>org.apache.camel.LoggingLevel</code> type.
+         * The option is a:
+         * &lt;code&gt;org.apache.camel.LoggingLevel&lt;/code&gt; type.
          * 
          * Default: TRACE
          * Group: scheduler
+         * 
+         * @param runLoggingLevel the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder runLoggingLevel(
                 LoggingLevel runLoggingLevel) {
@@ -887,10 +1085,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * option allows you to configure the logging level for that.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.LoggingLevel</code> type.
+         * &lt;code&gt;org.apache.camel.LoggingLevel&lt;/code&gt; type.
          * 
          * Default: TRACE
          * Group: scheduler
+         * 
+         * @param runLoggingLevel the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder runLoggingLevel(
                 String runLoggingLevel) {
@@ -903,9 +1104,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * pool.
          * 
          * The option is a:
-         * <code>java.util.concurrent.ScheduledExecutorService</code> type.
+         * &lt;code&gt;java.util.concurrent.ScheduledExecutorService&lt;/code&gt; type.
          * 
          * Group: scheduler
+         * 
+         * @param scheduledExecutorService the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder scheduledExecutorService(
                 ScheduledExecutorService scheduledExecutorService) {
@@ -918,9 +1122,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * pool.
          * 
          * The option will be converted to a
-         * <code>java.util.concurrent.ScheduledExecutorService</code> type.
+         * &lt;code&gt;java.util.concurrent.ScheduledExecutorService&lt;/code&gt; type.
          * 
          * Group: scheduler
+         * 
+         * @param scheduledExecutorService the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder scheduledExecutorService(
                 String scheduledExecutorService) {
@@ -931,10 +1138,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * To use a cron scheduler from either camel-spring or camel-quartz
          * component. Use value spring or quartz for built in scheduler.
          * 
-         * The option is a: <code>java.lang.Object</code> type.
+         * The option is a: &lt;code&gt;java.lang.Object&lt;/code&gt; type.
          * 
          * Default: none
          * Group: scheduler
+         * 
+         * @param scheduler the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder scheduler(Object scheduler) {
             doSetProperty("scheduler", scheduler);
@@ -944,10 +1154,14 @@ public interface AWS2S3EndpointBuilderFactory {
          * To use a cron scheduler from either camel-spring or camel-quartz
          * component. Use value spring or quartz for built in scheduler.
          * 
-         * The option will be converted to a <code>java.lang.Object</code> type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Object&lt;/code&gt; type.
          * 
          * Default: none
          * Group: scheduler
+         * 
+         * @param scheduler the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder scheduler(String scheduler) {
             doSetProperty("scheduler", scheduler);
@@ -957,13 +1171,17 @@ public interface AWS2S3EndpointBuilderFactory {
          * To configure additional properties when using a custom scheduler or
          * any of the Quartz, Spring based scheduler.
          * 
-         * The option is a: <code>java.util.Map&lt;java.lang.String,
-         * java.lang.Object&gt;</code> type.
+         * The option is a: &lt;code&gt;java.util.Map&amp;lt;java.lang.String,
+         * java.lang.Object&amp;gt;&lt;/code&gt; type.
          * The option is multivalued, and you can use the
          * schedulerProperties(String, Object) method to add a value (call the
          * method multiple times to set more values).
          * 
          * Group: scheduler
+         * 
+         * @param key the option key
+         * @param value the option value
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder schedulerProperties(
                 String key,
@@ -975,13 +1193,16 @@ public interface AWS2S3EndpointBuilderFactory {
          * To configure additional properties when using a custom scheduler or
          * any of the Quartz, Spring based scheduler.
          * 
-         * The option is a: <code>java.util.Map&lt;java.lang.String,
-         * java.lang.Object&gt;</code> type.
+         * The option is a: &lt;code&gt;java.util.Map&amp;lt;java.lang.String,
+         * java.lang.Object&amp;gt;&lt;/code&gt; type.
          * The option is multivalued, and you can use the
          * schedulerProperties(String, Object) method to add a value (call the
          * method multiple times to set more values).
          * 
          * Group: scheduler
+         * 
+         * @param values the values
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder schedulerProperties(Map values) {
             doSetMultiValueProperties("schedulerProperties", "scheduler.", values);
@@ -990,10 +1211,13 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Whether the scheduler should be auto started.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: scheduler
+         * 
+         * @param startScheduler the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder startScheduler(
                 boolean startScheduler) {
@@ -1003,10 +1227,14 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Whether the scheduler should be auto started.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: scheduler
+         * 
+         * @param startScheduler the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder startScheduler(
                 String startScheduler) {
@@ -1016,10 +1244,14 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Time unit for initialDelay and delay options.
          * 
-         * The option is a: <code>java.util.concurrent.TimeUnit</code> type.
+         * The option is a:
+         * &lt;code&gt;java.util.concurrent.TimeUnit&lt;/code&gt; type.
          * 
          * Default: MILLISECONDS
          * Group: scheduler
+         * 
+         * @param timeUnit the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder timeUnit(TimeUnit timeUnit) {
             doSetProperty("timeUnit", timeUnit);
@@ -1029,10 +1261,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * Time unit for initialDelay and delay options.
          * 
          * The option will be converted to a
-         * <code>java.util.concurrent.TimeUnit</code> type.
+         * &lt;code&gt;java.util.concurrent.TimeUnit&lt;/code&gt; type.
          * 
          * Default: MILLISECONDS
          * Group: scheduler
+         * 
+         * @param timeUnit the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder timeUnit(String timeUnit) {
             doSetProperty("timeUnit", timeUnit);
@@ -1042,10 +1277,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * Controls if fixed delay or fixed rate is used. See
          * ScheduledExecutorService in JDK for details.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: scheduler
+         * 
+         * @param useFixedDelay the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder useFixedDelay(
                 boolean useFixedDelay) {
@@ -1056,10 +1294,14 @@ public interface AWS2S3EndpointBuilderFactory {
          * Controls if fixed delay or fixed rate is used. See
          * ScheduledExecutorService in JDK for details.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: scheduler
+         * 
+         * @param useFixedDelay the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder useFixedDelay(String useFixedDelay) {
             doSetProperty("useFixedDelay", useFixedDelay);
@@ -1068,9 +1310,12 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Amazon AWS Access Key.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param accessKey the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder accessKey(String accessKey) {
             doSetProperty("accessKey", accessKey);
@@ -1079,9 +1324,12 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Amazon AWS Secret Key.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param secretKey the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointConsumerBuilder secretKey(String secretKey) {
             doSetProperty("secretKey", secretKey);
@@ -1102,9 +1350,12 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Define the customer algorithm to use in case CustomerKey is enabled.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common (advanced)
+         * 
+         * @param customerAlgorithm the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointConsumerBuilder customerAlgorithm(
                 String customerAlgorithm) {
@@ -1114,9 +1365,12 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Define the id of Customer key to use in case CustomerKey is enabled.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common (advanced)
+         * 
+         * @param customerKeyId the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointConsumerBuilder customerKeyId(
                 String customerKeyId) {
@@ -1126,9 +1380,12 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Define the MD5 of Customer key to use in case CustomerKey is enabled.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common (advanced)
+         * 
+         * @param customerKeyMD5 the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointConsumerBuilder customerKeyMD5(
                 String customerKeyMD5) {
@@ -1136,17 +1393,20 @@ public interface AWS2S3EndpointBuilderFactory {
             return this;
         }
         /**
-         * If this option is true and includeBody is true, then the
+         * If this option is true and includeBody is false, then the
          * S3Object.close() method will be called on exchange completion. This
          * option is strongly related to includeBody option. In case of setting
-         * includeBody to true and autocloseBody to false, it will be up to the
+         * includeBody to false and autocloseBody to false, it will be up to the
          * caller to close the S3Object stream. Setting autocloseBody to true,
          * will close the S3Object stream automatically.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: consumer (advanced)
+         * 
+         * @param autocloseBody the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointConsumerBuilder autocloseBody(
                 boolean autocloseBody) {
@@ -1154,17 +1414,21 @@ public interface AWS2S3EndpointBuilderFactory {
             return this;
         }
         /**
-         * If this option is true and includeBody is true, then the
+         * If this option is true and includeBody is false, then the
          * S3Object.close() method will be called on exchange completion. This
          * option is strongly related to includeBody option. In case of setting
-         * includeBody to true and autocloseBody to false, it will be up to the
+         * includeBody to false and autocloseBody to false, it will be up to the
          * caller to close the S3Object stream. Setting autocloseBody to true,
          * will close the S3Object stream automatically.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: consumer (advanced)
+         * 
+         * @param autocloseBody the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointConsumerBuilder autocloseBody(
                 String autocloseBody) {
@@ -1177,10 +1441,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * By default the consumer will deal with exceptions, that will be
          * logged at WARN or ERROR level and ignored.
          * 
-         * The option is a: <code>org.apache.camel.spi.ExceptionHandler</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;org.apache.camel.spi.ExceptionHandler&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exceptionHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointConsumerBuilder exceptionHandler(
                 ExceptionHandler exceptionHandler) {
@@ -1194,9 +1461,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * logged at WARN or ERROR level and ignored.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.spi.ExceptionHandler</code> type.
+         * &lt;code&gt;org.apache.camel.spi.ExceptionHandler&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exceptionHandler the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointConsumerBuilder exceptionHandler(
                 String exceptionHandler) {
@@ -1206,9 +1476,13 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Sets the exchange pattern when the consumer creates an exchange.
          * 
-         * The option is a: <code>org.apache.camel.ExchangePattern</code> type.
+         * The option is a:
+         * &lt;code&gt;org.apache.camel.ExchangePattern&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exchangePattern the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointConsumerBuilder exchangePattern(
                 ExchangePattern exchangePattern) {
@@ -1219,9 +1493,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * Sets the exchange pattern when the consumer creates an exchange.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.ExchangePattern</code> type.
+         * &lt;code&gt;org.apache.camel.ExchangePattern&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param exchangePattern the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointConsumerBuilder exchangePattern(
                 String exchangePattern) {
@@ -1235,9 +1512,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * been created and being routed in Camel.
          * 
          * The option is a:
-         * <code>org.apache.camel.spi.PollingConsumerPollStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.PollingConsumerPollStrategy&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param pollStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointConsumerBuilder pollStrategy(
                 PollingConsumerPollStrategy pollStrategy) {
@@ -1251,9 +1531,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * been created and being routed in Camel.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.spi.PollingConsumerPollStrategy</code> type.
+         * &lt;code&gt;org.apache.camel.spi.PollingConsumerPollStrategy&lt;/code&gt; type.
          * 
          * Group: consumer (advanced)
+         * 
+         * @param pollStrategy the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointConsumerBuilder pollStrategy(
                 String pollStrategy) {
@@ -1261,41 +1544,16 @@ public interface AWS2S3EndpointBuilderFactory {
             return this;
         }
         /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAWS2S3EndpointConsumerBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAWS2S3EndpointConsumerBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointConsumerBuilder synchronous(
                 boolean synchronous) {
@@ -1306,10 +1564,14 @@ public interface AWS2S3EndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointConsumerBuilder synchronous(
                 String synchronous) {
@@ -1332,9 +1594,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * Reference to a com.amazonaws.services.s3.AmazonS3 in the registry.
          * 
          * The option is a:
-         * <code>software.amazon.awssdk.services.s3.S3Client</code> type.
+         * &lt;code&gt;software.amazon.awssdk.services.s3.S3Client&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param amazonS3Client the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder amazonS3Client(
                 Object amazonS3Client) {
@@ -1345,9 +1611,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * Reference to a com.amazonaws.services.s3.AmazonS3 in the registry.
          * 
          * The option will be converted to a
-         * <code>software.amazon.awssdk.services.s3.S3Client</code> type.
+         * &lt;code&gt;software.amazon.awssdk.services.s3.S3Client&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param amazonS3Client the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder amazonS3Client(
                 String amazonS3Client) {
@@ -1355,14 +1625,51 @@ public interface AWS2S3EndpointBuilderFactory {
             return this;
         }
         /**
+         * An S3 Presigner for Request, used mainly in createDownloadLink
+         * operation.
+         * 
+         * The option is a:
+         * &lt;code&gt;software.amazon.awssdk.services.s3.presigner.S3Presigner&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param amazonS3Presigner the value to set
+         * @return the dsl builder
+         */
+        default AWS2S3EndpointProducerBuilder amazonS3Presigner(
+                Object amazonS3Presigner) {
+            doSetProperty("amazonS3Presigner", amazonS3Presigner);
+            return this;
+        }
+        /**
+         * An S3 Presigner for Request, used mainly in createDownloadLink
+         * operation.
+         * 
+         * The option will be converted to a
+         * &lt;code&gt;software.amazon.awssdk.services.s3.presigner.S3Presigner&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param amazonS3Presigner the value to set
+         * @return the dsl builder
+         */
+        default AWS2S3EndpointProducerBuilder amazonS3Presigner(
+                String amazonS3Presigner) {
+            doSetProperty("amazonS3Presigner", amazonS3Presigner);
+            return this;
+        }
+        /**
          * Setting the autocreation of the S3 bucket bucketName. This will apply
          * also in case of moveAfterRead option enabled and it will create the
          * destinationBucket if it doesn't exist already.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param autoCreateBucket the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder autoCreateBucket(
                 boolean autoCreateBucket) {
@@ -1374,10 +1681,14 @@ public interface AWS2S3EndpointBuilderFactory {
          * also in case of moveAfterRead option enabled and it will create the
          * destinationBucket if it doesn't exist already.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param autoCreateBucket the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder autoCreateBucket(
                 String autoCreateBucket) {
@@ -1385,43 +1696,16 @@ public interface AWS2S3EndpointBuilderFactory {
             return this;
         }
         /**
-         * Setting the autoDiscoverClient mechanism, if true, the component will
-         * look for a client instance in the registry automatically otherwise it
-         * will skip that checking.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: true
-         * Group: common
-         */
-        default AWS2S3EndpointProducerBuilder autoDiscoverClient(
-                boolean autoDiscoverClient) {
-            doSetProperty("autoDiscoverClient", autoDiscoverClient);
-            return this;
-        }
-        /**
-         * Setting the autoDiscoverClient mechanism, if true, the component will
-         * look for a client instance in the registry automatically otherwise it
-         * will skip that checking.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: true
-         * Group: common
-         */
-        default AWS2S3EndpointProducerBuilder autoDiscoverClient(
-                String autoDiscoverClient) {
-            doSetProperty("autoDiscoverClient", autoDiscoverClient);
-            return this;
-        }
-        /**
          * Set the need for overidding the endpoint. This option needs to be
          * used in combination with uriEndpointOverride option.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param overrideEndpoint the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder overrideEndpoint(
                 boolean overrideEndpoint) {
@@ -1432,10 +1716,14 @@ public interface AWS2S3EndpointBuilderFactory {
          * Set the need for overidding the endpoint. This option needs to be
          * used in combination with uriEndpointOverride option.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param overrideEndpoint the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder overrideEndpoint(
                 String overrideEndpoint) {
@@ -1445,10 +1733,13 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * If we want to use a POJO request as body or not.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param pojoRequest the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder pojoRequest(boolean pojoRequest) {
             doSetProperty("pojoRequest", pojoRequest);
@@ -1457,10 +1748,14 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * If we want to use a POJO request as body or not.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param pojoRequest the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder pojoRequest(String pojoRequest) {
             doSetProperty("pojoRequest", pojoRequest);
@@ -1470,9 +1765,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * The policy for this queue to set in the
          * com.amazonaws.services.s3.AmazonS3#setBucketPolicy() method.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param policy the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder policy(String policy) {
             doSetProperty("policy", policy);
@@ -1481,9 +1779,12 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * To define a proxy host when instantiating the SQS client.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param proxyHost the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder proxyHost(String proxyHost) {
             doSetProperty("proxyHost", proxyHost);
@@ -1492,9 +1793,12 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Specify a proxy port to be used inside the client definition.
          * 
-         * The option is a: <code>java.lang.Integer</code> type.
+         * The option is a: &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param proxyPort the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder proxyPort(Integer proxyPort) {
             doSetProperty("proxyPort", proxyPort);
@@ -1503,10 +1807,13 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Specify a proxy port to be used inside the client definition.
          * 
-         * The option will be converted to a <code>java.lang.Integer</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param proxyPort the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder proxyPort(String proxyPort) {
             doSetProperty("proxyPort", proxyPort);
@@ -1515,11 +1822,14 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * To define a proxy protocol when instantiating the S3 client.
          * 
-         * The option is a: <code>software.amazon.awssdk.core.Protocol</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;software.amazon.awssdk.core.Protocol&lt;/code&gt; type.
          * 
          * Default: HTTPS
          * Group: common
+         * 
+         * @param proxyProtocol the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder proxyProtocol(
                 Protocol proxyProtocol) {
@@ -1530,10 +1840,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * To define a proxy protocol when instantiating the S3 client.
          * 
          * The option will be converted to a
-         * <code>software.amazon.awssdk.core.Protocol</code> type.
+         * &lt;code&gt;software.amazon.awssdk.core.Protocol&lt;/code&gt; type.
          * 
          * Default: HTTPS
          * Group: common
+         * 
+         * @param proxyProtocol the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder proxyProtocol(String proxyProtocol) {
             doSetProperty("proxyProtocol", proxyProtocol);
@@ -1545,9 +1858,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * region (for example ap-east-1) You'll need to use the name
          * Region.EU_WEST_1.id().
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param region the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder region(String region) {
             doSetProperty("region", region);
@@ -1557,10 +1873,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * If we want to trust all certificates in case of overriding the
          * endpoint.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param trustAllCertificates the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder trustAllCertificates(
                 boolean trustAllCertificates) {
@@ -1571,10 +1890,14 @@ public interface AWS2S3EndpointBuilderFactory {
          * If we want to trust all certificates in case of overriding the
          * endpoint.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param trustAllCertificates the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder trustAllCertificates(
                 String trustAllCertificates) {
@@ -1585,9 +1908,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * Set the overriding uri endpoint. This option needs to be used in
          * combination with overrideEndpoint option.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param uriEndpointOverride the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder uriEndpointOverride(
                 String uriEndpointOverride) {
@@ -1595,40 +1921,52 @@ public interface AWS2S3EndpointBuilderFactory {
             return this;
         }
         /**
-         * Set whether the S3 client should expect to load credentials on an EC2
-         * instance or to expect static credentials to be passed in.
+         * Set whether the S3 client should expect to load credentials through a
+         * default credentials provider or to expect static credentials to be
+         * passed in.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param useDefaultCredentialsProvider the value to set
+         * @return the dsl builder
          */
-        default AWS2S3EndpointProducerBuilder useIAMCredentials(
-                boolean useIAMCredentials) {
-            doSetProperty("useIAMCredentials", useIAMCredentials);
+        default AWS2S3EndpointProducerBuilder useDefaultCredentialsProvider(
+                boolean useDefaultCredentialsProvider) {
+            doSetProperty("useDefaultCredentialsProvider", useDefaultCredentialsProvider);
             return this;
         }
         /**
-         * Set whether the S3 client should expect to load credentials on an EC2
-         * instance or to expect static credentials to be passed in.
+         * Set whether the S3 client should expect to load credentials through a
+         * default credentials provider or to expect static credentials to be
+         * passed in.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param useDefaultCredentialsProvider the value to set
+         * @return the dsl builder
          */
-        default AWS2S3EndpointProducerBuilder useIAMCredentials(
-                String useIAMCredentials) {
-            doSetProperty("useIAMCredentials", useIAMCredentials);
+        default AWS2S3EndpointProducerBuilder useDefaultCredentialsProvider(
+                String useDefaultCredentialsProvider) {
+            doSetProperty("useDefaultCredentialsProvider", useDefaultCredentialsProvider);
             return this;
         }
         /**
          * Delete file object after the S3 file has been uploaded.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param deleteAfterWrite the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder deleteAfterWrite(
                 boolean deleteAfterWrite) {
@@ -1638,10 +1976,14 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Delete file object after the S3 file has been uploaded.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param deleteAfterWrite the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder deleteAfterWrite(
                 String deleteAfterWrite) {
@@ -1652,9 +1994,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * Setting the key name for an element in the bucket through endpoint
          * parameter.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param keyName the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder keyName(String keyName) {
             doSetProperty("keyName", keyName);
@@ -1671,10 +2016,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * producer may take a little time and prolong the total processing time
          * of the processing.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param lazyStartProducer the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder lazyStartProducer(
                 boolean lazyStartProducer) {
@@ -1692,10 +2040,14 @@ public interface AWS2S3EndpointBuilderFactory {
          * producer may take a little time and prolong the total processing time
          * of the processing.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param lazyStartProducer the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder lazyStartProducer(
                 String lazyStartProducer) {
@@ -1706,10 +2058,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * If it is true, camel will upload the file with multi part format, the
          * part size is decided by the option of partSize.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param multiPartUpload the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder multiPartUpload(
                 boolean multiPartUpload) {
@@ -1720,10 +2075,14 @@ public interface AWS2S3EndpointBuilderFactory {
          * If it is true, camel will upload the file with multi part format, the
          * part size is decided by the option of partSize.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer
+         * 
+         * @param multiPartUpload the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder multiPartUpload(
                 String multiPartUpload) {
@@ -1734,10 +2093,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * The operation to do in case the user don't want to do only an upload.
          * 
          * The option is a:
-         * <code>org.apache.camel.component.aws2.s3.AWS2S3Operations</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.aws2.s3.AWS2S3Operations&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param operation the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder operation(
                 AWS2S3Operations operation) {
@@ -1748,10 +2109,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * The operation to do in case the user don't want to do only an upload.
          * 
          * The option will be converted to a
-         * <code>org.apache.camel.component.aws2.s3.AWS2S3Operations</code>
-         * type.
+         * &lt;code&gt;org.apache.camel.component.aws2.s3.AWS2S3Operations&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param operation the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder operation(String operation) {
             doSetProperty("operation", operation);
@@ -1761,10 +2124,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * Setup the partSize which is used in multi part upload, the default
          * size is 25M.
          * 
-         * The option is a: <code>long</code> type.
+         * The option is a: &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 26214400
          * Group: producer
+         * 
+         * @param partSize the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder partSize(long partSize) {
             doSetProperty("partSize", partSize);
@@ -1774,10 +2140,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * Setup the partSize which is used in multi part upload, the default
          * size is 25M.
          * 
-         * The option will be converted to a <code>long</code> type.
+         * The option will be converted to a &lt;code&gt;long&lt;/code&gt; type.
          * 
          * Default: 26214400
          * Group: producer
+         * 
+         * @param partSize the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder partSize(String partSize) {
             doSetProperty("partSize", partSize);
@@ -1787,9 +2156,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * The storage class to set in the
          * com.amazonaws.services.s3.model.PutObjectRequest request.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer
+         * 
+         * @param storageClass the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder storageClass(String storageClass) {
             doSetProperty("storageClass", storageClass);
@@ -1798,9 +2170,12 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Amazon AWS Access Key.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param accessKey the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder accessKey(String accessKey) {
             doSetProperty("accessKey", accessKey);
@@ -1809,9 +2184,12 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Amazon AWS Secret Key.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param secretKey the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointProducerBuilder secretKey(String secretKey) {
             doSetProperty("secretKey", secretKey);
@@ -1832,9 +2210,12 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Define the customer algorithm to use in case CustomerKey is enabled.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common (advanced)
+         * 
+         * @param customerAlgorithm the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointProducerBuilder customerAlgorithm(
                 String customerAlgorithm) {
@@ -1844,9 +2225,12 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Define the id of Customer key to use in case CustomerKey is enabled.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common (advanced)
+         * 
+         * @param customerKeyId the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointProducerBuilder customerKeyId(
                 String customerKeyId) {
@@ -1856,9 +2240,12 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Define the MD5 of Customer key to use in case CustomerKey is enabled.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common (advanced)
+         * 
+         * @param customerKeyMD5 the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointProducerBuilder customerKeyMD5(
                 String customerKeyMD5) {
@@ -1868,9 +2255,12 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Define the id of KMS key to use in case KMS is enabled.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: producer (advanced)
+         * 
+         * @param awsKMSKeyId the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointProducerBuilder awsKMSKeyId(
                 String awsKMSKeyId) {
@@ -1880,10 +2270,13 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Define if KMS must be used or not.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param useAwsKMS the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointProducerBuilder useAwsKMS(
                 boolean useAwsKMS) {
@@ -1893,10 +2286,14 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Define if KMS must be used or not.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param useAwsKMS the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointProducerBuilder useAwsKMS(String useAwsKMS) {
             doSetProperty("useAwsKMS", useAwsKMS);
@@ -1905,10 +2302,13 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Define if Customer Key must be used or not.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param useCustomerKey the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointProducerBuilder useCustomerKey(
                 boolean useCustomerKey) {
@@ -1918,10 +2318,14 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Define if Customer Key must be used or not.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: producer (advanced)
+         * 
+         * @param useCustomerKey the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointProducerBuilder useCustomerKey(
                 String useCustomerKey) {
@@ -1929,41 +2333,16 @@ public interface AWS2S3EndpointBuilderFactory {
             return this;
         }
         /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAWS2S3EndpointProducerBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAWS2S3EndpointProducerBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointProducerBuilder synchronous(
                 boolean synchronous) {
@@ -1974,10 +2353,14 @@ public interface AWS2S3EndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointProducerBuilder synchronous(
                 String synchronous) {
@@ -2000,9 +2383,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * Reference to a com.amazonaws.services.s3.AmazonS3 in the registry.
          * 
          * The option is a:
-         * <code>software.amazon.awssdk.services.s3.S3Client</code> type.
+         * &lt;code&gt;software.amazon.awssdk.services.s3.S3Client&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param amazonS3Client the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointBuilder amazonS3Client(Object amazonS3Client) {
             doSetProperty("amazonS3Client", amazonS3Client);
@@ -2012,12 +2399,48 @@ public interface AWS2S3EndpointBuilderFactory {
          * Reference to a com.amazonaws.services.s3.AmazonS3 in the registry.
          * 
          * The option will be converted to a
-         * <code>software.amazon.awssdk.services.s3.S3Client</code> type.
+         * &lt;code&gt;software.amazon.awssdk.services.s3.S3Client&lt;/code&gt;
+         * type.
          * 
          * Group: common
+         * 
+         * @param amazonS3Client the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointBuilder amazonS3Client(String amazonS3Client) {
             doSetProperty("amazonS3Client", amazonS3Client);
+            return this;
+        }
+        /**
+         * An S3 Presigner for Request, used mainly in createDownloadLink
+         * operation.
+         * 
+         * The option is a:
+         * &lt;code&gt;software.amazon.awssdk.services.s3.presigner.S3Presigner&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param amazonS3Presigner the value to set
+         * @return the dsl builder
+         */
+        default AWS2S3EndpointBuilder amazonS3Presigner(Object amazonS3Presigner) {
+            doSetProperty("amazonS3Presigner", amazonS3Presigner);
+            return this;
+        }
+        /**
+         * An S3 Presigner for Request, used mainly in createDownloadLink
+         * operation.
+         * 
+         * The option will be converted to a
+         * &lt;code&gt;software.amazon.awssdk.services.s3.presigner.S3Presigner&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param amazonS3Presigner the value to set
+         * @return the dsl builder
+         */
+        default AWS2S3EndpointBuilder amazonS3Presigner(String amazonS3Presigner) {
+            doSetProperty("amazonS3Presigner", amazonS3Presigner);
             return this;
         }
         /**
@@ -2025,10 +2448,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * also in case of moveAfterRead option enabled and it will create the
          * destinationBucket if it doesn't exist already.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param autoCreateBucket the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointBuilder autoCreateBucket(boolean autoCreateBucket) {
             doSetProperty("autoCreateBucket", autoCreateBucket);
@@ -2039,53 +2465,30 @@ public interface AWS2S3EndpointBuilderFactory {
          * also in case of moveAfterRead option enabled and it will create the
          * destinationBucket if it doesn't exist already.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: true
          * Group: common
+         * 
+         * @param autoCreateBucket the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointBuilder autoCreateBucket(String autoCreateBucket) {
             doSetProperty("autoCreateBucket", autoCreateBucket);
             return this;
         }
         /**
-         * Setting the autoDiscoverClient mechanism, if true, the component will
-         * look for a client instance in the registry automatically otherwise it
-         * will skip that checking.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: true
-         * Group: common
-         */
-        default AWS2S3EndpointBuilder autoDiscoverClient(
-                boolean autoDiscoverClient) {
-            doSetProperty("autoDiscoverClient", autoDiscoverClient);
-            return this;
-        }
-        /**
-         * Setting the autoDiscoverClient mechanism, if true, the component will
-         * look for a client instance in the registry automatically otherwise it
-         * will skip that checking.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: true
-         * Group: common
-         */
-        default AWS2S3EndpointBuilder autoDiscoverClient(
-                String autoDiscoverClient) {
-            doSetProperty("autoDiscoverClient", autoDiscoverClient);
-            return this;
-        }
-        /**
          * Set the need for overidding the endpoint. This option needs to be
          * used in combination with uriEndpointOverride option.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param overrideEndpoint the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointBuilder overrideEndpoint(boolean overrideEndpoint) {
             doSetProperty("overrideEndpoint", overrideEndpoint);
@@ -2095,10 +2498,14 @@ public interface AWS2S3EndpointBuilderFactory {
          * Set the need for overidding the endpoint. This option needs to be
          * used in combination with uriEndpointOverride option.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param overrideEndpoint the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointBuilder overrideEndpoint(String overrideEndpoint) {
             doSetProperty("overrideEndpoint", overrideEndpoint);
@@ -2107,10 +2514,13 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * If we want to use a POJO request as body or not.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param pojoRequest the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointBuilder pojoRequest(boolean pojoRequest) {
             doSetProperty("pojoRequest", pojoRequest);
@@ -2119,10 +2529,14 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * If we want to use a POJO request as body or not.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param pojoRequest the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointBuilder pojoRequest(String pojoRequest) {
             doSetProperty("pojoRequest", pojoRequest);
@@ -2132,9 +2546,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * The policy for this queue to set in the
          * com.amazonaws.services.s3.AmazonS3#setBucketPolicy() method.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param policy the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointBuilder policy(String policy) {
             doSetProperty("policy", policy);
@@ -2143,9 +2560,12 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * To define a proxy host when instantiating the SQS client.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param proxyHost the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointBuilder proxyHost(String proxyHost) {
             doSetProperty("proxyHost", proxyHost);
@@ -2154,9 +2574,12 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Specify a proxy port to be used inside the client definition.
          * 
-         * The option is a: <code>java.lang.Integer</code> type.
+         * The option is a: &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param proxyPort the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointBuilder proxyPort(Integer proxyPort) {
             doSetProperty("proxyPort", proxyPort);
@@ -2165,10 +2588,13 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Specify a proxy port to be used inside the client definition.
          * 
-         * The option will be converted to a <code>java.lang.Integer</code>
-         * type.
+         * The option will be converted to a
+         * &lt;code&gt;java.lang.Integer&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param proxyPort the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointBuilder proxyPort(String proxyPort) {
             doSetProperty("proxyPort", proxyPort);
@@ -2177,11 +2603,14 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * To define a proxy protocol when instantiating the S3 client.
          * 
-         * The option is a: <code>software.amazon.awssdk.core.Protocol</code>
-         * type.
+         * The option is a:
+         * &lt;code&gt;software.amazon.awssdk.core.Protocol&lt;/code&gt; type.
          * 
          * Default: HTTPS
          * Group: common
+         * 
+         * @param proxyProtocol the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointBuilder proxyProtocol(Protocol proxyProtocol) {
             doSetProperty("proxyProtocol", proxyProtocol);
@@ -2191,10 +2620,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * To define a proxy protocol when instantiating the S3 client.
          * 
          * The option will be converted to a
-         * <code>software.amazon.awssdk.core.Protocol</code> type.
+         * &lt;code&gt;software.amazon.awssdk.core.Protocol&lt;/code&gt; type.
          * 
          * Default: HTTPS
          * Group: common
+         * 
+         * @param proxyProtocol the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointBuilder proxyProtocol(String proxyProtocol) {
             doSetProperty("proxyProtocol", proxyProtocol);
@@ -2206,9 +2638,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * region (for example ap-east-1) You'll need to use the name
          * Region.EU_WEST_1.id().
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param region the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointBuilder region(String region) {
             doSetProperty("region", region);
@@ -2218,10 +2653,13 @@ public interface AWS2S3EndpointBuilderFactory {
          * If we want to trust all certificates in case of overriding the
          * endpoint.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param trustAllCertificates the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointBuilder trustAllCertificates(
                 boolean trustAllCertificates) {
@@ -2232,10 +2670,14 @@ public interface AWS2S3EndpointBuilderFactory {
          * If we want to trust all certificates in case of overriding the
          * endpoint.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param trustAllCertificates the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointBuilder trustAllCertificates(
                 String trustAllCertificates) {
@@ -2246,9 +2688,12 @@ public interface AWS2S3EndpointBuilderFactory {
          * Set the overriding uri endpoint. This option needs to be used in
          * combination with overrideEndpoint option.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common
+         * 
+         * @param uriEndpointOverride the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointBuilder uriEndpointOverride(
                 String uriEndpointOverride) {
@@ -2256,38 +2701,51 @@ public interface AWS2S3EndpointBuilderFactory {
             return this;
         }
         /**
-         * Set whether the S3 client should expect to load credentials on an EC2
-         * instance or to expect static credentials to be passed in.
+         * Set whether the S3 client should expect to load credentials through a
+         * default credentials provider or to expect static credentials to be
+         * passed in.
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param useDefaultCredentialsProvider the value to set
+         * @return the dsl builder
          */
-        default AWS2S3EndpointBuilder useIAMCredentials(
-                boolean useIAMCredentials) {
-            doSetProperty("useIAMCredentials", useIAMCredentials);
+        default AWS2S3EndpointBuilder useDefaultCredentialsProvider(
+                boolean useDefaultCredentialsProvider) {
+            doSetProperty("useDefaultCredentialsProvider", useDefaultCredentialsProvider);
             return this;
         }
         /**
-         * Set whether the S3 client should expect to load credentials on an EC2
-         * instance or to expect static credentials to be passed in.
+         * Set whether the S3 client should expect to load credentials through a
+         * default credentials provider or to expect static credentials to be
+         * passed in.
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: common
+         * 
+         * @param useDefaultCredentialsProvider the value to set
+         * @return the dsl builder
          */
-        default AWS2S3EndpointBuilder useIAMCredentials(String useIAMCredentials) {
-            doSetProperty("useIAMCredentials", useIAMCredentials);
+        default AWS2S3EndpointBuilder useDefaultCredentialsProvider(
+                String useDefaultCredentialsProvider) {
+            doSetProperty("useDefaultCredentialsProvider", useDefaultCredentialsProvider);
             return this;
         }
         /**
          * Amazon AWS Access Key.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param accessKey the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointBuilder accessKey(String accessKey) {
             doSetProperty("accessKey", accessKey);
@@ -2296,9 +2754,12 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Amazon AWS Secret Key.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: security
+         * 
+         * @param secretKey the value to set
+         * @return the dsl builder
          */
         default AWS2S3EndpointBuilder secretKey(String secretKey) {
             doSetProperty("secretKey", secretKey);
@@ -2319,9 +2780,12 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Define the customer algorithm to use in case CustomerKey is enabled.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common (advanced)
+         * 
+         * @param customerAlgorithm the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointBuilder customerAlgorithm(
                 String customerAlgorithm) {
@@ -2331,9 +2795,12 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Define the id of Customer key to use in case CustomerKey is enabled.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common (advanced)
+         * 
+         * @param customerKeyId the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointBuilder customerKeyId(String customerKeyId) {
             doSetProperty("customerKeyId", customerKeyId);
@@ -2342,9 +2809,12 @@ public interface AWS2S3EndpointBuilderFactory {
         /**
          * Define the MD5 of Customer key to use in case CustomerKey is enabled.
          * 
-         * The option is a: <code>java.lang.String</code> type.
+         * The option is a: &lt;code&gt;java.lang.String&lt;/code&gt; type.
          * 
          * Group: common (advanced)
+         * 
+         * @param customerKeyMD5 the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointBuilder customerKeyMD5(
                 String customerKeyMD5) {
@@ -2352,41 +2822,16 @@ public interface AWS2S3EndpointBuilderFactory {
             return this;
         }
         /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option is a: <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAWS2S3EndpointBuilder basicPropertyBinding(
-                boolean basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
-         * Whether the endpoint should use basic property binding (Camel 2.x) or
-         * the newer property binding with additional capabilities.
-         * 
-         * The option will be converted to a <code>boolean</code> type.
-         * 
-         * Default: false
-         * Group: advanced
-         */
-        default AdvancedAWS2S3EndpointBuilder basicPropertyBinding(
-                String basicPropertyBinding) {
-            doSetProperty("basicPropertyBinding", basicPropertyBinding);
-            return this;
-        }
-        /**
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option is a: <code>boolean</code> type.
+         * The option is a: &lt;code&gt;boolean&lt;/code&gt; type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointBuilder synchronous(boolean synchronous) {
             doSetProperty("synchronous", synchronous);
@@ -2396,10 +2841,14 @@ public interface AWS2S3EndpointBuilderFactory {
          * Sets whether synchronous processing should be strictly used, or Camel
          * is allowed to use asynchronous processing (if supported).
          * 
-         * The option will be converted to a <code>boolean</code> type.
+         * The option will be converted to a &lt;code&gt;boolean&lt;/code&gt;
+         * type.
          * 
          * Default: false
          * Group: advanced
+         * 
+         * @param synchronous the value to set
+         * @return the dsl builder
          */
         default AdvancedAWS2S3EndpointBuilder synchronous(String synchronous) {
             doSetProperty("synchronous", synchronous);
@@ -2426,7 +2875,8 @@ public interface AWS2S3EndpointBuilderFactory {
         deleteBucket,
         listBuckets,
         getObject,
-        getObjectRange;
+        getObjectRange,
+        createDownloadLink;
     }
 
     public interface AWS2S3Builders {
@@ -2445,6 +2895,7 @@ public interface AWS2S3EndpointBuilderFactory {
          * Bucket name or ARN
          * 
          * @param path //bucketNameOrArn
+         * @return the dsl builder
          */
         default AWS2S3EndpointBuilder aws2S3(String path) {
             return AWS2S3EndpointBuilderFactory.endpointBuilder("aws2-s3", path);
@@ -2466,6 +2917,7 @@ public interface AWS2S3EndpointBuilderFactory {
          * @param componentName to use a custom component name for the endpoint
          * instead of the default name
          * @param path //bucketNameOrArn
+         * @return the dsl builder
          */
         default AWS2S3EndpointBuilder aws2S3(String componentName, String path) {
             return AWS2S3EndpointBuilderFactory.endpointBuilder(componentName, path);

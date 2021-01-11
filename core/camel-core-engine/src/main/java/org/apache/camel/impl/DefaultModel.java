@@ -46,12 +46,14 @@ import org.apache.camel.model.cloud.ServiceCallConfigurationDefinition;
 import org.apache.camel.model.rest.RestDefinition;
 import org.apache.camel.model.transformer.TransformerDefinition;
 import org.apache.camel.model.validator.ValidatorDefinition;
+import org.apache.camel.spi.ModelReifierFactory;
 import org.apache.camel.util.AntPathMatcher;
 
 public class DefaultModel implements Model {
 
     private final CamelContext camelContext;
 
+    private ModelReifierFactory modelReifierFactory = new DefaultModelReifierFactory();
     private final List<ModelLifecycleStrategy> modelLifecycleStrategies = new ArrayList<>();
     private final List<RouteDefinition> routeDefinitions = new ArrayList<>();
     private final List<RouteTemplateDefinition> routeTemplateDefinitions = new ArrayList<>();
@@ -60,23 +62,14 @@ public class DefaultModel implements Model {
     private Map<String, DataFormatDefinition> dataFormats = new HashMap<>();
     private List<TransformerDefinition> transformers = new ArrayList<>();
     private List<ValidatorDefinition> validators = new ArrayList<>();
-    private Map<String, ServiceCallConfigurationDefinition> serviceCallConfigurations = new ConcurrentHashMap<>();
-    private Map<String, HystrixConfigurationDefinition> hystrixConfigurations = new ConcurrentHashMap<>();
-    private Map<String, Resilience4jConfigurationDefinition> resilience4jConfigurations = new ConcurrentHashMap<>();
-    private Map<String, FaultToleranceConfigurationDefinition> faultToleranceConfigurations = new ConcurrentHashMap<>();
+    private final Map<String, ServiceCallConfigurationDefinition> serviceCallConfigurations = new ConcurrentHashMap<>();
+    private final Map<String, HystrixConfigurationDefinition> hystrixConfigurations = new ConcurrentHashMap<>();
+    private final Map<String, Resilience4jConfigurationDefinition> resilience4jConfigurations = new ConcurrentHashMap<>();
+    private final Map<String, FaultToleranceConfigurationDefinition> faultToleranceConfigurations = new ConcurrentHashMap<>();
     private Function<RouteDefinition, Boolean> routeFilter;
 
     public DefaultModel(CamelContext camelContext) {
         this.camelContext = camelContext;
-    }
-
-    protected static <T> T lookup(CamelContext context, String ref, Class<T> type) {
-        try {
-            return context.getRegistry().lookupByNameAndType(ref, type);
-        } catch (Exception e) {
-            // need to ignore not same type and return it as null
-            return null;
-        }
     }
 
     public CamelContext getCamelContext() {
@@ -85,7 +78,10 @@ public class DefaultModel implements Model {
 
     @Override
     public void addModelLifecycleStrategy(ModelLifecycleStrategy modelLifecycleStrategy) {
-        this.modelLifecycleStrategies.add(modelLifecycleStrategy);
+        // avoid adding double which can happen with spring xml on spring boot
+        if (!this.modelLifecycleStrategies.contains(modelLifecycleStrategy)) {
+            this.modelLifecycleStrategies.add(modelLifecycleStrategy);
+        }
     }
 
     @Override
@@ -223,10 +219,11 @@ public class DefaultModel implements Model {
             throw new IllegalArgumentException("Cannot find RouteTemplate with id " + routeTemplateId);
         }
 
-        StringJoiner templatesBuilder = new StringJoiner(", ");
         final Map<String, Object> prop = new HashMap<>();
         // include default values first from the template (and validate that we have inputs for all required parameters)
         if (target.getTemplateParameters() != null) {
+            StringJoiner templatesBuilder = new StringJoiner(", ");
+
             for (RouteTemplateParameterDefinition temp : target.getTemplateParameters()) {
                 if (temp.getDefaultValue() != null) {
                     prop.put(temp.getName(), temp.getDefaultValue());
@@ -237,18 +234,19 @@ public class DefaultModel implements Model {
                     }
                 }
             }
+            if (templatesBuilder.length() > 0) {
+                throw new IllegalArgumentException(
+                        "Route template " + routeTemplateId + " the following mandatory parameters must be provided: "
+                                                   + templatesBuilder.toString());
+            }
         }
-        if (templatesBuilder.length() > 0) {
-            throw new IllegalArgumentException(
-                    "Route template " + routeTemplateId + " the following mandatory parameters must be provided: "
-                                               + templatesBuilder.toString());
-        }
+
         // then override with user parameters
         if (parameters != null) {
             prop.putAll(parameters);
         }
 
-        RouteTemplateDefinition.Converter converter = RouteTemplateDefinition::asRouteDefinition;
+        RouteTemplateDefinition.Converter converter = RouteTemplateDefinition.Converter.DEFAULT_CONVERTER;
 
         for (Map.Entry<String, RouteTemplateDefinition.Converter> entry : routeTemplateConverters.entrySet()) {
             final String key = entry.getKey();
@@ -266,7 +264,7 @@ public class DefaultModel implements Model {
             }
         }
 
-        RouteDefinition def = converter.apply(target);
+        RouteDefinition def = converter.apply(target, prop);
         if (routeId != null) {
             def.setId(routeId);
         }
@@ -489,11 +487,30 @@ public class DefaultModel implements Model {
         this.routeFilter = routeFilter;
     }
 
+    @Override
+    public ModelReifierFactory getModelReifierFactory() {
+        return modelReifierFactory;
+    }
+
+    @Override
+    public void setModelReifierFactory(ModelReifierFactory modelReifierFactory) {
+        this.modelReifierFactory = modelReifierFactory;
+    }
+
     /**
      * Should we start newly added routes?
      */
     protected boolean shouldStartRoutes() {
         return camelContext.isStarted() && !camelContext.isStarting();
+    }
+
+    private static <T> T lookup(CamelContext context, String ref, Class<T> type) {
+        try {
+            return context.getRegistry().lookupByNameAndType(ref, type);
+        } catch (Exception e) {
+            // need to ignore not same type and return it as null
+            return null;
+        }
     }
 
 }

@@ -2,6 +2,7 @@
 package org.apache.camel.component.jcr;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,27 +18,28 @@ public class JcrEndpointUriFactory extends org.apache.camel.support.component.En
     private static final String BASE = ":host/base";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(18);
-        set.add("host");
-        set.add("base");
-        set.add("deep");
-        set.add("eventTypes");
-        set.add("nodeTypeNames");
-        set.add("noLocal");
-        set.add("password");
-        set.add("sessionLiveCheckInterval");
-        set.add("sessionLiveCheckIntervalOnStart");
-        set.add("username");
-        set.add("uuids");
-        set.add("workspaceName");
-        set.add("bridgeErrorHandler");
-        set.add("exceptionHandler");
-        set.add("exchangePattern");
-        set.add("lazyStartProducer");
-        set.add("basicPropertyBinding");
-        set.add("synchronous");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(17);
+        props.add("deep");
+        props.add("sessionLiveCheckInterval");
+        props.add("synchronous");
+        props.add("exchangePattern");
+        props.add("eventTypes");
+        props.add("noLocal");
+        props.add("password");
+        props.add("lazyStartProducer");
+        props.add("bridgeErrorHandler");
+        props.add("host");
+        props.add("workspaceName");
+        props.add("nodeTypeNames");
+        props.add("exceptionHandler");
+        props.add("base");
+        props.add("sessionLiveCheckIntervalOnStart");
+        props.add("username");
+        props.add("uuids");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        SECRET_PROPERTY_NAMES = Collections.emptySet();
     }
 
     @Override
@@ -46,7 +48,7 @@ public class JcrEndpointUriFactory extends org.apache.camel.support.component.En
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
@@ -54,13 +56,18 @@ public class JcrEndpointUriFactory extends org.apache.camel.support.component.En
 
         uri = buildPathParameter(syntax, uri, "host", null, true, copy);
         uri = buildPathParameter(syntax, uri, "base", null, false, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

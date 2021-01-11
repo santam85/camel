@@ -2,6 +2,7 @@
 package org.apache.camel.component.infinispan;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,31 +18,44 @@ public class InfinispanEndpointUriFactory extends org.apache.camel.support.compo
     private static final String BASE = ":cacheName";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(22);
-        set.add("cacheName");
-        set.add("hosts");
-        set.add("queryBuilder");
-        set.add("bridgeErrorHandler");
-        set.add("clusteredListener");
-        set.add("command");
-        set.add("customListener");
-        set.add("eventTypes");
-        set.add("sync");
-        set.add("exceptionHandler");
-        set.add("exchangePattern");
-        set.add("lazyStartProducer");
-        set.add("operation");
-        set.add("basicPropertyBinding");
-        set.add("cacheContainer");
-        set.add("cacheContainerConfiguration");
-        set.add("configurationProperties");
-        set.add("configurationUri");
-        set.add("flags");
-        set.add("remappingFunction");
-        set.add("resultHeader");
-        set.add("synchronous");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(31);
+        props.add("defaultValue");
+        props.add("synchronous");
+        props.add("flags");
+        props.add("secure");
+        props.add("resultHeader");
+        props.add("configurationUri");
+        props.add("clusteredListener");
+        props.add("password");
+        props.add("cacheName");
+        props.add("bridgeErrorHandler");
+        props.add("oldValue");
+        props.add("configurationProperties");
+        props.add("value");
+        props.add("key");
+        props.add("securityServerName");
+        props.add("customListener");
+        props.add("hosts");
+        props.add("securityRealm");
+        props.add("exchangePattern");
+        props.add("saslMechanism");
+        props.add("eventTypes");
+        props.add("cacheContainer");
+        props.add("sync");
+        props.add("command");
+        props.add("lazyStartProducer");
+        props.add("remappingFunction");
+        props.add("cacheContainerConfiguration");
+        props.add("exceptionHandler");
+        props.add("operation");
+        props.add("queryBuilder");
+        props.add("username");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        Set<String> secretProps = new HashSet<>(1);
+        secretProps.add("password");
+        SECRET_PROPERTY_NAMES = Collections.unmodifiableSet(secretProps);
     }
 
     @Override
@@ -50,20 +64,25 @@ public class InfinispanEndpointUriFactory extends org.apache.camel.support.compo
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
         Map<String, Object> copy = new HashMap<>(properties);
 
         uri = buildPathParameter(syntax, uri, "cacheName", null, true, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

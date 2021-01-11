@@ -288,8 +288,9 @@ public class MinaConsumer extends DefaultConsumer {
         }
         appendIoFiltersToChain(filters, acceptor.getFilterChain());
         if (configuration.getSslContextParameters() != null) {
-            LOG.warn("Using datagram protocol, " + configuration.getProtocol()
-                     + ", but an SSLContextParameters instance was provided.  SSLContextParameters is only supported on the TCP protocol.");
+            LOG.warn("Using datagram protocol, {}, but an SSLContextParameters instance was provided. "
+                     + "SSLContextParameters is only supported on the TCP protocol.",
+                    configuration.getProtocol());
         }
     }
 
@@ -352,7 +353,7 @@ public class MinaConsumer extends DefaultConsumer {
     }
 
     private void appendIoFiltersToChain(List<IoFilter> filters, DefaultIoFilterChainBuilder filterChain) {
-        if (filters != null && filters.size() > 0) {
+        if (filters != null && !filters.isEmpty()) {
             for (IoFilter ioFilter : filters) {
                 filterChain.addLast(ioFilter.getClass().getCanonicalName(), ioFilter);
             }

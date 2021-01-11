@@ -57,7 +57,6 @@ import org.apache.camel.RuntimeCamelException;
 import org.apache.camel.RuntimeExpressionException;
 import org.apache.camel.WrappedFile;
 import org.apache.camel.spi.ExpressionResultTypeAware;
-import org.apache.camel.spi.GeneratedPropertyConfigurer;
 import org.apache.camel.spi.Language;
 import org.apache.camel.spi.NamespaceAware;
 import org.apache.camel.support.DefaultExchange;
@@ -65,7 +64,6 @@ import org.apache.camel.support.ExchangeHelper;
 import org.apache.camel.support.MessageHelper;
 import org.apache.camel.support.builder.Namespaces;
 import org.apache.camel.support.builder.xml.XMLConverterHelper;
-import org.apache.camel.support.component.PropertyConfigurerSupport;
 import org.apache.camel.support.service.ServiceSupport;
 import org.apache.camel.util.IOHelper;
 import org.apache.camel.util.ObjectHelper;
@@ -73,11 +71,7 @@ import org.apache.camel.util.StringHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.apache.camel.support.builder.Namespaces.DEFAULT_NAMESPACE;
-import static org.apache.camel.support.builder.Namespaces.FUNCTION_NAMESPACE;
-import static org.apache.camel.support.builder.Namespaces.IN_NAMESPACE;
-import static org.apache.camel.support.builder.Namespaces.OUT_NAMESPACE;
-import static org.apache.camel.support.builder.Namespaces.isMatchingNamespaceOrEmptyNamespace;
+import static org.apache.camel.support.builder.Namespaces.*;
 
 /**
  * Creates an XPath expression builder which creates a nodeset result by default. If you want to evaluate a String
@@ -96,7 +90,7 @@ import static org.apache.camel.support.builder.Namespaces.isMatchingNamespaceOrE
  */
 public class XPathBuilder extends ServiceSupport
         implements CamelContextAware, Expression, Predicate,
-        NamespaceAware, ExpressionResultTypeAware, GeneratedPropertyConfigurer {
+        NamespaceAware, ExpressionResultTypeAware {
     private static final Logger LOG = LoggerFactory.getLogger(XPathBuilder.class);
     private static final String SAXON_OBJECT_MODEL_URI = "http://saxon.sf.net/jaxp/xpath/om";
     private static final String SAXON_FACTORY_CLASS_NAME = "net.sf.saxon.xpath.XPathFactoryImpl";
@@ -111,6 +105,7 @@ public class XPathBuilder extends ServiceSupport
     private final ThreadLocal<Exchange> exchange = new ThreadLocal<>();
     private final MessageVariableResolver variableResolver = new MessageVariableResolver(exchange);
     private final Map<String, String> namespaces = new ConcurrentHashMap<>();
+    private boolean preCompile = true;
     private boolean threadSafety;
     private volatile XPathFactory xpathFactory;
     private volatile Class<?> documentType = Document.class;
@@ -168,48 +163,14 @@ public class XPathBuilder extends ServiceSupport
 
     @Override
     public void init(CamelContext context) {
-    }
-
-    @Override
-    public boolean configure(CamelContext camelContext, Object target, String name, Object value, boolean ignoreCase) {
-        if (target != this) {
-            throw new IllegalStateException("Can only configure our own instance !");
-        }
-        switch (ignoreCase ? name.toLowerCase() : name) {
-            case "documenttype":
-            case "documentType":
-                setDocumentType(PropertyConfigurerSupport.property(camelContext, Class.class, value));
-                return true;
-            case "resulttype":
-            case "resultType":
-                setResultType(PropertyConfigurerSupport.property(camelContext, Class.class, value));
-                return true;
-            case "usesaxon":
-            case "useSaxon":
-                setUseSaxon(PropertyConfigurerSupport.property(camelContext, Boolean.class, value));
-                return true;
-            case "xpathfactory":
-            case "xPathFactory":
-                setXPathFactory(PropertyConfigurerSupport.property(camelContext, XPathFactory.class, value));
-                return true;
-            case "objectmodeluri":
-            case "objectModelUri":
-                setObjectModelUri(PropertyConfigurerSupport.property(camelContext, String.class, value));
-                return true;
-            case "threadsafety":
-            case "threadSafety":
-                setThreadSafety(PropertyConfigurerSupport.property(camelContext, Boolean.class, value));
-                return true;
-            case "lognamespaces":
-            case "logNamespaces":
-                setLogNamespaces(PropertyConfigurerSupport.property(camelContext, Boolean.class, value));
-                return true;
-            case "headername":
-            case "headerName":
-                setHeaderName(PropertyConfigurerSupport.property(camelContext, String.class, value));
-                return true;
-            default:
-                return false;
+        if (preCompile) {
+            LOG.trace("PreCompiling new XPathExpression and adding to pool during initialization");
+            try {
+                XPathExpression xpathExpression = createXPathExpression();
+                pool.add(xpathExpression);
+            } catch (XPathExpressionException e) {
+                throw RuntimeCamelException.wrapRuntimeException(e);
+            }
         }
     }
 
@@ -541,6 +502,21 @@ public class XPathBuilder extends ServiceSupport
         return this;
     }
 
+    /**
+     * Whether to enable pre-compiling the xpath expression during initialization phase. pre-compile is enabled by
+     * default.
+     *
+     * This can be used to turn off, for example in cases the compilation phase is desired at the starting phase, such
+     * as if the application is ahead of time compiled (for example with camel-quarkus) which would then load the xpath
+     * factory of the built operating system, and not a JVM runtime.
+     *
+     * @return the current builder.
+     */
+    public XPathBuilder preCompile(boolean preCompile) {
+        setPreCompile(preCompile);
+        return this;
+    }
+
     // Properties
     // -------------------------------------------------------------------------
 
@@ -594,6 +570,14 @@ public class XPathBuilder extends ServiceSupport
 
     public void setThreadSafety(boolean threadSafety) {
         this.threadSafety = threadSafety;
+    }
+
+    public boolean isPreCompile() {
+        return preCompile;
+    }
+
+    public void setPreCompile(boolean preCompile) {
+        this.preCompile = preCompile;
     }
 
     /**
@@ -1123,7 +1107,7 @@ public class XPathBuilder extends ServiceSupport
      * started prior to being used.
      */
     protected synchronized XPathExpression createXPathExpression()
-            throws XPathExpressionException, XPathFactoryConfigurationException {
+            throws XPathExpressionException {
         // ensure we are started
         try {
             start();
@@ -1151,7 +1135,7 @@ public class XPathBuilder extends ServiceSupport
     }
 
     protected synchronized XPathExpression createTraceNamespaceExpression()
-            throws XPathFactoryConfigurationException, XPathExpressionException {
+            throws XPathExpressionException {
         // XPathFactory is not thread safe
         XPath xPath = getXPathFactory().newXPath();
         return xPath.compile(OBTAIN_ALL_NS_XPATH);

@@ -2,6 +2,7 @@
 package org.apache.camel.component.elasticsearch;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,29 +18,30 @@ public class ElasticsearchEndpointUriFactory extends org.apache.camel.support.co
     private static final String BASE = ":clusterName";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(20);
-        set.add("clusterName");
-        set.add("connectionTimeout");
-        set.add("disconnect");
-        set.add("enableSniffer");
-        set.add("enableSSL");
-        set.add("from");
-        set.add("hostAddresses");
-        set.add("indexName");
-        set.add("lazyStartProducer");
-        set.add("maxRetryTimeout");
-        set.add("operation");
-        set.add("scrollKeepAliveMs");
-        set.add("size");
-        set.add("sniffAfterFailureDelay");
-        set.add("snifferInterval");
-        set.add("socketTimeout");
-        set.add("useScroll");
-        set.add("waitForActiveShards");
-        set.add("basicPropertyBinding");
-        set.add("synchronous");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(19);
+        props.add("waitForActiveShards");
+        props.add("disconnect");
+        props.add("sniffAfterFailureDelay");
+        props.add("maxRetryTimeout");
+        props.add("indexName");
+        props.add("synchronous");
+        props.add("enableSniffer");
+        props.add("hostAddresses");
+        props.add("scrollKeepAliveMs");
+        props.add("snifferInterval");
+        props.add("enableSSL");
+        props.add("lazyStartProducer");
+        props.add("size");
+        props.add("clusterName");
+        props.add("socketTimeout");
+        props.add("from");
+        props.add("useScroll");
+        props.add("connectionTimeout");
+        props.add("operation");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        SECRET_PROPERTY_NAMES = Collections.emptySet();
     }
 
     @Override
@@ -48,20 +50,25 @@ public class ElasticsearchEndpointUriFactory extends org.apache.camel.support.co
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
         Map<String, Object> copy = new HashMap<>(properties);
 
         uri = buildPathParameter(syntax, uri, "clusterName", null, true, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

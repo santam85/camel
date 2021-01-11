@@ -2,6 +2,7 @@
 package org.apache.camel.component.xmlsecurity;
 
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,29 +18,30 @@ public class XmlVerifierEndpointUriFactory extends org.apache.camel.support.comp
     private static final String BASE = ":name";
 
     private static final Set<String> PROPERTY_NAMES;
+    private static final Set<String> SECRET_PROPERTY_NAMES;
     static {
-        Set<String> set = new HashSet<>(20);
-        set.add("name");
-        set.add("baseUri");
-        set.add("clearHeaders");
-        set.add("cryptoContextProperties");
-        set.add("disallowDoctypeDecl");
-        set.add("keySelector");
-        set.add("lazyStartProducer");
-        set.add("omitXmlDeclaration");
-        set.add("outputNodeSearch");
-        set.add("outputNodeSearchType");
-        set.add("outputXmlEncoding");
-        set.add("removeSignatureElements");
-        set.add("schemaResourceUri");
-        set.add("secureValidation");
-        set.add("validationFailedHandler");
-        set.add("xmlSignature2Message");
-        set.add("xmlSignatureChecker");
-        set.add("basicPropertyBinding");
-        set.add("synchronous");
-        set.add("uriDereferencer");
-        PROPERTY_NAMES = set;
+        Set<String> props = new HashSet<>(19);
+        props.add("omitXmlDeclaration");
+        props.add("clearHeaders");
+        props.add("synchronous");
+        props.add("outputXmlEncoding");
+        props.add("outputNodeSearch");
+        props.add("outputNodeSearchType");
+        props.add("schemaResourceUri");
+        props.add("lazyStartProducer");
+        props.add("validationFailedHandler");
+        props.add("xmlSignatureChecker");
+        props.add("uriDereferencer");
+        props.add("disallowDoctypeDecl");
+        props.add("baseUri");
+        props.add("keySelector");
+        props.add("name");
+        props.add("removeSignatureElements");
+        props.add("cryptoContextProperties");
+        props.add("secureValidation");
+        props.add("xmlSignature2Message");
+        PROPERTY_NAMES = Collections.unmodifiableSet(props);
+        SECRET_PROPERTY_NAMES = Collections.emptySet();
     }
 
     @Override
@@ -48,20 +50,25 @@ public class XmlVerifierEndpointUriFactory extends org.apache.camel.support.comp
     }
 
     @Override
-    public String buildUri(String scheme, Map<String, Object> properties) throws URISyntaxException {
+    public String buildUri(String scheme, Map<String, Object> properties, boolean encode) throws URISyntaxException {
         String syntax = scheme + BASE;
         String uri = syntax;
 
         Map<String, Object> copy = new HashMap<>(properties);
 
         uri = buildPathParameter(syntax, uri, "name", null, true, copy);
-        uri = buildQueryParameters(uri, copy);
+        uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
 
     @Override
     public Set<String> propertyNames() {
         return PROPERTY_NAMES;
+    }
+
+    @Override
+    public Set<String> secretPropertyNames() {
+        return SECRET_PROPERTY_NAMES;
     }
 
     @Override

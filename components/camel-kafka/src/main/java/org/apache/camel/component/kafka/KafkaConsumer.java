@@ -451,11 +451,13 @@ public class KafkaConsumer extends DefaultConsumer {
                 boolean forceCommit) {
             if (partitionLastOffset != -1) {
                 if (!endpoint.getConfiguration().isAllowManualCommit() && offsetRepository != null) {
-                    LOG.debug("Saving offset repository state {} from topic {} with offset: {}", threadId, topicName,
+                    LOG.debug("Saving offset repository state {} [topic: {} partition: {} offset: {}]", threadId, topicName,
+                            partition.partition(),
                             partitionLastOffset);
                     offsetRepository.setState(serializeOffsetKey(partition), serializeOffsetValue(partitionLastOffset));
                 } else if (forceCommit) {
-                    LOG.debug("Forcing commitSync {} from topic {} with offset: {}", threadId, topicName, partitionLastOffset);
+                    LOG.debug("Forcing commitSync {} [topic: {} partition: {} offset: {}]", threadId, topicName,
+                            partition.partition(), partitionLastOffset);
                     consumer.commitSync(Collections.singletonMap(partition, new OffsetAndMetadata(partitionLastOffset + 1)));
                 }
             }
@@ -515,7 +517,7 @@ public class KafkaConsumer extends DefaultConsumer {
     private void propagateHeaders(
             ConsumerRecord<Object, Object> record, Exchange exchange, KafkaConfiguration kafkaConfiguration) {
         HeaderFilterStrategy headerFilterStrategy = kafkaConfiguration.getHeaderFilterStrategy();
-        KafkaHeaderDeserializer headerDeserializer = kafkaConfiguration.getKafkaHeaderDeserializer();
+        KafkaHeaderDeserializer headerDeserializer = kafkaConfiguration.getHeaderDeserializer();
         StreamSupport.stream(record.headers().spliterator(), false)
                 .filter(header -> shouldBeFiltered(header, exchange, headerFilterStrategy))
                 .forEach(header -> exchange.getIn().setHeader(header.key(),

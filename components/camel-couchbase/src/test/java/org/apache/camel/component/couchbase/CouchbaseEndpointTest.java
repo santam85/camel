@@ -16,7 +16,9 @@
  */
 package org.apache.camel.component.couchbase;
 
-import com.couchbase.client.core.error.InvalidArgumentException;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.camel.Processor;
 import org.junit.jupiter.api.Test;
 
@@ -32,12 +34,6 @@ public class CouchbaseEndpointTest {
         CouchbaseEndpoint endpoint = new CouchbaseEndpoint(
                 "couchbase:http://localhost/bucket", "http://localhost/bucket", new CouchbaseComponent());
         assertTrue(endpoint.isSingleton());
-    }
-
-    @Test
-    public void testBucketRequired() throws Exception {
-        assertThrows(IllegalArgumentException.class,
-                () -> new CouchbaseEndpoint("couchbase:http://localhost:80", "http://localhost:80", new CouchbaseComponent()));
     }
 
     @Test
@@ -77,8 +73,12 @@ public class CouchbaseEndpointTest {
 
     @Test
     public void testCouchbaseEndpointCreateProducer() throws Exception {
-        assertThrows(InvalidArgumentException.class,
-                () -> new CouchbaseEndpoint("couchbase:localhost:80/bucket", new CouchbaseComponent()).createProducer());
+        Map<String, Object> params = new HashMap<>();
+        params.put("bucket", "bucket");
+        assertThrows(IllegalArgumentException.class,
+                () -> new CouchbaseComponent()
+                        .createEndpoint("couchbase:localhost:80/bucket", "couchbase:localhost:80/bucket", params)
+                        .createProducer());
     }
 
     @Test
@@ -86,8 +86,13 @@ public class CouchbaseEndpointTest {
         Processor p = exchange -> {
             // Nothing to do
         };
-        assertThrows(InvalidArgumentException.class,
-                () -> new CouchbaseEndpoint("couchbase:localhost:80/bucket", new CouchbaseComponent()).createConsumer(p));
+        Map<String, Object> params = new HashMap<>();
+        params.put("bucket", "bucket");
+
+        assertThrows(IllegalArgumentException.class,
+                () -> new CouchbaseComponent()
+                        .createEndpoint("couchbase:localhost:80/bucket", "couchbase:localhost:80/bucket", params)
+                        .createConsumer(p));
     }
 
     @Test

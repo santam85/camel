@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-olingo2-parent</artifactId>
-        <version>3.6.0-SNAPSHOT</version>
+        <version>3.8.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>camel-olingo2</artifactId>
@@ -319,7 +319,7 @@
                                     <goal>generate</goal>
                                 </goals>
                                 <configuration>
-                                    <basedir>${project.build.directory}</basedir>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
                                     <interactiveMode>false</interactiveMode>
                                     <archetypeGroupId>org.apache.olingo</archetypeGroupId>
                                     <archetypeArtifactId>olingo-odata2-sample-cars-annotation-archetype

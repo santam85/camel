@@ -8,7 +8,7 @@
 :since: 2.24
 :supportLevel: Stable
 :component-header: Both producer and consumer are supported
-include::{cq-version}@camel-quarkus:ROOT:partial$reference/components/pulsar.adoc[]
+include::{cq-version}@camel-quarkus:ROOT:partial$reference/components/pulsar.adoc[opts=optional]
 
 *Since Camel {since}*
 
@@ -38,7 +38,7 @@ pulsar:[persistent|non-persistent]://tenant/namespace/topic
 
 
 // component options: START
-The Pulsar component supports 35 options, which are listed below.
+The Pulsar component supports 36 options, which are listed below.
 
 
 
@@ -57,6 +57,7 @@ The Pulsar component supports 35 options, which are listed below.
 | *maxRedeliverCount* (consumer) | Maximum number of times that a message will be redelivered before being sent to the dead letter queue. If this value is not set, no Dead Letter Policy will be created |  | Integer
 | *negativeAckRedeliveryDelay{zwsp}Micros* (consumer) | Set the negative acknowledgement delay | 60000000 | long
 | *numberOfConsumers* (consumer) | Number of consumers - defaults to 1 | 1 | int
+| *readCompacted* (consumer) | Enable compacted topic reading. | false | boolean
 | *subscriptionInitialPosition* (consumer) | Control the initial position in the topic of a newly created subscription. Default is latest message. There are 2 enums and the value can be one of: EARLIEST, LATEST | LATEST | SubscriptionInitialPosition
 | *subscriptionName* (consumer) | Name of the subscription to use | subs | String
 | *subscriptionTopicsMode* (consumer) | Determines to which topics this consumer should be subscribed to - Persistent, Non-Persistent, or both. Only used with pattern subscriptions. There are 3 enums and the value can be one of: PersistentOnly, NonPersistentOnly, AllTopics | PersistentOnly | RegexSubscriptionMode
@@ -78,8 +79,8 @@ The Pulsar component supports 35 options, which are listed below.
 | *producerName* (producer) | Name of the producer. If unset, lets Pulsar select a unique identifier. |  | String
 | *sendTimeoutMs* (producer) | Send timeout in milliseconds | 30000 | int
 | *autoConfiguration* (advanced) | The pulsar auto configuration |  | AutoConfiguration
-| *basicPropertyBinding* (advanced) | *Deprecated* Whether the component should use basic property binding (Camel 2.x) or the newer property binding with additional capabilities | false | boolean
-| *pulsarClient* (advanced) | The pulsar client |  | PulsarClient
+| *autowiredEnabled* (advanced) | Whether autowiring is enabled. This is used for automatic autowiring options (the option must be marked as autowired) by looking up in the registry to find if there is a single instance of matching type, which then gets configured on the component. This can be used for automatic configuring JDBC data sources, JMS connection factories, AWS Clients, etc. | true | boolean
+| *pulsarClient* (advanced) | *Autowired* The pulsar client |  | PulsarClient
 |===
 // component options: END
 
@@ -126,6 +127,7 @@ with the following path and query parameters:
 | *maxRedeliverCount* (consumer) | Maximum number of times that a message will be redelivered before being sent to the dead letter queue. If this value is not set, no Dead Letter Policy will be created |  | Integer
 | *negativeAckRedeliveryDelay{zwsp}Micros* (consumer) | Set the negative acknowledgement delay | 60000000 | long
 | *numberOfConsumers* (consumer) | Number of consumers - defaults to 1 | 1 | int
+| *readCompacted* (consumer) | Enable compacted topic reading. | false | boolean
 | *subscriptionInitialPosition* (consumer) | Control the initial position in the topic of a newly created subscription. Default is latest message. There are 2 enums and the value can be one of: EARLIEST, LATEST | LATEST | SubscriptionInitialPosition
 | *subscriptionName* (consumer) | Name of the subscription to use | subs | String
 | *subscriptionTopicsMode* (consumer) | Determines to which topics this consumer should be subscribed to - Persistent, Non-Persistent, or both. Only used with pattern subscriptions. There are 3 enums and the value can be one of: PersistentOnly, NonPersistentOnly, AllTopics | PersistentOnly | RegexSubscriptionMode
@@ -147,7 +149,6 @@ with the following path and query parameters:
 | *messageRoutingMode* (producer) | Message Routing Mode to use. There are 3 enums and the value can be one of: SinglePartition, RoundRobinPartition, CustomPartition | RoundRobinPartition | MessageRoutingMode
 | *producerName* (producer) | Name of the producer. If unset, lets Pulsar select a unique identifier. |  | String
 | *sendTimeoutMs* (producer) | Send timeout in milliseconds | 30000 | int
-| *basicPropertyBinding* (advanced) | Whether the endpoint should use basic property binding (Camel 2.x) or the newer property binding with additional capabilities | false | boolean
 | *synchronous* (advanced) | Sets whether synchronous processing should be strictly used, or Camel is allowed to use asynchronous processing (if supported). | true | boolean
 |===
 // endpoint options: END

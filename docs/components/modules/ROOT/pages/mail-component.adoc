@@ -8,7 +8,7 @@
 :since: 1.0
 :supportLevel: Stable
 :component-header: Both producer and consumer are supported
-include::{cq-version}@camel-quarkus:ROOT:partial$reference/components/mail.adoc[]
+include::{cq-version}@camel-quarkus:ROOT:partial$reference/components/mail.adoc[opts=optional]
 
 *Since Camel {since}*
 
@@ -100,7 +100,7 @@ You can append query options to the URI in the following format,
 
 
 // component options: START
-The Mail component supports 42 options, which are listed below.
+The Mail component supports 43 options, which are listed below.
 
 
 
@@ -110,6 +110,7 @@ The Mail component supports 42 options, which are listed below.
 | *bridgeErrorHandler* (consumer) | Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions occurred while the consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored. | false | boolean
 | *closeFolder* (consumer) | Whether the consumer should close the folder after polling. Setting this option to false and having disconnect=false as well, then the consumer keep the folder open between polls. | true | boolean
 | *copyTo* (consumer) | After processing a mail message, it can be copied to a mail folder with the given name. You can override this configuration value, with a header with the key copyTo, allowing you to copy messages to folder names configured at runtime. |  | String
+| *decodeFilename* (consumer) | If set to true, the MimeUtility.decodeText method will be used to decode the filename. This is similar to setting JVM system property mail.mime.encodefilename. | false | boolean
 | *delete* (consumer) | Deletes the messages after they have been processed. This is done by setting the DELETED flag on the mail message. If false, the SEEN flag is set instead. As of Camel 2.10 you can override this configuration option by setting a header with the key delete to determine if the mail should be deleted or not. | false | boolean
 | *disconnect* (consumer) | Whether the consumer should disconnect after polling. If enabled this forces Camel to connect on each poll. | false | boolean
 | *handleFailedMessage* (consumer) | If the mail consumer cannot retrieve a given mail message, then this option allows to handle the caused exception by the consumer's error handler. By enable the bridge error handler on the consumer, then the Camel routing error handler can handle the exception instead. The default behavior would be the consumer throws an exception and no mails from the batch would be able to be routed by Camel. | false | boolean
@@ -133,7 +134,7 @@ The Mail component supports 42 options, which are listed below.
 | *alternativeBodyHeader* (advanced) | Specifies the key to an IN message header that contains an alternative email body. For example, if you send emails in text/html format and want to provide an alternative mail body for non-HTML email clients, set the alternative mail body with this key as a header. | CamelMailAlternativeBody | String
 | *attachmentsContentTransfer{zwsp}EncodingResolver* (advanced) | To use a custom AttachmentsContentTransferEncodingResolver to resolve what content-type-encoding to use for attachments. |  | AttachmentsContentTransferEncodingResolver
 | *authenticator* (advanced) | The authenticator for login. If set then the password and username are ignored. Can be used for tokens which can expire and therefore must be read dynamically. |  | MailAuthenticator
-| *basicPropertyBinding* (advanced) | *Deprecated* Whether the component should use basic property binding (Camel 2.x) or the newer property binding with additional capabilities | false | boolean
+| *autowiredEnabled* (advanced) | Whether autowiring is enabled. This is used for automatic autowiring options (the option must be marked as autowired) by looking up in the registry to find if there is a single instance of matching type, which then gets configured on the component. This can be used for automatic configuring JDBC data sources, JMS connection factories, AWS Clients, etc. | true | boolean
 | *configuration* (advanced) | Sets the Mail configuration |  | MailConfiguration
 | *connectionTimeout* (advanced) | The connection timeout in milliseconds. | 30000 | int
 | *contentType* (advanced) | The mail message content type. Use text/html for HTML mails. | text/plain | String
@@ -186,6 +187,7 @@ with the following path and query parameters:
 | *bridgeErrorHandler* (consumer) | Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions occurred while the consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored. | false | boolean
 | *closeFolder* (consumer) | Whether the consumer should close the folder after polling. Setting this option to false and having disconnect=false as well, then the consumer keep the folder open between polls. | true | boolean
 | *copyTo* (consumer) | After processing a mail message, it can be copied to a mail folder with the given name. You can override this configuration value, with a header with the key copyTo, allowing you to copy messages to folder names configured at runtime. |  | String
+| *decodeFilename* (consumer) | If set to true, the MimeUtility.decodeText method will be used to decode the filename. This is similar to setting JVM system property mail.mime.encodefilename. | false | boolean
 | *delete* (consumer) | Deletes the messages after they have been processed. This is done by setting the DELETED flag on the mail message. If false, the SEEN flag is set instead. As of Camel 2.10 you can override this configuration option by setting a header with the key delete to determine if the mail should be deleted or not. | false | boolean
 | *disconnect* (consumer) | Whether the consumer should disconnect after polling. If enabled this forces Camel to connect on each poll. | false | boolean
 | *handleFailedMessage* (consumer) | If the mail consumer cannot retrieve a given mail message, then this option allows to handle the caused exception by the consumer's error handler. By enable the bridge error handler on the consumer, then the Camel routing error handler can handle the exception instead. The default behavior would be the consumer throws an exception and no mails from the batch would be able to be routed by Camel. | false | boolean
@@ -216,7 +218,6 @@ with the following path and query parameters:
 | *alternativeBodyHeader* (advanced) | Specifies the key to an IN message header that contains an alternative email body. For example, if you send emails in text/html format and want to provide an alternative mail body for non-HTML email clients, set the alternative mail body with this key as a header. | CamelMailAlternativeBody | String
 | *attachmentsContentTransfer{zwsp}EncodingResolver* (advanced) | To use a custom AttachmentsContentTransferEncodingResolver to resolve what content-type-encoding to use for attachments. |  | AttachmentsContentTransferEncodingResolver
 | *authenticator* (advanced) | The authenticator for login. If set then the password and username are ignored. Can be used for tokens which can expire and therefore must be read dynamically. |  | MailAuthenticator
-| *basicPropertyBinding* (advanced) | Whether the endpoint should use basic property binding (Camel 2.x) or the newer property binding with additional capabilities | false | boolean
 | *binding* (advanced) | Sets the binding used to convert from a Camel message to and from a Mail message |  | MailBinding
 | *connectionTimeout* (advanced) | The connection timeout in milliseconds. | 30000 | int
 | *contentType* (advanced) | The mail message content type. Use text/html for HTML mails. | text/plain | String
@@ -546,7 +547,8 @@ mail from java code:
 ---------------------------------------------------------------------------------
 public void process(Exchange exchange) throws Exception {
     // the API is a bit clunky so we need to loop
-    Map<String, DataHandler> attachments = exchange.getIn().getAttachments();
+    AttachmentMessage attachmentMessage = exchange.getMessage(AttachmentMessage.class);
+    Map<String, DataHandler> attachments = attachmentMessage.getAttachments();
     if (attachments.size() > 0) {
         for (String name : attachments.keySet()) {
             DataHandler dh = attachments.get(name);

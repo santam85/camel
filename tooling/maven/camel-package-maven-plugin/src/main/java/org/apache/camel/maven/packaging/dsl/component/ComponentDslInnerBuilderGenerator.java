@@ -18,6 +18,7 @@ package org.apache.camel.maven.packaging.dsl.component;
 
 import org.apache.camel.maven.packaging.dsl.DslHelper;
 import org.apache.camel.tooling.model.ComponentModel;
+import org.apache.camel.tooling.util.JavadocHelper;
 import org.apache.camel.tooling.util.srcgen.JavaClass;
 import org.apache.camel.tooling.util.srcgen.Method;
 import org.apache.commons.lang3.StringUtils;
@@ -81,24 +82,30 @@ public final class ComponentDslInnerBuilderGenerator {
             if (componentOptionModel.isDeprecated()) {
                 method.addAnnotation(Deprecated.class);
             }
-            method.getJavaDoc().setFullText(generateOptionDescription(componentOptionModel));
+            String doc = generateOptionDescription(componentOptionModel);
+            doc = JavadocHelper.xmlEncode(doc);
+            doc += "\n\n@param " + componentOptionModel.getName() + " the value to set";
+            doc += "\n@return the dsl builder\n";
+            method.getJavaDoc().setText(doc);
         });
     }
 
     private String generateOptionDescription(final ComponentModel.ComponentOptionModel componentOptionModel) {
-        String desc = componentOptionModel.getDescription();
+        String desc = JavadocHelper.xmlEncode(componentOptionModel.getDescription());
         if (!desc.endsWith(".")) {
             desc += ".";
         }
         desc += "\n";
-        desc += "\nThe option is a: <code>" + componentOptionModel.getJavaType() + "</code> type.";
+        desc += "\nThe option is a: <code>" + JavadocHelper.xmlEncode(componentOptionModel.getJavaType()) + "</code> type.";
         desc += "\n";
         if ("parameter".equals(componentOptionModel.getKind()) && componentOptionModel.isRequired()) {
             desc += "\nRequired: true";
         }
         // include default value (if any)
         if (componentOptionModel.getDefaultValue() != null) {
-            desc += "\nDefault: " + componentOptionModel.getDefaultValue();
+            // must xml encode description as in some rare cases it contains & chars which is invalid javadoc
+            String text = JavadocHelper.xmlEncode(componentOptionModel.getDefaultValue().toString());
+            desc += "\nDefault: " + text;
         }
         desc += "\nGroup: " + componentOptionModel.getGroup();
 

@@ -173,6 +173,10 @@ public class RabbitMQEndpoint extends DefaultEndpoint implements AsyncEndpoint {
     @UriParam(label = "producer")
     private boolean allowNullHeaders;
     @UriParam(label = "producer")
+    private Map<String, Object> additionalHeaders;
+    @UriParam(label = "producer")
+    private Map<String, Object> additionalProperties;
+    @UriParam(label = "producer")
     private boolean allowCustomHeaders = true;
     @UriParam(label = "consumer")
     private String consumerTag = "";
@@ -180,7 +184,8 @@ public class RabbitMQEndpoint extends DefaultEndpoint implements AsyncEndpoint {
     private ExceptionHandler connectionFactoryExceptionHandler;
     @UriParam(label = "allowMessageBodySerialization", defaultValue = "false")
     private boolean allowMessageBodySerialization;
-
+    @UriParam(label = "consumer")
+    private boolean reQueue;
     // camel-jms supports this setting but it is not currently configurable in
     // camel-rabbitmq
     private boolean useMessageIDAsCorrelationID = true;
@@ -994,6 +999,30 @@ public class RabbitMQEndpoint extends DefaultEndpoint implements AsyncEndpoint {
     }
 
     /**
+     * Map of additional headers. These headers will be set only when the 'allowCustomHeaders' is set to true
+     */
+    public void setAdditionalHeaders(Map<String, Object> additionalHeaders) {
+        this.additionalHeaders = additionalHeaders;
+    }
+
+    public Map<String, Object> getAdditionalHeaders() {
+        return additionalHeaders;
+    }
+
+    /**
+     * Map of additional properties. These are standard RabbitMQ properties as defined in
+     * {@link com.rabbitmq.client.AMQP.BasicProperties}. The map keys should be from
+     * {@link org.apache.camel.component.rabbitmq.RabbitMQConstants}. Any other keys will be ignored.
+     */
+    public void setAdditionalProperties(Map<String, Object> additionalProperties) {
+        this.additionalProperties = additionalProperties;
+    }
+
+    public Map<String, Object> getAdditionalProperties() {
+        return additionalProperties;
+    }
+
+    /**
      * Allow pass custom values to header
      */
     public void setAllowCustomHeaders(boolean allowCustomHeaders) {
@@ -1009,5 +1038,20 @@ public class RabbitMQEndpoint extends DefaultEndpoint implements AsyncEndpoint {
      */
     public void setConnectionFactoryExceptionHandler(ExceptionHandler connectionFactoryExceptionHandler) {
         this.connectionFactoryExceptionHandler = connectionFactoryExceptionHandler;
+    }
+
+    /**
+     * This is used by the consumer to control rejection of the message. When the consumer is complete processing the
+     * exchange, and if the exchange failed, then the consumer is going to reject the message from the RabbitMQ broker.
+     * If the header CamelRabbitmqRequeue is present then the value of the header will be used, otherwise this endpoint
+     * value is used as fallback. If the value is false (by default) then the message is discarded/dead-lettered. If the
+     * value is true, then the message is re-queued.
+     */
+    public boolean isReQueue() {
+        return reQueue;
+    }
+
+    public void setReQueue(boolean reQueue) {
+        this.reQueue = reQueue;
     }
 }
